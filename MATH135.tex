@@ -1,0 +1,1346 @@
+\documentclass[english, 12pt]{article}
+\usepackage{yingconfig}
+\usepackage[reftex]{theoremref}
+
+
+% ========================Variables======================================
+\newcommand{\coursecode}{MATH 135}
+\newcommand{\coursename}{Algebra}
+\newcommand{\thisprof}{Professor J.P. Pretti}
+\newcommand{\curterm}{Fall 2014}
+\newcommand{\website}{JYING.CA}
+
+%\begin{abstract}
+%
+%\begin{itemize}
+%\item Don't just read book and notes. Write proofs. 
+%\item Start by creating a stack of problems, and pick and proof.
+%\item Create an exam lol
+%\item Explain concept to someone else
+%\end{itemize}
+%\end{abstract}
+
+\begin{document}
+\notesheader
+\section{Introduction to Proofs}
+\subsection{Proofs}
+\begin{defn}[proof]\th\label{proof}
+A {\bf proof} is a convincing argument leaving no doubt that a sentence is true. 
+\end{defn}
+
+\begin{defn}[statement]\th\label{statement}
+A {\bf statement} is a sentence that is either true or false. It must have a truth value and cannot be both true and false. Compound statements can be formed using logical connectives.
+\end{defn}
+
+\begin{defn}
+A \textbf{proposition} is a true statement, proved with a valid argument.
+\end{defn}
+\begin{defn}
+A \textbf{theorem} is a significant proposition
+\end{defn}
+\begin{defn} A \textbf{lemma} is a helper proposition used in the proof of a theorem.
+\end{defn}
+\begin{defn} 
+A \textbf{corollary} is a proposition that follows almost immediately from a theorem.
+\end{defn}
+\begin{defn}
+An \textbf{axiom} is a statement that is assumed to be true, no proof is needed.
+\end{defn}
+
+\begin{defn}[open sentence]\th\label{osentence}
+An {\bf open sentence} is a sentence with variables, and its truth value can be either true or false.Its truth value is meaningless until its variables are replaced with specific numbers.
+\end{defn}
+\begin{exmp}
+$z^2=49$ is an open sentence. There is no way to determine whether the statement is true or false without determining a value for $z$.
+ \end{exmp}
+\begin{note}
+Never assume first statement is true. If you do, $ 1=2$ can prove $2=3$.
+\begin{exmp}
+Another bad proof. Let $a,b \in \Z$ and prove 
+\[ (a-b) = (b-a)\]
+\begin{proof}
+\[ (a-b)^2 = (b-a)^2\]
+\[ (a-b)^2 = [-(a-b)]^2\]
+\[ (a-b)^2 = (-1)^2(a-b)^2\]
+\[ (a-b)^2 = (a-b)^2\]
+\end{proof}
+\end{exmp}
+\end{note}
+
+\begin{defn}
+A \textbf{compound statement} is a statement composed of several individual \textbf{component statements}. AND , OR and NOT $(\land \lor \lnot)$ are three important logical operators (connectors) used to form compound statements.
+\end{defn}
+\begin{defn}
+A \textbf{truth table} for a logical operator defines the truth value of a compound statement using this operator.
+\end{defn}
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+A & B & A \implies B & (\lnot A)\lor B\\
+\hline
+T & T & T & T \\
+T & F & F & F \\
+F & T & T & T\\
+F & F & T & T \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{defn}
+Two compound statements are \textbf{logically equivalent} if they have the same truth values for all possible states of their component statement. Equivalence is shown as $S_{1} \equiv S_{2}$.
+\end{defn}
+\begin{defn}
+\textbf{De Morgan's Laws} (DML) state that for any two statements $A$ and $B$
+\[ \lnot (A \lor B) \equiv (\lnot A)\land (\lnot B) \]
+\[ \lnot (A \land B) \equiv (\lnot A)\lor (\lnot B) \]
+\end{defn}
+\subsection{Implication}
+\begin{defn}
+An \textbf{implication} is a statement of the form `If H then C' where H and C are statements. A direct proof of an implication is assuming H is true and showing C must also be true. To use it, show H is true and conclude immediately that C is true.\\
+Written in the form $H \implies C$.
+\end{defn}
+\begin{exmp}
+Prove the implication: If $x \in \R$, then $x^2+5x+7\geq 0 $
+\begin{proof}
+\[x^2+5x+7 - \frac{25}{4} + \frac{25}{4}\]
+\[x^2+5x+7 - \frac{25}{4}\]
+\[(x+\f 5 2)^2 + \f 3 4\]
+Since $(x+\f 5 2)^2 \geq 0 $, adding $\f 3 4$ to it will result in an answer greater than $0$.
+\end{proof}
+\end{exmp}
+\begin{exmp}
+ Prove the statement: If $m$ is an even integer, then $7m^2 + 4$ is an even integer.
+\begin{proof}
+Suppose $m \in \Z$ is even, then $m^2$ is even. Also, $7m^2$ is even. Finally, $7m^2+4$ is even as required.
+\end{proof}
+\end{exmp}
+
+\subsection{Divisibility}
+\begin{defn}
+An integer $m$ divides an integer $n$ if there exists an integer $k$ so that $n = km$. $3 \mid 6$ while $3 \nmid 7$.
+\end{defn}
+\begin{exmp}
+If $n$ is an integer and $ 14 | n$, then $7 \mid n$
+\begin{proof}
+Suppose $n$ is an integer and $14 \mid n$
+\[14 \mid n \implies n = 14k, k \in \Z\]
+\[n = 7(2k)\]
+\[ k \in \Z \implies 2k \in \Z\]
+\[ \therefore 7 \mid n\]
+\end{proof}
+\end{exmp}
+
+\begin{thrm}[TD]\th\label{thm:td}
+\textbf{Transitivity of Divisibility} states if $a \mid b $ and $ b \mid c$ then $a \mid c$.
+\begin{proof}
+$ b=ax$ and $c=by$, then $a(xy)=c$. Since $x \in \Z$ and $y \in \Z$ then $xy \in \Z$. Therefore $a \mid c$.
+\end{proof}
+\end{thrm}
+\begin{thrm}[BBD]
+\textbf{Bounds by Divisibility} states that if $a,b \in \Z$, if $a \mid b$ and $b \neq 0$ then $|a| \leq |b|$.
+\end{thrm}
+\begin{thrm}[DIC]\th\label{thm:dic}
+\textbf{Divisibility of Integer Combinations} states if $a, b$ and $c$ are integers where $a \mid b$, and $a \mid c$, and $x$ and $y$ are any integers, then $a \mid (bx + cy)$.
+\end{thrm}
+\begin{exmp}
+If $m \in \Z $ and $14 \mid m$ then $ 7 \mid 135m + 693$
+\begin{proof}
+Assume $(m \in \Z) \land (14 \mid m)$. Since $14 \mid m$ then $7 \mid m$. Also $ 7 \mid 693$ because $693 = 99(7)$. Therefore, using DIC, $7 \mid (135m + 1(693))$
+\end{proof}
+\end{exmp}
+\subsection{Converse and Contrapositive}
+\begin{defn}
+The \textbf{contrapositive} of the implication $H \implies C$ is $\lnot C \implies \lnot H$ The statement is flipped and reversed. A very powerful tool for proving implications where direct proof is too convoluted. The truth table for a contrapositive and the original statement is the same.
+\end{defn}
+\begin{exmp}
+Prove that $7 \nmid n \implies 14 \nmid n$
+\begin{proof}
+Use the contrapositive: $14 \mid n \implies 7 \mid n$. This was already proved. 
+\end{proof}
+\end{exmp}
+\begin{defn}
+The \textbf{converse} of the implication $H \implies C$ is $C \implies H$. The statement is reversed. The converse may not be logically equivalent to the original statement.
+\end{defn}
+\begin{thrm}
+Furthermore, an implication is logically equivalent to other statements.
+\[ \lnot(A \implies B) \equiv (A \land (\lnot B)) \]
+\[ (A \implies B) \equiv ((\lnot A) \land B) \]
+\end{thrm}
+\begin{exmp}
+$P(n)$: If $n$ is an integer and $4n^3 - 2n - 1$ is odd then n is odd.
+\begin{note}
+To prove $P(n)$ is false, simply prove $\lnot P(n)$
+\end{note}
+\begin{proof}
+Only one example needs to be false for the entire statement to be false. Try $ n = 2$, then $4(2)^3 - 2(2) - 1 = 27$. $P(2)$ is false, therefore $P(n)$ is false.
+\end{proof}
+\end{exmp}
+
+\subsection{If and Only If}
+\begin{defn}
+The definition of A \textbf{if and only if} B is $ (A \iff B) \equiv (A \implies B)\land (B \implies A) $.
+\end{defn}
+\begin{exmp}
+Consider the following $x^2-x > 0 \iff x \in [0,1]$
+\begin{proof}\qquad\\
+$(\Longrightarrow)$ Assume $x^2-x >0$ then $x(x-1) >0$\\
+\[(x>0 \land x>1)\lor(x<0 \land x<1)\]
+\[(x>1)\lor(x<0)\]
+$(\Longleftarrow)$ Assume:$(x>1)\lor(x<0) $
+\[(x>0 \land x>1)\lor(x<0 \land x<1)\]
+\[x(x-1) >0\]
+\[x^2-x > 0 \]
+
+\end{proof}
+\begin{note}
+The two parts of the proof may not always be the reverse of each other. When they are the reverse, we can write a shorter "Chain of iffs"
+\end{note}
+\begin{proof}
+Let $x \in \R$. Then $x^2 - x > 0$
+\begin{align*}
+& \iff x(x-1) > 0\\
+& \iff (x>0 \land x>1)\lor(x<0 \land x<1)\\
+& \iff (x>1)\lor(x<0)\\
+& \iff x \in [0,1]
+\end{align*}
+\end{proof}
+\end{exmp}
+\section{Sets and Quantifiers}
+\subsection{Sets}
+\begin{defn}
+A \textbf{set} is a collection of objects. The objects that make up a set are called elements or members. Elements can be anything: numbers, letters, functions, happy faces, or even other sets.
+\end{defn}
+\begin{note}
+In Mathematics, the set of natural numbers, $\N$ consists of only positive integers. In Computer Science, $0$ is included in that set.
+\end{note}
+\begin{defn}
+The set $\lbrace \rbrace$ contains no elements and is known as the \textbf{empty set}. We usually use $\emptyset$ as a symbol for the empty set. $\emptyset = \lbrace \rbrace$
+\end{defn}
+
+\begin{defn}
+The number of elements in a finite set is called the \textbf{cardinality} of the set. $ |S|$ is used to denote a set's cardinality. The cardinality of the empty set is defined to be 0.
+\end{defn}
+\begin{defn}
+Whe working with very large sets, we refer to them as the \textbf{universe of discourse}. For example $x \in \Z$ means that the set of integers is the $\U$
+\end{defn}
+\begin{exmp}
+This is the \textbf{set-builder notation}.
+\[S = \{ x : P(x)\} \]
+where $P(x)$ is a defining property of the elements $x$ in $S$.
+\end{exmp}
+\begin{exmp}
+Sometimes the universe of discourse is known, and a set can be written as 
+\[S = \{ x \in \U: P(x)\} \]
+A set of all even integers can be described as: $ n \in \Z : 2 \mid n$.
+\end{exmp}
+\begin{defn}
+The \textbf{union} of two sets $S$ and $T$, written $S \cap T$ is a set that includes all items from either sets.
+\end{defn}
+\begin{defn}
+The \textbf{intersection} of two sets $S$ and $T$, written $S \cup T$ is a set that includes only items that are present in both sets. $\{x : (x \in S) \land (x \in T)\}$
+\end{defn}
+\begin{defn}
+The \textbf{set-difference} of two sets $S$ and $T$ is the set of all elements in $S$ that are not in $T$. Written as $S - T$ or $S\,\backslash\, T$.
+\end{defn}
+\begin{defn}
+The \textbf{complement} of a subset $S \subseteq \U$, written $\overline{S}$ consists of elements in $\U$ but not in $S$.
+\end{defn}
+\begin{defn}
+The \textbf{Cartesian product} of two sets $S$ and $T$ is the set 
+\[S \times T = \{(x,y) : x \in S, y \in T \} \]
+Each element in $S$ is paired up with each and every element in $T$.
+\[ |S \times T| = |S|\cdot |T| \]
+\end{defn}
+\begin{defn}
+$S$ and $T$ are said to be \textbf{disjoint sets} when $S \cap T = \emptyset$
+\end{defn}
+
+\begin{defn}
+A set $S$ is called a \textbf{subset} of a set $T$, and is written $S \subseteq T$, when every element of $S$ is also in $T$
+The subset of this set $\left\{ {a,b,c}\right\}$ includes
+$\foreach \n in {a,b,c,{a,b},{b,c},{a,c},{a,b,c},{}}{\lbrace \n \rbrace}$
+\[(S \subseteq T) = (x \in S \implies x \in T)\]
+The empty set is a subset of any set $\emptyset \subseteq S$.
+\end{defn}
+
+\begin{defn}
+$S$ is a \textbf{proper subset} and we write $S \subsetneq T$ when $S \subseteq T$ but $S \neq T$.
+\end{defn}
+\begin{defn}
+$S$ is a \textbf{proper superset} and we write $S \supsetneq T$ when $S \supseteq T$ but $S \neq T$.
+\end{defn}
+\begin{mthd}
+To prove $S \subseteq T$, just prove $ x \in S \implies x \in T$ through a direct proof.
+\begin{center}
+To prove $S = T$, prove $ x \in S \iff x \in T$
+\end{center}
+\end{mthd}
+
+\begin{exmp}
+Prove the following statement $S \neq T \iff S \cap T \neq S \cup T$
+\begin{proof}
+Use the contrapositive. Since it's an iff statement, hypothesis and conclusion don't necessary need to be switched because they are going to be proved both wasy. Prove $S = T \iff S \cap T = S \cup T$\\
+Assume $S = T$, then $S \cap T = S \cup S = S = S \cup S = S \cup T$\\\\
+Other direction must be proved as well. Assume $S \cap T = S \cup T$
+Let $x \in S$. (Goal: $x \in T$).
+\begin{align*}
+&\implies (x \in S) \lor (x \in T) \\
+& \implies x \in S \cup T \\
+& \implies x \in S \cap T \\
+& \implies (x \in S)\land (x \in T) \\
+& \implies  x \in T 
+\end{align*}
+This proves $S \subseteq T$ To show $T \subseteq S$, a symmetrical argument can be used.
+\end{proof}
+\end{exmp}
+\subsection{Quantifiers}
+\subsubsection{Universal Quantifier}
+\begin{exmp}
+\textbf{For every} is shown by the symbol $\forall$ and \textbf{there exists} is shown by the symbol $\exists$.
+\end{exmp}
+\begin{exmp}
+A statement with a quantifier can be written as 
+\[\forall x \in S, P(x) \]
+\begin{center}
+Quantifier: $\forall$\qquad
+Variable: $x$\qquad
+Domain: $S$\qquad
+Open sentence: $P(x)$
+\end{center}
+\end{exmp}
+\begin{exmp}
+Prove $\forall n \in \N , 2n^2+11n+15$ is not prime.
+\begin{proof}
+\qquad
+\begin{center}
+Let $m \in \N $. Then $2m^2+11m+15 = (2m+3)(m+5)$\\
+Since $m \geq 1$, then $2m+5 \neq 1$ and $m + 3 \neq 1$\\
+$\therefore 2m^2+11m+15$ is composite (not prime).
+\end{center}
+\end{proof}
+\end{exmp}
+\begin{mthd}
+We just used the \textbf{select method}:\\
+Prove $\forall x \in S, P(x)$ by picking a representative $s \in S$, and showing $P(s)$ is true.
+\end{mthd}
+\begin{defn}
+When the domain is empty, the regardless of what the open sentence $P(x)$ is, the statement $\forall x \in \emptyset, P(x)$ is \textbf{vacuously true}. However  $\exists x \in \emptyset, P(x)$ is always false.
+\end{defn}
+\begin{mthd}
+The \textbf{substitution method} substitutes an appropriate value of $x$ from $S$ and shows that $P(x)$ must be true to arrive at the desired conclusion.
+\end{mthd}
+\begin{exmp}
+Let $a,b,c \in \Z$ Prove that if $\forall x \in \Z, a \mid (bxc)$, then $ a \mid (b+c)$
+\begin{proof}
+Assume $\forall x \in \Z, a \mid (bx+c)$. Substitute $x=1$ to get $a \mid (b+c)$
+\end{proof}
+\end{exmp}
+\subsubsection{Existential Quantifier}
+\begin{mthd}
+\textbf{Construct Method} begins with constructing an element $s$, showing $s \in S$ and then showing $P(s)$ is true.
+\end{mthd}
+\begin{exmp}
+There exists an integer $m$ such that $\f{m-7}{2m+4}=5$
+\[\exists\, m \in \Z, \frac{m-7}{2m+4} = 5 \]
+\begin{proof}
+Construct $m'=-3$. Clearly $-3 \in \Z$. Now substituting, we get $\frac{-3-7}{-6+4} = 5$
+\end{proof}
+\end{exmp}
+
+\begin{mthd}
+The \textbf{object method} is where we name $s \in S$ such that $P(s)$ is true.
+\end{mthd}
+\begin{exmp}
+$\forall n\in \Z$, if $14 \mid n$, then $7 \mid n$
+\begin{proof}
+Suppose $n \in \Z$ and $14 \mid n$. Then $n = 14k, k \in \Z$. $n = 7(2k)$. Since $k \in \Z$, $2k \in \Z$ so $ 7 \mid n$.
+ \end{proof}
+\end{exmp}
+\begin{note}
+When introducing a new variable, define it and state the set that it comes from.
+\end{note}
+\begin{defn}
+To negate a quantifier, change $\forall$ to $\exists$ and vice versa. Next, negate $P(x)$
+\[ \lnot (\forall x \in S, P(x)) \equiv \exists x \in S, \lnot P(x) \]
+\[ \lnot (\exists x \in S, P(x)) \equiv \forall x \in S, \lnot P(x) \]
+\end{defn}
+\begin{exmp}
+To negate a statement like this:
+\[ \lnot (\exists x \in \R, \forall y \in \R, x^3-y^3 = 1) \]
+\[ \forall x \in \R, \lnot(\forall y \in \R, x^3-y^3 = 1) \]
+\[ \forall x \in \R, \exists y \in \R, x^3-y^3 \neq 1 \]
+\end{exmp}
+\subsection{Nesting Quantifiers}
+\begin{exmp}
+Determine a truth value for each of the following statements
+\[ \forall x \in \R, \forall\, y \in \R, x^3-y^3 = 1\]
+\[ \exists x \in \R , \exists\, y \in \R, x^3-y^3 = 1\]
+\[ \forall x \in \R , \exists\, y \in \R, x^3-y^3=1\]
+\[ \exists x \in \R, \forall\, y \in \R, x^3-y^3=1\]
+\begin{center}
+Ans: F T T F
+\end{center}
+\end{exmp}
+\begin{proof}[Proof for 3]
+Let $x \in \R$. Construct $y=\sqrt[3]{x^3-1}$. Clearly $y \in \R$.\\ Now $x^3 - (\sqrt[3]{x^3-1})^3 = x^3 - x^3 + 1 = 1$
+\end{proof}
+\begin{proof}[Disproof for 4]
+Negate the statement.
+\[ \forall x \in \R, \exists y \in \R, x^3-y^3 \neq 1 \]
+Let $x \in \R$, construct $y=x$, clearly $y \in \R$. Moreover, $x^3-x^3 = 0 \neq 1$\\
+The negation was proved to be true so the statement is false.
+\end{proof}
+
+\begin{mthd}
+\textbf{Proof by contradiction} starts by assuming the statement is false, and prove that the assumption is false, therefore the statement is true. Two classics are proving $\sqrt 2$ is irrational and proving that there is an infinite amount of prime numbers.
+\end{mthd}
+
+\begin{exmp}
+Prove that there is no largest integer.
+\begin{proof}
+Assume there is a largest integer, $n$. Consider $n+1$. It is clearly an integer and $n+1 > n$. This is impossible by definition of $n$. This means that the original assumption is false and therefore there is no largest integer.
+\end{proof}
+\end{exmp}
+
+\begin{exercise}
+Prove $\sqrt 3$ is irrational.
+\end{exercise}
+\begin{defn}
+To distribute the universal quantifier,
+\[ [\forall x \in S, (P(x) \land Q(x)] \equiv [(\forall x \in S, P(x))\land (\forall x \in S, Q(x))] \]
+\end{defn}
+\begin{defn}
+To distribute the existential quantifier,
+\[ [\exists x \in S, (P(x) \land Q(x)] \equiv [(\exists x \in S, P(x))\lor (\exists x \in S, Q(x))] \]
+\end{defn}
+\subsection{Uniqueness}
+To prove uniqueness, either assume there are two objects $X$ and $Y$ that such that $P(X)$ and $P(Y)$. Show that $X=Y$, or assume $X$ and $Y$ are distinct, and derive a contradiction.
+\begin{thrm}
+If $a$ and $b$ are integers, and $b > 0$, then there exists unique integers $q$ and $r$ such that $a = qb + r$ where $0 \leq r \leq b$.
+\begin{proof}
+Suppose that $a=q_{1}b + r_{1}$ with $ 0 \leq r_{1} \leq b$. Also suppose $a=q_{2}b + r_{2}$ with $ 0 \leq r_{2} \leq b$. Without loss of generality, assume $r_{1} < r_{2}$. Then $0 \leq r_{2} - r_{1} < b$ and $(q_{1}-q_{2})b = r_{2} - r_{1}$. Hence $b \mid (r_{2} - r_{1}$. By BBD, $b \leq r_{2} - r_{1}$, which contradicts $r_{2} - r_{1} < b$. Therefore the assumption that $r_{1} \neq r_{2}$ is false and $r_{1} = r_{2}$. But then $(q_{1} - q_{2})b = r_{2} - r_{1}$ implies $q_{1} = q_{2}$.
+\end{proof}
+\end{thrm}
+\section{Induction}
+\begin{exmp}
+\[ \text{Prove } P(n): \sum_{i=1}^n j(j+1) = \frac{1}{3} n(n+1)(n+2) \text{ for all } n \in \N \]
+\begin{proof}
+Consider $P(1)$, substitute and $P(1)$ is true, LHS = RHS.\\
+\textbf{Inductive Hypothesis:}\\
+Assume P(k) is true:
+\[P(k): \sum_{j=1}^k j(j+1) = \f 1 3 k(k+1)(k+2) \]
+\textbf{Inductive conclusion:}\\
+Prove $P(k+1)$ is also true.\\
+\[\text{LHS: }\sum_{j=1}^{k+1} j(j+1) = [\sum_{j=1}^{k+1} j(j+1)] + (k+1)(k+2) \text{ by IH} \]
+\[ = (k+1)(k+2) + (\f 1 3 k + 1) \]
+\[ = \f 1 3 (k+1)(k+2)(k+3) \]
+\[\text{RHS: } = \f 1 3 (k+1)(k+2)(k+3) \]
+LHS = RHS. Therefore by the principle of mathematical induction (POMI), $P(n)$ is true for all natural numbers $n$.
+\end{proof}
+\end{exmp}
+\begin{mthd}
+\textbf{Principle of mathematical induction} (POMI) :\\
+ Suppose $P(n)$ is a statement on $n$. If $P(1)$ is true, and 
+$\forall k \in \N, P(k) \implies P(k+1)$. Then $P(n)$ is true for all $n \in \N$.
+\end{mthd}
+\begin{exmp}
+\[P(n): n! > 2^n \text{ for all } n \in \N, n \geq 4\]
+\begin{proof}
+Base case (BC): Consider $P(4)$, LHS: $4! = 24$ and RHS: $2^4 = 16$.\\ Since LHS $>$ RHS, $P(4)$ is true.\\
+IH: Assume P(k) is true for some $k \in \N$ with $k \geq 4$.\\
+IC: Consider $P(k+1)$, LHS= $(k+1)! = k!(k+1)$.\\
+ $> (4+1)2^k$ by IH.\\
+  $> (5)2^k$ since $k \geq 4$\\
+RHS: $2^{k+1}$.
+\[ 5\times 2^k > 2\times 2^k \]
+By POMI, $P(n)$ is true for all $n \in \N, n \geq 4$
+\end{proof}
+\end{exmp}
+\begin{exercise}
+\[P(n): 6 \mid (2n^3 + 3n^2 + n) \]
+Prove $P(n)$ is true by induction.
+\begin{proof}
+BC: $P(1)$. Since $6 \mid 6$, $P(1)$ is true.\\
+IH: Assume $P(k)$ is true for some $k \in N$, with $k \geq 1$.\\
+IC: Consider $P(k+1)$. $6 \mid (2(n+1)^3 + 3(n+1)^2 + (n+1)$.
+\[6 \mid (2n^3+9n^2+13n+6) \]
+\[6 \mid (2n^3+3n^2 + n + 6(n^2 + 2n + 1)) \]
+Since $6 \mid 6$, by DIC, $6 \mid (2n^3+3n^2 + n + 6(n^2 + 2n + 1))$.\\
+By POMI, $P(n)$ is true for all $n \in \N$
+\end{proof}
+\end{exercise}
+\begin{exmp}
+POMI does not work with this example. POSI must be used.\\
+ Define a sequence $\{ x_{m}\}$ by $x_{1} = 4, x_{2} = 68$ and $x_{m} = 2x_{m-1} + 15x _{m-2} $ for all $m \geq 3$
+\[ P(n): 2(-3)^n + 10(5)^{n-1} \]
+\begin{proof}
+Consider when $n=1$. LHS: $x_{1} = 4$. RHS: $ 2(-3)^1 + (10)(5^0) = 4$. $P(1)$ is true. $P(2)$ is also true after repeating the previous step.\\
+IH: Assume $P(1), P(2), \dots, P(k-1), P(k)$. \\
+IC: $ 2(-3)^{n+1} + 10(5)^n$
+\begin{align*}
+x_{k+1} & = 2x_{k} + 15x_{k-1}\hspace{180pt} \text{With just POMI, cannot continue further}\\
+& = 2[2(-3)^n + 10 (5)^{n-1}] + 15 [2(-3)^{n-1} + 10(5)^{n-2}]\\
+& = (-3)^{n-1} (2\times 2\times -3 + 2 \times 15) + 5^{n-2}(2 \times 10 \times 5 + 15 \times 10)\\
+& = 18(-3)^{n-1} + 250(5)^{n-2}\\
+& = 2(-3)^{n+1} + 10(5)^{n}
+\end{align*}
+The result is true for $n = k+1$, and so holds for all $n \in \N$ by POSI.
+\end{proof}
+\end{exmp}
+\begin{mthd}
+\textbf{Principle of Strong Induction} (POSI) :\\
+Let $(n)$ be a statement that depends on $n \in \N$. If 
+\begin{enumerate}
+\item $P(1),P(2), \dots, P(b)$ are true for some positive integer $b$, and
+\item $P(1),P(2), \dots,P(k)$ are all true implies $P(k+1)$ is true for all $ k \in \N$
+\end{enumerate}
+then $P(n)$ is true for all $n \in \N$.
+\end{mthd}
+\begin{exmp}
+$P(n): n$ has a prime factor. Prove that $P(n)$ is true for all $n \in \N, n \geq 2$.
+\begin{proof}
+BC: $P(2)$ is true because $2 \mid 2$ and $2$ is prime.\\
+IH: Assume $r$ has a prime factor for all $r$ with $2 \leq r \leq k$ and some $k > 2$. \\
+IC: Consider $n=k+1$.\\
+Case 1: $n$ is prime, then $n$ is a prime factor of itself.\\
+Case 2: $n$ is composite, then $n=st$ for some $s,t \in \N$ with $1 \leq s,t \leq n$\\
+Since $2 \leq s \leq k$, by IH, some prime divides $s$. $s \mid n$ by definition of divisibility, thus the prime factor also divides $n$ by TD. \\
+In either case, $n$ has a prime factor, therefore by POSI, $P(n)$ is true for all $ n \geq 2$
+\end{proof}
+\end{exmp}
+\begin{exmp}
+The Fibonacci sequence is defined as following:
+\[f_{1} = 1, f_{2} = 1\qquad f_{n}=f_{n-1}+ f_{n-2} \text{ for all } n \geq 3\]
+Prove $f_{k} < (\f 7 4)^k$.
+\begin{proof}
+BC: $f_{1} = f_{2} = 1 < (\f 7 4)^1 < (\f 7 4)^2$ so $P(1)$ and $P(2)$ are true.\\
+IH: Assume $P(r)$ is true for all $r$ where $1 \leq r \leq k$ and some $k \in \N, k \geq 2$\\
+IC:
+\begin{align*}
+ & f_{k+1} < (\f 7 4)^{k-1} (\f {11}{4}) \qquad \text{ by IH}\\
+ & f_{k+1} < (\f 7 4)^k (\f {44}{16}) \\
+ & f_{k+1} < (\f 7 4)^k (\f {49}{16}) \qquad \text{ changed $44$ to $49$.  Statement still true.}\\
+ & f_{k+1} < (\f 7 4)^k(\f 7 4)^2 \\
+ & f_{k+1} < (\f 7 4)^{k+2} 
+\end{align*}
+The result is true for $n = k+1$, and so holds for all $n\in\N$ by POSI.
+\end{proof}
+\end{exmp}
+
+\begin{exmp}
+$P(n): $ In every group of $n$ people, all the people have the same birthday. 
+\begin{proof}[Wrong Proof:]
+BC: $n=1$. True. \\
+IH: Assume $P(1), P(2),\dots, P(k)$ are true for $k \in \N$\\
+Consider $n=k+1$. \\
+Kick somebody out of the group. Everybody left has the same birthday by IH. Let the person back in but kick somebody else out. Use the IH again, on the new subgroup, and everyone has the same birthday still. \\\\ 
+\textbf{Flaw:} Falls apart for $k+1=2$.
+\end{proof}
+\end{exmp}
+\section*{-------------------------Midterm stops here ------------------------------------}
+\section{Greatest Common Divisor}
+\subsection{Introduction to GCD}
+\begin{defn}
+Let $a,b \in \Z$ where $a \neq 0 \lor a-b \neq 0$. The \textbf{greatest common divisor} of $a$ and $b$, written $\gcd(a,b)$, is a positive integer $d$, such that $d \mid a$ and $d \mid b$. If $c \mid a$ and $c \mid 0$, then $c = d$.
+\end{defn}
+\begin{exmp}
+\[ \gcd(50,30)=10 \qquad
+\gcd(-36,44)=4 \qquad
+ \gcd (-12,-18) = 6 \qquad
+\gcd (0,100)=100 \qquad\]
+We define $\gcd(0,0)$ to be $0$.
+\end{exmp}
+\begin{thrm}[GCD WR]
+\textbf{GCD With Remainders} states: if $a$ and $b$ are integers not both zero, and $q$ and $r$ are integers such that $a = qb+r$, then $\gcd(a,b) = \gcd(b,r)$.
+\begin{proof}
+Let $d = \gcd(a,b)$. Since $d = \gcd(a,b)$, $d \mid b$. Observe that $r = a - qb$. Since $d \mid a$ and $d \mid b$, d $\mid (a(1) + b(-q))$ by DIC, so $d \mid r$.\\\\
+Let $c \mid b$ and $c \mid r$. Then $c \mid (b(q) + r(1))$ by DIC. Since $a = qb+r$, $c \mid a$. Then since $d = \gcd(a,b)$ and $c \mid a$ and $c \mid b$, then $c \leq d$. Hence $d = \gcd(b,r)$.
+\end{proof}
+\end{thrm}
+\begin{exmp}
+Prove that the GCD exists.
+\begin{proof}
+True by definition for $\gcd(0,0)$. Otherwise, when $a \neq 0$ or $b \neq 0$, then if $a \mid b$, $a \leq | b |$ by BBD. $1 \mid a$ and $1 \mid b$.
+\end{proof}
+\end{exmp}
+\begin{exmp}
+Prove that there is only one gcd.
+\begin{proof}
+Suppose $s=\gcd(a,b)$ and $t = \gcd(a,b)$.Since $s=\gcd(a,b)$, $s \mid a$ and $s \mid b$. Therefore since $t = \gcd(a,b)$, $s \leq t$
+Similarly, $t \leq s$. $\therefore t = s$.
+\end{proof}
+\end{exmp}
+\begin{thrm}[GCD CT]
+\textbf{GCD Characterization Theorem} states if $d$ is a positive common divisor of $a,b \in \Z$, and there exists integers $x$ and $y$ so that $ax + by = d$ then $d = \gcd(a,b)$
+\end{thrm}
+\subsection{Primes}
+\begin{defn}
+An integer $p>1$ is a \textbf{prime} if its only divisors are 1 and $p$, and \textbf{composite} otherwise.
+\end{defn}
+\begin{thrm}[PAD]
+\textbf{Primes and Divisibility} states: if $p$ is a prime and $p \mid ab$, then $p \mid a$ or $p \mid b$.
+\begin{proof}
+Assume $p$ is prime and $p \mid ab$. Consider two cases
+\begin{enumerate}
+\item If $p \mid a$, there is nothing to show.
+\item Assume $p \nmid a$. The only divisors of $p$ are $1$ and $p$. Therefore $\gcd(a,p) = 1$. By CAD, $p \mid b$.
+\end{enumerate}
+\[ P \implies (Q \lor R) \equiv ( (P \land \lnot Q) \implies R) \]
+\end{proof}
+\end{thrm}
+\begin{thrm}[UFT]
+The \textbf{Fundamental Theorem of Arithmetic} or \textbf{Unique Factorization Theorem} states that if $n \in N$, then $n$ can be written as a product of prime factors, and the factorization is unique.
+\end{thrm}
+\begin{thrm}[DFPF]
+\textbf{Divisors From Prime Factorization:} If $a \in N$ and $a = p^{\alpha 1}_{1} p^{\alpha 2}_{2} \cdots p^{\alpha k}_{k}$ is the PF into distinct powers of primes, then the divisors of $a$ are
+\[ d = p^{d_{1}}_{1} p^{d_{2}}_{2} \cdots p^{d_{k}}_{k} \text{ where } 0 \leq d_{i} \leq \alpha_{i} \text{ for } i = 1,2,\dots,k \]
+\end{thrm}
+\begin{thrm}[GCD PF]
+\textbf{GCD from Prime Factorization} shows that if the prime factorization of two numbers are given, their GCD is the product of the primes to the lower exponent between the two numbers.
+\end{thrm}
+\begin{exmp}
+Find the GCD of $24750 = 2^1 3^2 5^3 11^1$ and $434511 = 3^3 7^1 11^2 19^1$
+\begin{sol}
+\[\gcd(24750,434511) = 3^3 7^1 11^2 = 7623 \]
+\end{sol}
+\end{exmp}
+\subsection{Extended Euclidean Algorithm}
+\begin{defn}
+The \textbf{floor} of a number $x$, written $\lfloor x \rfloor$ is the largest integer less than or equal to $x$.
+\end{defn}
+\begin{exmp}
+Compute $\gcd(1386,322)$.
+\begin{sol}
+Begin with a table:
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+x & y & r & q\\
+\hline
+1 & 0 & a & 0\\
+0 & 1 & b & 0\\
+\hline
+\end{tabular}\\
+After the first two rows are generated, use the formula 
+\[q_{i} = \left\lfloor \f{r_{i-2}}{r_{i-1}} \right\rfloor \]
+\end{center}
+In this case 
+\[q_{3} = \left\lfloor \f{1386}{322} \right\rfloor = 4 \]
+Next, Row$_{i}$ = Row$_{i-2} - q_{i} \times $Row$_{i-1}$. In the example we get $x = 1,y = -4, r = 98$. \\\\
+After completing the table we get
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+x & y & r & q\\
+\hline
+1 & 0 & a & 0\\
+0 & 1 & b & 0\\
+1 & -4 & 98 & 4\\
+-3 & 13 & 28 & 3\\
+10 & -43 & 14 & 3\\
+-23 & 99 & 0 & 2\\
+\hline
+\end{tabular}\\
+\end{center}
+\end{sol}
+\end{exmp}
+\begin{defn}[EEA]
+The \textbf{Extended Euclidean Algorithm} is used to not only compute $\gcd a,b)$, but also the data $x$ and $y$ for the certificate (check). $a,b \in \N \implies d = gcd(a,b)$ can be computed and $\exists x,y \in \Z, ax + by = d$. It requires $a > b$, if $a < b$, simply swap the numbers.
+\end{defn}
+\subsection{Properties of GCDs}
+\begin{defn}
+Two integers are \textbf{coprime} if their gcd is $1$.
+\end{defn}
+\begin{thrm}[CAD]
+\textbf{Coprimeness and Divisibility} states that if $a,b,c \in \Z$ and $c \mid ab$ and $\gcd(a,c) = 1$, then $c \mid b$.
+
+\begin{proof}
+Assume $c \mid ab$ and $\gcd(a,c) = 1$. By EEA, $ax + cy = 1$ for some $x,y \in \Z$. Multiply to get $abx + bcy = b$. Since $c \mid ab$, $ab = ck$ for some integers $k$. Substitute and factor the equation $c(kx+by) = b$. Since $kx + by$ is an integer, $c \mid b$.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}[DB GCD]
+\textbf{Division by the GCD}: Let $a$ and $b$ be integers. If $\gcd(a,b)=d\neq0$ then $\gcd(\f{a}{d},\f{b}{d})=1$.
+\end{thrm}
+
+\begin{exercise}
+Prove if $\gcd(a,b) = 1$, then for any $c \in \N$, $\gcd(a,bc) = \gcd(a,c)$.
+
+\begin{proof}
+By EEA, $ax + by=1$ and $ax' + cy' = d$ for some $x,y,x',y' \in \Z$ where $d = \gcd(a,c)$. Multiply the equations to get $(ax+ by)(ax' + cy') =d$. 
+\[ a(xx' + cxy' + byx') + bc(y y') = d \]
+The new LHS is an integer linear combination of $a$ and $bc$. By definition, $ d \in \Z, d > 0, d \mid a$. We also known $d \mid c$ and clearly $c \mid bc$ so by TD, $d \mid bc$. Hence by GCD CT, $d = \gcd(a,bc)$
+\end{proof}
+\end{exercise}
+
+\section{Modular Arithmetic}
+\subsection{Linear Diophantic Equation}
+\begin{thrm}[LDET 1]
+\textbf{Linear Diophantine Equation Theorem, Part 1} states the linear Diophantine equation $ax + by = c$ has a solution if and only if $d \mid c$ where $d = \gcd(a,b)$.
+\begin{proof}
+$\Rightarrow$: Suppose $ax_{0}+by_{0} = c$ has an integer solution, and $d = \gcd(a,b)$.\\
+By definition $d \mid a$ and $d \mid b$ so by DIC, $d \mid ax+by$, and $d \mid c$.\\\\
+$\Leftarrow$: Assume $c=dk$ where $k \in \Z$. By EEA, $ax_{0}+by_{0}=d$ where $x,y \in \Z$. Therefore $c = (ax_{0}+by_{0})k = ax_{0}k+by_{0}k$. Since $x_{0}k$ and $y_{0}k$ are integers, then there exists an integer solution to $ax+by =c$.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}[LDET 2]
+Let $\gcd(a,b)=d$ where $a,b \neq 0$. If $x=x_{0}$ and $y=y_{0}$ is a particular integer solution to $ax+by=c$, then the complete integer solution is
+\[x=x_{0} + \f{b}{d} n, y= y_{0} - \f{a}{d} n, \forall n \in \Z \]
+\end{thrm}
+\begin{exmp}
+$20x+35y=5$. If one solution is $(x,y) = (2,-1)$ then the complete solution is
+\[(x,y)=(2+7n,-1-9n), \forall n \in \Z \]
+\begin{note}
+Another solution is $(-5,3)$ and $(x,y)=(-5+7n,3-4n), \forall n \in \Z$ represents the same set.
+\end{note}
+\end{exmp}
+
+\begin{exmp}
+Find all solutions to $15x-24y=9$ where $0 \leq x,y \leq 20$.
+\begin{sol}
+Equation can be divided by $3$. $5x-8y=3$ One particular solution is $(x,y)=(-1,-1)$ The complete solution is 
+\[(x,y)= (-1 - 8n,-1-5n) \]
+\begin{center}
+Now we must add in the domain restrictions.
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+-1-8n \geq 0 & -1-5n \geq 0 & -1-8n \leq 20 & -1-5n \leq 20\\
+8n \leq -1 & 5n \leq -1 & 8n \geq -21 & 5n \geq -21\\
+n \leq -\f{1}{8} & n \leq -\f{1}{8} & n \geq -\f{21}{8} & n \geq -\f{21}{8}\\
+n \leq -1 & n \leq -1 & n\geq 2 & n \geq -4\\
+\hline
+\end{tabular}
+\end{center}
+Therefore the only solutions are $n=-1$ and $n=-2$. Plug them into the complete solution to get $(7,4)$ and $(15,9)$
+\end{sol}
+\end{exmp}
+\subsection{Congruence}
+\begin{defn}
+Let $m$ be a fixed positive integer. Let $a,b \in \Z$, if $m \mid (a-b)$, then
+\[a \equiv b \pmod m \]
+Otherwise, we write $a \not\equiv b \pmod m$
+\end{defn}
+\begin{thrm}[CER]
+\textbf{Congruence Equivalent Relation:} Let $m \in \N$. Let $a,b,c \in \Z$. Then
+\begin{itemize}
+\item \textbf{Reflexivity:} $a \equiv a \pmod m$
+\item \textbf{Symmetry:} $a \equiv b \pmod m \implies b \equiv a \pmod m$
+\item \textbf{Transitivity:} $a \equiv b \pmod m$ and $b \equiv c \pmod m \implies a \equiv c \pmod m$
+\end{itemize}
+\end{thrm}
+\begin{thrm}[PC]
+\textbf{Properties of Congruence:} Let $a,a',b,b' \in \Z$ If $a \equiv a' \pmod m$ and $ b \equiv b \pmod m$, then
+\begin{itemize}
+\item $a \pm b \equiv a' \pm b' \pmod m$
+\item $ab \equiv a' b' \pmod m$
+\end{itemize}
+\end{thrm}
+\begin{exmp}
+Is $5^9 + 62^{2000}-14$ divisible by $7$?
+\begin{sol}
+\begin{align*}
+5^9 + 62^{2000}-14 & \equiv 5^9 + 62^{2000} &\pmod 7\\
+& \equiv 5^9 + (-1)^{2000} &\pmod 7\\
+& \equiv 5^9 + 1 &\pmod 7\\
+& \equiv (5^2)^4 5 + 1 &\pmod 7\\
+& \equiv 4^4(-2) + 1 &\pmod 7\\
+& \equiv (4^2)^2 (-2) + 1 &\pmod 7\\
+& \equiv 2^2(-2) +1 &\pmod 7\\
+& \equiv -7 &\pmod 7\\
+&\equiv 0 &\pmod 7
+\end{align*}
+\end{sol}
+\end{exmp}
+\begin{exmp}
+A positive integer is divisible by $9$ iff the sum of its digits is divisible by $9$.
+\begin{proof}
+Let $n \in \N$. Write $n = a_{r}\times10^r a_{r-1}\times10^{r-1} \dots a_{1}\times 10 + a_{0}$
+Mod everything by 9
+\[\equiv a_{r}+  a_{r-1} + \dots+  a_{1}+ a_{0}\]
+$\therefore$ If the sum of an integer's digits is divisible by $9$, the integer is divisible by $9$.
+\end{proof}
+\end{exmp}
+\begin{defn}[CD]
+\textbf{Congruences and Division} states if $ac\equiv bc \pmod m$ and $\gcd(c,m)=1$, then $a \equiv b \pmod m$.
+\begin{proof}
+Assume $ac\equiv bc \pmod m$ and $\gcd(c,m)=1$. Then $m \mid (ac-bc)$. Therefore $m \mid c\,(a-b)$. Additionally, by CAD, $m \mid a-b$. Therefore $a \equiv b\pmod m$
+\end{proof}
+\end{defn}
+\begin{defn}[CISR]
+\textbf{Congruent Iff Same Remainder} states\\
+\[a \equiv b \pmod m \iff a \text{ and } b \text{ have the same remainder when divided by } m \]
+For example $24 \equiv 17 \pmod 7$. Then $24 \equiv 3 \pmod 7$ and $17 \equiv 3 \pmod 7$.
+\end{defn}
+\begin{exmp}
+What is the remainder when $77^{100}(999)-6^{83}$ is divided by $4$?
+\begin{sol}
+Reduce the modulo 4 using PC.
+\begin{align*}
+77^{100}(999)-6^{83} &\equiv 1^{100}(-1)-6^{83} \pmod 4\\
+&\equiv -1 +2^2\times 2^{81} \pmod 4\\
+&\equiv -1 + 0\times 2^{81} \pmod 4\\
+&\equiv 3 \pmod 4
+\end{align*}
+\end{sol}
+\end{exmp}
+\begin{note}
+Only write $\pmod n$ if there is a congruent sign, don't write it if there is an equal sign.
+\end{note}
+\begin{exmp}
+What is the last digit of 
+\[5^{32} 3^{10} + 9^{22} \]
+\begin{sol}
+Use PC and reduce modulo $10$.
+Note that
+\[5^2 \equiv 5 \pmod{10}, 5^4 \equiv 5^2 \equiv 5 \pmod{10}\dots 5^{32} \equiv 5 \pmod{10} \]
+\[3^{10} \equiv (-1)^5 \equiv -1 \pmod{10}\]
+\[9^{22} \equiv (-1)^{22} \equiv 1 \pmod{10}\]
+\begin{align*}
+5^{32} 3^{10} + 9^{22} &\equiv5(-1) + 1 \pmod{10}\\
+&\equiv -4 \pmod{10}\\
+&\equiv 6 \pmod{10}
+\end{align*}
+Therefore the last digit is $6$.
+\end{sol}
+\end{exmp}
+\subsubsection*{Linear Congruences}
+\begin{exmp}
+\[4x \equiv 5 \pmod 8 \]
+\[4x -5 = 8y' \]
+\[4x+8y=5 \]
+$\gcd(4,8) = 2$ and $2 \nmid 5$ so the equation does not have a solution.
+\end{exmp}
+\begin{exmp}
+\[5x = 3 \pmod 7 \]
+\[5x + 7y = 3 \]
+A particular solution is $(x,y)=(2,-1)$. By LDET 2, the complete solution is 
+\[x = 2 + 7n \qquad\forall n \in \Z \]
+\[ x \equiv 2 \pmod 7 \]
+The value of $y$ doesn't matter, question only asks for $x$.\\\\
+Alternatively, by CISR, every integer solution is congruent to exactly one of the elements $\{0,1,2,3,4,5,6\}$. By PC if $x_{0}\in \Z$ is a solution, then all $x\equiv x_{0} \pmod 7$ work too.
+\end{exmp}
+\begin{exmp}
+\[2x \equiv 4 \pmod 6 \]
+\[2(0) = 0 \not\equiv 4 \pmod 6 \]
+\[2(1) = 2 \equiv 4 \pmod 6 \]
+\[2(2) = 4 \not\equiv 4 \pmod 6 \]
+\[2(3) = 6 \not\equiv 4 \pmod 6 \]
+\[2(4) = 8 \not\equiv 4 \pmod 6 \]
+\[2(5) = 10 \equiv 4 \pmod 6 \]
+Therefore the solution is $x\equiv 2, 5 \pmod 6$\\
+Using LDE, $x \in \{2 + 3n : n \in \Z\}$ and the complete solution is $x \equiv 2 \pmod 3$
+\begin{note}
+The two sets are actually equal.
+\end{note}
+\end{exmp}
+\begin{defn}[LCT 1]
+\textbf{Linear Congruence Theorem} states the linear congruence $ax \equiv c \pmod m$ has a solution if and only if $\gcd(a,m) \mid c$.
+\end{defn}
+\begin{defn}[LCT 2]
+Let $\gcd(a,m) = d \neq 0$. The equation $\lbrack a \rbrack \lbrack x \rbrack = \lbrack c \rbrack$ in $\Z_{m}$ has a solution if and only if $d \mid c$.
+Furthermore there exists $d$ solutions $\mod m$, and if $x =x_{0}$ is a solution, the complete solution is 
+\[ \left\{ \left\lbrack x_{0} \right\rbrack,\left\lbrack x_{0} + \f{m}{d} \right\rbrack,\left\lbrack x_{0} + 2 \f{m}{d} \right\rbrack,\left\lbrack x_{0} + (d-1)\f{m}{d} \right\rbrack\right\} \]
+\end{defn}
+\subsubsection*{Congruent Classes}
+Fix $m=6$
+\begin{align*}
+\lbrack 0 \rbrack &=\{x \in \Z : x \equiv 0 \pmod 6\}\\
+&= \{x \in \Z: \exists k \in \Z, x = 6k \} \\
+&= \{6k:k \in \Z \}
+\end{align*}
+\begin{defn}
+Let $m \in \N, a \in \Z$. The \textbf{congruence class} of $a \pmod m$ is \[\lbrack a \rbrack = \{x \in \Z: x \equiv a \pmod m \}\]
+\end{defn}
+\begin{exmp}
+If $m=6$, $\lbrack 5 \rbrack = \lbrack 17 \rbrack$ because $5 \pmod 6 \equiv 17 \pmod 6$. There are exactly $6$ congruent classes modulo $6$.
+\[\Z_{6} = \Big\{\lbrack 0 \rbrack,\lbrack 1 \rbrack,\lbrack 2 \rbrack,\lbrack 3 \rbrack,\lbrack 4 \rbrack,\lbrack 5 \rbrack\Big\} \]
+\end{exmp}
+\begin{defn}
+Let $m \in \N$. The integers modulo $m$ are
+\[\Z_{m}= \{\lbrack 0 \rbrack,\lbrack 1 \rbrack, \dots, \lbrack m-1 \rbrack\} \]
+\end{defn}
+\begin{defn}
+Fix $m \in \N$. Consider $Z_{m}$
+\[ \lbrack a \rbrack + \lbrack b \rbrack = \lbrack a + b \rbrack \]
+\[ \lbrack a \rbrack \times \lbrack b \rbrack = \lbrack a \times b \rbrack\]
+\end{defn}
+\begin{exercise}
+Consider $\Z_{21}$ Solve $\lbrack 48\rbrack\lbrack x \rbrack = \lbrack 10 \rbrack$
+\begin{sol}
+\[\lbrack 48\rbrack\lbrack x \rbrack = \lbrack 10 \rbrack =  \lbrack 6 \rbrack\lbrack x \rbrack = \lbrack 10 \rbrack \]
+\[\lbrack 6x \rbrack = \lbrack 10 \rbrack \]
+\[ 6x \equiv 10 \pmod{21} \]
+\[ 3x = 5 \pmod{21} \]
+Since $\gcd(3,21) \nmid 5$, there is no solution.
+\end{sol}
+\end{exercise}
+\subsubsection*{Inverses}
+In $\Z_{m},\lbrack a \rbrack + \lbrack -a \rbrack = \lbrack 0 \rbrack\, \forall a \in \Z$
+\begin{defn}
+\textbf{Multiplicative Inverse}: Let $m \in \N, a \in \Z$. The multiplicative inverse of $\lbrack a \rbrack$ is some $\lbrack b \rbrack \in \Z_{m}$ such that $\lbrack a \rbrack \lbrack b \rbrack = \lbrack b \rbrack \lbrack a \rbrack = \lbrack 1 \rbrack$. We write $\lbrack b \rbrack = \lbrack a \rbrack^{-1}$
+\end{defn}
+\begin{exmp}
+In $\Z_{18}$, $\lbrack 5 \rbrack ^{-1} = \lbrack 11 \rbrack$ because multiplying the two gives $\lbrack 1 \rbrack$. The multiplicative inverse of $\lbrack 9 \rbrack$ does not exist.
+\end{exmp}
+\subsection{Fermat's Little Theorem}
+\begin{defn}[FlT]
+Let $p$ be prime and $a \in \Z$, If $p \nmid a$ then $a^{p-1} \equiv 1 \pmod p$.
+\begin{proof}
+Suppose $p$ is prime and $p \nmid a$. Assume $ra \equiv sa \pmod p$ where $0 < r \geq s < p$. Then $p \mid a(r-s)$. By PAD, $p \mid r - s$. Therefore $r = s$. This tells us that $a,2a,3a,\dots,(p-1) a$ are unique modulo p. Hence $a^{p-1} (p-1)! \equiv (p-1)! \pmod p$. Since $\gcd(p,(p-1)!) = 1$, then $a^{p-1} \equiv 1 \pmod p$
+\end{proof}
+\end{defn}
+\begin{cor}
+Let $p$ be prime and $a \in \Z$, then $a^p \equiv a \pmod p$
+\end{cor}
+\begin{cor}
+Let $\lbrack a \rbrack$ be a non-zero element of $\Z_{p}$, then $\lbrack a \rbrack^{-1}$ exists.
+\end{cor}
+
+\begin{exmp}[Polynomial Congruence]
+Find all $x \in \Z$ such that $x^5 + x^3 + 2x^2 + 1$ is divisible by $5$.
+\begin{sol}
+We solve $x^5 + x^3 + 2x^2 + 1 \equiv 0 \pmod 5$. Brute force solution. First simplify using a corollary to FlT:
+\[x^5 \equiv x \pmod 5 \]
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+x & 0 & 1 & 2 & 3 & 4\\
+\hline
+x^3 + 2x^2 + x + 1 & 1 & 0 & 4 & 4 & 1\\
+\hline
+\end{tabular}
+\end{center}
+By PC, the full solution is $x \equiv 1 \pmod 5$
+\end{sol}
+\end{exmp}
+\subsubsection*{Simultaneous Congruences}
+Solve
+\begin{equation}
+x \equiv 2 \pmod{13} 
+\end{equation}
+\begin{equation}
+ x \equiv 17 \pmod{29} 
+ \end{equation}
+Write 1 as $x = 2 + 13s$ where $s \in \Z$. Substitute into 2.
+\[2 + 13s = 17 \pmod {29} \]
+\[ 13s \equiv 15 \pmod{29} \]
+ \[ 13sx - 29y = 15 \]
+
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+x & y & r & m\\
+\hline
+1 & 0 & 29 & 0\\
+0 & 1 & 13 & 0\\
+1 & -2 & 3 & 2\\
+-4 & 9 & 1 & 4\\
+- & - & 0 & 0 \\
+\hline
+\end{tabular}
+\end{center}
+
+By LDET 2
+$29(-4) + 13(9) = 1$\\
+$29(-60) + 13(135) = 15$\\
+ $s \equiv 135 \pmod{29} \equiv 19 \pmod{29}$.
+Write $s = 19 + 29t$ where $t \in \Z$.
+\[ x = 2 + 13 (19 + 29t) \]
+\[x =249 + 377t \]
+The solution is $ x \equiv 249 \pmod{377}$.
+\begin{thrm}[CRT]
+\textbf{Chinese Remainder Theorem}: If $\gcd(m_{1}, m_{2}) = 1$ then for all $a_{1},a_{2} \in \Z$ there exists a solution to
+\[x \equiv a_{1} \pmod{m_{1}} \]
+\[x \equiv a_{2} \pmod{m_{2}} \]
+Moreover, if $x = x_{0}$ is a solution, then the completely solution is $x \equiv x_{0} \pmod{m_{1} m_{2}}$.
+\end{thrm}
+\begin{exmp}
+Solve 
+\begin{equation}
+x \equiv 5 \pmod 6 
+\end{equation}
+\begin{equation}
+x \equiv 2 \pmod 7 
+\end{equation}
+\begin{equation}
+ x \equiv 3 \pmod {11}
+ \end{equation}
+Inspecting and checking gives $x \equiv 23 \pmod {42}$ is the solution to 3 and 4 by CRT.
+\begin{equation}
+x \equiv 23 \pmod {42}
+\end{equation}
+\begin{equation}
+ x \equiv 3 \pmod {11}
+ \end{equation}
+By rearranging and using EEA, solution is
+ \[x = 443 \pmod {462} \]
+\end{exmp}
+\begin{exmp}
+\begin{equation}
+3x \equiv 2 \pmod 5
+\end{equation}
+\begin{equation}
+2x \equiv 6 \pmod 7
+\end{equation}
+The solution to 8 is $x \equiv 4 \pmod 5$ and to 9 is $x \equiv 3 \pmod 7$. Solve these two linear congruences to get $ x = 24 \pmod{35}$
+\end{exmp}
+\begin{exmp}
+\begin{equation}
+x \equiv 4 \pmod 6
+\end{equation}
+\begin{equation}
+x \equiv 2 \pmod 8
+\end{equation}
+Rewrite 10 as $x = 4 + 6s$ where $s \in \Z$ Sub into 11, 
+\[ 4 + 6s \equiv 2 \pmod 8\]
+\[ 6s \equiv 6 \pmod 8 \]
+Using LCT 1 or 2, there is a unique solution mod 4.
+\[s \equiv 1 \pmod 4 \]
+\[s = 1 + 4t\]
+\[x = 4 + 6(1 + 4t) \]
+\[x = 10 + 24t \]
+\[x \equiv 10 \pmod{24} \]
+\end{exmp}
+\begin{exmp}
+\[x^2 \equiv 34 \pmod{99} \]
+Use CRT to consider 
+\[x^2 \equiv 34 \pmod 9\]
+\[x^2 \equiv 34 \pmod {11} \]
+Rewrite as
+ \[x^2 \equiv 7 \pmod 9\]
+\[x^2 \equiv 1 \pmod {11} \]
+There are two solutions to each equation, so by multiplying each pair, there are four solutions.
+\[x \equiv 23,32,67,76 \pmod {99} \]
+\end{exmp}
+\begin{exmp}
+Solve $x^3 - 29x^2 + 35x + 38 = 0 \pmod{195}$
+\begin{sol}
+\[ 195 = 15 \times 13 \]
+\[x^3 + x^2 + 5x + 8 \equiv 0 \pmod{15} \]
+\[ x^3 + 10x^2 + 9x +12 \equiv 0 \pmod{13} \]
+Use a table to find all solutions. Every combination of a solution to the first equation to a solution to the second equation is a simultaneous linear congruence.
+\todo{Finish, should have 12 different solutions}
+\end{sol}
+\end{exmp}
+\subsection{Cryptography}
+\begin{itemize}
+\item Choose primes $p$ and $q$ and $p \neq q$. Set $n = pq$ and let $\phi(n) = (p-1)(q-1)$
+\item Choose $\epsilon$ where $ 1 < \epsilon \leq \phi(n)$ and $\gcd(\epsilon, \phi(n)) = 1$
+\item Solve $\epsilon d = 1 \pmod{\phi(n)}$ where $ 0 < d \leq \phi(n)$
+\item Publish public key $(e,n)$
+\item Secure private key $(d,n)$
+\end{itemize}
+\begin{exmp}
+Set $p=2,q=11, n = 22$
+\[ \phi(n) = 10 \]
+\[\text{Let } e=3 \]
+\[ 3d = 1 \pmod{10} \]
+\[ d = 7 \]
+Public key: $(3, 22)$. Private key: $(7,22)$.
+\end{exmp}
+\subsubsection*{Encryption}
+\begin{enumerate}
+\item Generate message $M$ where $ 0 \leq M < n$
+\item Compute $C$ where $ 0 \leq C < n$ and $M^\epsilon \equiv C \pmod n$
+\item Send ciphertext $C$
+\end{enumerate}
+\begin{enumerate}
+\item Compute $R$ where $0 \leq R < n$ and $C^d \equiv R \pmod n$
+\end{enumerate}
+\begin{exmp}
+Encryption:
+\begin{align*}
+M &= 8 \\
+8^3 &\equiv C \pmod {22} \\
+8\times 8 ^2 &\equiv 8\times 22 \pmod {22} \\
+8\times 8 ^2  &\equiv 50 \pmod {22} \\
+8\times 8 ^2  &\equiv 6 \pmod {22} 
+\end{align*}
+Decryption:
+\begin{align*}
+6^7 &\equiv r \pmod{22} \\
+&\equiv 6^4 \times 6^2 \times 6 \pmod{22}\\
+&\equiv 14^2 \times 14 \times 6 \pmod{22} \\
+&\equiv 14^2 \times 84 \pmod{22} \\
+&\equiv 196 \times 18 \pmod{22} \\
+&\equiv 20 \times 18 \pmod{22} \\
+&\equiv 8 \pmod{22} 
+\end{align*}
+\end{exmp}
+\begin{thrm}[RSA]
+In RSA $R = M$
+\begin{proof}
+\[R \equiv C^d \pmod n \]
+\[\equiv (M^e)^d \pmod n \]
+\[ (M^ed) \pmod n \]
+\[M^{1+k(p-1)(q-1)} \pmod n \qquad \exists k \in \Z\]
+\[M\times M^{k(p-1)(q-1)} \pmod n \]
+Since $p \mid n$ then
+\[M\times M^{k(p-1)(q-1)} \pmod p \]
+There are two cases:
+\begin{enumerate}
+\item $p \nmid M$
+\[R \equiv M\times (M^{p-1})^{k(q-1)} \pmod p\]
+\[ R \equiv M \pmod p \text{ by FLT}\]
+\item $p \mid M$
+\[ R \equiv 0 \pmod p \]
+\[R \equiv M \pmod p \]
+\end{enumerate}
+Similarly, show 
+\[R \equiv M \pmod q \]
+Then $R$ and $M$ are both solutions to $x \equiv M \pmod p$ and $x \equiv P \pmod q$.\\
+Since $p \neq q$, $\gcd(p,q) = 1$ so by CRT, $R \equiv M \pmod{pq}$, then $R \equiv M \pmod{n}$\\
+Since $0 \leq M < n$ then $P = M$.\\
+\end{proof}
+\end{thrm}
+\section{Complex Numbers}
+\begin{defn}
+A \textbf{complex number} in standard form is an expression of the form $x+yi$ where $x,y \in \R$. The complex numbers, written $\C$ is the set $\{x+yi : x,y \in \R \}$
+\end{defn}
+\begin{exmp}
+For $x+yi \in \C$, $x$ is the real part and $y$ is the imaginary part. We write $\operatorname{Re}(x+yi) = x$ and $\operatorname{Im}(x+yi) = yi$
+\end{exmp}
+\begin{defn}
+With $x+yi$, if $y=0$, the number is purely real. If $x,y \neq 0$ then $x+yi$ is purely imaginary. 
+\[ \R \subsetneq \C \]
+\end{defn}
+\subsubsection*{Arithmetic}
+\[(a+bi) + (c+di) = (a+c) + (b+d)i \]
+\[(a+bi)(c+di) = (ac-bd) + (ad + bc)i \]
+\begin{exmp}
+Solve $x^2 + 2x + 3 = 0$
+\[ x = \f{-2 \pm \sqrt{4 - 4(1)(3)}}{2} \]
+\[ x = -1 \pm \sqrt{-2} \]
+\[ x = -1 + \sqrt{2} i, -1 - \sqrt{2}i \]
+\end{exmp}
+\begin{exmp}
+Express $\f{1+2i}{3-4i}$ in standard form.
+\begin{sol}
+Multiply by conjugate
+\[\left(\f{1+2i}{3-4i}\right)\left(\f{3+4i}{3+4i}\right) = \f{-5 + 10i}{25 + 0i} \]
+\[ = - \f{1}{5} + \f{2}{5} i \]
+\end{sol}
+\end{exmp}
+\begin{thrm}
+\begin{align*}
+i^{0 \pmod 4} &= i\\
+i^{1 \pmod 4} &= -1\\
+i^{2 \pmod 4} &= -i\\
+i^{3 \pmod 4} &= 1
+\end{align*}
+\end{thrm}
+\begin{defn}
+The \textbf{complex conjugate} of $z = x + yi$ is $\overline z = x - yi$.
+\end{defn}
+If $z$ and $w$ are complex numbers,
+\[ \overline{z + w} = \overline{z} + \overline{w} \]
+\[ \overline{zw} = \overline{z}\overline{w}\]
+\[ z + \overline{z} = 2 \Re(z)\]
+\[ z - \overline{z} = 2 \Im(z)\]
+\begin{defn}
+The \textbf{modulus} of the complex number $z = x + yi$ is 
+\[ |z| = |x + yi| = \sqrt{x^2 + y^2} \]
+This is also the distance between the number and the origin on the complex plane.
+\[ \overline{z} z = |z|^2\]
+\[ |zw| = |z| |w|\]
+\[ |z+w| \leq |z| + |w|\]
+\end{defn}
+\subsection{Graphical Representation}
+\begin{defn}
+The \textbf{complex plane} or \textbf{Argand plane} is similar to the Cartesian plane with the $x$ axis being labelled as the real axis, and $y$ as imaginary axis.
+\end{defn}
+\begin{itemize}
+\item Conjugate $\implies$ reflection over real axis.
+\item Modulus $\implies $ distance from origin.
+\item Addition $\implies$ vector addition.
+\end{itemize}
+\begin{defn}
+Given the polar coordinates $(r,\theta)$, the corresponding Cartesian cordinates $(x,y)$ are
+\[ x = r \cos \theta\]
+\[ y = r \sin \theta\]
+Given the Cartesian coordinates $(x,y)$, the corresponding polar coordinates are determined by 
+\[ r = \sqrt{x^2 + y^2}\]
+\[ \cos \theta = \f{x}{r}\]
+\[ \sin \theta = \f{y}{r}\]
+\end{defn}
+\begin{defn}
+The \textbf{polar form} if a complex number $z$ is 
+\[z = r (\cos \theta + i \sin \theta)\]
+where $r$ is the modulus of $z$ and the angle $\theta$ is called an argument of $z$.
+\end{defn}
+\begin{thrm}
+If
+\[ z_{1} = r_{1} (\cos \theta_{1} + i \sin \theta_{2}) \]
+\[ z_{2} = r_{2} (\cos \theta_{2} + i \sin \theta_{2}) \]
+Then $z_{1} z_{2} = r_{1} r_{2} (\cos (\theta_{1} + \theta_{2}) + i \sin (\theta_{1} + \theta_{2}))$
+\end{thrm}
+\begin{thrm}[DMT]
+\textbf{De Moivre's Theorem} states: \\
+Let $\theta \in \R$ and $n \in \Z$. Then $(\cos \theta + i \sin \theta)^n = \cos (n\theta) + i \sin(n\theta)$
+\end{thrm}
+\begin{cor}
+If $z = r (\cos \theta + i \sin \theta)$ then 
+\[z^n = r^n \cos (n\theta) + i \sin(n\theta) \]
+\end{cor}
+\begin{defn}
+The \textbf{complex exponential function} is
+\[ e^{i\theta} = \cos \theta + i \sin \theta \]
+Properties include:
+\[e^{i\theta_{1}} e^{i\theta_{2}} = e^{i(\theta_{1} + \theta_{2})} \]
+\[ (e^{i\theta})^n = e^{in\theta} \]
+
+\end{defn}
+\begin{defn}
+If $a$ s a complex number, then the complex numbers that solve $z^n=a$ are called the \textbf{complex n-th roots}. De Moivre's theorem is used to solve these.
+\end{defn}
+\begin{exmp}
+Solve $z^6 = -64$. (Find all sixth roots of $-64$)
+\begin{sol}
+Let $z = r (\cos \theta + i \sin \theta)$. By DMT,
+\[ z^6 = r^6 (\cos 6\theta + i \sin 6\theta)\]
+In addition,
+\[ -64 = 64 (\cos \pi + i \sin \pi)\]
+$z^6 = -64$ so $r^6 = 64$. Thus $r = 2$ since $r \geq 0$.
+\[-64 = 64(\cos 6\theta + i \sin 6 \theta)\]
+\[ 6 \theta = \pi\]
+\[ \theta = \f{\pi + 2 \pi k}{6}, \, \forall k \in \Z\]
+There are $6$ unique values for $\theta$, hence $6$ solutions.
+\[ \theta = \f{\pi}{6}, \f{3\pi}{6},\f{5\pi}{6},\f{7\pi}{6},\f{9\pi}{6},\f{11\pi}{6}\]
+The solutions are 
+\[ 2 (\cos \theta + i \sin \theta)\]
+substituted with all possible values of $\theta$.
+\end{sol}
+\end{exmp}
+\begin{thrm}[CNRT]
+\textbf{Complex n-th Roots Theorem} states that if $r (\cos \theta + i \sin \theta)$ is the polar form of a complex number $a$, then then solutions to $z^n = a$ are
+\[\sqrt[n]{r} (\cos (\f{\theta + 2k\pi}{n}) + i \sin (\f{\theta + 2k\pi}{n})) \qquad \text{ for } k = 0,1,2,\dots,n-1\]
+\begin{note}
+There are $n$ solutions all equally spaced on a circle of radius $\sqrt[n]{r}$ centered at the radius.
+\end{note}
+\end{thrm}
+\begin{defn}
+An \textbf{n-th root of unity} is a complex number that solves $z^n=1$.
+\end{defn}
+\section{Polynomials}
+\begin{defn}
+A \textbf{field} is a set of numbers that allows addition, subtraction, multiplication and division. It includes the rational numbers $\Q$, real numbers $\R$, complex numbers $\C$ and the integers modulo a prime $p$, $\Z_{p}$.
+\end{defn}
+\begin{defn}
+A \textbf{polynomial in} $x$ \textbf{over the field}  $\mathbb{F}$ is an expression of the form
+\[a_{n}x^n + a_{n-1}x^{n-1} + \cdots + a_{1} x + a_{0}\]
+where all of the $a_{i}$ belong to $\mathbb{F}$. The $a_{i}$ are called \textbf{coefficients}.
+\end{defn}
+\begin{exmp}
+$\mathbb{F}\lbrack x \rbrack$ denotes the set of polynomials in $x$ with coefficients from $\mathbb{F}$.
+\end{exmp}
+\begin{exmp}
+Examples of polynomials over a field:
+\begin{itemize}
+\item $\lbrack 2 \rbrack x^3+ \lbrack 1 \rbrack x + \lbrack 4 \rbrack \in \Z_{5}\lbrack x \rbrack$.
+\item $x^3 + 7ix + (5-2i) \in \C \lbrack x \rbrack$
+\end{itemize}
+\end{exmp}
+
+\begin{mthd}
+The product of polynomials $f(x)$ and $g(x)$ is
+\[ f(x) \cdot g(x) = \sum_{i=0}^{m+n} c_{i} x^i\]
+\[ c_{i} = a_{0} b_{i} + a_{1} b_{i-1} + \dots + a_{i-1} b_{1} + a_{i} b_{0} = \sum_{j=0}^i a_{j} b_{i-j} \]
+This is just the long division formula.
+\end{mthd}
+\begin{thrm}
+\textbf{Division Algorithm:} If $f(x)$ and $g(x)$ are polynomials in $\mathbb{F} \lbrack x \rbrack$ then there exists a unique polynomial $q(x)$ and $r(x)$ in $\mathbb{F} \lbrack x \rbrack$ such that
+\[f(x) = q(x) g(x) + r(x)\]
+To find the quotient and remainder polynomials, use long divison.
+\end{thrm}
+\begin{thrm}[FTA]
+The \textbf{Fundamental Theorem of Algebra} states that for all complex polynomials $f(z)$ with $\deg(f(z)) \geq 1$, there exists a $z_{0} \in C$ so that $f(z_{0}) = 0$\\
+Unfortunately that's all that can be determined. There is no strict formula for determining the value of the root.
+\end{thrm}
+\begin{thrm}
+\textbf{Remainder Theorem} states that the remainder when the polynomial $f(x)$ is divided by $(x-c)$ is $f(c)$.
+\end{thrm}
+\begin{thrm}[FT]
+\textbf{Factor Theorem} states that the linear polynomial $(x-c)$ is a factor of the polynomial $f(x)$ if and only if $c$ is a root of the polynomial $f(x)$.
+\end{thrm}
+\begin{thrm}[RRT]
+\textbf{Rational Roots Theorem:} If $f(x) = a_{n}x^n + a_{n-1} x^{n-1} + \dots + a_{1} x + a_{0}$ is a polynomial with integer coefficients and $\f{p}{q}$ is a rational root of $f(x)$ where $\gcd(p,q) = 1$, then $p \mid a_{0}$ and $q \mid a_{n}$.
+\begin{proof}
+Assume the hypothesis is true. Substitute to get
+\[ a_{n}(\f{p}{q})^n + a_{n-1} (\f{p}{q})^{n-1} + \dots + a_{1} (\f{p}{q}) + a_{0}=0\]
+\[ a_{n}p^n + a_{n-1} p^{n-1}q + \dots + a_{1} p q^{n-1}+ a_{0} q^n = 0\]
+Then
+\[ p(a_{n} p^{n-1}+ a_{n-1} p^{n-2}q + \dots + a_{1} p q^{n-1}) =  -a_{0} q^n\]
+Since every variable is an integer $p \mid a_{0}q^n$. Since $\gcd(p,q) = 1$, by CAD, $p \mid a_{0}$. A similar approach may be used for $q$.
+\end{proof}
+\end{thrm}
+\begin{exmp}
+Solve $2x^3 + x^2 - 6x - 3 = 0 \in \C$\\
+If $\f{p}{q}$ is a rational root in lowest terms, the $p \mid (-3)$ and $q \mid 2$ by RRT.
+\[ \f{p}{q} \in \left\{\pm 1, \pm 3, \pm \f{1}{2}, \pm\f{3}{2}\right\}\]
+\begin{note}
+\[f\left(-\f{1}{2}\right) = - \f{1}{4} + \f{1}{4} + 3 - 3 = 0\]
+\end{note}
+$x +\f{1}{2}$ is a factor of $f(x)$.
+Use long division to get $f(x) = (2x + 1)(x^2 - 3)$. 
+\[ \therefore x = -\f{1}{2}, \sqrt 3, - \sqrt{3}\]
+\end{exmp}
+\begin{exmp}
+Fully factor $x^3 - \f{32}{15} + \f{1}{5}x + \f{2}{5} = \Q\lbrack x \rbrack$
+\begin{sol}
+We will find the roots of 
+\[ 15x^3 - 32x^2 + 3x + 2\]
+By RRT, $x = 2, -\f{1}{5}, \f{1}{3}$
+\[ (x-2)(x+\f{1}{5})(x - \f{1}{3})\]
+\end{sol}
+\end{exmp}
+\begin{exercise}
+Prove $\sqrt{2}$ is irrational.
+\begin{sol}
+Let $x = \sqrt{2}$, and note that $x$ is a root of $x^2 -2$. By RRT, the rational roots of $x^2 =2$ are $\{\pm 1, \pm 2\}$. Trying all possibilities, none of these are roots , therefore all the roots are irrational, and $\sqrt{2}$ must be irrational.
+\end{sol}
+\end{exercise}
+\begin{exercise}
+Prove that $\sqrt 5 + \sqrt 3$ is irrational.
+\begin{sol}
+Let $x = \sqrt{5} + \sqrt{3}$. 
+\begin{align*}
+x^2 &= 5 + 2 \sqrt{15} + 3\\
+x^2 &= 8 + 2 \sqrt{15}\\
+x^2 - 8 &= 2 \sqrt{15}\qquad \text{ square both sides}\\
+ x^4 - 16x^2 + 64 &= 60\\
+ x^4 - 16x^2 + 4 &= 0
+ \end{align*}
+ By RRT, the only possible roots are $\{\pm 1, \pm 2, \pm 4\}$ and none of them are roots. $\sqrt 5 + \sqrt 3$ is a root to the polynomial, and therefore $\sqrt 5 + \sqrt 3$ is irrational.
+\end{sol}
+\end{exercise}
+\begin{thrm}[CJRT]
+\textbf{Conjugate Roots Theorem:} Suppose $c \in \C$ is a root of a real polynomial. Then $\overline{c}$ is alos a root of the polynomial.
+\begin{proof}
+Let $f(x) = a_{n} x^n + a_{n-1}x^{n-1} + \dots + a_{1} x + a_{0} \in \R\lbrack x \rbrack$.\\
+Assume $f(x) = 0$ for some $c \in C$.
+\[f(c) = 0\]
+\[ a_{n} c^n + a_{n-1}c^{n-1} + \dots + a_{1} c + a_{0} = 0\]
+\[\overline{a_{n} c^n + a_{n-1}c^{n-1} + \dots + a_{1} c + a_{0}} = \overline 0\]
+\[\overline{a_{n} c^n} + \overline{a_{n-1} c^{n-1}} + \dots + \overline{a_{1}  c} + \overline{a_{0}} = 0 \qquad \text{ by PCJ}\]
+\[\overline{a_{n}} \overline c^n + \overline{a_{n-1}} \overline c^{n-1} + \dots + \overline{a_{1}} \overline c + \overline{a_{0}} = 0 \qquad \text{ by PCJ}\]
+\[a_{n} \overline c^n + a_{n-1} \overline c^{n-1} + \dots + a_{1} \overline c + a_{0} = 0\]
+\[ f(\overline c) = 0\]
+\begin{note}
+This requires $f(x) \in \R\lbrack x \rbrack$. For example $(x+i)^2 = x^2 + 2ix - 1$. $-i$ is a root but $\overline{-i}$ is not a root.
+\end{note}
+\end{proof}
+\end{thrm}
+\begin{exercise}
+Fully factor $x^4 - 5x^3 + 16x^2 - 9x - 13 $ given that $2 - 3i$ is a root.
+\end{exercise}
+\begin{thrm}[RQF]
+\textbf{Real Quadratic Factors:} Let $f(x)$ be a polynomial with real coefficients. If $c \in \C$, and $c$ is a root of $f$, where $\Im(c) \neq 0$, then there exists a real quadratic factor of $f(x) $ with $c$ as a root.
+\end{thrm}
+\begin{thrm}[RFRP]
+\textbf{Real Factors of Real Polynomials:} Let $f(x)$ be a polynomial with real coefficients. Then $f(x)$ can be written as a product of real linear and real quadratic factors.
+\end{thrm}
+\begin{exmp}
+\[x^4 + 2x^2 + 1 = (x^2+1)(x^2 + 1)\]
+\end{exmp}
+\end{document}
