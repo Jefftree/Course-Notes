@@ -32,6 +32,9 @@
 
 
 %comp sci
+\usepackage{etoolbox}
+\newtoggle{completed}
+\togglefalse{completed}
 
 
 \usepackage{listings}
@@ -179,7 +182,10 @@ numberwithin=section]{mtd}
 
 
 
-\listoftodos[Future Modifications]
+\nottoggle{completed}{
+    \listoftodos[Future Modifications]
+}
+
 \newpage
 \pagenumbering{arabic}
   }
