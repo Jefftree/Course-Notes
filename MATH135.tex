@@ -8,7 +8,7 @@
 \newcommand{\coursename}{Algebra}
 \newcommand{\thisprof}{Professor J.P. Pretti}
 \newcommand{\curterm}{Fall 2014}
-\newcommand{\website}{JYING.CA}
+\toggletrue{completed}
 
 %\begin{abstract}
 %
@@ -164,7 +164,7 @@ The \textbf{converse} of the implication $H \implies C$ is $C \implies H$. The s
 \begin{thrm}
 Furthermore, an implication is logically equivalent to other statements.
 \[ \lnot(A \implies B) \equiv (A \land (\lnot B)) \]
-\[ (A \implies B) \equiv ((\lnot A) \land B) \]
+\[ (A \implies B) \equiv ((\lnot A) \lor B) \]
 \end{thrm}
 \begin{exmp}
 $P(n)$: If $n$ is an integer and $4n^3 - 2n - 1$ is odd then n is odd.
@@ -234,10 +234,10 @@ Sometimes the universe of discourse is known, and a set can be written as
 A set of all even integers can be described as: $ n \in \Z : 2 \mid n$.
 \end{exmp}
 \begin{defn}
-The \textbf{union} of two sets $S$ and $T$, written $S \cap T$ is a set that includes all items from either sets.
+The \textbf{union} of two sets $S$ and $T$, written $S \cup T$ is a set that includes all items from either sets.
 \end{defn}
 \begin{defn}
-The \textbf{intersection} of two sets $S$ and $T$, written $S \cup T$ is a set that includes only items that are present in both sets. $\{x : (x \in S) \land (x \in T)\}$
+The \textbf{intersection} of two sets $S$ and $T$, written $S \cap T$ is a set that includes only items that are present in both sets. $\{x : (x \in S) \land (x \in T)\}$
 \end{defn}
 \begin{defn}
 The \textbf{set-difference} of two sets $S$ and $T$ is the set of all elements in $S$ that are not in $T$. Written as $S - T$ or $S\,\backslash\, T$.
@@ -279,8 +279,8 @@ To prove $S = T$, prove $ x \in S \iff x \in T$
 \begin{exmp}
 Prove the following statement $S \neq T \iff S \cap T \neq S \cup T$
 \begin{proof}
-Use the contrapositive. Since it's an iff statement, hypothesis and conclusion don't necessary need to be switched because they are going to be proved both wasy. Prove $S = T \iff S \cap T = S \cup T$\\
-Assume $S = T$, then $S \cap T = S \cup S = S = S \cup S = S \cup T$\\\\
+Use the contrapositive. Since it's an iff statement, hypothesis and conclusion don't necessary need to be switched because they are going to be proved both ways. Prove $S = T \iff S \cap T = S \cup T$\\
+Assume $S = T$, then $S \cap T = S \cap S = S = S \cup S = S \cup T$\\\\
 Other direction must be proved as well. Assume $S \cap T = S \cup T$
 Let $x \in S$. (Goal: $x \in T$).
 \begin{align*}
@@ -330,7 +330,7 @@ When the domain is empty, the regardless of what the open sentence $P(x)$ is, th
 The \textbf{substitution method} substitutes an appropriate value of $x$ from $S$ and shows that $P(x)$ must be true to arrive at the desired conclusion.
 \end{mthd}
 \begin{exmp}
-Let $a,b,c \in \Z$ Prove that if $\forall x \in \Z, a \mid (bxc)$, then $ a \mid (b+c)$
+Let $a,b,c \in \Z$ Prove that if $\forall x \in \Z, a \mid (bx+c)$, then $ a \mid (b+c)$
 \begin{proof}
 Assume $\forall x \in \Z, a \mid (bx+c)$. Substitute $x=1$ to get $a \mid (b+c)$
 \end{proof}
@@ -411,7 +411,7 @@ To distribute the universal quantifier,
 \end{defn}
 \begin{defn}
 To distribute the existential quantifier,
-\[ [\exists x \in S, (P(x) \land Q(x)] \equiv [(\exists x \in S, P(x))\lor (\exists x \in S, Q(x))] \]
+\[ [\exists x \in S, (P(x) \lor Q(x)] \equiv [(\exists x \in S, P(x))\lor (\exists x \in S, Q(x))] \]
 \end{defn}
 \subsection{Uniqueness}
 To prove uniqueness, either assume there are two objects $X$ and $Y$ that such that $P(X)$ and $P(Y)$. Show that $X=Y$, or assume $X$ and $Y$ are distinct, and derive a contradiction.
@@ -431,9 +431,9 @@ Assume P(k) is true:
 \[P(k): \sum_{j=1}^k j(j+1) = \f 1 3 k(k+1)(k+2) \]
 \textbf{Inductive conclusion:}\\
 Prove $P(k+1)$ is also true.\\
-\[\text{LHS: }\sum_{j=1}^{k+1} j(j+1) = [\sum_{j=1}^{k+1} j(j+1)] + (k+1)(k+2) \text{ by IH} \]
-\[ = (k+1)(k+2) + (\f 1 3 k + 1) \]
-\[ = \f 1 3 (k+1)(k+2)(k+3) \]
+\[\text{LHS: }\sum_{j=1}^{k+1} j(j+1) = \left[\sum_{j=1}^{k} j(j+1)\right] + (k+1)(k+2) \text{ by IH} \]
+\[ = \left(\f 1 3 k\right)(k+1)(k+2) + (k+1)(k+2) \]
+\[ = \left(\f 1 3 k + 1\right) (k+1)(k+2) \]
 \[\text{RHS: } = \f 1 3 (k+1)(k+2)(k+3) \]
 LHS = RHS. Therefore by the principle of mathematical induction (POMI), $P(n)$ is true for all natural numbers $n$.
 \end{proof}
@@ -448,8 +448,8 @@ $\forall k \in \N, P(k) \implies P(k+1)$. Then $P(n)$ is true for all $n \in \N$
 \begin{proof}
 Base case (BC): Consider $P(4)$, LHS: $4! = 24$ and RHS: $2^4 = 16$.\\ Since LHS $>$ RHS, $P(4)$ is true.\\
 IH: Assume P(k) is true for some $k \in \N$ with $k \geq 4$.\\
-IC: Consider $P(k+1)$, LHS= $(k+1)! = k!(k+1)$.\\
- $> (4+1)2^k$ by IH.\\
+IC: Consider $P(k+1)$, LHS= $(k+1)! = k!(k+1)$\\
+ $> (4+1)2^k$ by IH. (Since $n \geq 4$, $4$ is the smallest number.)\\
   $> (5)2^k$ since $k \geq 4$\\
 RHS: $2^{k+1}$.
 \[ 5\times 2^k > 2\times 2^k \]
@@ -462,9 +462,9 @@ Prove $P(n)$ is true by induction.
 \begin{proof}
 BC: $P(1)$. Since $6 \mid 6$, $P(1)$ is true.\\
 IH: Assume $P(k)$ is true for some $k \in N$, with $k \geq 1$.\\
-IC: Consider $P(k+1)$. $6 \mid (2(n+1)^3 + 3(n+1)^2 + (n+1)$.
+IC: Consider $P(k+1)$. $6 \mid (2(n+1)^3 + 3(n+1)^2 + (n+1))$.
 \[6 \mid (2n^3+9n^2+13n+6) \]
-\[6 \mid (2n^3+3n^2 + n + 6(n^2 + 2n + 1)) \]
+\[6 \mid ((2n^3+3n^2 + n) + 6(n^2 + 2n + 1)) \]
 Since $6 \mid 6$, by DIC, $6 \mid (2n^3+3n^2 + n + 6(n^2 + 2n + 1))$.\\
 By POMI, $P(n)$ is true for all $n \in \N$
 \end{proof}
@@ -537,7 +537,6 @@ Kick somebody out of the group. Everybody left has the same birthday by IH. Let 
 \textbf{Flaw:} Falls apart for $k+1=2$.
 \end{proof}
 \end{exmp}
-\section*{-------------------------Midterm stops here ------------------------------------}
 \section{Greatest Common Divisor}
 \subsection{Introduction to GCD}
 \begin{defn}
@@ -883,11 +882,10 @@ In $\Z_{m},\lbrack a \rbrack + \lbrack -a \rbrack = \lbrack 0 \rbrack\, \forall 
 \begin{exmp}
 In $\Z_{18}$, $\lbrack 5 \rbrack ^{-1} = \lbrack 11 \rbrack$ because multiplying the two gives $\lbrack 1 \rbrack$. The multiplicative inverse of $\lbrack 9 \rbrack$ does not exist.
 \end{exmp}
-\subsection{Fermat's Little Theorem}
 \begin{defn}[FlT]
-Let $p$ be prime and $a \in \Z$, If $p \nmid a$ then $a^{p-1} \equiv 1 \pmod p$.
+\textbf{Fermat's Little Theorem:}\\ Let $p$ be prime and $a \in \Z$, If $p \nmid a$ then $a^{p-1} \equiv 1 \pmod p$.
 \begin{proof}
-Suppose $p$ is prime and $p \nmid a$. Assume $ra \equiv sa \pmod p$ where $0 < r \geq s < p$. Then $p \mid a(r-s)$. By PAD, $p \mid r - s$. Therefore $r = s$. This tells us that $a,2a,3a,\dots,(p-1) a$ are unique modulo p. Hence $a^{p-1} (p-1)! \equiv (p-1)! \pmod p$. Since $\gcd(p,(p-1)!) = 1$, then $a^{p-1} \equiv 1 \pmod p$
+Suppose $p$ is prime and $p \nmid a$. Assume $ra \equiv sa \pmod p$ where $0 < r \leq s < p$. Then $p \mid a(r-s)$. By PAD, $p \mid r - s$. Therefore $r = s$. This tells us that $a,2a,3a,\dots,(p-1) a$ are unique modulo $p$. Hence $a^{p-1} (p-1)! \equiv (p-1)! \pmod p$. Since $\gcd(p,(p-1)!) = 1$, then $a^{p-1} \equiv 1 \pmod p$
 \end{proof}
 \end{defn}
 \begin{cor}
@@ -936,7 +934,7 @@ x & y & r & m\\
 0 & 1 & 13 & 0\\
 1 & -2 & 3 & 2\\
 -4 & 9 & 1 & 4\\
-- & - & 0 & 0 \\
+- & - & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -1019,8 +1017,7 @@ Solve $x^3 - 29x^2 + 35x + 38 = 0 \pmod{195}$
 \[ 195 = 15 \times 13 \]
 \[x^3 + x^2 + 5x + 8 \equiv 0 \pmod{15} \]
 \[ x^3 + 10x^2 + 9x +12 \equiv 0 \pmod{13} \]
-Use a table to find all solutions. Every combination of a solution to the first equation to a solution to the second equation is a simultaneous linear congruence.
-\todo{Finish, should have 12 different solutions}
+Use a table to find all solutions. Every combination of a solution to the first equation to a solution to the second equation is a simultaneous linear congruence. There are 12 unique solutions.
 \end{sol}
 \end{exmp}
 \subsection{Cryptography}
@@ -1090,7 +1087,7 @@ There are two cases:
 Similarly, show 
 \[R \equiv M \pmod q \]
 Then $R$ and $M$ are both solutions to $x \equiv M \pmod p$ and $x \equiv P \pmod q$.\\
-Since $p \neq q$, $\gcd(p,q) = 1$ so by CRT, $R \equiv M \pmod{pq}$, then $R \equiv M \pmod{n}$\\
+Since $p \neq q$, $\gcd(p,q) = 1$ so by CRT, $R \equiv M \pmod{pq}$, then $M \equiv M \pmod{n}$\\
 Since $0 \leq M < n$ then $P = M$.\\
 \end{proof}
 \end{thrm}
@@ -1124,10 +1121,10 @@ Multiply by conjugate
 \end{exmp}
 \begin{thrm}
 \begin{align*}
-i^{0 \pmod 4} &= i\\
-i^{1 \pmod 4} &= -1\\
-i^{2 \pmod 4} &= -i\\
-i^{3 \pmod 4} &= 1
+i^{0 \pmod 4} &= 1\\
+i^{1 \pmod 4} &= i\\
+i^{2 \pmod 4} &= -1\\
+i^{3 \pmod 4} &= -i
 \end{align*}
 \end{thrm}
 \begin{defn}
@@ -1135,7 +1132,7 @@ The \textbf{complex conjugate} of $z = x + yi$ is $\overline z = x - yi$.
 \end{defn}
 If $z$ and $w$ are complex numbers,
 \[ \overline{z + w} = \overline{z} + \overline{w} \]
-\[ \overline{zw} = \overline{z}\overline{w}\]
+\[ \overline{zw} = \overline{z} \cdot \overline{w}\]
 \[ z + \overline{z} = 2 \Re(z)\]
 \[ z - \overline{z} = 2 \Im(z)\]
 \begin{defn}
@@ -1181,7 +1178,7 @@ Let $\theta \in \R$ and $n \in \Z$. Then $(\cos \theta + i \sin \theta)^n = \cos
 \end{thrm}
 \begin{cor}
 If $z = r (\cos \theta + i \sin \theta)$ then 
-\[z^n = r^n \cos (n\theta) + i \sin(n\theta) \]
+\[z^n = r^n (\cos (n\theta) + i \sin(n\theta)) \]
 \end{cor}
 \begin{defn}
 The \textbf{complex exponential function} is
@@ -1214,7 +1211,7 @@ substituted with all possible values of $\theta$.
 \end{exmp}
 \begin{thrm}[CNRT]
 \textbf{Complex n-th Roots Theorem} states that if $r (\cos \theta + i \sin \theta)$ is the polar form of a complex number $a$, then then solutions to $z^n = a$ are
-\[\sqrt[n]{r} (\cos (\f{\theta + 2k\pi}{n}) + i \sin (\f{\theta + 2k\pi}{n})) \qquad \text{ for } k = 0,1,2,\dots,n-1\]
+\[\sqrt[n]{r} \left(\cos \left(\f{\theta + 2k\pi}{n}\right) + i \sin \left(\f{\theta + 2k\pi}{n}\right)\right) \qquad \text{ for } k = 0,1,2,\dots,n-1\]
 \begin{note}
 There are $n$ solutions all equally spaced on a circle of radius $\sqrt[n]{r}$ centered at the radius.
 \end{note}
