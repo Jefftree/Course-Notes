@@ -1,0 +1,1002 @@
+\documentclass[english, 12pt]{article}
+\usepackage{yingconfig}
+
+% ===================Variables======================================
+\newcommand{\coursecode}{CS 135}
+\newcommand{\coursename}{Computer Science}
+\newcommand{\thisprof}{Dr. Holby}
+\newcommand{\curterm}{Fall 2014}
+\newcommand{\website}{JYING.CA}
+\newcommand{\tc}[1]{\texttt{#1}}
+
+ 
+
+\begin{document}
+\notesheader
+\section{Introduction}
+\subsection{Wise words from a wise teacher}
+\begin{itemize}
+\item Keep up with the readings
+\item Take notes in lecture
+\item Start assignments early
+\item Get help early
+\item Follow our advice on approaches to writing programs (eg. design recipe, templates)
+\item Keep on top of workload
+\item Visit office hours to get help
+\item Integrate exam study into your weekly routine.
+\item Go beyond the minimum required
+\item Maintain a "big picture" perspective: Look beyond the immediate task or topic
+\item Go over your assignments and exams, learn from mistakes
+\item Read your mail sent to your UW email.
+\end{itemize}
+
+\subsection{Programming Language Design}
+\textbf{Imperative:} based on frequent changes to data.
+\begin{itemize}
+\item Eg: machine language, Java, C++, Turing, VB
+\end{itemize}
+\textbf{Functional:} based on the computation of new values rather than the transformation of old ones.
+\begin{itemize}
+\item Examples: Excel formulas, LISP, ML, Haskell, Erlang, F\#, Mathematica, XSLT, Clojure
+\item More closely connected to mathematics.
+\item Easier to design and reason about programs
+\end{itemize}
+\subsection{Racket}
+\begin{itemize}
+\item A functional programming language
+\item Minimal but powerful syntax
+\item Small toolbox with ability to construct additional required tools
+\item Interactive evaluator
+\item Used in education and research since 1975
+\item A dialect of Scheme
+\end{itemize}
+
+\subsection{Themes of the Course}
+\begin{itemize}
+\item Design (the art of creation)
+\item Abstraction (finding commonality, neglecting details)
+\item Refinement 
+\item Syntax, expressiveness(understandability), and semantics (meaning)
+\item Communication
+\end{itemize}
+\section{Functional Programming}
+\subsection{Introduction to Functional Programming}
+
+\begin{defn}[function]
+A \textbf{function} generalizes similar expressions and takes inputs to produce an output. These definitions consist of the \textbf{name} of the function, its \textbf{parameters}, and an \textbf{algebraic expression} using the parameters.
+\end{defn}
+
+\begin{defn}[application]\label{def:app}
+An {\bf application} supplies arguments for the parameters, which are substituted into the algebraic expression.
+\end{defn}
+\begin{exmp}
+If a function is defined as $g(x,y)=g(x+y)$, an application would be $g(1,3)$
+\end{exmp}
+
+\begin{exmp}
+We \textbf{evaluate} each of the arguments to yield values. One example of evaluating is substitution. 
+\end{exmp}
+
+\begin{defn}[substitution]
+Substitution must be done from innermost to outermost and then left to right. At each stage, only one substitution should be done. (If two evaluations have the same priority, the left most one is done first.)
+\end{defn}
+
+\begin{exmp}
+$f(x) = x^2\qquad g(x,y) = x + y$\\
+\textbf{Incorrect}: $g(g(1,3),f(2)) = g(1,3) + f(2)\qquad$
+\textbf{Correct}: $g(g(1,3),f(2)) =g(4,f(2))$
+\end{exmp}
+
+\begin{exmp}
+If we treat infix operators ($+$,$-$) like functions, parentheses are not required to specify order of operations.
+$ 3 - 2$ becomes $- (3,2)$\\
+$(6-4)/(5+7) $ becomes $/(-(6,4), + (5,7)) $
+\end{exmp}
+
+
+\begin{exmp}
+In racket, the functions move inside the parentheses so $g(1,3)$ becomes ($g$ $1$ $3$\\
+$3 - 2 + 4/5 $ becomes ($+$($-$ $3$ $2$)($/$ $4$ $5$))
+\end{exmp}
+
+\begin{note}
+Extra paratheses are harmful in Racket because they are used to signal a function application or other Racket syntax.
+\end{note}
+\subsection{Function Definition}
+\subsubsection*{Functions}
+A function definition consists of a name for the function, a list of parameters, and a single "body" expression.
+
+\begin{exmp}
+Let $f(x)=x^2$ and let $g(x,y) = x + y$\\
+In racket:
+\begin{lstlisting}[language=Scheme]
+(define (f x) (* x x))
+(define (g x y) (+ x y))
+\end{lstlisting}
+\end{exmp}
+
+Each parameter name for the function has meaning only within the body if that function (local variable)
+\begin{exmp}
+For the following code:
+\begin{lstlisting}[language=Scheme]
+(define (f x y) (+ x y))
+(define (g x z) (* x z))
+\end{lstlisting}
+the two uses of x are independent and the two function definitions below define the same function.
+\begin{lstlisting}[language=Scheme]
+(define (f x y) (+ x y))
+(define (f a b) (+ a b))
+\end{lstlisting}
+\end{exmp}
+
+\subsubsection*{Constants}
+Advantages:
+\begin{itemize}
+\item Give meaningful names to useful values
+\item Reduces typing and errors when such values are modified
+\item Enhances readability
+\item Can be used in any expression, including the body of function definitions.
+\item Sometimes referred to as variables, but value may not be changed.
+\end{itemize}
+
+\begin{exmp}
+There are brackets around a function and its parameters to indicate that it is a function. To define a constant, no brackets are required around it.\\
+Let $k=3$ and $p=3^2$
+\begin{lstlisting}[language=Scheme]
+(define k 3)
+(define p ( * k k))
+\end{lstlisting}
+\end{exmp}
+
+\section{Software Design Recipe}
+\subsection{Programs as Communication}
+Communication occurs between:
+\begin{itemize}
+\item You and the computer
+\item You and yourself in the future (;; Comments)
+\item You and others
+\end{itemize}
+
+For software design, programs should be: compatible, composable, correct, durable, efficient, extensible,
+flexible, maintainable, portable, readable, reliable, reusable, scalable, usable, and useful.
+\subsection{Design Recipe Components}
+\begin{enumerate}
+\item \textbf{Purpose:} Describes what the function is to compute.
+\item \textbf{Contract:} Describes what type of arguments the function consumes and what type of value it produces.
+(Num, Int, Nat (includes 0), Any, Boolean)
+\item \textbf{Examples:} Illustrating the typical use of the function.
+\item \textbf{Definition:} The Racket definition (header and body) of the function.
+\item \textbf{Tests:} A representative set of inputs and expected outputs.
+\end{enumerate}
+\subsection{Suggested Procedure}
+Draft $\rightarrow$ Examples $\rightarrow$ Definition Header \& Contract $\rightarrow$ Parameters $\rightarrow$ Definition $\rightarrow$ Tests.
+\begin{exmp}
+An example of a well formatted design recipe:
+\begin{lstlisting}[language=Scheme]
+;; (sum-of-squares p1 p2) produces the sum of 
+;; the squares of p1 and p2
+;; sum-of-squares: num num -> num
+;; examples
+(check-expect (sum-of-squares 3 4) 25)
+(check-expect (sum-of-squares 0 2.5) 6.25)
+
+(define (sum-of-squares p1 p2)
+	(+ (* p1 p1) (* p2 p2)))
+
+;;Tests
+(check-expect (sum-of-squares 0 0) 0)
+(check-expect (sum-of-squares -2 7) 53)
+\end{lstlisting}
+If there are additional constraints on the inputs, the contract section may
+be extended to add a requires section.
+\begin{lstlisting}[language=Scheme]
+;; (my-function a b c)
+;; my-function: num num num -> num
+;; requires: 0 < a < b
+;;			 c > 0
+\end{lstlisting}
+\end{exmp}
+\subsection{Boolean-valued functions}
+\begin{defn}
+A \textbf{predicate} is a function that produces a boolean result. They are written in the form
+\begin{lstlisting}[language=Scheme]
+;;(operator a b ...)
+;;examples
+(> a b)
+(= a b)
+\end{lstlisting}
+Standard racket outputs \#t and \#f and these values can be used in cond statements and other functions that take in boolean values.
+\end{defn}
+\begin{exmp}
+You can use equal? to test the equality of two values which may not be of the same type.
+\end{exmp}
+\begin{note}
+A predicate can also be user-defined and can use compound operators such as AND, OR, NOT. 
+\end{note}
+
+\begin{exmp}
+An example of a predicate that outputs if a number is between two numbers
+\begin{lstlisting}[language=Scheme]
+(define (between? low high numb)
+	(and (< low numb) (< numb high)))
+\end{lstlisting}
+\end{exmp}
+\subsection{Symbols}
+\begin{defn}
+A \textbf{symbol} can be used to represent something. It is defined using a single apostrophe, `blue.
+To compare symbols, use symbol=?.
+\begin{lstlisting}[language=Scheme]
+(define something `blue)
+(symbol=? something `blue)
+\end{lstlisting}
+\end{defn}
+\subsection{String manipulation}
+There are many string manipulation techniques in the manual that are not covered in the lectures. Consult the manual for more information.
+\begin{lstlisting}[language=Scheme]
+(string? "Warbear") ;determines whether argument is string (#t)
+(string-append a b) ;merges strings (ab)
+(string-length x) ; yield the length of string x(1)
+(string<? "Apple" "apple") -> #t 
+;;determines whether first string is lexicographically less than the second. 
+(string<? "apple" "Apple") -> #f ;;lower case comes after upper case, so a > A
+(string<? "a" "b" "c") -> #t
+
+\end{lstlisting}
+\begin{defn}
+\textbf{Substring} returns a new string and must be less than or equal to the length of the original string.
+The end value must be greater than or equal to start. Returns the substring from the start character to the end character, but not including the end character.
+The end character is an optional parameter. If none specified, assume end is last character.
+\end{defn}
+\begin{note}
+Strings start at 0 in computer science. 
+\end{note}
+\begin{lstlisting}[language=Scheme]
+(substring "Semantics" 2 5) -> "man"
+(substring "Semantics" 2) -> "mantics"
+(substring "Syntax" 3 3) -> "" (empty string)
+
+\end{lstlisting}
+\subsection{Conditions}
+Similar to if statements in other languages, and are eventuated from top to bottom. 
+They can also be nested provided that the required parameters are filled.
+\begin{lstlisting}[language=Scheme]
+(cond 
+	[boolean action]
+	[boolean action]
+	[else action])
+\end{lstlisting}
+\subsection{Testing}
+\begin{defn}
+\textbf{Black-box testing} is testing done when the content of the code is unknown or not required.
+\end{defn}
+\begin{defn}
+\textbf{White-box testing} is testing done when content of code is known and required.
+\end{defn}
+\section{Syntax and Semantics}
+\subsection{Spelling rules}
+Identifier names are made up of letters, numbers, hyphens, and underscores. Must contain at least one non-number and no brackets or apostrophes. Symbols start with a single quote followed by a valid identifier name.
+\begin{defn}
+\textbf{Syntax} is the way that code is allowed to be written. Usually code will not compile without proper syntax.
+\end{defn}
+\begin{defn}
+\textbf{Semantics} is the meaning of what is said.
+\end{defn}
+\begin{defn}
+A valid programming statement must have exactly one meaning to avoid \textbf{ambiguity}
+\end{defn}
+\subsection{Substitution}
+Racket evaluates functions through substitution. Only one substitution can be made at a time. 
+\begin{defn}
+A step-by-step reduction in accordance to the rules is called \textbf{tracing} a program.
+\end{defn}
+\begin{exmp}
+\textbf{cond} statements skip false statements and goes to the first true statement.
+\begin{lstlisting}[language=Scheme]
+(cond [false exp] ...) -> (cond ...)
+(cond [true exp]... -> exp
+(cond [else exp]... -> exp
+\end{lstlisting}
+\end{exmp}
+\begin{exmp}
+\textbf{and} statements evaluate to false if one argument is false. True skips to the next argument, and a stand alone (and) must be reached for the statement to be true.
+\begin{lstlisting}[language=Scheme]
+(and false...) -> false
+(and true...) -> (and ...)
+(and) -> true
+\end{lstlisting}
+\end{exmp}
+\begin{exmp}
+\textbf{or} statements are the opposite of and statements. Evaluates to true if one argument is true, and false skips to the next argument. A stand alone (or) is substituted with false.
+\begin{lstlisting}[language=Scheme]
+(or true ...) -> true
+(or false ...) -> (or...)
+(or) -> false.
+\end{lstlisting}
+\end{exmp}
+Constants are directly replaced by their actual value even if other constants are called. It is all done in one substitution step.
+\begin{defn}
+A \textbf{syntax error} occurs when a sentence cannot be interpreted using the programming language's grammar and convention.
+\end{defn}
+\begin{defn}
+A \textbf{run-time error} occurs when an expression cannot be reduced to a value, but the evaluation steps are still incomplete.
+\begin{lstlisting}[language=Scheme]
+(cond [(> 3 4) x] ;no else statement, cond is false
+\end{lstlisting}
+\end{defn}
+\newpage
+
+\section{Structure}
+\subsection{Structure}
+\begin{defn}
+\textbf{Structures} bundle data together, and are similar to objects and classes in other languages.
+\end{defn}
+\subsubsection*{Posn}
+Posn is a predefined structure. Various functions are included when a structure is defined.
+\begin{lstlisting}[language=Scheme]
+;;A Posn is a (make-posn x y)
+(make-posn 1 1) ;;makes a posn object with the given arguments
+(posn-x posnname) ;; returns x value of a posn
+(posn-y posnname) ;; returns y value of a posn (can be extended when structure has more arguments)
+\end{lstlisting}
+
+\begin{note}
+Since posn is a data structure, (make-posn 8 1) cannot be reduced any further and is considered a value.
+\end{note}
+\begin{defn}
+The \textbf{scale} function scales the posn by a given factor.
+\begin{lstlisting}[language=Scheme]
+(check-expect (scale (make-posn 6 9 2)) (make-posn 12 18))
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+Racket uses \textbf{dynamic typing} and one cannot enforce a parameter to be a specific value type.
+\begin{lstlisting}[language=Scheme]
+(make-posn `shadow `hawker) ;valid, racket does not enforce contracts
+\end{lstlisting}
+\end{defn}
+\subsubsection*{Structure Definition}
+Structures can be defined using define-struct. Various functions are also created when the structure is defined.
+\begin{lstlisting}[language=Scheme]
+(define-struct card (suit num))  ;A Card is a (make-card Sym Nat)
+(make-card `Hearts 7) 				;makes a card
+(card-num (make-card `Hearts 7)) ;returns num parameter of card (7)
+(card? (make-card `Spades 10)) 	;checks whether argument is a card
+\end{lstlisting}
+\subsection{Stepping}
+Using code from the previous example,
+\begin{lstlisting}[language=Scheme]
+(card-num (make-card `Hearts 7)) -> 7
+(card? 5) -> false
+\end{lstlisting}
+\begin{defn}
+A \textbf{template} is a function that consumes a structure and outputs every argument within the structure.
+\begin{lstlisting}[language=Scheme]
+;; my-mp3info-fn: Mp3Info -> Any
+(define (my-mp3info-fn info)
+	(... (mp3info-performer info)...
+		  (mp3info-title info)...
+		  (mp3info-length info)...
+		  (mp3info-genre info)...))
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+\textbf{anyof} is helpful in the contract section if a function can return different data structure outputs based on the input. 
+\begin{lstlisting}[language=Scheme]
+;;divide: Num Num -> (anyof Num Boolean)
+(define (divide x y) 
+	(cond [(= y 0) false]
+		  	[else (/ x y)])) 
+
+\end{lstlisting}
+\end{defn}
+\section{Lists}
+\subsection{List Definition}
+\begin{defn}
+A \textbf{list} is a recursive structure defined in terms of a smaller list. A list includes one item in the list, and a sublist not including that item. It is very similar to a linked list in other CS languages. The data definition is:
+\begin{lstlisting}[language=Scheme]
+;; A List is one of:
+;; * empty
+;; * (cons Any List)
+\end{lstlisting}
+The template is:
+\begin{lstlisting}[language=Scheme]
+;; my-list-fn: (listof Any) -> Any
+(define (my-list-fn list)
+	(cond
+		[(empty? list) ...]
+		[else ... (first list) ...
+		... (my-list-fn (rest list))]))
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+The function \textbf{cons} is used to take an element and a list and produces a new, longer list.
+\begin{lstlisting}[language=Scheme]
+(cons a b)
+\end{lstlisting}
+where $a$ represents an item in the list and must be a value (Str, Num, Sym, etc), and $b$ must be a list (empty is a list). Similar to posn, (cons a b) is in simplest form.
+\end{defn}
+\begin{exmp}
+A few examples of defining lists.
+\begin{lstlisting}[language=Scheme]
+(define clst empty) ;;empty list ; Empty list
+(define clst1 (cons `Heavy empty)) ; A list containing one item.
+(define clst2 (cons `Light clst1)) ;A list containing two items, Light and Heavy
+(define clst3 (cons `Light (cons `Heavy empty))) ;c2 and c3 are the same
+\end{lstlisting}
+\end{exmp}
+\subsection{Extracting from Lists}
+\begin{defn}
+The \textbf{first} function returns the first element in a given list.
+\begin{lstlisting}[language=Scheme]
+(first (cons a b)) --> a ;substitution process
+;;Returns first element in the list (a).
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+The \textbf{rest} function returns the list of elements without the first. 
+\begin{lstlisting}[language=Scheme]
+(rest (cons a b)) -> b ;substitution process
+;;Returns the list b 
+\end{lstlisting}
+\end{defn}
+\begin{note}
+With a very long list of items, first and rest can be used together to produce a chosen element.
+\begin{lstlisting}[language=Scheme]
+(define somelist (cons a (cons b (cons c (cons d (cons e empty))))))
+(first (rest (rest somelist))) ;produces c
+\end{lstlisting}
+\end{note}
+\begin{defn}
+The \textbf{empty} function returns true and false depending on whether a given list is empty. For substitution, \#t or \#f is substituted in one step.
+\begin{lstlisting}[language=Scheme]
+(empty? (cons `Food empty)) ; #t if list empty, #f if not. (#f)
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+The \textbf{member} function returns true and false depending on whether a given element in in a given list.
+\begin{lstlisting}[language=Scheme]
+(member? `Food (cons `Food empty)) ; (#t)
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+The \textbf{length} function returns the length of a given list.
+\begin{lstlisting}[language=Scheme]
+(length los) ;returns length of los
+
+;;Without the built-in function, this would be the method to count the length.
+(define (count-concerts los)
+	(cond [(empty? los) 0]
+		[else (+ 1 (count-concerts (rest los)))]))
+\end{lstlisting}
+\end{defn}
+\subsection{Recursion}
+\begin{defn}
+A function is \textbf{recursive} if the body of a function requires the application of the same function.
+\end{defn}
+\begin{defn}
+In \textbf{structural recursion} all parameters to the recursive call are either unchanged or one step closer to a base case.
+\end{defn}
+\subsection{Design Recipe}
+The design recipe for lists will contain a self-referential data definition.
+\begin{lstlisting}[language=Scheme]
+;; A List-Of-Symbols is one of:
+;; * empty
+;; * (cons Sym List-Of-Symbols)
+
+;; my-los-fn: (listof Sym) -> Any
+(define (my-los-fn los)
+	(cond [(empty? los)... ]
+				[else (... (first los)...(my-los-fn (rest los))...)]))
+\end{lstlisting}
+
+\subsection{List Manipulation}
+\begin{exmp}
+A function that negates every number in a list, and produces a new list.
+\begin{lstlisting}[language=Scheme]
+;; (negate-list lon) negates every number in lon
+;; negate-list: (listof Num) -> (listof Num)
+;; examples:
+(check-expect (negate-list empty) empty)
+(check-expect (negate-list (cons 2 (cons -12 empty)))
+(cons -2 (cons 12 empty)))
+(define (negate-list lon)
+	(cond [(empty? lon) empty]
+		  	[else (cons (- (first lon)) (negate-list (rest lon)))]))
+\end{lstlisting}
+\end{exmp}
+\begin{note}
+Sometimes, functions only make sense if it is given a nonempty list. An additional statement can be added to the requires section of the design recipe to indicate this.
+\end{note}
+\subsection{Characters}
+\begin{defn}
+A \textbf{string} is just a sequence of characters. Racket's notation for a character `a` is \#\textbackslash a
+\end{defn}
+\begin{defn}
+The function \textbf{string-$>$list} converts a given string into a list of characters.
+\begin{lstlisting}[language=Scheme]
+(string->list "test") 
+;;The code below is the output of the above function.
+(cons #\t (cons #\e (cons #\s (cons #\t empty))))
+\end{lstlisting}
+\end{defn}
+\begin{exmp}
+An example of where this would be useful is counting characters in a string. 
+\begin{lstlisting}[language=Scheme]
+(define (vowel? c)
+	(member c(string->list "aeiouAEIOU")))
+
+(define (count-vowels-list loc)
+	(cond [(empty? loc) 0]
+				[(vowel? (first loc)) (+ 1 (count-vowels-list (rest loc)))]
+				[else (count-vowels-list (rest loc))]))
+
+(define (count-vowels str)
+	(count-vowels-list (string->list str)))
+\end{lstlisting}
+\end{exmp}
+\begin{note}
+Lists and structures can be used together to create lists of structures which can make things pretty complicated. 
+\end{note}
+\section{Recursion}
+\begin{exmp}
+An example of a countdown function using recursion.
+\begin{lstlisting}[language=Scheme]
+(define (countdown n)
+	(cond [(= n 0) ...]
+		 		[else (cons n (countdown (sub1 n)))]))
+\end{lstlisting}
+If it is needed for the countdown to stop at a desired number, another parameter can be added. The parameter will "go along for the ride" and be called in every iteration.
+\end{exmp}
+\begin{exmp}
+Using recursion, a list can be easily sorted. \textbf{insert} is a recursive function which takes in a number and a sorted list, and inserts the number into the list.
+\begin{lstlisting}[language=Scheme]
+(define (sort lon)
+	(cond [(empty? lon) empty]
+		  [else (insert (first lon) (sort(rest lon)))]))
+
+(define (insert n slon)
+	(cond[(empty? slon) (cons n empty)]
+			 [(<= n (first slon)) (cons n slon)]
+			 [else (cons (first slon) (insert n (rest slon)))]))
+\end{lstlisting}
+\end{exmp}
+\begin{defn}
+Lists can be abbreviated. However, lists have fixed sizes while cons can contain a list of any arbitrary size.
+\begin{lstlisting}[language=Scheme]
+(cons exp1 (cons exp2 empty)) 
+;;becomes
+(list exp1 exp2).
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+The commands \textbf{(second my-list)} is equivalent to (first (rest my-list)). This pattern goes all the way up to \textbf{(eighth (my-list))}. Use these sparingly to improve readability.
+\end{defn}
+\begin{defn}
+Lists can be further abbreviated by \textbf{quoting}. For instance (cons `red (cons `blue empty)) can be written as `(red blue) with the apostrophe being outside the list. Similarly, numbers can use the quoted list format too because quoted numbers evaluate to numbers.
+\end{defn}
+\begin{defn}[AL]
+An \textbf{association list} is a list that contains a list of (key, value) pairs. An example would be a \textbf{dictionary}.
+\begin{lstlisting}[language=Scheme]
+;; my-al-fn: AL -> Any
+(define (my-al-fn alst)
+ (cond 
+ 	[(empty? alst) ...]
+ 	[else ... (first (first alist))...
+ 	... (second (first alst))...
+ 	... (my-al-fn (rest alist))]))
+\end{lstlisting}
+\end{defn}
+\begin{exmp}
+Example of AL:
+\begin{lstlisting}[language=Scheme]
+;; (lookup-al k alst) produces the value corresponding to key k,
+;; or false if k not present
+;; lookup-al: Num AL -> (anyof Str false)
+(define (lookup-al k alst)
+	(cond [(empty? alst) false]
+				[(equal? k (first (first alst))) (second (first alst))]
+				[else (lookup-al k (rest alst))]))
+\end{lstlisting}
+\end{exmp}
+\subsection{Processing Two Lists}
+\begin{exmp}
+Processing \textbf{one list} is simple because the other list will just "go along for a ride".
+\end{exmp}
+\begin{exmp}
+Processing in \textbf{lockstep} requires that the lists are the same length and consumed at the same rate.
+\begin{lstlisting}[language=Scheme]
+;; dot-product: (listof Num) (listof Num) -> Num
+(define (dot-product lon1 lon2)
+	(cond [(empty? lon1) 0]
+				[else (+ (* (first lon1) (first lon2))
+							(dot-product (rest lon1) (rest lon2)))]))
+\end{lstlisting}
+\end{exmp}
+\begin{exmp}
+Processing at \textbf{different rates} is more complicated and requires at least four conditions.
+\begin{lstlisting}[language=Scheme]
+(define (merge lon1 lon2)
+	(cond [(and (empty? lon1) (empty? lon2)) empty]
+				[(and (empty? lon1) (cons? lon2)) lon2]
+				[(and (cons? lon1) (empty? lon2)) lon1]
+				[(and (cons? lon1) (cons? lon2))
+				(cond [(< (first lon1) (first lon2))
+							(cons (first lon1) (merge (rest lon1) lon2))]
+							[else (cons (first lon2) (merge lon1 (rest lon2)))])]))
+\end{lstlisting}
+\end{exmp}
+\begin{note}
+In some cases, conditions can be combined if they produce the same output.
+\end{note}
+\subsection{Types of Recursion}
+\begin{defn}
+\textbf{Structural recursion}, all parameters to the recursive call are either unchanged or one step closer to a base case.
+\end{defn}
+\begin{defn}
+\textbf{Structural recursion with an accumulator} is when a parameter called the \textbf{accumulator} is passed down. An example would be finding the largest element in a list.
+\end{defn}
+\begin{defn}
+When the arguments in the recursive application are \textbf{generated} and the function does not follow an inductive approach (breaking out of a recursion by reaching a base case), then a function is following \textbf{generative recursion}. Parameters are freely calculated at each step.
+\begin{lstlisting}[language=Scheme]
+(define (euclid-gcd n m)
+	(cond [(zero? m) n]
+				[else (euclid-gcd m (remainder n m))]))
+\end{lstlisting}
+\end{defn}
+\section{Trees}
+\begin{defn}
+A \textbf{binary arithmetic expression} consists of numbers joined by binary operators.
+\end{defn}
+\begin{exmp}
+\[((2\times 6) + (5 \times 2))/(5-3) \]
+\begin{center}
+    \begin{tikzpicture}[every node,level 1/.style={sibling distance=50mm},level 2/.style={sibling distance=30mm},level 3/.style={sibling distance=10mm}
+]
+
+    \node[](z){/}
+
+      child{
+        node[]{+}
+        child{
+          node[]{*}
+          child{
+          node[]{2}
+          }
+          child{
+          node[]{6}
+          }
+          }
+          child{
+          node[]{*}
+          child{
+          node[]{5}
+          }
+          child{
+          node[]{2}
+          }
+          }
+      }
+      child{
+        node[]{-}
+        child{
+          node[]{5}
+          }
+          child{
+          node[]{3}
+          }};
+    \end{tikzpicture}
+  \end{center}
+\end{exmp}
+\subsection{Characteristics of Binary Trees}
+\begin{itemize}
+\item Internal nodes have exactly two children
+\item Leaves have number labels while internal nodes have symbol labels
+\item Order of the children matter
+\item Structure of tree dependent on given expression
+\end{itemize}
+\begin{exmp}
+Structure for Binary Trees (3rd line should be in comments):
+\begin{lstlisting}[language=Scheme]
+(define-struct binode (op arg1 arg2))
+;; A Binary arithmatic expression Internal Node (BINode)
+;; is a (make-binode (anyof (+ - * /) BinExp BinExp)
+
+;; A binary arithmatic expression (BinExp) is one of:
+;; * a Num
+;; * a BINode
+\end{lstlisting}
+\end{exmp}
+\begin{defn}
+Evaluation of binary trees requires the recognition of all the symbols
+\begin{lstlisting}[language=Scheme]
+(define (eval ex)
+	(cond [(number? ex) ex]
+		  	[else (eval-binode (binode-op ex)
+									(eval (binode-arg1 ex))
+									(eval (binode-arg2 ex)))]))
+
+(define (eval-binode op left right)
+	(cond [(symbol=? op `-) (- left right)]
+			[(symbol=? op `+) (+ left right)]
+			[(symbol=? op `/) (/ left right)]
+			[(symbol=? op `*) (* left right)]
+			[else (error "Unrecognized operator")]))
+\end{lstlisting}
+\end{defn}
+\subsection{Binary Search Trees}
+\begin{defn}
+\textbf{Binary search trees} are structures that store data and makes searching for items more efficient. This requires that for each node, all the elements in its left subtree are less than it, and elements in the right subtree are greater than it. If a node has no children, it's left and right subtrees are denoted as empty.
+\begin{lstlisting}[language=Scheme]
+(define-struct node (key val left right))
+;; A Node is a (make-node Num Str BST BST)
+
+;; A Binary Search Tree (BST) is one of:
+;; * empty
+;; * a Node
+\end{lstlisting}
+\begin{asd}
+In a traditional list, to find an item, you go through each element one by one and checking equality, leading to a worst case scenario of $O(n)$. In a well-balanced binary search tree, every traversal cuts off half of the elements, leading to a time complexity of $O (\log n)$.
+\end{asd}
+\end{defn}
+\pagebreak
+\begin{exmp}
+Checking if an item is in a tree:
+\begin{lstlisting}[language=Scheme]
+(define (in-tree x tree)
+	(cond 
+		[(empty? tree) false] ;If tree is empty, false
+		[(equal? x (node-value tree)) true] ;Element is at the node
+		[else (or (in-tree x (node-left tree) (in-tree x (node-right tree))))])) ;; Checks both subtrees
+\end{lstlisting}
+\begin{note}
+The above template can be modified if certain computations are required with the value.
+\end{note}
+\end{exmp}
+\section{Local Definitions}
+\begin{defn}
+\textbf{Local} constants and variables may only be used within a local block. This is useful for larger programs where a variable name is not needed outside a certain area. 
+\begin{note}
+When a variable name is both defined in global and local, the local version takes priority within the lexical scope. In CS 135, local functions do not require examples or tests.
+\end{note}
+\begin{lstlisting}[language=Scheme]
+;; Heron Formula
+(define (t-area4 a b c)
+	(local [(define s (/ (+ a b c) 2))]
+				 (sqrt (* s (- s a) (- s b) (- s c)))))
+\end{lstlisting}
+\subsection{Semantics}
+When a local variable or function is defined, it is first promoted to the top level, and the new name is substituted everywhere the old name is used in the expression. In the next example, a random variable name \textbf{s\_47} is generated.
+\begin{lstlisting}[language=Scheme]
+(t-area4 3 4 5) 
+;;Function is called
+(local [(define s (/ (+ 3 4 5) 2))]
+				(sqrt (* s (- s 3) (- s 4) (- s 5))))
+;;Local is moved outside
+(define s_47 (/ (+ 3 4 5) 2))
+(sqrt (* s_47 (- s_47 3) (- s_47 4) (- s_47 5)))
+;;New variable is first simpified
+(define s_47 6)
+(sqrt (* s_47 (- s_47 3) (- s_47 4) (- s_47 5)))
+;;Variable is substituted in
+(sqrt (* 6 (- 6 3) (- 6 4) (- 6 5)))
+\end{lstlisting}
+\end{defn}
+\begin{exmp}
+Sometimes local can be used for clarity. The distance function may appear longer, but it becomes easier to understand.
+\begin{lstlisting}[language=Scheme]
+(define (distance posn1 posn2)
+	(sqrt (+ (sqr (- (posn-x posn1) (posn-x posn2)))
+			   (sqr (- (posn-y posn1) (posn-y posn2))))))
+\end{lstlisting}
+\begin{lstlisting}[language=Scheme]
+(define (distance posn1 posn2)
+	(local [(define delta-x (- (posn-x posn1) (posn-x posn2)))
+			  (define delta-y (- (posn-y posn1) (posn-y posn2)))]
+		(sqrt (+ (sqr delta-x) (sqr delta-y)))))
+
+\end{lstlisting}
+\end{exmp}
+\subsection{Function Abstraction}
+\begin{defn}
+\textbf{Abstraction} is the process of finding similarities and forgetting unimportant differences. Advantages of functional abstraction include:
+\begin{itemize}
+\item Reduced code size
+\item Avoided cut-and-paste
+\item Bugs may be fixed on one place
+\end{itemize}
+\end{defn}
+\begin{exmp}
+(+ x y) and (* x y) are similar if you ignore the function. Furthermore, they can be abstracted into one function that consumes a function and two numbers. $X$s are used in the contract to signal that the parameters are of the same type.
+\begin{lstlisting}[language=Scheme]
+;;foo: (X X -> X) Num Num -> Num
+(define (foo f x y) (f x y))
+
+(foo + 2 3) ; 5
+(foo * 2 3) ; 6
+\end{lstlisting}
+\end{exmp}
+\begin{exmp}
+Similarly a function can produce a function that could be applied to other arguments.
+\begin{lstlisting}[language=Scheme]
+(define add3 (local [(define (f m) (+ 3 m))] f))
+
+(add3 2) ;;Produces 5
+\end{lstlisting}
+\end{exmp}
+\begin{defn}
+\textbf{Lambda} may be used to create a function. This is a much cleaner than using a local block.
+\begin{lstlisting}[language=Scheme]
+(define add3 (lambda (x) (+ 3 x)))
+\end{lstlisting}
+\subsection{Higher Order Functions}
+\end{defn}
+\begin{defn}
+The Racket built-in function \textbf{filter} consumes a predicate with contract X -> Bool and a list, and produces a list of all the elements in the list that satisfy that condition.
+\begin{lstlisting}[language=Scheme]
+;; filter: (X -> Bool) (listof X) -> (listof X)
+
+(filter (lambda (x) (= (modulo x 2) 0)) `(1 2 3 4))
+(filter even? `(1 2 3 4))
+;; Both filters produce (list 2 4)
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+The Racket built-in function \textbf{map} consumes a function and a list, and applies the function to each element in the list, outputted in a new list.
+\begin{lstlisting}[language=Scheme]
+;; map: (X -> Y) (listof X) -> (listof Y)
+
+(map add1 `(6 9)) ;; produces (list 7 10)
+\end{lstlisting}
+\begin{note}
+\textbf{map} may consume an arbituary amount of lists, as long as all the parameters are dealt with either by lambda or by another function.
+\end{note}
+\end{defn}
+\begin{defn}
+The Racket built-in function \textbf{foldr} consumes a two argument function, and applies the operation to the base case, last element, second last element, and so on until the first item of the list.
+
+\begin{lstlisting}[language=Scheme]
+;;foldr
+(foldr (lambda (x y) (+ x y)) 7 (1 2 3)) ;;produces 7 + 3 + 2 + 1 = 13
+\end{lstlisting}
+\end{defn}
+\begin{exmp}
+All duplicates may be replaced from a list using foldr and no explicit recursion.
+\begin{lstlisting}[language=Scheme]
+(define (dedup list)
+  (foldr (lambda (element newlist)
+			   (cond [(member? element newlist) newlist] ; Already exists
+			         [else (cons element newlist)])) ; Unique element 
+			   empty list))
+\end{lstlisting}
+\end{exmp}
+\section{Graphs}
+\begin{defn}
+A \textbf{directed graph} consists of a collection of \textbf{nodes} together witha  collection of \textbf{edges}.
+\end{defn}
+\begin{defn}
+An \textbf{edge} is an ordered pair of nodes, represented by an arrow from the first node to the second. Given an edge $(v,w)$, $w$ is an \textbf{out-neighbour} of $v$, and $v$ is an \textbf{in-neighbour} of $w$.
+\end{defn} 
+\begin{defn}
+A graph has a \textbf{cycle} if following all the edges results in an infinite loop.
+\end{defn}
+\begin{defn}
+Directed graphs without cycles are called \textbf{dirct acyclic graphs}.
+\end{defn}
+\begin{lstlisting}[language=Scheme]
+;;A Node is a Sym
+;; A Graph is a (listof (list Node (listof Node)))
+\end{lstlisting}
+
+\begin{exmp}
+A useful operation for a graph includes finding its neighbours.
+\begin{lstlisting}[language=Scheme]
+;; (neighbours v G) produces list of neighbours of v in G
+;; neighbours: Node Graph -> (listof Node)
+(define (neighbours v G)
+	(cond [(empty? G) (error "vertex not in graph")]
+				[(symbol=? v (first (first G))) (second (first G))]
+				[else (neighbours v (rest G))]))
+\end{lstlisting}
+\end{exmp}
+\begin{exmp}
+To find a route between two points in a graph, mutual recursion may be used to generate a list of neighbours, and keep finding neighbours until either 
+\begin{lstlisting}[language=Scheme]
+;; (find-route/list los dest G) produces route from
+;; an element of los to dest in G, if one exists
+;; find-route/list: (listof Node) Node Graph -> (anyof (listof Node) false)
+
+(define (find-route/list los dest G)
+  (cond [(empty? los) false]
+        [else (local [(define route (find-route (first los) dest G))]
+              (cond [(false? route)
+                    (find-route/list (rest los) dest G)]
+                    [else route]))]))
+\end{lstlisting}
+\begin{lstlisting}[language=Scheme]
+;; (find-route orig dest G) finds route from orig to dest in G if it exists
+;; find-route: Node Node Graph -> (anyof (listof Node) false)
+(define (find-route orig dest G)
+  (cond 
+    [(symbol=? orig dest) (list orig)]
+    [else (local [(define nbrs (neighbours orig G))
+                  (define route (find-route/list nbrs dest G))]
+          (cond [(false? route) route]
+                [else (cons orig route)]))]))
+\end{lstlisting}
+\end{exmp}
+\begin{note}
+For \textbf{cyclic graphs}, this function will never terminate. To guarantee termination, create another parameter called \textbf{visited}, and ensure that each node has not been already visited.
+\end{note}
+\pagebreak
+\begin{lstlisting}[language=Scheme]
+;; find-route/list: (listof Node) Node Graph (listof Node)
+;; -> (anyof (listof Node) false)
+(define (find-route/list los dest G visited)
+	(cond [(empty? los) false]
+				[(member? (first los) visited)
+				(find-route/list (rest los) dest G visited)]
+				[else (local [(define route (find-route/acc (first los)
+																			dest G visited))]
+							(cond [(false? route)
+										(find-route/list (rest los) dest G visited)]
+										[else route]))]))
+\end{lstlisting}
+The code for find-route/list does not change the accumulator, it only uses it. Adding the accomulator is done in the next code snippet. 
+
+\begin{lstlisting}[language=Scheme]
+;; find-route/acc: Node Node Graph (listof Node)
+;; -> (anyof (listof Node) false)
+(define (find-route/acc orig dest G visited)
+	(cond [(symbol=? orig dest) (list orig)]
+				[else (local [(define nbrs (neighbours orig G))
+											(define route (find-route/list nbrs dest G
+																			(cons orig visited)))]
+							(cond [(false? route) route]
+										[else (cons orig route)]))]))
+
+\end{lstlisting}
+\section{History}
+\begin{exmp}
+\textbf{Charles Babbage} did meechanical computattion for military applications, but the computational operations were separate from the execution.
+\end{exmp}
+\begin{exmp}
+\textbf{Ada Augusta Byron} assissted Babbage in explaining and promoting his ideas. She was possibly the first computer scientist.
+\end{exmp}
+\begin{exmp}
+\textbf{David Hilbert} formalized the asiomatic treatment of Euclidean geometry. He believed that these three questions can be answered:
+\begin{itemize}
+	\item Is mathematics complete? (For any formula $\phi$, if $\phi$ is true, $\phi$ is provable.)
+	\item Is mathematics consistent? (For any formula $\phi$, thehre aren't proofs for both $\phi$ and $\lnot \phi$.)
+	\item Is there a procedure to, given a formula $\phi$, produce a proof of $\phi$, or show there isn't one?
+\end{itemize}
+\end{exmp}
+\begin{exmp}
+\textbf{Kurt Godel} proved that any non-trivla system of axioms (a system of axioms capable of describing integer arithmetic) is not complete. If it is consistent, it cannot be proved with the system. ``The statement cannot be proved'' would be inconsistent if the statement was false, because it would be a proof of a false statement, so it must be true but not provable.
+\end{exmp}
+\begin{exmp}
+Alonzo Church and his student Kleene invented lambda calculus.
+\[ \lambda x, x + 2\text{ is a function that adds 2 to its argument}\]
+\end{exmp}
+\begin{exmp}
+\textbf{Alan Turing} defined a different model of computation and resulted in a simplier and influential proof.
+\end{exmp}
+\begin{exmp}
+\textbf{Grace Murray Hopper} was the author of the first compiler defining an english-like data processin language, which later became COBOL.
+\end{exmp}
+\begin{exmp}
+\textbf{John Backus} designed FORTRAN, which became the dominant language of numerical and scientific computation. He proposed a functional programming language, which led to the development of Lisp.
+\end{exmp}
+\begin{exmp}
+\textbf{John McCarthy} was an AI researcher at MIT known for designing and implementing Lisp, based on ideas from lambda calculus and recursive function theory.
+\end{exmp}
+\n
+LISP eventually evolved into a general purpose programming language, and became the dominant language in AI due to encouragement of modifying the language itself. It ecame two main standards after the 1980s: Common Lisp anad Scheme.
+\begin{exmp}
+\textbf{Gerald Sussman} invented Scheme after an idea for a Lisp-like porgramming language had actors and lexical scoping added. He also wrote the textbook ``Structures and INterpretation of Computer Programs'', based on Scheme.
+\end{exmp}
+\begin{exmp}
+The textbook ``How to Design Programs'' was written to remedy some issues with that book, namely the steep learning curve and lack of methodology.
+\end{exmp}
+
+\end{document}
+
