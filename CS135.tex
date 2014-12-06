@@ -3,13 +3,11 @@
 
 % ===================Variables======================================
 \newcommand{\coursecode}{CS 135}
-\newcommand{\coursename}{Computer Science}
+\newcommand{\coursename}{Designing Functional Programs}
 \newcommand{\thisprof}{Dr. Holby}
 \newcommand{\curterm}{Fall 2014}
-\newcommand{\website}{JYING.CA}
 \newcommand{\tc}[1]{\texttt{#1}}
-
- 
+\toggletrue{completed}
 
 \begin{document}
 \notesheader
@@ -870,6 +868,7 @@ All duplicates may be replaced from a list using foldr and no explicit recursion
 \end{lstlisting}
 \end{exmp}
 \section{Graphs}
+\subsection{Directed Acyclic Graphs}
 \begin{defn}
 A \textbf{directed graph} consists of a collection of \textbf{nodes} together witha  collection of \textbf{edges}.
 \end{defn}
@@ -880,7 +879,7 @@ An \textbf{edge} is an ordered pair of nodes, represented by an arrow from the f
 A graph has a \textbf{cycle} if following all the edges results in an infinite loop.
 \end{defn}
 \begin{defn}
-Directed graphs without cycles are called \textbf{dirct acyclic graphs}.
+Directed graphs without cycles are called \textbf{directed acyclic graphs}.
 \end{defn}
 \begin{lstlisting}[language=Scheme]
 ;;A Node is a Sym
@@ -899,7 +898,7 @@ A useful operation for a graph includes finding its neighbours.
 \end{lstlisting}
 \end{exmp}
 \begin{exmp}
-To find a route between two points in a graph, mutual recursion may be used to generate a list of neighbours, and keep finding neighbours until either 
+To find a route between two points in a graph, mutual recursion may be used to generate a list of neighbours, and keep finding neighbours until either the point is found or no neighbours are left.
 \begin{lstlisting}[language=Scheme]
 ;; (find-route/list los dest G) produces route from
 ;; an element of los to dest in G, if one exists
@@ -924,6 +923,7 @@ To find a route between two points in a graph, mutual recursion may be used to g
                 [else (cons orig route)]))]))
 \end{lstlisting}
 \end{exmp}
+\subsection{Cyclic Graphs}
 \begin{note}
 For \textbf{cyclic graphs}, this function will never terminate. To guarantee termination, create another parameter called \textbf{visited}, and ensure that each node has not been already visited.
 \end{note}
@@ -997,6 +997,5 @@ LISP eventually evolved into a general purpose programming language, and became 
 \begin{exmp}
 The textbook ``How to Design Programs'' was written to remedy some issues with that book, namely the steep learning curve and lack of methodology.
 \end{exmp}
-
 \end{document}
 
