@@ -239,4 +239,5 @@ pip-log.txt
 *.out
 *.synctex.gz
 *.tdo
-*.gnuplot
+*.x1.gnuplot
+*.x2.gnuplot
