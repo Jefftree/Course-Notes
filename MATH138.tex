@@ -1,0 +1,2015 @@
+\documentclass[english, 12pt]{article}
+\usepackage{yingconfig}
+
+\usepackage{calc}
+\usepackage{tikz}
+
+
+\pgfplotsset{ % Define a common style, so we don't repeat ourselves
+    MaoYiyi/.style={
+        width=0.6\textwidth, % Overall width of the plot
+        axis equal image, % Unit vectors for both axes have the same length
+        view={0}{90}, % We need to use "3D" plots, but we set the view so we look at them from straight up
+        xmin=0, xmax=2.1, % Axis limits
+        ymin=0, ymax=2.1,
+        domain=0:2, y domain=0:2, % Domain over which to evaluate the functions
+        xtick={0,1,2}, ytick={1,2}, % Tick marks
+        samples=9, % How many arrows?
+        cycle list={    % Plot styles
+                gray,
+                quiver={
+                    u={1}, v={f(x)}, % End points of the arrows
+                    scale arrows=0.075,
+                    every arrow/.append style={
+                        -latex % Arrow tip
+                    },
+                }\\
+                red, samples=31, smooth, thick, no markers, domain=0:2.1\\ % The plot style for the function
+        }
+    }
+}
+
+\newcommand{\longdivision}[2]{
+    \settowidth{\dividendlength}{#1}
+    \settowidth{\divisorlength}{#2}
+    \settoheight{\dividendheight}{#1}
+    \settoheight{\maxheight}{#1#2}
+    \settoheight{\divisorheight}{#2}
+
+    \begin{tikzpicture} [baseline=.5pt]
+        \node at (-.5*\divisorlength-1pt,.5*\divisorheight) {#2};
+        \node at (.5*\dividendlength+5pt,.5*\dividendheight) {#1};
+        \draw [thick]  (0pt,-.22*\dividendheight) arc (-70:60:\maxheight*.41 and \maxheight*.82) -- ++(\dividendlength+7pt,0pt);
+    \end{tikzpicture}
+}
+
+\newlength{\dividendlength}
+\newlength{\divisorlength}
+\newlength{\dividendheight}
+\newlength{\divisorheight}
+\newlength{\maxheight}
+
+
+% ========================Variables======================================
+\newcommand{\coursecode}{MATH 138}
+\newcommand{\coursename}{Calculus II}
+\newcommand{\thisprof}{Doctor A. Chow}
+\newcommand{\curterm}{Fall 2014}
+\newcommand{\website}{JYING.CA}
+
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+ 
+
+\begin{document}
+
+\notesheader
+
+\section{Integration}
+\subsection{Fundamental Theorem of Calculus}
+\begin{thrm}\label{thm:ftc1}
+Suppose f is continuous on $[a,b]$
+\[ \frac{d}{dx} \int_a^x f(t)\,dt = f(x)\]
+Differentiation undoes integration. A generalization is 
+\[ \frac{d}{dx} \int_{g(x)}^{h(x)} f(t)\,dt=f(h(x)) h'(x)-f(g(x))g'(x) \]
+\end{thrm}
+\begin{exmp}
+Find the derivative of \[\int_5^x t^2 \ln(\pi t+7)\,dt \]
+\begin{sol}
+Apply \ref{thm:ftc1}
+\[\f {d}{dx} \int_5^x t^2 \ln(\pi t+7)\,dt = x^2 \ln (\pi x+7)\]
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Evaluate \[\f {d}{dx}\int_{2}^{x^2} \f 1 t \,dt \]
+\end{exmp}
+\begin{sol}
+$f(t)=\f 1 t $ and $g(x)=2$ and $g'(x)=0$ and $h(x)=x^2$ and $h'(x)=2x$
+\[ \f {d}{dx} \int_{2}^{x^2}\frac 1 t \,dt = \f{1}{x^2} 2x-(\f12)(0) = \f 2 x\]
+\end{sol}
+
+\begin{defn}\label{ader}
+An {\bf antiderivative} of a function f(x) is a function F(x) satisfying F'(x) for all x. Also known as indefinite integral.
+\end{defn}
+
+\begin{exmp}
+Find an antiderivative of $\frac 1 x + cos(x) + x^2$ for $x>0$
+\end{exmp}
+\begin{sol} \[\f 1 x + \cos(x)+x^2=\ln(x) + \sin(x) + \frac{x^3}{3}\]
+If you have time, always check by differentiating.
+\end{sol}
+
+\begin{thrm}[Fundamental Theorem of Calculus II]\label{thm:ftc2}
+If f is continuous on the interval $[a,b]$ then 
+\[ \int_{a}^{b} f(x)\,dx = F(b) - F(a)\]
+where F is {\bf any} antiderivative of f.
+\end{thrm}
+
+\begin{exmp}
+Evaluate $\int_1^2 (\f 1 x + \cos(x) + x^2) dx$
+\end{exmp}
+\begin{sol}
+Apply \ref{thm:ftc2}
+\[F(x)=\ln(x) + \sin(x) + \f{x^3}{3}\]
+\begin{align*}
+F(2) - F(1) & = \ln (2) + \sin (2) + \f{2^3}{3}-(\ln(1)+\sin(1)+\f 1 3)\\
+& = \ln(2)+\sin(2) - \sin(1) + \f 7 3 
+\end{align*}
+\end{sol}
+
+\begin{exercise}
+Evaluate \[\frac{d}{dx} \int_2^{10} (t^2 e^t \ln(t)) \,dt \]
+\end{exercise}
+
+\subsection{Techniques of Integration}
+\subsubsection{Integration by Substitution}
+
+While a function may not be easily integrable with respect to its current variable, there may exist another variable we can integrate with respect to for which the integration step is easier.
+
+\begin{exmp}
+Evaluate $\int (x \sqrt{2x-1})\,dx $
+\begin{sol}
+Define new variable u in terms of x\\
+$u=2x-1$ then $\frac{du}{dx}=2$ and $\frac{du}{2}=dx$\\
+Since $\f{u+1}{2}=x$ then 
+\begin{align*}
+\int (x \sqrt{2x-1})\,dx = & \int (u^\frac 1 2 )(\f {u+1}{2}) \,\frac{du}{2}\\
+= & \frac 1 4 \int \sqrt{u} (u+1)\,du\\
+= & \frac 1 4 \int u^\frac 3 2\,du + \frac 1 4 \int \sqrt{u}\,du\\
+= & \f{1}{10} u^\frac 5 2 + \f 1 6 u^\frac 3 2 + C\\
+= & \f{(2x-1)^\frac 5 2}{10}  + \f {(2x-1)^\frac 3 2}{6} + C\\
+= & \f 1 2 [\f{(2x-1)^\frac 5 2}{5}  + \f {(2x-1)^\frac 3 2}{3}] + C\\
+\end{align*}
+\end{sol}
+\end{exmp}
+
+\subsubsection*{General Procedure for Integration by Substitution}
+\begin{enumerate}
+\item Choose an appropriate new variable
+\item Replace old variables with the new variables (including the differential (dx))
+\item Integrate with respect to the new variable.
+\item Replace the new variable with the original
+\item Check by differentiating
+\end{enumerate}
+Integration by substitution also can be applied to definite integral in the following two ways
+\begin{itemize}
+\item Keep the limits in the original variable. Integrate with new variable, replace back old variable, then solve.
+\item Find the new limits with respect to the new variable. Integrate and solve.
+\end{itemize}
+ 
+\begin{exmp}
+Find the integral
+\[ \int_1^2 \f{(\ln(x)^{2})}{x}\,dx \]
+\begin{sol}
+Let u = ln(x)
+$\f{du}{dx} = \f 1 x$ then $du = \f 1 x dx$\\
+Try finding new limits\\
+$x=2 -> u=\ln(2)$\\
+$x=1 -> u=\ln(1)=0$
+\[ \int_1^2 \f{(\ln(x)^{2})}{x}\,dx=\int_{0}^{\ln(2)} u^2\, du = u^3 /3 \Big|_0^{\ln(2)} = \f{(\ln(2))^3}{3} \]
+
+Try leaving the limits in terms of x
+
+\[ \int_1^2 \f{(ln(x)^{2})}{x}\,dx =  \int_{x=1}^{x=2} u^2\,du = \f{(ln(2))^3}{3}\Big|_{x=1}^{x=2} ) \]
+\end{sol}
+\end{exmp}
+
+\begin{exercise}
+Solve
+\[ \int \f{1}{5t^2+7}\,dt\]
+Recall that 
+\[\int \f{1}{u^2+1}\,du = \arctan(x) + C\]
+Manipulate integral:
+\[ \frac 1 7 \int \f{1}{\frac{5t^2}{7}+1}\,dt\]
+\[ \frac 1 7 \int \f{1}{(\sqrt{\frac{5}{7}}t)^2+1}\,dt\]
+Let $u = \sqrt{\frac{5}{7}} t$ then $\frac{du}{dt}=\sqrt{\frac{5}{7}}$
+\[\frac{1}{7\sqrt{\frac{5}{7}}} \int \frac{1}{u^2+1}\,du\]
+\[\frac{1}{35} \int \frac{1}{u^2+1}\,du\]
+\[\frac{1}{35} \tan^{-1}(u) + C\]
+\[\frac{\tan^{-1}(\sqrt{\frac{5}{7}})}{35}  + C\]
+\end{exercise}
+
+\subsubsection{Integration by Parts}
+Idea is similar to product rule but for integration.
+\begin{thrm}[Integration by Parts]\label{thm:ibp}
+Let f(x) and g(x) be two functions\\
+Applying the product rule to fg leads to 
+\[\f{d}{dx}(f(x)g(x)) = \frac{d f(x)}{dx} gx + f(x) \f{d g(x)}{dx} \]
+\[\int \f{d}{dx}(f(x)g(x)) = \int\frac{d f(x)}{dx} gx + f(x) \int \f{d g(x)}{dx}  \]
+
+\[f(g(x)) = \int f'g(x)\, dx + \int f(g'(x))\,dx\]
+\[\int f'(g(x))\, dx = f(g(x)) -\int f(g'(x))\,dx\  \]
+\end{thrm}
+
+For definite integrals, Integration by Pats is 
+\[\int_a^b f'(g(x))\, dx = f(g(x)) -\int_a^b f(g'(x))\,dx\  \]
+
+\begin{note}
+Let $v = g(x)$ and let $u = f(x)$, Integration by Parts can be equivalently stated as 
+\[\int u\,dv = uv- \int v\,du\]
+\end{note}
+\begin{exmp}
+Evaluate
+\[ \int_0^1 x e^x \,dx\]
+\begin{sol}
+Apply IBP: $Let f = x, f' = 1, Let g' = e^x , g = e^x$
+\[ xe^x \Big|_0^1 - \int_0^1 1*e^x\,dx\]
+\[= e^1 - e^x \Big|_{0}^{1}\]
+\[= e^1 - (e^1 - e^0))\]
+\[=1\]
+\end{sol}
+\end{exmp}
+
+\begin{exercise}
+Apply \ref{thm:ibp} to example 1.5
+\end{exercise}
+Some suggestions for using IBP
+\begin{itemize}
+\item g' is usually the more complicated component, if it can be integrated, then do it.
+\item  f should have a simpler derivative.
+\item it may be necessary to apply IBP multiple times, in which case, let the factors play the same role in each step.
+\item Integration by Parts can be applied to a single term by setting f or g' to be 1.
+\item Sometimes the original integral re-appears after a few iterations in which case, solve for the original integral.
+\item May have to apply other integration techniques after first applying integration by parts.
+\end{itemize}
+
+\begin{exmp}
+Determine the integral  $\int \ln(x)\,dx$
+Let $f(x)=\ln(x)$ then $f'(x)=\f 1 x$ and let $g'(x)=1$
+\begin{align*}
+\int \ln(x)\,dx &= \int (\ln(x))(1)\,dx\\
+&= x \ln(x) - x + C
+\end{align*}
+
+\end{exmp}
+
+\begin{exmp}
+Evaluate 
+\[ \int e^{-2x} \cos(x)\,dx\]
+$f(x)= e{-2x}$ then $f'(x)= -2e^{-2x}$ and $g'(x) = \cos(x)$
+
+\[\int e^{-2x} \cos(x)\,dx = e^{-2x} \sin(x)+ 2\int e^{-2x} \sin(x)\,dx\]
+$f=e^{-2x}$ then $f'(x)=-2e^{-2x}$ and $g'(x)=\sin(x)$ then $g(x)=- \cos(x)$
+
+\[e^{-2x} \sin(x) + 2[-e^{-2x} \cos(x) - 2 \int e^{-2x} \cos(x)\,dx ]\]
+\[ 5\int e^{-2x} \cos(x)\,dx = e^{2x} \sin(x) - 2 e^{-2x} \cos(x)\]
+\[ \int e^{-2x} \cos(x)\,dx = \f 1 5 e^{-2x} \sin(x) - \f 2 5 e^{-2x} \cos(x) + C \]
+\end{exmp}
+
+\begin{exmp}
+Solve $\int x^3 e^x\,dx$
+\begin{sol}
+$f(x)=x^3$ then $f'(x)=3x^2$ and $g'(x)=e^x$
+\[ \int x^3 e^x\,dx = x^3 e^x - 3 \int x^2 e^x \,dx \]
+Apply \ref{thm:ibp}: $f(x)=x^2$ then $f'(x)=2x$ and $g'(x)=e^x$
+\[ x^3 e^x = 3[x^2 e^x - 2 \int x e^x\,dx] \]
+Apply \ref{thm:ibp}: $ f(x)=x$ then  $f'(x)=1$ and $g'(x)=e^x$
+\[ x^3 e^x - 3x^2 e^x + 6[x e^x - \int e^x\,dx]\] 
+\[ x^3 e^x - 3x^2 e^x + 6x e^x - 6e^x + C\]
+\end{sol}
+\end{exmp}
+\subsubsection{Trigonometric Integrals}
+Solving integrals of the form 
+\[ \int \cos^n(x)\sin^m(x)\,dx\]
+\[ \int \tan^n(x)\sec^m(x)\,dx \]
+\[ \int \csc^n(x)\cot^m(x)\,dx \]
+$m,n \in \Z \mid m,n>0$
+
+Helpful trigonometric axioms:
+\[\frac{d}{dx} \cos(x) = -\sin(x)\]
+\[\frac{d}{dx} \sin(x) = \cos(x)\]
+\[ \cos^2(x)+ \sin^2(x)=1\]
+\[ \sin(2x)=2 \sin(x)\cos(x)\]
+\[ \cos^2(x) = \frac{1 + cos(2x)}{2}\]
+\[ \sin^2(x) = \frac{1-\cos(2x)}{2}\]
+\[\frac{d}{dx} \tan(x) = \sec^2(x)\]
+\[\frac{d}{dx} \sec(x) = \tan(x)\sec(x)\]
+\[1+\tan^2(x) = \sec^2(x)\]
+\begin{exmp}\label{exp:1.11}
+Evaluate $\int \cos^2(x)\sin^3(x)\,dx$
+\begin{sol}
+Let $u=\sin(x)$ then $\frac{du}{dx}=\cos(x)$
+\begin{align*}
+\int \cos^2(x) \sin^3(x)\,dx = \int u^3 cos(x)\,du
+\end{align*}
+\begin{note}
+Don't replace cos(x) with $\sqrt{1-sin^2(x)}$
+\end{note}
+Very complicated to continue. Perhaps another substitution works better.\\\\
+Let $u=\cos(x)$ then $\frac{du}{dx} = -\sin(x)$
+\[ \int u^2 sin^2(x)\, du\]
+\[ \int u^2 (1-u^2)\, du\]
+\[ \int (-u^4 + u^2)\, du\]
+\[ - \frac{u^3}{3} + \frac{u^3}{5} + C \]
+\[ - \frac{\cos^3(x)}{3} + \frac{\cos^5(x)}{5} + C \]
+\end{sol}
+\end{exmp}
+
+\subsubsection*{Guidelines for solving $\int \cos^n(x)\sin^m(x)\,dx$}
+\begin{enumerate}
+\item Where there is an odd and even power, factor out the odd power and make the appropriate substitution. See \ref{exp:1.11}
+\item When both powers are odd, then factor out either.
+\item For both even powers, apply power reduction identity to lower the power.
+\end{enumerate}
+
+\begin{exercise}
+Evaluate $\int\sin^2(\theta)\cos^2(\theta)\, d\theta$
+
+\begin{sol}
+Apply $\sin^2(\theta) = \frac{1-cos(2\theta)}{2}$\\
+Apply $\cos^2(\theta) = \frac{1+cos(2\theta)}{2}$
+\[ \frac 1 4 \int (1-\cos^2(2\theta))\,d\theta\]
+\[ \frac 1 4 \int (1 - [\frac{1+cos(4\theta)}{2}]), d\theta \]
+\[ \frac 1 8 \int (2 - 1 - cos(4\theta)), d\theta \]
+\[ \frac 1 8 \int 1 - \f 1 8 \int \cos(4\theta)\,d\theta\]
+\[ \frac 1 8 \int 1 - \f 1 8 \int \cos(4\theta)\,d\theta\]
+\[ \f 1 8 (\theta - \f{\sin 4\theta}{4}) + C \]
+\end{sol}
+\end{exercise}
+
+\begin{exmp}
+Evaluate $\int \sec^7(x) \tan^3(x)\,dx$
+
+Don't let $u=\tan(x)$ because $sec^5(x)$ is odd power.
+\[\int \sec^7(x) \tan^3(x)\,dx = \int sec^5(x)u^3\,du\]
+
+So try $u = \sec(x)$ then $\frac{du}{dx}= \sec(x)\tan(x)\,dx$
+\[\int \sec^7(x) \tan^3(x)\,dx = \int u^6 \tan^2(x)\,du\]
+\[\int u^6 (u^2 -1)\,du\]
+\[\int u^8 - u^6 \,du\]
+\[\frac{u^9}{9} - \frac{u^7}{7} + C\]
+\[\frac{(\sec^2(x))^9}{9} - \frac{(\sec^2(x))^7}{7} + C\]
+\end{exmp}
+
+\begin{exercise}
+Compute
+\[\int \sec^6(\theta)\tan^2(\theta)\,d\theta\]
+Let $u=\tan(x)$ then $\frac{du}{dx}= \sec^2(x)$
+\[\int \sec^4(\theta)u^2\,du\]
+\[\int (1+u^2)^2 u^2\,du\]
+\[\int u^2+2u^4+u^8\,du\]
+\[\frac{u^3}{3} + \frac{2u^5}{5} + \frac{u^9}{9} + C\]
+\[\frac{\tan^3(x)}{3} + \frac{2\tan^5(x)}{5} + \frac{\tan^9(x)}{9} + C\]
+\end{exercise}
+\subsubsection*{Products of cot/csc}
+Apply similar approach as for tan/sec and use 
+\[\frac{d}{dx}\cot(x)=-\csc^2(x)\]
+\[\frac{d}{dx}\csc(x)=-\csc(x)\cot(x)\]
+\[ 1 + \cot^2(x)=\csc^2(x)\]
+
+\subsubsection{Trigonometric Substitution}
+Recall: 
+\[ \frac{d}{dx} \arcsin(x) = \frac{1}{\sqrt{1-x^2}} \]
+\[ \frac{d}{dx}\arctan(x)=\frac{1}{x^2+1} \]
+\[ \frac{d}{dx} \arcsec(x)=\frac{1}{x \sqrt{x^2-1}} \]
+
+\begin{exmp}
+Evaluate 
+\[\int \frac{1}{\sqrt{1-x^2}}\,dx\]
+\begin{sol}
+Let $x = \sin \theta$ then $dx = \cos \theta\,d\theta$
+\[ \int \frac{\cos\theta \,d\theta}{\sqrt{cos^2\theta}} \]
+\[ \int \frac{\cos\theta \,d\theta}{|\cos\theta |} \]
+Assume $\theta \in [-\f \pi 2 , \f \pi 2 ] $
+\[ \int 1 \,d\,\theta \]
+\[ \arcsin x + C \]
+
+\end{sol}
+
+\end{exmp}
+
+
+
+\subsubsection{Table of Trigonometry Substitutions}
+\[\sqrt{a^2-x^2} \]
+\[x = a \sin \theta \]
+
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|}
+\hline
+\text{Expression} & \text{Substitution} & \text{Domain} & \text{Identity}\\[2ex]
+\sqrt{a^2-x^2} & x = a \sin\theta& -\f \pi 2 < \theta < \f \pi 2 & 1 - \sin^2\theta = \cos \theta\\
+ & x = a \cos\theta& 0 < \theta < \f \pi 2 &\\
+\sqrt{a^2+x^2} & x = a \tan\theta&-\f \pi 2 < \theta < \f \pi 2   & 1 + \tan^2\theta = \sec^2 \theta\\
+\sqrt{x^2-a^2} & x = a \sec\theta& 0 < \theta < \f \pi 2 & \sec^2\theta - 1 = \tan \theta\\
+\hline
+\end{tabular}
+\end{center}
+\begin{exmp}
+Solve $\int \frac{1}{x\sqrt{x^2+3}}\,dx$
+\begin{sol}
+Given $\sqrt{x^2\sqrt 3 ^2}$, we choose $x = \sqrt{3} \tan\theta$
+\[dx = \sqrt{3} \sec^2\theta\,d\theta \]
+\begin{align*}
+\int \frac{1}{x\sqrt{x^2+3}}\,dx &= \int \frac{\sqrt 3^2 \sec^2\theta\,d\theta}{3 \tan \theta \sec \theta} \\
+&= \frac{\sqrt 3}{3} \int \csc \theta\, d\theta \\
+&= \frac{\sqrt 3}{3} \int \csc \theta \frac{\csc \theta + \cot \theta}{csc \theta + \cot \theta}\, d\theta \\
+\end{align*}
+Let $u = \csc \theta + \cot \theta$ then $du = (-\csc \theta \cot \theta - \csc^2\theta)\,d\theta$
+\[ \frac{\sqrt 3}{3} \int \frac{du}{u} = \frac{\sqrt 3}{3} \ln | u | + C \]
+\[ \frac{\sqrt 3}{3} \int \frac{du}{u} = \frac{\sqrt 3}{3} \ln | \csc \theta + \cot \theta | + C \]
+Since $\tan \theta = \f{x}{\sqrt 3}$ then by drawing and labelling and right angle triangle, $\sin \theta = \frac{x}{\sqrt{x^2+3}}$ and $\csc \theta = \frac{\sqrt{x^2+3}}{x}$
+\[ \frac{\sqrt 3}{3} \ln (\frac{\sqrt{x^2+3}}{x} + \frac{\sqrt 3}{x}) + C \]
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Determine
+\[ \int \frac{x}{\sqrt{27 + 6x - x^2}}\,dx \]
+
+\begin{sol}
+Rewrite the radical ino a sum of squares by using completing the square.
+\begin{align*}
+& -x^2 + 6x + 27\\
+=& - (x^2-6x) + 27\\
+=& -(x^2-6x+9) +9 + 27\\
+=& -(x-3)^2 + 6^2
+\end{align*}
+\[ \int \frac{x}{\sqrt{27 + 6x - x^2}}\,dx  = \int \frac{x}{\sqrt{6^2 - (x-3)^2}}\,dx\]
+Let $x-3 = 6 \sin \theta$ then $dx = 6 \cos \theta\, d \theta$
+\[\int \frac{6 \sin \theta + 3}{6 \cos \theta} (6 \cos \theta) \, d\theta \]
+\[ \int 6 \sin \theta + 3 \,d\theta \]
+\[ -6 \cos \theta + 3 \theta + C \]
+Rewrite theta in terms of x. Draw a triangle if necessary.
+\[ -6 \frac{\sqrt{6^2 - (x-3)^2}}{6} + 3 \theta + C \]
+\[ - \sqrt{36 - (x-3)^2} + 3 \arcsin(\frac{x-3}{6}) + C\]
+\end{sol}
+\end{exmp}
+
+\begin{exercise}
+Use an appropriate integral to prove the area of a circle with radius r is $\pi r^2$.
+
+\begin{sol}
+The area of a circle is given by $\pm \sqrt{r^2-x^2}$ We can just find the area of a quarter of the circle and multiply it by 4.
+\[y= r \sqrt{\frac{1-x^2}{r^2}} \,dx \]
+\[A = 4 \int_0^r r \sqrt{1-\frac{x^2}{r^2}} \,dx \]
+Let $\f x r = \sin t$ then $dx = r \cos t\,dt$
+\[A = 4 \int_0^{\f \pi 2} r^2 \sqrt{1-\sin^2 t} \cos t \,dt \]
+\[A = 4 \int_0^{\f \pi 2} r^2 \sqrt{\cos^2 t} \cos^2 t \,dt \]
+Since in our example, $\cos t$ ranges from $0$ to $\f \pi 2$ then $\sqrt{\cos^2 t} = \cos t$
+\[A = 4 \int_0^{\f \pi 2} r^2 \cos^2 t \,dt \]
+\[A = 4r^2 \int_0^{\f \pi 2}  \frac{\cos 2t+1}{2} \,dt \]
+\[ 4r^2(\f 1 4 \sin 2t \Big|_0^{\f \pi 2} + \f 1 2 t \Big|_0^{\f \pi 2}) \]
+\[ A = 4r^2 (0 + \f 1 2 \f \pi 2) \]
+\[A = \pi r^2 \]
+
+\end{sol}
+\end{exercise}
+
+\subsubsection{Integration of Rational Functions by Partial Fractions (PFD)}
+Consider the following rational function:
+\[ \int \frac{x}{(x-1)(x+1)(x+3)}\,dx \]
+If we can rewrite this as $\frac{A}{x-1} + \frac{B}{x+1} + \frac{C}{x+3}$ where $A,B,C$ are constants, then we can easily integrate. Consider the general form $\int \frac{P(x)}{Q(x)} \,dx$ where $P$ and $Q$ are polynomials.
+\begin{enumerate}
+\item If degree of P is less than the degree of Q, skip this step. Else, if degree of P is greater than the degree of Q, rewrite $\frac{P(x)}{Q(x)}$ as $S(x) + \frac{R(x)}{Q(x)}$ where $R(x)$'s degree will be less than $Q(x)$'s degree.
+\item Factor Q as far as possible into products of linear and irreducible quadratic factors. It turns out any polynomial can be factored uniquely into chains of terms of the form $(ax+b)^n$ or $(\beta x^2 + \alpha x + \lambda)^m$
+\item Partial Fraction Decomposition. Express terms of the form 
+\[\frac{R_{1}(x)}{(ax+b)^n}\]
+ as
+\[ \frac{A_{1}}{ax+b} + \frac{A_{2}}{(ax+b)^2} + ... + \frac{A_{n}}{ax+b)^n}\]
+and express terms of the form \[\frac{R_{2}(x)}{(\beta x^2 + \alpha x + \lambda)^m}\]
+as \[\frac{B_{1}x+C1}{\beta x^2 + \alpha x + \lambda} + \frac{B_{2}x+C_{2}}{(\beta x^2 + \alpha x + \lambda)^2} + ... + \frac{B_{m}x+C_{m}}{(\beta x^2 + \alpha x + \lambda)^m}\]
+
+eg: Apply PFD to \[\frac{x^4+2x^2+x+1}{x^3(x-2)(x^2+x+1)(x^2+1)^3}\]
+\[= \frac{K1}{x} + \frac{K2}{x^2} + \frac{K3}{x^3} + \frac{K4}{x-2} + \frac{K5}{x^2+x+1} + \frac{K6}{x^2+1} +  \frac{K7}{(x^2+1)^2} + \frac{K8}{(x^2+1)^3}  \]
+\item Determine the unknown coefficients in Step 3 by equating like powers of $x$
+
+eg: 
+\begin{align*}
+\frac{1}{x(x+1)} &= \frac{A}{x} + \frac{B}{x+1}\\
+&= \frac{A(x+1)+B(x)}{x(x+1)}
+\end{align*}
+\[1=A(x+1)+Bx\]
+\[x^0 = 1 - A\]
+\[x^1 = 0 = A+B\]
+Since $A=1$ then $B=-1$
+\[ \frac{1}{x(x+1)} = \f 1 x + \frac{-1}{x+1} \]
+\item We know how to integrate all of the terms in $(*)$ and $(**)$. Terms in $(***)$ may require completing the square before being in an integrable form.
+\end{enumerate}
+\begin{exmp}
+Evaluate
+\[ \int \frac{x^4+x^3+x^2-x}{x^3-1}\,dx \]
+\begin{sol}
+
+\longdivision{$x^4+x^3+x^2-x$}{$x^3-1$} After solving, $S(x) = x+1$ and $R(x)=x^2+1$
+
+\[ \int (x+1)\,dx + \int \frac{x^2+1}{x^3-1}\,dx \]
+\[ \frac{x^2}{2} + x + \int \frac{x^2+1}{x^3-1}\,dx \]
+\[ \frac{x^2}{2} + x + \int \frac{x^2+1}{(x-1)(x^2+x+1)}\,dx \]
+Step 3:
+\[ \frac{x^2+1}{(x-1)(x^2+x+1)} = \frac{A}{x-1} + \frac{Bx+C}{x^2+x+1}\]
+Step 4:
+\[x^2+1 = A(x^2+x+1) + (Bx+C)(x-1)\]
+Equating like powers:
+\[x^0: 1 = A - C\]
+\[x^1: 0 = A-B+C\]
+\[x^2: 1 = A + B\]
+After solving, $A=\f{2}{3}, B=\f{1}{3}, C= - \f{1}{3}$
+\[ \frac{x^2}{2} + x + \frac{2}{3} \int \frac{1}{x-1} + \frac{1}{3} \int \frac{x-1}{x^2+x+1}\,dx \]
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \frac{1}{3} \int \frac{x-1}{x^2+x+1}\,dx \]
+Step 5: Completing the square
+\[x^2+x+1 = (x^2+x+\f 1 4)-\f 1 4 + 1 \]
+\[ (x+\f 1 2)^2 + \f 3 4 \]
+
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \frac{1}{3} \int \frac{x-1}{(x+\f 1 2)^2 + \f 3 4}\,dx \]
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \frac{4}{3} \int \frac{x-1}{(2x+1)^2 + 3}\,dx \]
+Let $u = 2x+1$ then $du = 2 dx$ also $x-1 = \frac{u-1}{2} - 1 = \frac{u-3}{2}$
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \frac{1}{3} \int \frac{u}{u^2+3}\,du + \f 1 3 \int \frac{3}{u^2+3}\, du \]
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \f 1 6 \ln |u^2+3|  + \f 1 3 \int \frac{3}{u^2+3}\, du \]
+$u^2+3 > 0$ always so absolute not needed.
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \f 1 6 \ln (u^2+3)  + \f 1 3 \int \frac{1}{(\frac{1}{\sqrt 3})^2 + 1}\, du \]
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \f 1 6 \ln (u^2+3)  + \f 1 3 \int \frac{1}{y^2 + 1}\, dy \]
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \f 1 6 \ln (u^2+3)  + -\frac{\sqrt 3}{3} \arctan (\frac{1}{\sqrt 3} (2x+1)) + C \]
+\[ \frac{x^2}{2} + x + \frac{2}{3} \ln |x-1| + \f 1 6 \ln ((2x+1)^2+3)  + -\frac{\sqrt 3}{3} \arctan (\frac{1}{\sqrt 3} (2x+1)) + C \]
+\end{sol}
+\end{exmp}
+
+\subsection{Volumes of Solids}
+\subsubsection{Slicing Method}
+Consider a solid (eg a loaf of bread), what is its volume?
+\begin{sol}
+Place the solid along the x-axis and cut it into $n$ pieces of equal thickness.\\
+Let $\triangle x = \frac{b-a}{n}$ denote the thickness of one slice. Consider one slice at $[x_{i}-1,x_{1}]$.\\
+Assume $\triangle x$ is small $\implies$ area on the right side of the slice is approximately equal to the area on the left side of the slice. Let $A(x_{i})$ be the area.\\\\
+Volume of one slice = $A(x_{i}) \triangle x$\\
+Volume of all slices = \[\sum_{i=1}^{n} A(x_{i}) \triangle x\]
+The approximation becomes exact as $n \to \infty$\\
+ Volume of solid = \[\lim_{n \to \infty} \sum_{i=1}^{n} A(x_{i}) \triangle x\]
+\end{sol}
+
+\begin{exmp}
+Consider the region between $f(x) = x^2$ and the x-axis from $x=0$ to $x=1$. Find the volume of this region rotated about the x-axis.
+\begin{sol}
+The shape of the solid is a funnel-like shape. A slice of the solid is the circle.
+\begin{align*}
+& A=\pi \int_0^1 (x^2)^2\,dx \\
+& A=\pi \int_0^1 x^4\,dx \\
+& A= \pi (\frac{x^5}{5})\Big|_0^1\\
+& A= \pi (\frac{x^5}{5})\Big|_0^1\\
+& A= \f \pi 5
+\end{align*}
+\end{sol}
+\end{exmp}
+In general, volumes by revolution are determined by \[ \int_a^b \pi (r(s))^2\,ds \]
+where $r(s)$ is the radius of the circle obtained by slicing the solid.
+\begin{exmp}
+Consider the region between $y=x^2+1$ and the y-axis from $y=1$ to $y=5$. Find the volume of this region rotated about the y axis.
+\begin{sol}
+\begin{align*}
+& A= \pi \int_1^5 \sqrt{y-1}^2\,dy \\
+& A = \pi \int_1^5 y-1\,dy \\
+& A = \pi (\frac{y^2}{2} - y)\Big|_1^5\\
+& A = 8 \pi
+\end{align*}
+\end{sol}
+\end{exmp}
+\begin{exmp}\label{exp:1.19}
+Consider the region between $f(x)=x$ and $g(s)=\sqrt x$ rotated about the x-axis. Find the volume of this solid.
+\begin{sol}
+Point of intersection is $(1,1)$.
+\begin{align*}
+& A = \pi[\int_0^1  (x^2)^2\,dx - \int_0^1 (\sqrt x)^2\,dx]\\
+& A = \pi (\f{x^5}{5} - \f {x^2}{2})\Big|_{0}^{1}\\
+& A = \f \pi 6
+\end{align*}
+\end{sol}
+\end{exmp}
+
+In general, for washer shaped volumes, we have \\
+\[ V = \pi \int_a^b  (r_{1})^2 - (r_{2})^2\,ds\]
+\begin{exercise}
+Repeat Example \ref{exp:1.19} but rotate about y-axis.
+\begin{sol}
+$x=y$ and $x=y^2$. Point of intersection: $ y=1$
+\[ \pi \int_0^1 (y^2 - y^4) dy \]
+\[ =\pi (\frac{y^3}{3} - \frac{y^5}{5})\Big|_0^1 \] 
+\[ =\pi (\frac{5y^3-3y^5}{15})\Big|_0^1 \] 
+\[ =\frac{2 \pi}{15} \]
+\end{sol}
+\end{exercise}
+
+\begin{exmp}
+For $x \geq 0$, then region bounded by $y=x^3$ and $y=x$ is rotated about $y=1$. Compute the resulting volume.
+\begin{sol}
+$y=1-x^3$ and $y=1-x$
+\begin{align*}
+& V = \pi \int_0^1 (1-x^3)^2 -  (1-x)^2\,dx\\
+& V = \pi \int_0^1 (1-2x^3+x^6) - (1-2x+x^2)\,dx\\
+& V = \pi \int_0^1 -2x^3+x^6 +2x-x^2\,dx\\
+& V = \pi (- \frac{x^4}{2} + \frac{x^7}{7} + x^2 - \frac{x^3}{3})\Big|_0^1\\
+& V = \f{13 \pi}{42}
+\end{align*}
+\end{sol}
+\end{exmp}
+\subsubsection{Cylindrical Shells Method}
+Let $r_{1}$ represent radius of outer circle.\\
+Let $r_{2}$ represent radius of inner circle.
+If we assume $r_{1} \approx r_{2}$ (denote by $r$), then the volume of the cylindrical shell.
+\[ \underbrace{2\pi r}_{Circumference}\times  \underbrace{h}_{height} \times  \underbrace{\triangle x}_{thickness} \]
+For volumes of revolution problems, we can use the volumes of cylindrical shell to approximate the volume of many solids.
+
+Discretize the x-domain into $n$ intervals with thickness $\triangle x = \frac{b-a}{n}$ \\
+We have created nested cylindrical shells and the sum of their volumes approximates the volume of the solid.
+Volume of solid $\approx$
+\[ \sum_{i=1}^{n} 2\pi r(x_{i}) h(x_{i}) \triangle x\]
+\[ \lim_{ n \to \infty}  \sum_{i=1}^{n} 2\pi r(x_{i}) h(x_{i}) \triangle x \]
+\[ \int_a^b 2 \pi r(x) h(x)\,dx \]
+where $r(x)$ is the radius and $h(x)$ is the height of the shell.
+\begin{exmp}
+Consider the region bounded by $y = \f 1 2 , y = 0, x = 1$ and $x=2$ is rotated about the y-axis, thus creating a solid. Compute the volume 
+\begin{sol}
+\[ V = \int\_1^2 2 \pi x \f 1 x \, dx \]
+\[ V = 2 \pi \int\_1^2 \, dx \]
+\[ V = 2 \pi \]
+\begin{note}
+One method may be easier than other one.
+\end{note}
+\end{sol}
+\begin{sol}
+\[ V = \pi \int_0^{\f{1}{2}} 2^2 - 1^2\, dx \]
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Find the volume of the solid obtained by rotating the region bounded by $y=x^3, y=0,x=1$ about the line $y=1$.
+\begin{sol}
+Radius of shell = $1 - y$\\
+Height of shell = $1-y^{\f 1 3}$\\
+\[V = \int_0^1 2 \pi (1-y) (1-y^{\f 1 3})\, dy\]
+\[ V = 2 \pi \int_0^1 (1-y^{\f 1 3} - y + y^{\f 4 3})\,dy \]
+\[ V = 2 \pi (y  - \f{3y^{\f 4 3}}{4} - \f{y^2}{2} + \frac{3y^{\f 7 3}}{7}\Big|_0^1 \]
+\[ V = \f{5 \pi}{14} \]
+\end{sol}
+\end{exmp}
+\begin{exercise}
+Consider the disc governed by 
+\[ (x-R)^2 + y^2 = a^2 \] rotated about the y-axis where $R > a$. Ths solid created is called a torus. Determine the volume using both the slicing method and cylindrical shell method.\\\\
+Ans should be $2 \pi^2 R a^2$
+\todo{Finish exercise}
+\end{exercise}
+\begin{exercise}
+Find the volume of a pyramid with a square base where the base length is $a>0$ and height $h>0$. Answer $\f{a^2h}{3}$
+\todo{Try exercise}
+\end{exercise}
+\subsection{Improper Integrals}
+There are two types
+\begin{itemize}
+\item Integrals on an infinite length (type 1)
+\item Integrals with discontinuity. (type 2)
+\end{itemize}
+Type 1 integrals are of the form:
+\[ \int_a^\infty f(x)\,dx \int_{-\infty}^b f(x)\,dx \int_{-\infty}^\infty f(x)\,dx \]
+These are defined as
+\[ \int_a^\infty f(x)\,dx = \lim_{t \to \infty} \int_a^t f(x)\,dx  \]
+provided the limit exists as a finite number. Similarly,
+\[ \int_{-\infty}^b f(x)\,dx = \lim_{s \to -\infty} \int_s^b f(x)\,dx  \]
+These improper integrals are called \textbf{convergent} if the corresponding limit exists, and \textbf{divergent} otherwise.\\
+\[ \int_{-\infty}^\infty f(x)\,dx = \int_{-\infty}^a f(x) + \int_a^\infty f(x)\]
+\[ \int_{-\infty}^\infty f(x)\,dx = \lim_{s \to -\infty} \int_s^a f(x) + \lim_{t \to \infty}  \int_a^t f(x)\]
+\begin{note}
+\[ \int_{-\infty}^\infty f(x)\,dx \neq \lim_{t \to \infty} \int_{-t}^{t} f(x)\,dx \]
+$ \int_{- \infty}^\infty x\,dx$ diverges. If the first term diverges, no need to check second term and we can immediately conclude that the integral diverges. $-\infty + \infty \neq 0 $. Both limits must exist for the integral to be convergent.
+\end{note}
+\begin{thrm}
+Claim: If $\int_{- \infty}^\infty f(x)\, dx$ converges, then $\int_{- \infty}^\infty f(x) = \lim_{t \to \infty} \int_{-t}^t f(x)\,dx$ is true.
+\begin{proof}
+By definition 
+\[ \int_{-\infty}^\infty f(x)\,dx = \lim_{t \to - \infty} \int_t^a f(x) + \lim_{t \to \infty}  \int_a^t f(x)\]
+\[ \int_{-\infty}^\infty f(x)\,dx = \lim_{t \to \infty} \int_{-t}^a f(x) + \lim_{t \to \infty}  \int_a^t f(x)\]
+Since both integrals converge, then each limit exists and we can take the sum over one limit.
+\[ \int_{-\infty}^\infty f(x)\,dx = \lim_{t \to \infty} [\int_{-t}^a f(x) +  \int_a^t f(x)] \]
+\[ \int_{-\infty}^\infty f(x)\,dx = \lim_{t \to \infty} \int_{-t}^t f(x)\,dx \]
+\end{proof}
+\end{thrm}
+\begin{exmp}
+For what values of $p \in \R$ is $\int_1^\infty \f{1}{x^p}\,dx$ convergent?
+\begin{sol}
+\begin{align*}
+\int_1^\infty \f{1}{x^p} & = \lim_{t \to \infty} \int_1^t \f{1}{x^p}\,dx\\
+& = \lim_{t \to \infty} (f{x^{-p+1}}{-p+1})\Big|_1^t \\
+& = \lim_{t \to \infty} [\frac{1}{1-p} [\f{1}{t^{p-1}} - 1]]
+\end{align*}
+If $p > 1$ then $\lim_{t \to \infty} \f{1}{t^{p-1}} = 0$ and $\int_1^\infty \frac{1}{x^p}\,dx = \frac{1}{p-1}$ which converges.\\
+If $p < 1$ then $\lim_{t \to \infty} \f{1}{t^{p-1}} = \infty$ and $\int_1^\infty \f{1}{x^p}\,dx$ diverges.\\
+If $p = 1$ then $\lim_{t \to \infty} \int_1^t \f 1 x\,dx = \lim_{t \to \infty} (\ln(x))\Big|_1^t = \lim_{t \to \infty} \ln(t) = \infty $\\\\
+\textbf{Summary:}
+\[\int_1^\infty \f{1}{x^p}\,dx \text{ converges if } p > 1 \text{ and diverges if } p \leq 1 \]
+\end{sol}
+\end{exmp}
+\subsection*{Type 2}
+Type 2 improper integrals occur when $f$ is discontinuous along $[a,b]$. 
+
+\[ \int_a^b f(x)\,dx = \lim_{t \to b^-} \int_a^t f(x)\,dx \]
+\begin{center}
+eg: $\int_{-1}^0 \f 1 x\,dx = \lim_{t \to 0^-} \int_a^t \f 1 x \,dx$
+\end{center}
+.\\\\
+Discontinuity at a:
+\[ \int_a^b f(x)\,dx = \lim_{t \to a^+} \int_t^b f(x)\,dx \]
+eg: $\int_{0}^1 \f 1 x\,dx = \lim_{t \to 0^+} \int_t^1 \f 1 x \,dx$\\\\
+Discontinuity at $c$ where $a < c < b$
+\[\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx \]
+\[= \lim_{s \to c^-} \int_a^s f(x)\,dx + 
+\lim_{t \to c^+} \int_t^b f(x)\,dx \]
+eg: \[\int_{-1}^1 \f 1 x\,dx = 
+\lim_{s \to 0^-} \int_{-1}^s \f 1 x \,dx +
+ \lim_{t \to 0^+} \int_t^1 \f 1 x \,dx\]
+These types of improper integrals are called convergent if the limit exists, and divergent if the limit does not exist.
+\begin{exmp}
+Evaluate 
+\[ \int_1^5 \f{1}{x-2}\,dx \]
+\begin{sol}
+At $x=2$ function has a vertical asymptote.\\
+Suppose didn't realize asymptote.
+\begin{align*}
+& = \ln | x - 2 |)\Big|(1^5)\\
+& = \ln 3 
+\end{align*}
+Be cautious and determine whether a given integral is improper.\\\\
+\[\int_1^5 \f{1}{x-2}\,dx = \int_1^2 \f{1}{x-2}\,dx + \int_2^5 \f{1}{x-2}\,dx\]
+Look at first part.
+\[\lim_{t \to 2^-} \int_1^t \f{1}{x-2}\,dx = \lim_{t \to 2^-} \ln |t - 2| = \lim_{t \to 2^-} \ln (2-t)= - \infty\]
+$\therefore \int_1^5 \f{1}{x-2}\,dx$ diverges since $\int_1^2 \f{1}{x-2}\,dx$ diverges.
+\end{sol}
+\end{exmp}
+\begin{thrm}[Comparison Theorem]
+Suppose $f$ and $g$ are continuous functions with $f(x) > g(x)$ for $x \geq 0$. \\
+If $\int_a^{\infty} f(x)\,dx$ converges, then $\int_a^\infty g(x)\,dx$ also converges.\\
+If $\int_a^\infty g(x)\,dx$ diverges, then $\int_a^\infty f(x)\,dx$ diverges.
+\end{thrm}
+
+\begin{exmp}
+Determine whether 
+\[ \int_1^\infty \f{\sin^2(x)}{x^2}\,dx \] 
+converges or diverges.
+\begin{sol}
+$\sin^2(x) \leq 1 \implies \f{\sin^2(x)}{x^2} \leq \f{1}{x^2}$ because $x^2$ is positive.\\\\ 
+$\int_1^\infty \f 1 x\,dx$ converges (in exmp 1.23). By the comparison theorem, $\int_1^\infty \f{\sin^2(x)}{x^2}\,dx$ converges.
+\end{sol}
+\end{exmp}
+
+\section{Differential Equations}
+\begin{defn}\label{def:de}
+A \textbf{differential equation} (DE) is an equation that contains an unknown function, say $y(x)$, and $1$ or more of its derivatives.
+\[ \frac{d^2 y}{dx^2} + 2 \f{dy(x)}{dx} + 2 y(x) = \cos (x) + 11.2 \]
+\[ y"(x) + y'(x) + 2y(x) = \cos(x) + 11.2 \]
+\end{defn}
+\begin{defn}
+The \textbf{order} of a DE is the order of the highest derivative that appears in the DE. In the above example, order 2 or second order.
+\[ x^3 \f{dy}{dx} + y^2(x) + y(x) = e^x + \cos(x) + x \]
+has a degree of 1, order 1 or first order.
+\end{defn}
+A first order DE is linear if it can be written in the form 
+\[ \f{dy(x)}{dx} + p(x)y(x) = q(x) \]
+where $p(x)$ and $q(x)$ are given functions. Otherwise, it is non-linear.\\
+$y'(x) + x^2 y(x) = e^x\cos(x)$ is a linear DE.\\
+$(1+x^2)y'(x) + 2y(x) = e^x \cos(x) + 10$ can be written into linear DE form. \\
+$y'(x) + \f{2y(x)}{(1+x^2)} =\f{e^x \cos(x) + 10}{(1+x^2)}$ is also a linear DE. \\
+$y'(x) + x^2 y^2(x) = e^x\sin(x)$ is a non-linear DE.\\\\
+A function $f$ is called a solution to a DE if the equation satisfied when $f$ and its derivatives are substituted into the equation.
+\begin{exmp}\label{exp:2.1}
+Show $y(x) = \cos(2x)$ is a solution to $y"(x) + 4y(x) = 0$.
+\begin{sol}
+$y'=-2 \sin(2x)$, $y" = -4 \cos(2x)$
+\[-4 \cos(2x) + 4 \cos(2x) = 0 \]
+\end{sol}
+\begin{exercise}
+Show that $y=\sin(2x)$ is also a solution to the DE. Show that any function of the form $c_{1}\cos(2x) + c_{2}\sin(2x)$ is a solution to the DE where $c_{1},c_{2}$ are arbitrary constants.
+\end{exercise}
+\end{exmp}
+\begin{note}
+A DE describes a family of functions. These are known as general solutions. Problems of finding a solution to a DE that satisfies a given initial condition are called initial value problems. (IVP)
+\end{note}
+\begin{exmp}
+Find the solution to the IVP $y"(x) + 4y(x) = 0$. $y(0) = 5, y'(0) = 0$
+\end{exmp}
+\begin{sol}
+From \ref{exp:2.1}, the general solution is $c_{1}\cos(2x) + c_{2}\sin(2x)$.
+\[y(0)=\underbrace{c_{1}\cos(2x)}_{1} + \underbrace{c_{2}\sin(2x)}_{0}, c_{1} = 5 \]
+\[y'(0)=\underbrace{-2 c_{1}\cos(2x)}_{0} + \underbrace{2 c_{2}\sin(2x)}_{0}, c_{2} = 0 \]
+$\therefore$ The solution to the IVP is $y(x) = 5 \cos(2x)$
+\end{sol}
+\subsection{Direction Fields}
+Consider a first order $\frac{dy}{dx} = f(x,y)$ where $f(x,y)$ is a function that depends on $x,y$. The DE tells us that the slope at some arbitrary point, $(x_{0},y_{0})$ on the solution curve $y(x)$, is $f(x_{0},y_{0})$
+\begin{defn}
+A \textbf{direction field} creates a field of line segments indicating the direction of a function $y(x)$.
+\end{defn}
+
+\begin{exmp}
+Sketch the direction field of $y'=1-x$ and then draw the solution curve that passes through $(0,0)$.
+
+\begin{tikzpicture}[
+    declare function={f(\x) = 1- \x;} % Define which function we're using
+]
+\begin{axis}[
+    MaoYiyi, title={$\dfrac{\mathrm{d}y}{\mathrm{d}x}=1-x$}
+]
+\addplot3 (x,y,0);
+\addplot {x-x^2/2}; 
+\end{axis}
+\end{tikzpicture}
+\end{exmp}
+
+\begin{exmp}
+Sketch the direction field for $y'=y + xy$, and then draw the solution curve that passes through the point $(0,1)$
+
+\begin{tikzpicture}[
+    declare function={f(\x) = \y + \x*\y;} % Define which function we're using
+]
+\begin{axis}[
+    MaoYiyi, title={$\dfrac{\mathrm{d}y}{\mathrm{d}x}=y + xy$}
+]
+\addplot3 (x,y,0);
+\addplot {2.71818^((x^2)/2 + x)}; 
+\end{axis}
+\end{tikzpicture}
+\end{exmp}
+\subsection{Separable Equations}
+Separable DEs are first order DEs that c an be written in the form:
+\[ \f{dy}{dx} = g(x) \times f(y) \text{ for some function of $f$ and $g$}\]
+Separable DEs can be solved as follows:
+\[ \frac{dy}{dx} = g(x)\times f(y) \implies \frac{1}{f(y)}\frac{dy}{dx} = g(x) \]
+\[ \implies \f{dy}{f(y)} = g(x)\,dx \]
+\begin{exmp}
+Solve $y' = y(1+x)$
+\begin{sol}
+\[ y' = y(1+x) \implies \f{dy}{dx} = (1+x) y \]
+\[ \int \f{dy}{y} = \int(1+x)\,dx \]
+Assume $y \neq 0$.\\
+\[\implies \ln |y| = x + \f{x^2}{2} + C \]
+\[ y = \pm e^{x+\f{x^2}{2} + C} \]
+\[ y = \pm k e^{x+\f{x^2}{2}} \]
+How about $Y(x) = 0$. $y = 0 \implies y' = 0$. DE $\implies 0 = 0$ true.
+\end{sol}
+\end{exmp}
+\begin{exercise}
+Find the solution to the IVP $2xy + (x^2 +1)$, $\f{dy}{dx}=0$. $y(0)=2$. Answer $y=\f{2}{x^2+1}$.
+\end{exercise}
+\todo{fill}
+\subsection{Integrating Factor}
+Motivating example: Consider the following first order DE.
+\[y'(x) + y(x) = x \text{ which is not separable } \]
+How do we solve this DE?
+\[e^x(y' + y) = x e^x \]
+\[\underbrace{e^x y' + e^x y}_{\f{d}{dx} [e^x y]} = x e^x \]
+This gives $\f{d}{dx} [e^x y] = xe^x$\\
+Integrating with respect to $x$, $\int \f{d}{dx}[e^x y]\,dx = \int x e^x \,dx$.\\
+FTC I $\implies e^x y = \int x e^x \, dx = x e^x - \int e^x \,dx = x e^x + e^x + C$\\
+The solution is $y(x) = x-1 + C e^{-x}$
+\begin{note}
+Constants of integration is crucial to the form of solution.
+\end{note}
+The key to solving DE was multiplying by $e^x$ (called an integrating factor). Method of finding integrating factor: Consider first order linear DE in standard form:
+\[ y'(x) = p(x) y(x) - q(x) \]
+where $p$ and $q$ are constants, nonzero function of $x$.\\\\
+
+Suppose $\mu(x)$ is an integrating factor and multiply DE by $\mu (x)$. 
+\[\mu(x) y'(x) + \mu(x) y(x) = \mu(x) + q(x) \]
+We want LHS = $\f{d}{dx}[\mu(x) y(x)]$ like in previous examples.\\
+If this is true, then DE becomes $\f{d}{dy} [ \mu(x) y(x)]= \mu(x) q(x)$\\
+\[FTC I \implies \mu(x) y(x) = \int \mu(x) q(x)\,dx \]
+\[ \implies y(x) = \f{1}{\mu(x)} \int \mu(x) q(x)\,dx \]
+
+This could be the solution if we can find such $\mu (x)$. To find such $\mu(x)$, we want $\mu(x) y'(x) + \mu(x) p(x) y(x) = \f{d}{dx} [ \mu(x)y(x) ]$
+\[\mu(x) y'(x) + \mu(x) p(x) y(x) = \mu `(x) y(x) + \mu(x) y'(x)\]
+\[ \implies \mu(x) p(x) y(x) = \mu(x) y(x) \]
+\[ y'(x) = \mu (x) p(x) \text{ if } y(x) \neq 0 \]
+If we know the integrating factor, $\mu (x)$, then the DE can be solved. We saw that $\mu (x)$ satisfies $\mu '(x) = \mu (x)p(x)$
+\[\frac{d\mu}{dx} = \mu(x)p(x) \]
+\[ \implies \f{d\mu}{\mu} = p(x)\,dx \]
+\[ \implies \int \f{d\mu}{\mu} = \int p(x)\,dx \]
+\[ \implies \ln |\mu| = \int p(x)\,dx + C \]
+\[|u| = e^c e^{\int p(x)\,dx} \]
+\[u = \pm k e^{\int p(x)\,dx} \]
+Therefore the integrating factor for $y'(x) + p(x) y(x) = q(x)$ is $\mu (x) = k e^{\int p(x)\,dx}$. Pick one choice for $\mu$. Pick $\mu (x) = e^{\int p(x)\,dx}$
+
+\begin{exmp}
+Find the solution to
+\[ x y' = x^2 + 4 - y, x \neq 0 \]
+\begin{sol}
+This DE is not separable. \\
+The DE \textbf{MUST} be in the form $y'(x) + p(x) y(x) = q(x)$ where the coefficient for $y'(x)$ is just 1, before determining the integrating factor. This is known as the standard form.
+\[ \implies y' + \f y x  = x + \f 4 x \]
+\[ \implies \mu = e^{\int \f 1 x \,dx} \]
+\[ \implies \mu = e^{\ln |x| + C} \]
+\[ \implies \mu = e^c |x| \]
+Just pick one $c$ and one $x$. Easiest is to pick $\mu (x) = x$.\\
+Multiply the standard form DE by $\mu$.
+\[x ( y' + \f y x  = x + \f 4 x) \]
+\[\underbrace{x y' + y}_{ = (xy)` \text{ Check}}  = x^2 + 4 \]
+\[ (xy)` = x^2 + 4 \]
+\[\int (xy)` = \int x^2 + 4  \]
+\[ xy = \f{x^3}{3} + 4x + C \]
+The solution to the DE is
+\[ y = \f{x^2}{3} + 4 + \f{C}{x} \]
+\end{sol}
+\end{exmp}
+\subsection{Applications of DEs}
+Population Growth. \\
+Let $P(t)$ be the population of a particular species at time $t > 0$. Let $P(0$ be the initial turtle population. Physically $P(t) > 0$ for $t \geq 0$. Assume the population grows at a rate proportional to the size of the population. As population increases, the rate of its growth increases.
+\[ \implies \f{dp}{dt} = rp(t) \]
+where $r$ is a constant representing the growth rate and $r > 0$. This DE models population growth.
+\begin{exmp}
+Solve $\f{dp}{dt} = rp(t)$. 
+\begin{sol}
+The DE is separable.
+\[ \implies \f{dp}{p} = r\,dt \]
+\[ \implies \int \f{dp}{p} = \int r\,dt \]
+\[ \implies \ln | p| = rt + C \]
+\[ \implies p(t) = k e^{rt} \]
+Apply initial condition: $P(0) = P_{0}$.
+\[ \implies P(0) = k \]
+\[\implies p(t) = P_{0}e^{rt} \]
+This means that the population of turtles is growing at an exponential rate. 
+\[ \lim_{t \to \infty} p(t) = \lim_{t\to\infty} P_{0} e^{rt} = \infty \]
+The DE needs to be modified because infinite turtles is unrealistic.\\\\
+How much the environment can provide for  the population is known as the carrying capacity, denoted as $k > 0$.These population dynamics are governed by 
+\[ \frac{dP}{dt} = rP(1-\f p k) \]
+where $P(t) > 0$ for $t > 0$ and $r > 0$, representing the rate of growth, and $k > 0$ representing the carrying capacity. This is known as the logistic model.\\
+If $p< k \implies \f p k < 0 \implies$ ** becomes *\\
+If $p < k \implies \f p k > 1 \implies 1 - \f p k < 0$\\
+If $p = k \implies \f p k = 1 \implies \f{dP}{dt} = 0 \implies p(t) = \text{ constant for all time}$.
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Solve the logistic model.
+\begin{sol}
+The equation is separable.
+\[ \f{dP}{P(1- \f p k)} = r \,dt \]
+\[ \int \f{dP}{P(1- \f p k)} = \int r \,dt \]
+Apply PFD
+\[ \int \f{dP}{P(1- \f p k)} = \f{A}{p} + \f{B}{1-\f p k} \]
+\[ 1 = a(1-\f p k) + BP \]
+\[P^0: 1 = A \]
+\[P^1 0 = \f{-A}{k} + B \]
+\[ B = \f 1 k \]
+Rewrite equation as 
+\[ \int \f 1 p \, dP + \int \frac{\f 1 k}{1 - \f p k}\,dP = \int r\,dt \]
+\[ \ln P - \ln |1-\f p k | = rt + C \]
+\[ \ln (\f{P}{|1-\f p k |}) = rt + C \]
+\[ \f{P}{|1-\f p k |} = e^c e^{rt}\]
+\[ \f{P}{1-\f p k } = \pm c_{1} e^{rt}\]
+Rearrange and
+\[c_{1} = \f{P_{0}}{1-\f P k} \]
+And then
+\[P = (1-\f{P}{k})c_{1}e^rt \]
+\[P + \f{P}{k}(c_{1}e^rt) = c_{1}e^rt \]
+\[P = \f{c_{1}e^rt}{1+\f 1 k c_{1} e^rt} \]
+\[ P(t) =  \f{k P_{0} e^{rt}}{k-P_{0} + P_{0} e^{rt}} \]
+When $P(t) = k$, $\f{dP}{dt} = 0$ so $P(t) \equiv$ constant. $P(0) = P_{0}$ and $P_{0} = k$
+Sub this into the above equation and simplify.
+\[P(t) = \frac{k^2 e^{rt}}{k-k+e^rt} = k \]
+Aside:
+\[ \lim_{t \to \infty} P(t) = k \]
+\[ \lim_{t \to \infty} \f{e^{rt}}{e^{rt}}\f{k P_{0}}{(k-P_{0})e^{-rt} + P_{0}} = k \]
+\end{sol}
+\end{exmp}
+\subsection{Newton's Law of Cooling}
+The rate of cooling of an object is proportional to the temperature difference between the object and its surrounding.\\\\
+Let $T(t)$ be the temperature of the object at time $t>0$ and $T_{s}$ be the constant that represents the surrounding temperature.
+\[\f{dT}{dt} = K(T(t) - T_{s}) \]
+and $T(0) = T_{0}$
+\begin{exmp}
+Suppose the initial temperature of a cup of coffee is 80 degrees Celsius and after 5 mins, the temperature is 50 degrees. Assume the room is a constant temperature of 20 degrees C.\\
+How long until the coffee reaches a temperature of 25 degrees?
+\begin{sol}
+Let $T(t)$ be the temperature of the coffee.
+\[\f{dT}{dt} = k(T(t) - 20) \]
+$T(0) = 80$. Want $t_{1} = ?$ such that $T(t_{1}) = 25$ degrees.\\
+Solve the DE. It is separable.
+\[ \int \f{dT}{T-20} = \int k\,dt \]
+\[\ln |T - 20| = kt + C  \]
+\[T - 20 = \underbrace{\pm e^c}_{c_{1}} e^{kt} \]
+\[T - 20 = c_{1} e^{kt} \]
+\[T(t) = c_{1} e^{kt} + 20 \]
+Solve for $T(0)$ to get $c_{1}$:
+\[80 = c_{1} e^{k(0)} + 20 \]
+\[ c_{1} = 60 \]
+\[ T(t) = 60e^{kt}  + 20\]
+Sub in $T(5)$ to get $k$:
+\[ 50 = 60 e^{-5k} +20 \]
+\[ \f 1 2 = e^5k \]
+\[ \ln(\f 1 2) = 5k \]
+\[ -\f 1 5 \ln(2) = k \]
+\[T(t) = 60 e^{-\f 1 5 \ln(2) t} + 20 \]
+Now that we have the equation, need $t \ni T(t) = 25$.
+\[25 = 60 e^{-\f 1 5 \ln(2) t} + 20 \]
+\[\f {1}{12} = e^{-\f 1 5 \ln(2) t} \]
+\[\ln (\f {1}{12}) = -\f 1 5 \ln(2) t  \]
+\[\ln (12) = \f 1 5 \ln(2) t  \]
+\[t = \f{5 \ln(12)}{\ln(2)} \approx 17.9 \text{ minutes} \]
+$\therefore$ It will take approximately $17.9$ minutes for the coffee to reach $25$ degrees.
+\end{sol}
+\end{exmp}
+\subsubsection*{Mixing Problem}
+Consider a tank of fixed capacity filled with a thoroughly mixed solution of some substance. Let $m(t)$ denote amount of salt in the tank at $t > 0$. There is an inflow of salt solution of specified concentration, and an outflow of salt solution whose concentration depends on $m(t)$.
+\begin{exmp}
+A tank $m_{0}$ kg of salt dissolved in 100 L of water. A salt solution containing $0.25$ kg of salt of $L$ of water enters the tank at a rate of $3L$/min. The well stirred mixture leaves the tank at the same rate. Find the amount of salt at $t$.
+\begin{sol}
+$r_{in} = 3\times 0.25 = 0.75$ kg/min.\\
+$r_{out} = 3\times \frac{1}{100} = 0.03$ kg/min.\\
+\[\f{dm}{dt} = 0.75 - 0.03 m(t) \]
+\[m(0) = m_{0} \]
+\[ \int \f{dm}{0.75 - 0.03m} = \int dt \]
+\[ -\f{\ln |0.75-0.03m|}{0.03} = t+ C \]
+\[ |0.75 - 0.03m| = e^{-0.03C} e^{-0.03t} \]
+\[ |0.75 - 0.03m| = e^{c_{2}} e^{-0.03t} \]
+\[- 0.03 m = c_{3} e^{-0.03t} - 0.75 \]
+\[m(t) = c_{4} e^{-0.03t} + 25 \]
+Solve $c_{4}$ for $m_{0}$:
+\[m(0) = c_{4} e^0 + 25 \]
+\[ c_{4} = m_{0} - 25 \]
+\[ m(t) = (m_{0} - 25)(e^{-0.03t}) + 25 \]
+
+\end{sol}
+\end{exmp} 
+\section{Sequences}
+\subsection{Formal Definition}
+Recall functions, $f(x)$, where $x \in \R$ Let $n$ be a positive integer.
+\begin{defn}
+A \textbf{sequence} $a_{1},a_{2},...,a_{n}$ is denoted as $\{a_{n}\}$. A sequence can be defined as a function whose domain is $n \in \N$, that is, 
+\[a_{n} = f(n) \]
+The sequence has limit $L$ if for every $\epsilon > 0$, there exists a number $N > 0$ such that $n > N \implies |a_{n} - L | < \epsilon$
+\end{defn}
+\begin{defn}
+\textbf{Explicit} sequences occur where the $n^{th}$ term is given as a function $n$.
+\end{defn}
+\begin{defn}
+\textbf{Recursive} sequences require that the $n^{th}$ term depends on the term or terms before it.
+\end{defn}
+
+\[a_{n} = \f{1}{\sqrt{5}} (\f{1+\sqrt{5}}{2})^n - (\f{1-\sqrt{5}}{2})^n  \]
+The sequence $\{a_{n}\}$ has $L < \infty$ if the $a_{n}$ are as close to L as we wish by taking $n$ sufficiently large. This is denoted as $\lim_{x \to \infty} a_{n} = L$. If $L$ is finite, then the sequence converges, else it diverges.
+\begin{exmp}
+\[ \{c_{n}\}_{n=1}^\infty = \{\f{6n}{3n-2} \}_{n=1}^\infty \]
+\begin{sol}
+We need to find $N > 0$ such that $n > N$ implies $|c_{n} - L | < \epsilon$ for any $\epsilon > 0$.\\\\
+\[|c_{n}-L|= |\f{6n}{3n-2} -2| \]
+\[=\f{4}{3n-2} \]
+We can choose $N$ so rewrite $\f{4}{3n-2}$ in terms of $N$.
+\[ n > N \implies 3n -2 > 3N -2 \]
+\[ n > N \implies 3n -2 > 3N -2 \]
+\[ \implies \f{1}{3n-2} < \f{1}{3N-2} \]
+\[ \implies \f{4}{3n-2} < \f{4}{3N-2} \]
+\[c_{n}-L < \f{4}{3N-2} \]
+Choose $N = \f{4}{3\epsilon} + \f{2}{3}$
+\[ \f{4}{3(\f{4}{3\epsilon} + \f{2}{3})-2} \]
+\[ = \f{4}{\f 4 \epsilon} = \epsilon \]
+Therefore, for any $\epsilon > 0$ with $N = \f{4}{3\epsilon} + \f 2 3$, we have $n > N$ implies $|c_{n} - 2| < \epsilon$
+\end{sol}
+\end{exmp}
+\begin{note}
+Pick $N$ such that $\epsilon = \f{4}{3N-2}$. Solve this expression for $N$ to get the desired value for $N$.
+\end{note}
+\begin{exmp}
+Prove $\lim_{n \to \infty} (-1)^n$ does not exist.
+\begin{sol}
+Apply a proof by contradiction. Assume that the limit exists. By definition, for any $\epsilon > 0$ there exists $N >0$ such that if $n > N \implies |(-1)^n -L| < \epsilon$. Since this supposed to be true for all $\epsilon > 0$, let $\epsilon = \f{1}{2}$. Pick some fixed $N > 0$ and when $n > N \implies |(-1)^n -L| < \f 1 2$. If $n$ is even, then $|1 - L| < \f 1 2$
+\[\f{-1}{2} < 1 - L< \f 1 2 \]
+\[\f{-3}{2} < -L < \f{-1}{2} \]
+\[\f{3}{2} > L > \f{1}{2} \]
+If $n$ is odd then $| -1 - L | < \f{1}{2}$
+\[\f{-1}{2} < -1 - L < \f{1}{2} \]
+\[ \f{1}{2} < -L < \f{3}{2} \]
+\[\f{-1}{2} > L > \f{-3}{2} \]
+Therefore $L \in (\f{-3}{2},\f{-1}{2})\cap (\f{1}{2},\f{3}{2})$ which is $\emptyset$. Therefore $L$ doesn't exist, assumption was false, and $\lim_{n \to \infty} (-1)^n$ does not exist.
+\end{sol}
+\end{exmp}
+\subsection{Properties of Limits for Sequences}
+If $\{a_{n}\}$ and $\{b_{n}\}$ are convergent sequences, and $c$ is a constant, then
+\[ \lim_{n \to \infty} a_{n} \pm b_{n} = \lim_{n \to \infty} a_{n} \pm \lim_{n \to \infty} b_{n} \]
+\[ \lim_{n \to \infty} c \times a_{n} = c \lim_{n \to \infty} a_{n}\]
+\[\lim_{n \to \infty} a_{n} \times  b_{n} = \lim_{n \to \infty} a_{n} \times \lim_{n \to \infty} b_{n} \]
+\[ \lim_{n \to \infty} \f{a_{n}}{b_{n}} = \f{\lim_{n \to \infty} a_{n}}{\lim_{n \to \infty} b_{n}} \qquad \lim_{n \to \infty} b_{n} \neq 0 \]
+\[\lim_{n \to \infty} a_{n}^p = (\lim_{n \to \infty} a_{n})^p \]
+\begin{thrm}\label{thm:lim}
+If $\lim_{x \to \infty} f(x) = L, x \in \R$ and $f(n) = a_{n}, n \in \N$, then $\lim_{n \to \infty} a_{n} = L$.
+\end{thrm}
+\begin{exmp}
+Determine whether the following sequences converge or diverge. If it converges, find the limit.
+\[\left\{\f{n \ln(n)}{e^n}\right\}_{n=1}^\infty \text{ and } \left\{\cos(n \pi)\right\}_{n=1}^\infty\]
+\begin{sol}
+L'Hopital's Rule cannot be used for a discrete domain, but it can be indirectly used with Theorem \ref{thm:lim}.\\
+Let $f(x)=\f{x \ln(x)}{e^x}$.
+\begin{align*}
+&\lim_{x\to\infty}\f{x \ln(x)}{e^x}&\text{ Apply L'Hopital's Rule}\\
+&\lim_{x\to\infty}\f{\ln(x) + 1}{e^x}&\text{ Apply L'Hopital's Rule}\\
+&\lim_{x\to\infty}\f{1}{x e^x} = 0\\
+\end{align*}
+By Theorem \ref{thm:lim}, we can conclude that the first sequence converges to $0$.
+\[\lim_{n\to\infty} \cos(n \pi) = \lim_{n \to \infty} (-1)^n \implies \text{ diverges (proved previously)}\]
+\end{sol}
+\end{exmp}
+\begin{thrm}\label{thm:limseq}
+If $\lim_{n\to\infty} a_{n} = L$ and the function $f$ is continuous at $L$, then $\lim_{n\to\infty} f(a_{n}) = f(L)$.
+\end{thrm}
+\begin{exmp}
+Find $\lim_{n\to\infty} \cos(\f{\pi^2}{n})^n$.
+\begin{sol}
+Let $a_{n} = \f{\pi^2}{n}$ and $f$ will be cosine.
+\[\lim_{n\to\infty} \f{\pi^2}{n} = 0 \]
+Since cosine is continuous at $L=0$, then applying Theorem \ref{thm:limseq}, 
+\[\lim_{n\to\infty} \cos\left(\f{\pi^2}{n}\right) = \cos\left(\lim_{n\to\infty}\f{\pi^2}{n}\right) = \cos(0) = 1 \]
+\end{sol}
+\end{exmp}
+\begin{thrm}
+\textbf{Squeeze Theorem for Sequences:}\\
+If $a_{n} \leq b_{n} \leq c_{n}$ for all $n \geq n_{0}$ where $n_{0}$ is some number, and $\lim_{n\to\infty} a_{n} = lim_{n\to\infty} c_{n} = L$ then
+\[\lim_{n\to\infty} b_{n} = L \]
+\end{thrm}
+\begin{exmp}
+Use the squeeze theorem for sequences to prove:\\
+If $\lim_{n\to\infty} |a_{n}| = 0$ then $\lim_{n\to\infty} a_{n} =0$ then use it to prove $\lim_{n\to\infty} \f{(-1)^n}{n} = 0$.
+\begin{sol}
+\begin{proof}
+\[- |a_{n}| \leq a_{n} \leq |a_{n}| \]
+\[ \lim_{n\to\infty} - |a_{n}| \]
+\[ = - \lim_{n\to\infty} |a_{n}| \]
+\[ = 0 \]
+\[ \lim_{n\to\infty} |a_{n}| =0 \]
+By the squeeze theorem, then 
+\[ \lim_{n\to\infty} a_{n} =0 \]
+Furthermore,
+\[\lim_{n\to\infty} |\f{(-1)^n}{n}| = \lim_{n\to\infty} \f{1}{n} = 0 \]
+Therefore, by the proved theorem,  $\lim_{n\to\infty} \f{(-1)^n}{n} = 0$.
+\end{proof}
+\end{sol}
+\end{exmp}
+\begin{exmp}
+For what values of $r\in \R$ is $\{r^n\}$ convergent? $n \in \N$.
+\begin{sol}
+Consider various cases for $r$.\\
+for $r>1$ and $r < -1$,$ \{r^n\}$ diverges.\\
+for $r=1$, then $\{r^n\}$ converges to $1$.\\
+for $r=-1$, then $\{r^n\}$ diverges.\\
+for $-1 < r < 1$, then $\{r^n\}$ converges to $0$.\\
+Therefore, $\{r^n\}$ converges if $-1 < r \leq 1$, and it diverges for all other values of $r$.
+\end{sol}
+\end{exmp}
+\subsection{Monotonic Sequence Theorem}
+\begin{defn}
+$\{a_{n}\}_{n=1}^\infty$ is \textbf{increasing} if $a_{n} < a_{n+1}$. A sequence $\{a_{n}\}_{n=1}^\infty$ is \textbf{decreasing} if $a_{n} > a_{n+1}$
+\end{defn}
+\begin{defn}
+The sequence $a_{n}$ is \textbf{monotonic} if it is either always decreasing or increasing but not both.
+\end{defn}
+\begin{defn}
+$\{a_{n}\}_{n=1}^\infty$ is \textbf{bounded above} if there is a number $M$ such that $a_{n} \leq M$ for all $n$. Similarly it is \textbf{bounded below} if there is a number $m$ such that $a_{n} \geq m$ for all $n$.\\
+$\{a_{n}\}_{n=1}^\infty$ is a \textbf{bounded sequence} if it is bounded above and bounded below.
+\end{defn}
+\begin{thrm}[MST]
+\textbf{Monotonic sequence theorem} states that if a sequence is bounded and monotonic, it is convergent.
+\end{thrm}
+\begin{exmp}
+Define $a_{1}=0,a_{n+1}=1+\sqrt{6+a_{n}}$ for $n \geq 1$. Does $\{a_{n}\}_{n=1}^\infty$ converge? If yes, what is the limit?
+\begin{sol}
+Consider the first few terms
+\[a_{1}=0, a_{2} = 1+\sqrt{6}, a_{3} = 1+\sqrt{1+\sqrt{6}} \]
+\textbf{Guess: }The sequence is increasing and has a lower bound $0$ and upper bound $5$. The proof for this can be divided into three parts:
+\begin{enumerate}
+\item $a_{n} \geq 0, \forall n \in \N$
+\item $a_{n} \leq 5, \forall n \in \N$
+\item $a_{n+1} > a_{n}, \forall n \in \N$
+\end{enumerate}
+Prove $a_{n} \geq 0, \forall n \in \N$
+\begin{proof}
+BC: $a_{1} = 0 \geq 0$\\
+IH: Assume $a_{k} \geq 0$ for some $k \geq 1$\\
+IC: $a_{k+1}=1+\sqrt{6+a_{k}} \geq \sqrt{1 + \sqrt 6} \geq 0 $\\
+$\therefore \{a_{n}\}$ is bounded below. 
+\end{proof}
+Prove $a_{n} \leq 5, \forall n \in \N$
+\begin{proof}
+BC: $a_{1} = 0 \leq 5$\\
+IH: Assume $a_{k} \leq 5$ for some $k \geq 1$\\
+IC: $a_{k} \leq 5$
+\[6+a_{k} \leq 11 \]
+\[\sqrt{6+a_{k}} \leq \sqrt{11} \]
+\[1+\sqrt{6+a_{k}} \leq 1+ \sqrt{11} \]
+\[a_{k+1} \leq 1+ \sqrt{11} \]
+\[a_{k+1} \leq 1+ \sqrt{16} \]
+\[a_{k+1} \leq 5\]
+$\therefore$ the sequence $\{a_{n}\}$ is bounded above, and since it is bounded below as well, it is a bounded sequence.
+\end{proof}
+Show $a_{n+1} > a_{n}, \forall n \in \N$
+\begin{proof}
+BC: $a_{1}=0, a_{2} = 1+\sqrt{6}$. Therefore $a_{2} > a_{1}$\\
+IH: Assume $a_{k+1} > a_{k}$ for some $k \in N, k \geq 1$.\\
+IC: $a_{k+1} > a_{k}$
+\[6+a_{k+1} > 6 + a_{k} \]
+\[\sqrt{6+a_{k+1}} > \sqrt{6 + a_{k}} \]
+\[\underbrace{1+\sqrt{6+a_{k+1}}}_{a_{k+2}} > \underbrace{1+\sqrt{6 + a_{k}}}_{a_{k+1}} \]
+$\therefore$ $\{a_{n}\}$ is increasing $\forall n \in \N$.
+\end{proof}
+Since $\{a_{n}\}$ is monotonic and bounded, by MST,  $\{a_{n}\}$ converges.\\\\
+We now know that there exists a $L$ such that $\lim_{n\to\infty} a_{n} = L$.
+\[L=\lim_{n\to\infty} a_{n+1} = \lim_{n\to\infty} 1 + \sqrt{6+a_{n}} \]
+\[=1+\sqrt{6+\lim_{n\to\infty} a_{n}} \]
+\[ L = 1 + \sqrt{6 + L} \]
+\[(L-1)^2 = (\sqrt{6 + L})^2 \]
+\[L^2-2L+1 = 6 + L \]
+\[L^2-3L-5 = 0 \]
+\[L = \f{3\pm \sqrt{3^2+20}}{2} \]
+\[L = \f{3\pm \sqrt{29}}{2} \]
+Since the sequence is bounded between $0$ and $5$, the negative solution is extraneous.
+\[L = \f{3+\sqrt{29}}{2} \]
+The sequence converges to $\f{3+\sqrt{29}}{2}$.
+\end{sol}
+\end{exmp}
+\begin{note}
+In the previous examples, we showed boundedness and then used it to show monotonicity. It may be better to prove one so the proof can be used in the proof for another.
+\end{note}
+\section{Infinite Series}
+Consider the sequence
+\[\{a_{n}\}_{n=1}^\infty = a_{1},a_{2},a_{3},\dots,a_{n},\dots \]
+Let $\{S_{n}\}_{n=1}^\infty$ represent the sum of the $a_{n}$ sequence where $S_{n}$ represents all the terms in $a$ up to $n$.
+\[S_{n} = a_{1}+a_{2}+a_{3}+\dots+a_{n} \]
+These numbers, $S_{1},S_{2},\dots,S_{n}$, etc are called partial sums
+We define
+\[\lim_{n\to\infty} S_{n} = \sum_{i=1}^\infty a_{i} \qquad\qquad \text { (known as sum of the series)} \]
+and this is called an \textbf{infinite series}. If the limit exists, then $\sum_{i=1}^\infty a_{i} $ converges, else it diverges.
+\subsection{Examples of Infinite Series}
+\begin{defn}
+\textbf{Geometric Series:}
+\[1+r+r^2+r^3+ \dots + r^{i-1}+\dots = \sum_{i=1}^\infty r^{i-1}\]
+where $r \in \R$. For what values of $r$ does the geometric series converge?
+\begin{sol}
+Consider the partial sums of the geometric series.
+\[S_{n} = 1 + r + r^2 + r^3 + \dots + r^{n-1} \]
+\[rS_{n} = r + r^2 + r^3 + r^4 + \dots + r^{n-1} + r^{n}\]
+\[S_{n} - rS{n} = 1 - r_{n} \]
+\[S_{n} = \f{1-r^n}{1-r}, r \neq 1 \]
+\[\sum_{i=1}^\infty r^{i-1} = \lim_{n\to\infty} S_{n} = \lim_{n\to\infty} \f{1-r^n}{1-r} = \f{1}{1-r} \lim_{n\to\infty} 1-r^n \]
+\[\text{If } -1  < r < 1, \sum_{i=1}^\infty r^{i-1} = \f{1}{1-r}\]
+Otherwise for all other values of $r$ (except 1), the geometric series diverges.\\\\
+For $r=1$, $S_{n} = \underbrace{1 + 1 + \dots + 1}_{n \text{ times}}$
+\[S_{n} = n, \sum_{i=1}^\infty 1^{i-1} = \lim_{n\to\infty} n = \infty \]
+\end{sol}
+\end{defn}
+\begin{mthd}
+Conclusion:\\
+The geometric series $\sum_{i=1}^\infty r^{i-1}$ converges to $\f{1}{1-r}$ if $-1 < r < 1$.\\ 
+If $|r| \geq 1$, then $\sum_{i=1}^\infty r^{i-1}$ diverges.
+\end{mthd}
+\begin{exmp}
+Set $r=\f{1}{2}$. Does it converge?
+\begin{sol}
+\[\sum_{i=1}^\infty (\f{1}{2})^{i-1} = \f{1}{1-\f{1}{2}} = 2 \]
+\end{sol}
+\end{exmp}
+\begin{exmp}\label{exp:4.2}
+Find the sum of
+\[\sum_{i=1}^\infty e^{-i}\]
+\begin{sol}
+\begin{align*}
+\sum_{i=1}^\infty e^{-i} &= \sum_{i=1}^\infty (\f{1}{e})^{i}\\
+&= \f{1}{e} \sum_{i=1}^\infty (\f{1}{e})^{i-1}\\
+&= \f{1}{e} \times \f{1}{1-\f{1}{e}}\\
+&= \f{1}{e-1}
+\end{align*}
+\end{sol}
+\end{exmp}
+\begin{exercise}
+Does this infinite series converge/
+\[ \sum_{i=3}^\infty e^{-i} \]
+\begin{sol}
+It converges because there is a finite difference between this one and example \ref{exp:4.2}.
+\begin{align*}
+\sum_{i=3}^\infty e^{-i} &= \sum_{i=1}^\infty e^{-i} - e^{-1} - e^{-2}\\
+&=\f{1}{e-1} - \f{1}{e} - \f{1}{e^2}
+\end{align*}
+\end{sol}
+\end{exercise}
+\begin{exmp}
+Does this series converge?
+\[\sum_{i=572}^\infty \f{3^2i}{7^i} \]
+\begin{sol}
+Consider 
+\[\sum_{i=1}^\infty \f{3^2i}{7^i} = \f{9}{7}\sum_{i=1}^\infty (\f{9}{7})^{i-1}\]
+This series diverges because $\f{9}{7}$ diverges. Therefore the original series also diverges because there is a finite difference between the two series.
+\end{sol}
+\end{exmp}
+\begin{exmp}
+The \textbf{harmonic series} is 
+\[\sum_{i=1}^\infty \f{1}{i} \]
+Show this series diverges.
+\begin{sol}
+Compare the harmonic series with another divergent series.
+\[1 + \f{1}{2} + \f{1}{3} + \f{1}{4} + \f{1}{5}+  \f{1}{6} + \f{1}{7} + \f{1}{8}+ \dots \]
+\[ > 1 + \f{1}{2} + \f{1}{4} + \f{1}{4} + \f{1}{8}+  \f{1}{8} + \f{1}{8} + \f{1}{8}+ \dots \]
+The sum of this series is infinite.
+\[ 1 + \f{1}{2} + (\f{1}{4} + \f{1}{4}) + (\f{1}{8}+  \f{1}{8} + \f{1}{8} + \f{1}{8})+ \dots \]
+\[= 1 + \f{1}{2} + \f{1}{2} + \f{1}{2} + \dots = \infty\]
+\[S_{2^n} \geq 1 + \f{n}{2} \]
+
+\end{sol}
+\end{exmp}
+\begin{exercise}
+Prove last line of previous example using induction
+\todo{Have fun!}
+\end{exercise}
+\subsection{Tests for Convergence of an Infinite Series}
+\subsubsection*{Properties of Convergent Series}
+If $\sum_{n=1}^\infty a_{n}$ and $\sum_{n=1}^\infty b_{n}$ are convergent, then 
+\[\sum_{n=1}^\infty c a_{n} = c  \sum_{n=1}^\infty a_{n} \]
+\[\sum_{n=1}^\infty (a_{n} \pm b_{n}) =  \sum_{n=1}^\infty a_{n} \pm \sum_{n=1}^\infty b_{n}\]
+\begin{note}
+\[ \sum_{n=1}^\infty a_{n}\times b_{n} \neq \sum_{n=1}^\infty a_{n}\times \sum_{n=1}^\infty b_{n}\]
+\[ \sum_{n=1}^\infty \f{a_{n}}{b_{n}} \neq \f{\sum_{n=1}^\infty a_{n}}{\sum_{n=1}^\infty b_{n}}\]
+\end{note}
+\begin{exercise}
+Prove the above note.
+\todo{Good luck!}
+\end{exercise}
+\begin{exmp}
+Does this series converge? If so, what does it converge to?
+\[\sum_{k=0}^\infty \f{2^k+3^k}{5^k} \]
+\begin{sol}
+\begin{align*}
+\sum_{k=0}^\infty \f{2^k+3^k}{5^k} &= \sum_{k=1}^\infty \f{2^{k-1}}{5^{k-1}} + \sum_{k=1}^\infty \f{3^{k-1}}{5^{k-1}}\\
+&= \f{1}{1-\f 2 5} + \f{1}{1-\f 3 5} \\
+&= \f{5}{3} + \f{5}{2}\\
+&= \f{25}{6}
+\end{align*}
+\end{sol}
+\begin{note}
+For the above example, \textbf{both} series must converge in order to separate the terms.
+\end{note}
+\end{exmp}
+\begin{thrm}
+\[ \text{If } \sum_{n=1}^\infty a_{n} \text{ converges, then } \lim_{n\to\infty} a_{n} = 0\]
+
+\begin{proof}
+\[ \sum_{n=1}^\infty a_{n} = \lim_{n\to\infty} S_{n} \]
+Since $S_{n}$ converges, then let $s$ be such that $\lim_{n\to\infty} S_{n} = s$.\\
+We also know $S_{n} = \underbrace{a_{1} + a_{2} + \dots + a_{n-1}}_{S_{n-1}} + a_{n}$
+\begin{align*}
+\lim_{n\to\infty} a_{n} &= \lim_{n\to\infty} (S_{n} - S_{n-1})\\
+&=\lim_{n\to\infty} S_{n} - \lim_{n\to\infty} S_{n-1}\\
+&= s - s \\
+&= 0 
+\end{align*}
+\end{proof}
+\end{thrm}
+\subsection{Divergence Test}
+\begin{defn}[DT]
+\textbf{Divergence Test} states:
+\[ \lim_{n\to\infty} a_{n} \neq 0 \implies \sum_{n=1}^\infty a_{n} \text{ diverges.} \]
+\end{defn}
+\begin{exmp}
+Show this series diverges.
+\[ \sum_{n=1}^\infty \f{17n^5}{n^5 + 17n + 5} \]
+\begin{sol}
+Let $a_{n} = \f{17n^5}{n^5 + 17n + 5} $
+\[\lim_{n\to\infty}\f{17n^5}{n^5 + 17n + 5} = 17 \neq 0\]
+By the divergence test, the series diverges.
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Does this series diverge?
+\[ \sum_{n=1}^\infty \f{\ln(n)}{n^2}\]
+\begin{sol}
+Let $a_{n} = \f{\ln(n)}{n^2}$. Apply L'Hopital's rule with $f(x) = \f{\ln(x)}{x^2}$ for $x \in \R$.
+\[\lim_{x \to\infty} \f{\ln(x)}{x^2} = \lim_{x \to\infty} \f{1}{2x^2} = 0\]
+By Theorem \ref{thm:lim}, $\lim_{n\to\infty} a_{n} = 0$, but cannot apply DT, and we do not know whether the series converges.
+\end{sol}
+\end{exmp}
+\subsubsection{Integral Test}
+Suppose $f$ is a continuous positive decreasing function on $[N,\infty)$ where $N$ is some number. Let $a_{n} = f(n)$, then
+\begin{itemize}
+\item If $\int_n^\infty f(x)\,dx$ converges, then $\sum_{n=N}^\infty a_{n}$ converges.
+\item If $\int_n^\infty f(x)\,dx$ diverges, then $\sum_{n=N}^\infty a_{n}$ diverges.
+\end{itemize}
+\begin{exmp}
+Use the integral test to determine whether this series converges
+\[\sum_{n=1}^\infty \f{1}{(n-\pi)^2} \]
+\begin{sol}
+Let $f(x) = \f{1}{(x-\pi)^2}$ on $[1,\infty)$. $f$ is not continuous on the domain. However, $f$ is continuous, positive, decreasing on $[4,\infty)$.
+\[ \int_4^\infty f(x)\,dx = \int_4^\infty \f{1}{(x-\pi)^2}\, dx\]
+\[ \lim_{t \to\infty} \int_4^t \f{1}{(x-\pi)^2}\, dx \]
+\[ \lim_{t \to\infty} \f{-1}{x-\pi}\Big|_4^t \]
+\[ = \lim_{t\to\infty} \left\lbrack\f{-1}{t-\pi} + \f{1}{4-\pi}\right\rbrack \]
+\[ = \f{1}{4-\pi} \]
+\[\text{By the integral test, }\sum_{n=4}^\infty \f{1}{(n-\pi)^2} \text{ converges}\]
+Since a finite number of terms does not affect convergence, then 
+\[\sum_{n=1}^\infty \f{1}{(n-\pi)^2}\text{ also converges.} \]
+\end{sol}
+\end{exmp}
+\begin{note}
+\[\sum_{n=4}^\infty \f{1}{(n-\pi)^2} \neq \f{1}{4-\pi} \]
+The integral test does not provide what the series converges to.
+\end{note}
+\begin{thrm}
+Suppose $\sum_{n=1}^\infty a_{n}$ converges to $s$. Any partial sum, $S_{n}$ is an approximation to $s$ because $\lim_{n\to\infty} S_{n} = s$. How good is the approximation? If $S_{n} - s$ is small, then $S_{n}$ approximates $s$ well.\n
+Suppose $f(k) = a_{k}, k \in \N$ where $f$ is a continuous positive decreasing function for $x \geq n$, and $\sum_{n=1}^\infty a_{n}$ is convergent, then
+\begin{equation}\label{thm:inttest}
+\int_{n+1}^\infty f(x)\,dx \leq s - S_{n} \leq \int_{n}^\infty f(x)\,dx
+\end{equation}
+\begin{proof}
+Let $N=1$. We prove the convergence part of the Integral Test. Consider right Riemann sums.
+\begin{tikzpicture}
+\begin{axis}[
+    xtick={0,1,3,5,7,9,11,13,15,17},ytick={0,...,1.5},
+    xmax=18,ymax=1.2,ymin=0,xmin=0,
+    enlargelimits=true,
+    axis lines=middle,
+    clip=false,
+    domain=0:17,
+    axis on top
+    ]
+
+\addplot [draw=green, fill=green!10, ybar interval, samples=9, domain=17:1]
+    {x^-1}\closedcycle;
+
+\addplot[smooth, thick,domain=1:17,samples=40]{x^-1};
+\end{axis}
+\end{tikzpicture}
+From the figure
+\[\underbrace{a_{2} + a_{3} + \dots + a_{n}}_{\sum_{i=2}^n a_{i}} \leq \int_1^n f(x)\,dx \leq \int_1^\infty f(x)\,dx \]
+\[a_{1} + \sum_{i=2}^n a_{i} \leq a_{1} + \int_1^\infty f(x)\,dx \]
+If the second part converges, then there exists a constant $M< \infty$ such that $S_{n} \leq M$ for all $n$. This means we have $\{S_{n}\}_{n=1}^\infty$ is bounded above. Furthermore $\underbrace{S_{n} + a_{n}}_{S_{n}+1} > a_{n}$ since $a_{n+1} > 0$.
+We have $\{S_{n}\}_{n=1}^\infty$ is increasing (monotonic). Since $S_{n} \geq S_{1} = a_{1}$ for $n$, then $\{S_{n}\}_{n=1}^\infty$ is bounded below. Since $\{S_{n}\}_{n=1}^\infty$ is bounded and monotonic, then by MST, $\{S_{n}\}_{n=1}^\infty$ converges $\implies \sum_{n=1}^\infty a_{n} = \lim_{n\to\infty} S_{n}$ converges.\\\\
+To prove equation \ref{thm:inttest}:
+\[s-S_{n} = \sum_{i=1}^\infty a_{i} - \sum_{i=1}^n a_{i} = a_{n+1} a_{n+2} a_{n+3} \dots \leq \int_n^\infty f(x)\,dx \]
+\end{proof}
+\end{thrm}
+\begin{rem}
+If we rearrange Equation \ref{thm:inttest},
+\[ S_{n} + \int_{n+1}^\infty f(x)\,dx \leq s \leq S_{n} + \int_{n}^\infty f(x)\,dx \]
+\end{rem}
+
+
+\todo{Add in little bit, Fri Oct 31}
+
+\begin{exmp}
+Consider
+\[\sum_{n=1}^\infty \f{1}{(3n+2)^2}\]
+a) Show the series converges\\
+b) Find an upper bound o the error in using the partial sum, $S_{100}$.\\
+c) Find $n$ such that the error is less than $0.01$
+\begin{sol}
+Use the integral test
+\[\int_n^\infty \f{1}{(3x^2)^2}\,dx = \lim_{t\to\infty} \int_n^t \f{1}{(3x+2)^2}\,dx = \lim_{t\to\infty} - \f{1}{3(3x+2)}\Big|_n^t\]
+\[= \lim_{t\to\infty} \left\lbrack -\f{1}{3(3t+2)} + \f{1}{3(3n+2)}\right\rbrack = \f{1}{9n+6}\]
+a. Apply Integral Test with $f(x) = \f{1}{(3x+2)^2}$.
+\begin{itemize}
+\item $f$ is continuous on $\lbrack 1,\infty)$
+\item $f$ is positive since the denominator is squared
+\item $f$ is decreasing on $\lbrack 1,\infty)$ since $f'(x) = - \f{6}{(3x+2)^3} \leq 0$ for $x \geq 1$
+\end{itemize}
+\[\int_1^\infty \f{1}{(3x+2)^2}\,dx = \f{1}{25}\]
+so by the integral test, $\sum_{n=1}^\infty \f{1}{(3x+2)^2}$ converges.\\\\
+b. Error $= s-S_{n}$
+\[s-S_{100} \leq \int_{100}^\infty \f{1}{(3x+2)^2}\,dx = \f{1}{906} \approx 0.0011\]
+c. $s-S_{n} \leq 0.01$
+\[ \f{1}{9n+6} \leq 0.01\]
+\[9n + 6 \geq 100\]
+\[n \geq \f{94}{9} \approx 10.84\]
+$n=11$ or larger will work.
+\end{sol}
+\end{exmp}
+\begin{exmp}
+For what values of $p \in \R$ is $\sum_{n=1}^\infty \f{1}{n^p}$ convergent?
+\begin{sol}
+\textbf{Case 1:} $p\leq 0$
+\[\lim_{n\to\infty} \f{1}{n^p} = \lim_{n\to\infty} n^{-p} = \infty \]
+By the divergence test, for $p \leq 0$, the infinite series diverges.\\\\
+\textbf{Case 2:} $p > 0$. Divergence test is inconclusive. Try integral test
+Let $f(x) = \f{1}{x^p}$
+\begin{itemize}
+\item $f$ is positive on $\lbrack 1,\infty)$
+\item $f$ is continuous on $\lbrack 1, \infty)$
+\item $f$ is always decreasing on $\lbrack 1, \infty)$ since $f'(x) = - \f{p}{x^{p-1}} < 0$ for $x \geq 1$.\\
+By the integral test, $\int_1^\infty \f{1}{x^p}\,dx$ converges if $ p > 1$ and diverges if $p \leq 1$
+\end{itemize}
+\end{sol}
+\end{exmp}
+\subsubsection{Comparison Test for Infinite Series}
+\begin{enumerate}
+\item Suppose $ 0 \leq a_{n} \leq b_{n}\, \forall\, n \geq N$ where $N$ is some finite number and if $\sum_{n=1}^\infty b_{n}$ converges then $\sum_{n=1}^\infty a_{n}$ also converges.
+\item Suppose $ 0 \leq b_{n} \leq a_{n}\,\forall\, n \geq N$. If the infinite series associated with $b_{n}$ diverges, then the $\sum_{n=1}^\infty a_{n}$ also diverges.
+\end{enumerate}
+\begin{exmp}
+Determine whether the following series converges.
+\begin{equation}
+\sum_{n=1}^\infty e^{-n^2}
+\end{equation}
+\begin{equation}
+\sum_{n=1}^\infty \f{1}{n!}
+\end{equation}
+\begin{sol}
+Let $a_{n} = e^{-n^2}$. Use comparison theorem with $b_{n} = e^{-n}$. $\sum_{n=1}^\infty b_{n}$ converges. 
+\[\forall n \geq 1, n^2 \geq n \]
+\[ -n^2 \leq -n \]
+\[e^{-n^2} \leq e^{-n} \text{ since $e^n$ is always increasing} \]
+\[\forall n \geq 1, a_{n} \leq b_{n} \]
+By the Comparison Test, $\sum_{n=1}^\infty e^{-n^2}$ converges.\\\\
+Let $a_{n} = \f{1}{n!}$
+\[n! = \underbrace{\underbrace{n}_{\geq 2} \underbrace{(n-1)}_{\geq 2}  \underbrace{(n-2)}_{\geq 2}  \dots \underbrace{2}_{\geq 2}}_{\geq 2^{n-1}}  \]
+\[\f{1}{n!} \leq \f{1}{2^{n-1}} \]
+Let $b_{n} = 2^{n-1}$. $\sum_{n=1}^\infty (\f 1 2)^{n-1}$ converges.
+By the comparison test, $\sum_{n=1}^\infty \f{1}{n!}$ also converges.
+\end{sol}
+\end{exmp}
+\subsubsection{Limit Comparison Test}
+Suppose $\sum_{n=1}^\infty a_{n}$ and $\sum_{n=1}^\infty b_{n}$ are infinite series with all positive terms. If $\lim_{n\to\infty} \f{a_{n}}{b_{n}} = C$ where $C$ is a positive finite number, then either both infinite series converge or both diverge.
+\begin{proof}
+Since $\lim_{n\to\infty} \f{a_{n}}{b_{n}} = C$, for $n$ sufficiently large, $a_{n} \approx C b_{n}$ . The constant $C$ does not affect the convergence, so if $a_{n}$ converges or diverges, $b_{n}$ will do the same thing.
+\end{proof}
+\begin{rem}
+If $C=0$, then $a_{n}$ is significantly smaller than $b_{n}$ for $n$ sufficiently large. Try comparison test in this case.\\\\
+If $\lim_{n\to\infty} \f{a_{n}}{b_{n}} = \infty$ then $a_{n}$ is significantly larger than $b_{n}$ for $n$ sufficiently large. Try comparison test too.
+\end{rem}
+\begin{exmp}
+Determine whether the infinite series  converges or diverges.
+\[ \sum_{n=1}^\infty \f{n^3+1}{3n^5 - 1} \]
+\begin{sol}
+\[\text{Let }a_{n} =\f{n^3+1}{3n^5 - 1} \approx \f{n^3}{3n^5} = \f{1}{3n^2} \]
+Compare with $\sum_{n=1}^\infty \f{1}{3n^2}$ which is a p-series with $p=2$ and hence converges. Let $b_{n} = \f{1}{3n^2}$
+\[\lim_{n\to\infty} \f{a_{n}}{b_{n}} = 1 \]
+Since $b_{n}$ converges, $\sum_{n=1}^\infty \f{n^3+1}{3n^5 - 1}$ converges as well by the Limit Comparison Test.
+
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Use LCT to determine the convergence of the following series
+\[\sum_{n=1}^\infty (1+\f{1}{n})^2 e^n \]
+\begin{sol}
+Let $a_{n} =(1+\f{1}{n})^2 e^n $. Compare with $b_{n} =e^n$\\
+$\sum_{n=1}^\infty b_{n}$ diverges.
+\[\lim_{n\to\infty} \f{a_{n}}{b_{n}} = 1\]
+Therefore by LCT, $\sum_{n=1}^\infty (1+\f{1}{n})^2 e^n$ diverges.
+\end{sol}
+\end{exmp}
+\begin{defn}
+An \textbf{alternating series} is a series whose terms are alternately positive and negative.
+\end{defn}
+\subsubsection{Alternating Series Test}
+If the alternating series
+\[ \sum_{n=1}^\infty (-1)^{n-1} b_{n} \]
+Must satisfy:
+\begin{itemize}
+\item $b_{n+1} \leq b_{n}\, \forall n \in N$
+\item $\lim_{n\to\infty} b_{n+1} = 0$
+Then the series converges.
+\end{itemize}
+The distance between $S_{n}$ and $S_{n+1}$ is bigger than the distance between $S_{n}$ and $S$.
+\[ |S-S_{n}| \leq |S_{n+1} - S_{n}|\]
+\[ |S-S_{n}| \leq b_{n+1}\]
+\subsubsection*{Alternating Series Estimation Theorem}
+If $S = \sum_{n=1}^\infty (-1)^{n-1} b_{n}$ is the sum of an alternating series that satisfies 
+\begin{itemize}
+\item $b_{n+1} \leq b_{n}\, \forall n \in N$
+\item $\lim_{n\to\infty} b_{n+1} = 0$
+\end{itemize}
+Then $|S-S_{n}| \leq b_{n+1}$ where $S_{n}$ is the partial sum of the alternating series.
+\begin{rem}
+Rearrange the above equation:
+\[ -b_{n+1} \leq S-S_{n} \leq b_{n+1} \]
+\[ S_{n} -b_{n+1} \leq S \leq S_{n} + b_{n+1} \]
+We can find a lower bound and upper bound based on $S_{n}$
+\end{rem}
+\begin{exmp}
+Consider 
+\[\sum_{n=1}^\infty \f{(-1)^n}{e^n-1} \]
+\begin{enumerate}
+\item Show the series converges
+\item Determine the smallest positive integer $n$ such that the partial sum $S_{n} = \sum_{i=1}^n \f{(-1)^n}{e^n-1}$ is guaranteed to approximate the exact sum, $s$ with $|s-S_{n}| \leq 0.01$.
+\end{enumerate}
+\begin{sol}
+Apply AST. Let $b_{n} = \f{1}{e^n-1}$ for all $n \in \N$.\\
+Must show $b_{n+1} \leq b_{n}$.
+\[ n+1 \geq n \]
+\[ e^{n+1} \geq e^{n} \]
+\[ e^{n+1} - 1 \geq e^{n} - 1 \]
+\[ \f{1}{e^{n+1} - 1} \leq \f{1}{e^{n} - 1} \]
+\[ b_{n+1} \leq b_{n} \]
+\[\lim_{n\to\infty} b_{n} = \lim_{n\to\infty} \f{1}{e^n-1} = 0 \]
+By AST, $\sum_{n=1}^\infty \f{(-1)^n}{e^n-1}$ converges.\\\\
+ASET implies that $|S_{n} - s| \leq b_{n+1}$
+\[b_{n+1} \leq 0.01 \]
+\[\f{1}{e^n-1} \leq 0.01 \]
+\[e^n-1 \leq 100 \]
+\[ n+1 \leq \ln(101) \]
+\[ n \geq \ln(101)-1 \approx 3.6151 \]
+$\therefore n=4$ will guarantee an accuracy within $0.01$
+\end{sol}
+\end{exmp}
+\begin{exmp}
+\textbf{Alternating Harmonic Series:} Does the series converge?
+\[ \sum_{n=1}^\infty \f{(-1)^{n-1}}{n} \]
+\begin{sol}
+Let $b_{n} = \f{1}{n}\,\forall n \in \N$.\\
+Apply AST.
+\[ n+1 \geq n \]
+\[\f{1}{n+1} \leq \f{1}{n} \]
+\[b_{n+1} \leq b_{n} \]
+\[\lim_{n\to\infty} \f{1}{n} = 0 \]
+By AST, the alternating harmonic series converges.
+\end{sol} 
+\end{exmp}
+\begin{defn}
+A series $\sum a_{n}$ is \textbf{absolutely convergent} if the series of absolute values $\sum |a_{n}|$ is convergent.
+\end{defn}
+\begin{exmp}
+Is the series absolutely convergent?
+\[ \sum_{n=1}^\infty \f{(-1)^{n-1}}{n^2} \]
+\begin{sol}
+\[ \sum_{n=1}^\infty \left|\f{(-1)^{n-1}}{n^2}\right| = \sum_{n=1}^\infty \f{1}{n^2} \]
+This is a p-series with $p =2$ so the series is absolutely convergent.
+\end{sol}
+\end{exmp}
+\begin{defn}
+A series $\sum a_{n}$ is called \textbf{conditionally convergent} if it is convergent but not absolutely convergent
+\end{defn}
+\begin{thrm}
+If a series is absolutely convergent, then it is convergent.
+\end{thrm}
+\begin{exmp}
+Does this series converge?
+\[ \sum_{n=1}^\infty \f{\sin(2n)}{n^3} \]
+\begin{sol}
+\[ \sum_{n=1}^\infty \left| \f{\sin(2n)}{n^3} \right| \leq \sum_{n=1}^\infty \f{1}{n^3}\]
+This is a p-series, so it is absolutely convergent by the Comparison Test. By the previous theorem, since it is absolutely convergent, it is convergent.
+\end{sol}
+\end{exmp}
+\subsubsection{Ratio Test}
+\begin{thrm}[Ratio Test]
+If $\lim_{n\to\infty} |\f{a_{n+1}}{a_{n}}| = L$, then if $L < 1, \sum a_{n}$ converges. If $L > 1, \sum a_{n}$ diverges. If $L=1$, the Ratio Test is inconclusive.
+\end{thrm}
+\begin{exmp}
+Determine whether the following converge.
+\[ \sum_{n=1}^\infty \f{n!}{100^n} \]
+\[ \sum_{k=1}^\infty k \left(\f{2}{3}\right)^k \]
+\begin{sol}
+\[\lim_{n\to\infty} |\f{a_{n+1}}{a_{n}}| = \lim_{n\to\infty} |(n+1)\f{1}{100} \]
+\[ = \lim_{n\to\infty} \f{n+1}{100} = \infty \]
+By the ratio test, the first series diverges.\\\\
+Let $a_{k} = k(\f{2}{3})^k$
+\[\lim_{k\to\infty}|\f{a_{k+1}}{a_{k}}| = \lim_{k\to\infty}\f{(k+1)(\f{2}{3})^{k+1}}{k(\f{2}{3})^k} \]
+\[ \f{2}{3} \lim_{k\to\infty} \f{k+1}{k} = \f{2}{3} \]
+Since $L=\f{2}{3} < 1$, then the series converges.
+\end{sol}
+\end{exmp}
+\subsubsection*{Root Test}
+\begin{thrm}
+\textbf{Root Test: } If
+\begin{itemize}
+\item $\lim_{n\to\infty} \sqrt[n]{|a_{n}|} = L < 1$, then the series $\sum a_{n}$ is absolutely convergent.
+\item $\lim_{n\to\infty} \sqrt[n]{|a_{n}|} = L > 1$ or $\infty$, then the series $\sum a_{n}$ is divergent.
+\item If it equals 1, it's inconclusive.
+\end{itemize}
+\end{thrm}
+
+\begin{exmp}
+Determine the convergence of
+\[ \sum_{n=1}^\infty (\f{n^2+1}{2n^2 + 2n + 1})^{2n} \]
+\begin{sol}
+Let $a_{n} = (\f{n^2+1}{2n^2 + 2n + 1})^{2n}$
+\[\lim_{n\to\infty} \sqrt[n]{|a_{n}|} = \left(\lim_{n\to \infty} \f{n^2+1}{2n^2 + 2n + 1}\right)^2 \]
+\[ \left(\f 1 2\right)^2 = \f 1 4 \]
+By the root test, this infinite series converges.
+
+\end{sol}
+\end{exmp}
+\section{Power Series}
+\begin{exmp}
+Consider
+\[ \sum_{n=1}^\infty \f{(x-7)^n}{2^n n} \].
+For what values of $x \in \R$ is this series convergent?
+\begin{sol}
+Apply Ratio Test.
+\[\lim_{n\to\infty} \f{\f{(x-7)^{n+1}}{2^{n+1}(n+1)}}{\f{(x-7)^n}{2^n n}} = \lim_{n\to\infty} \f{2^n n}{2^{n+1}(n+1)} |x-7| \]
+\[= |x-7| \lim_{n\to\infty} \f{n}{2(n+1)} = \f{|x-7|}{2} < 1 \]
+\[ |x-7| < 2 \]
+\[ -2 < x-7 < 2 \]
+\[ 5 < x < 9, x \neq 7 \]
+When $x=7$, the series converges to $0$.\\
+When $x=5$, the series becomes an alternating harmonic series which converges.\\
+When $x=9$, the series becomes a regular harmonic series, which diverges.\\\\
+$\therefore$ The series converges for $x \in [5,9)$ and diverges otherwise.
+\end{sol}
+\end{exmp}
+\begin{defn}
+A \textbf{power series} is a series of the form 
+\[\sum_{n=0}^\infty C_{n} (x-a)^n\]
+$a$ is the centre of the power series.\\
+$x \in \R$ is the variable\\
+$C_{n}$ are constants with respect to $x$, but they may depend on $n$.\\\\
+The above power series can be reerred to as a power series centered at $a$.
+\end{defn}
+\begin{thrm}
+For a given series $\sum_{n=0}^\infty C_{n} (x-a)^n$ there are only three possibilities
+\begin{itemize}
+\item The series converges if $x =a$
+\item The series converges for all $x$.
+\item There is a positive number $R$ such that the series converges if $|x-a|<R$ and diverges if $|x-a| > R$.
+\end{itemize}
+\end{thrm}
+\begin{exmp}
+Find the radius and interval of convergence for 
+\[\sum_{n=0}^\infty \f{(x-2)^n}{n!}, x \in \R\]
+\begin{sol}
+Let $a_{n} = \f{(x-2)^n}{n!}$\\
+Apply ratio test
+\[ \lim_{n\to\infty} \f{a_{n+1}}{a_{n}} \]
+\[ \lim_{n\to\infty} \f{\f{(x-2)^{n+1}}{(n+1)!}}{\f{(x-2)^n}{n!}}\]
+\[ = \lim_{n\to\infty} \f{n!}{n+1!} |x - 2| = |x-2| \lim_{n\to\infty} \f{1}{n+1} = 0 \]
+By the Ratio Test, the power series converges for any value of $x$ except $x = 2$. Consider $x = 2$, then the series converges to $1$. Therefore the series converges for all values of $x$.
+\end{sol}
+\end{exmp}
+\begin{rem}
+In general, when $x=a$ in a power series, the power series converges.
+\end{rem}
+\begin{exercise}
+Consider
+\[\sum_{n=0}^\infty n! (x-3)^n\]
+ Show the radius of convergence is $R=0$ and the interval of convergence is $\{3\}$
+\end{exercise}
+Power series can be used to represent functions. Recall the geometric series
+\[\sum_{n=0}^\infty r^n = \f{1}{1-r}, |r| < 1\]
+This can be viewed as a power series with $r=x$
+\[\sum_{n=0}^\infty x^n = \underbrace{\f{1}{1-x}}_{f(x)}, |x| < 1\]
+$f(x) = \f{1}{1-x}$ s a function whose domain is the set of all $x$ for which $\sum_{n=0}^\infty x^n$ converges.
+\begin{exmp}
+Find a power series representation for the function $\f{1}{3+2x}$, and state the radius of convergence and interval of convergence.
+\begin{sol}
+\[\f{1}{3(1 + \f{2}{3} x)} = \f{1}{3(1 - (-\f{2}{3} x))} \]
+\[ = \f{1}{3} \sum_{n=0}^\infty \left(-\f {2}{3}\right)^n\]
+\[ |-\f{2}{3}x| < 1 \implies |x| < \f{3}{2}\]
+\[ R = \f{3}{2}\]
+The interval of convergence is $-\f{3}{2}, \f{3}{2}$.
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Determine the power series representation of 
+\[ \f{1}{(1-x)^2}\]
+\begin{sol}
+\[\left(\f{1}{1-x}\right)^2 = \left(\sum_{n=0}^\infty x^n \right)^2\]
+\[= \sum_{n=0}^\infty x^n \cdot \sum_{n=0}^\infty x^n = (1 + x + x^2 + x^3 + x^4 + \dots )( 1 + x + x^2 + x^3 + x^4 + \dots) \]
+\[=1 + x + x^2 + x^3 + x^4 + \dots + x + x^ + x^3 + x^4 + x^5 + \dots + x^2 + x^3 + x^4 + x^5 + x^6 + \dots\]
+\[=1 + 2x + 3x^2 + 4x^3 + 5x^4 + \dots = \sum_{n=0}^\infty (n+1) x^n\]
+Furthermore 
+\[\f{1}{1-x} = \sum_{n=0}^\infty x^n = 1 + x + x^2 + x^3 + \dots\]
+and the first equation is the derivative of the above equation.
+\[\f{1}{(1-x)^2} = \f{d}{dx} \left( \f{1}{1-x} \right) = \f{d}{dx} \sum_{n=0}^\infty x^n, |x| < 1\]
+Power series may be differentiated, and this is called \textbf{term by term differentiation}.
+\begin{thrm}
+If $\sum_{n=0}^\infty c_{n} (x-a)^n$ has a radius of convergence $R > 0$, then the function is defined by
+\[ f(x) = \sum_{n=0}^\infty C_{n} (x-a)^n, |x-a| < R\]
+is differentiable (and hence continuous) on $(a-R,a+R)$ and
+\[\f{d}{dx} f(x) = \f{d}{dx} \sum_{n=0}^\infty c_{n} (x-a)^n =  \sum_{n=0}^\infty \f{d}{dx} c_{n} (x-a)^n  \]
+\[ = \sum_{n=0}^\infty n c_{n} (x-a)^{n-1} = \sum_{n=1}^\infty n c_{n} (x-a)^{n-1}\]
+Similarly,
+\[\int f(x)\,dx = \int \sum_{n=0}^\infty c_{n} (x-a)^n = \sum_{n=0}^\infty c_{n} \int (x-a)^n\]
+\[= \left\lbrack \sum_{n=0}^\infty \f{c_{n} (x-a)^{n+1}}{n+1} \right\rbrack + C\]
+\end{thrm}
+\begin{note}
+For the above theorem, the radius of convergence are both $R$. but this does not mean that the interval of convergence remains the same.
+\end{note}
+Returning to the example,
+\[\f{1}{(1-x)^2} = \f{d}{dx} \left( \f{1}{1-x}\right)\]
+\[= \f{d}{dx} \sum_{n=0}^\infty x^n, |x| < 1\]
+\[ = \sum_{n=0}^\infty \f{d}{dx} x^n\]
+\[ = \sum_{n=1}^\infty nx^{n-1},|x| < 1\]
+This is equivalent to the previous solution.
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Find a power series representation for $\ln(1-x)$
+\begin{sol}
+\begin{align*}
+\ln(1-x) &= - \int \f{1}{1-x}\,dx\\
+&= - \int \left(\sum_{n=0}^\infty x^n \right)\,dx\\
+&= - \sum_{n=0}^\infty \int x^n\,dx\\
+&= \left\lbrack\sum_{n=0}^\infty \f{x^{n+1}}{n+1}\right\rbrack + k
+\end{align*}
+We need to determine $k$. Let $x=0$,
+\[\underbrace{\ln(1)}_0 = - \underbrace{\sum_{n=0}^\infty \f{0^{n+1}}{n+1}}_0 + k\]
+\[ k = 0\]
+\begin{note}
+Pick simple numbers to test. Typically choosing $x=a$ works well.
+\end{note}
+\end{sol}
+\end{exmp}
+\begin{exmp}
+What is the PS representation for $\ln (1+x)$.
+\begin{sol}
+Replace $x$ with $-x$ in the previous example.
+\[ \ln (1+x) = - \sum_{n=0}^\infty \f{(-x)^{n+1}}{n+1} , | -x| < 1 \implies |x| < 1\]
+\end{sol}
+\end{exmp}
+\section{Taylor and MacLaurin Series}
+Use Taylor and MacLaurin series to approximate functions.
+\[y_{3} = c_{0} + c_{1} (x-a) + c_{2} (x-a)^2 + c_{3} (x-a)^3\]
+Higher degree polynomials and appropriate $c_{i}$ selections will lead to a better approximation. Each $c_{i}$ will depend on $f$.
+
+To get $c_{0}$, set $x=a, f(a) \approx c_{0}$
+\[f'(x) = c_{1} + 2 c_{2}(x-a) + 3 c_{3} (x-a)^2 + n c_{n} (x-a)^{n-1}\]
+Again, let $x = a, f'(a) \approx c$
+\[f''(x) = 2c_{2} + 6 c_{3} (x-a) + \dots + n(n-1) (x-a)^{n-2}\]
+Let $x=a, f''(a) = 2c_{2}$ and $c_{2} = \f{f''(a)}{2}$.\n
+By rewriting $f(a)$ as $f^{(0)} (a)$
+\[ c_{0} = \f{f^{(0)}(a)}{0!} \qquad \qquad c_{1} = \f{f^{(1)}(a)}{1!} \qquad \qquad  c_{1} = \f{f^{(2)}(a)}{2!}\]
+In general
+\[ c_{i} = \f{f^{(i)}(a)}{i!}\]
+$f(x)$ can then be approximated with the following polynomial
+\begin{align*}
+f(x) &= c_{0} + c_{1} (x-a) + c_{2} (x-a)^2 + \dots + c_{n} (x-a)^n\\
+&= \f{f^{(0)}(a)}{0!} + \f{f^{(1)}(a)}{1!} (x-a) + \f{f^{(2)}(a)}{2!} (x-a)^2 + \f{f^{(n)}(a)}{n!} (x-a)^n\\
+&= \sum_{i=0}^n \f{f^{(i)}(a)}{i!} (x-a)^i\\
+&= Tn(x)
+\end{align*}
+If $a = 0$, Taylor polynomial is called MacLaurin polynomial
+\[ Tn(x) = \sum_{i=0}^\infty \f{f^{(0)} (0)}{i!} x^i \]
+\begin{exmp}
+Find the second degree Taylor polynomial of the following polynomial centred at 4.
+\[f(x) = \sqrt{x}\]
+\begin{sol}
+\[ T_{2} (x) = \sum_{i=0}^2 \f{f^{(i)} (4)}{i!} (x-4)^i\]
+\begin{align*}
+ f^{(0)}(4) &= \sqrt{4} = 2\\
+ f^{(1)} (x) &= \f{1}{2 \sqrt{x}} \implies f'(4) = \f{1}{4}\\
+ f^{(2)} (x) &= - \f{1}{4 \sqrt{x^3}} \implies f''(4) = - \f{1}{4 \sqrt{2^3}} = - \f{1}{32}
+\end{align*}
+\begin{align*}
+T_{2} (x) &= 2 + \f{1}{4} (x-4) - \f{1}{32} (x-4)^2 \f{1}{2!}\\
+&= 2 + \f{1}{4} (x-4) - \f{1}{64} (x-4)^2
+\end{align*}
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Find the nth degree Maclaurin polynomial for $f(x) = e^x$.
+\begin{sol}
+$f^{(0)} (x)=f^{(1)} (x)== f^{(2)} (x) = f^{(i)} (x)=e^x$
+Since $f$ is centered around $a=0, f^{(i)} (0) = e^0 = 1$.
+\[T_{n} (x) = \sum_{i=0}^n \f{1}{i!} x^i\]
+\end{sol}
+\end{exmp}
+\begin{asd}
+Does the approximation get better as $n \to \infty$?\\
+Let $\underbrace{Rn(x)}_{\text{Taylor's remainder}} = \underbrace{f(x)}_{\text{exact}} - \underbrace{Tn(x)}_{\text{approximation}}$
+\begin{thrm}
+If $f(x)$ is $n+1$ times differentiable, and 
+$R_{n} (x) = f(x) - T_{n} (x)$ then
+\[ R_{n} (x) = \f{f^{(n+1)} (c)}{(n+1)!} (x-a)^{n+1}\]
+for some $c$ between $a$ and $x$.
+\begin{proof}
+Start with $n=1$. Show $R_{1} (x) = f(x) - T_{1} (x) = \f{f^{(2)} (c)}{2!} (x-a)^2$
+\[\text{By Mean Value Theorem, } f''(c) = \f{f'(x) - f'(a)}{x-a}\]
+\[f'(a) f''(c) (x-a) = f'(x)\]
+Replace $x$ with $t$.
+\[f'(a) f''(c) (t-a) = f'(t)\]
+Integrate $t$ from $a$ to $x$
+\[\int_a^x f'(t)\,dt = \int_a^x f'(a)\,dt + \int-a^x f''(c) \f{(x-a)^2}{2}\]
+\[f(x) - f(a) = f'(a) (x-a) + f''(c) \f{(t-a)^2}{2} \Big|_a^x\]
+\[f(x) - f(a) = f'(a)(x-a) + f''(c) \f{(x-a)^2}{2}\]
+\[f(x) = \underbrace{f(a) + f'(a)(x-a)}_{T_{1} (x)} + f''(c) \f{(x-a)^2}{2}\]
+\[ \underbrace{f(x) - T_{1} (x)}_{R_{n} (x)} = \f{f''(c) (x-a)^2}{2}\]
+\[ R_{n} (x) = \f{f''(c) (x-a)^2}{2}\]
+\end{proof}
+\end{thrm}
+\end{asd}
+\begin{thrm}
+\textbf{Taylor's Inequality}: Let $M$ represent the maximum of $|f^{(n+1)} (t) |$ for $t$ between $a$ and $x$, then
+\[|R_{n} (x) \leq \f{M}{(n+1)!} |x-a|^{n+1}\]
+\end{thrm}
+\begin{exmp}
+Use $T_{2} (x)$ from example 6.1 to approximate $\sqrt{4.1}$ and use Taylor's inequality to find an upper bound for the error.
+\begin{sol}
+\[T_{2} (x) = 2 + \f{1}{4} (x-4) - \f{1}{64} (x-4)^2\]
+\[ \sqrt{4.1} \approx T_{2} (4.1) =  2 + \f{1}{4} (0.1) - \f{1}{64} (0.1)^2 = 2.02484375\]
+From Taylor's inequality:
+\[ |R_{2} (x) | < \f{M}{3!} |x-4|^3\]
+$M$ is the maximum of $f^{(3)} (t)$ for $ 4 < t < 4.1$.
+\[ f^{(3)} (x) = \f{3}{8 \sqrt{t^5}}\]
+This function is always decreasing so the maximum is at $t = 4$.
+\[f^{(3)} (4) = \f{3}{8\sqrt{4^5}} = \f{3}{256}\]
+\[|R_{2} (x) | < \f{\f{3}{256}}{3!} |0.1|^3\]
+\[ |R_{2} (x) | < \f{1}{512000} \approx 0.00000195\]
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Find the upper bound for the error of $R_{2}(x)$ in using $T_{2} (x)$ to approximate $f(x) = \sqrt{x}$ centred at $4$ for $3 \leq x \leq 6$.
+\begin{sol}
+\[ |R_{2} (x) | < \f{M}{3!} | x-4 |^3\]
+Since $f^{(3)} (x)$ is always decreasing, $t=3$ gives the maximum.
+\[M = \f{3}{8 \sqrt{3^5}}\]
+
+\[|R_{2} (x)| < \f{\f{3}{8 \sqrt{3^5}}}{3!} \underbrace{| x-4 |^3}_{\text{Maximize, } x = 6}\]
+\[ |R_{2} (x) < \f{8}{16 \sqrt{3^5}} \approx 0.032\] 
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Find the MacLaurin series of $f(x) = \ln(x+1)$.
+\begin{sol}
+$f^{(0)} (x) = \ln(x+1) \implies f(0) = \ln 1 = 0$. This contributes nothing, so the series can begin at $1$.
+\[ \sum_{i=1}^\infty \f{f^{(i)} (0)}{i!} x^i\]
+\[f'(x) = (x+1)^{-1}\]
+\[ f''(x) = -(x+1)^{-2}\]
+\[ f'''(x) = (-1)(-2) (x+1)^{-3}\]
+\[f^{(i)} (x) = (-1)^{i-1} (i-1)! (x+1)^{-i}\qquad \text{ for } i \geq 1\]
+The series is 
+\[ \sum_{i=1}^\infty \f{(-1)^{i-1} (i-1)!}{i!} x^i = \sum_{i=1}^\infty \f{(-1)^{i-1}}{i} x^i\]
+\end{sol}
+\end{exmp}
+
+\begin{rem}
+The power series of $\ln(x+1)$ was 
+\[ \sum_{i=1}^\infty \f{(-1)^{i-1}}{i} x^i \text{ for } |x| < 1\]
+usin the geometric series. In general, if $f$ has a power series representation, centred at $a$ for $|x-a| < R$, it will be the Taylor series centred at $a$.
+\[ f(x) = \sum_{i=0}^\infty C_{i} (x-a)^i \implies C_{i} = \f{f^{(i)} (a)}{i!} \]
+\end{rem}
+When does $f(x)$ equal its Taylor Series.
+Consider $Rn(x) = f - Tn(x)$.
+\[ \lim_{n\to\infty} Rn(x) = \lim_{n\to\infty} \left(f(x) - Tn(x)\right)\]
+\[ = f(x) - \lim_{n\to\infty} Tn(x)\]
+If $Rn(x) = 0$, then
+\[ f(x) = \lim_{n\to\infty} Tn(x) = \sum_{i=0}^\infty \f{f^{(i)} (a)}{i!} (x-a)^i\]
+\begin{thrm}
+If $f(x) = Tn(x) + Rn(x)$ and $\lim_{n\to\infty} Rn(x) = 0$ for $|x-a| < R$, then $f$ is equal to the sum of its Taylor Series on $|x-a| < R$.
+\end{thrm}
+\begin{exmp}
+Prove that $e^x$ is equal to its MacLaurin series for all $x$.
+\begin{sol}
+Recall that the MacLaurin series for $e^x$ is 
+\[ \sum_{i=0}^\infty \f{1}{i!} x^i\]
+Taylor's Inequality $\implies |Rn(x)| \leq \f{M}{(n+1)!} |x|^{n+1}$ where $M$ is the maximum for $\{|f^{(n+1)} (t)|\}$ for $t$ between $0$ and $x$.
+\[ f^{(n+1)} (t) = e^t\]
+\[ M = \max\{1,e^x\}\]
+\[ 0 \leq |Rn(x)| \leq \f{M |x|^{n+1}}{n!}\]
+\[ \lim_{n\to\infty} 0 \leq \lim_{n\to\infty}|Rn(x)| \leq \lim_{n\to\infty} \f{M |x|^{n+1}}{n!}\]
+\[ 0 \leq \lim_{n\to\infty} |Rn(x)| \leq  M \lim_{n\to\infty} \f{|x|^{n+1}}{n!} \]
+\[ 0 \leq \lim_{n\to\infty} |Rn(x)| \leq 0\]
+By the squeeze theorem, $\lim_{n\to\infty} |Rn(x)| = 0$
+\[ e^x = \sum_{i=0}^\infty \f{x^i}{i!} \qquad \forall\, x \in \R\]
+\end{sol}
+\end{exmp}
+\begin{exmp}
+Prove that $\cos(x)$ is equal to its MacLaurin series for all $x$.
+\begin{sol}
+Prove $\cos(x) = \sum_{i=1}^\infty \f{f^{(i)}(0)}{i!} x^i$.
+\[f^{(0)}(x) = \cos(x) \implies \cos(0) = 1\]
+\[f^{(1)}(x) = - \sin(x) \implies - \sin(0) = 0\]
+\[f^{(2)}(x) = - \cos(x) \implies - \cos(0) = -1\]
+\[f^{(3)}(x) = \sin(x) \implies \cos(0) = 0\]
+\[ \f{1}{0!} x^0 + \f{0}{1!} x^1 + \f{(-1)}{2!} x^2 + \f{0}{3!} x^3 + \dots\]
+\[ = \sum_{i=0}^\infty (-1)^i \f{x^{2i}}{(2i)!}\]
+Taylor's Inequality $\implies |Rn(x)| \leq \f{M}{(n+1)!} |x|^{n+1}$ where $M$ is the maximum for $\{|f^{(n+1)} (t)|\}$ for $t$ between $0$ and $x$.
+Since the derivative  $|f|$ is either $\|cos(x)|$ or $|\sin(x)|$ implies that $M$ can be chosen to be $1$.
+\[0 \leq |Rn(x)| \leq \f{|x|^{n+1}}{(n+1)!}\]
+By the squeeze theorem, $\lim_{n\to\infty} |Rn(x)| = 0 \implies \lim_{n\to\infty} Rn(x) = 0 $ by Taylor's Theorem
+\[ \cos (x) = \sum_{i=0}^\infty \f{(-1)^i x^{2i}}{(2i)!}\qquad \forall \, x \in \R\]
+\end{sol}
+\end{exmp}
+Other functions that equal the sum of its Taylor series.
+\begin{itemize}
+\item $\ln (1 + x)  \sum_{n=1}^\infty (-1)^{n-1} \f{x^n}{n}, |x| < 1$
+\item $\arctan(x) = \sum_{n=0}^\infty (-1)^n \f{x^{2n+1}}{2n+1},|x| < 1$
+\item $(1+x)^k = \sum_{n=0}^\infty {k \choose n} x^n,k \in \R, |x| < 1$
+\end{itemize}
+\begin{exercise}
+Find the taylor series of $f(x) = |x|$ centered at $2$ and prove that $f$ is not equal to its taylor series for all $x \in \R$.
+\end{exercise}
+\begin{exmp}
+Approximate $\int_0^1 x \cos(x^3)\,dx$ to within an accuracy of $0.0001$.
+\begin{sol}
+Recall that $\cos(x) = \sum_{n=0}^\infty (-1)^n \f{x^2n}{(2n)!}$
+\[ \cos(x^3) = \sum_{n=0}^\infty (-1)^n \f{x^6n}{(2n)!}\]
+\[ x \cos(x^3) = \sum_{n=0}^\infty (-1)^n \f{x^6n+1}{(2n)!}\]
+\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty \int_0^1 \f{(-1)^n}{(2n)!} \int_0^1 (x^6n+1)\,dx\]
+\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty \int_0^1 \f{(-1)^n}{(2n)!} \f{x^{6n+2}}{6n+2}\Big|_0^1\]
+\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty \int_0^1 \f{(-1)^n}{(2n)! (6n+2)}\]
+Apply ASET, Let $b_{n} = \f{1}{(2n)! (6n+2)}$
+\[(2n+1)!(6(n+1) + 2 ) \geq (2n)!(6n+2)\]
+\[\f{1}{(2n+1)!(6(n+1) + 2 )} \leq \f{1}{(2n)!(6n+2)}\]
+\[b_{n+1} \leq b_{n}\]
+\[\lim_{n\to\infty} b_{n} = \lim_{n\to\infty} \f{1}{(2n)! (6n+2)} = 0\]
+\[|S - S_{n}| \leq b_{n+1}\]
+\[ 0.00001 \leq b_{n+1}\]
+\[ 0.00001 \leq \f{1}{(2n+1)!(6(n+1) + 2 )}\]
+\[ (2n+1)!(6(n+1) + 2 ) \geq 10000\]
+Guess and check because cannot isolate for $n$.
+\[ (2\times (2+1))!(6(2+1) + 2 ) = 720\times 20 = 14400 \geq 10000\]
+\[\int_6^1 x \cos (x^3)\,dx = \sum_{i=0}^2 \f{(-1)^i}{(2i)! (6i+2)}\]
+Find the first three terms to get the approximation.
+\[ = \f{(-1)^0}{0! 2} + \f{(-1)^1}{2!(8)} + \f{(-1)^2}{4! (14)} = \f{1}{2} + \f{1}{16} + \f{1}{336} = \f{168-21 + 1}{336} = \f{148}{336} = \f{37}{84}\]
+\end{sol}
+\end{exmp}
+% \section{Parametric Equations}
+% \todo{miss}
+
+% If $\f{dy}{dt} = \f{dx}{dt}$, consider $\lim_{t\to a} \f{dy}{dx} = \lim_{t\to a} \f{\f{dy}{dt}}{\f{dx}{dt}}$, then the parametric curve has a horizontal tangent at that $t=a$. If $\lim_{t\to a} \f{dy}{dt}$ is infinite, then the parametric curve has a vertical tangent at $t=a$, otherwise there is no horizontal or vertical tangent.
+% \begin{exmp}
+% Find the points where the parametric curve given by $x = t^2 + t, y = t^2 - t$ has horizontal and vertical tangents. Find the equation of the tangent line where $t=1$ in the form $y=f(x)$.
+% \begin{sol}
+% \[\f{dy}{dt} = 2t-1 = 0 \implies t = \f{1}{2}\]
+% \[\f{dx}{dt} = 2t + 1 = 0 \implies t = -\f{1}{2}\]
+% \end{sol}
+% \end{exmp}
+\end{document}
+
+
+
