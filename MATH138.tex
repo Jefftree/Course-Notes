@@ -571,8 +571,8 @@ Consider the region between $f(x)=x$ and $g(s)=\sqrt x$ rotated about the x-axis
 \begin{sol}
 Point of intersection is $(1,1)$.
 \begin{align*}
-& A = \pi[\int_0^1  (x^2)^2\,dx - \int_0^1 (\sqrt x)^2\,dx]\\
-& A = \pi (\f{x^5}{5} - \f {x^2}{2})\Big|_{0}^{1}\\
+& A = \pi\left[\int_0^1  x^2\,dx - \int_0^1 (\sqrt x)^2\,dx\right]\\
+& A = \pi \left(\f{x^3}{3} - \f {x^2}{2}\right)\Big|_{0}^{1}\\
 & A = \f \pi 6
 \end{align*}
 \end{sol}
@@ -724,7 +724,7 @@ Evaluate
 At $x=2$ function has a vertical asymptote.\\
 Suppose didn't realize asymptote.
 \begin{align*}
-& = \ln | x - 2 |)\Big|(1^5)\\
+& = \ln | x - 2 |\Big|_1^5\\
 & = \ln 3 
 \end{align*}
 Be cautious and determine whether a given integral is improper.\\\\
@@ -1976,12 +1976,12 @@ Find the taylor series of $f(x) = |x|$ centered at $2$ and prove that $f$ is not
 \begin{exmp}
 Approximate $\int_0^1 x \cos(x^3)\,dx$ to within an accuracy of $0.0001$.
 \begin{sol}
-Recall that $\cos(x) = \sum_{n=0}^\infty (-1)^n \f{x^2n}{(2n)!}$
-\[ \cos(x^3) = \sum_{n=0}^\infty (-1)^n \f{x^6n}{(2n)!}\]
-\[ x \cos(x^3) = \sum_{n=0}^\infty (-1)^n \f{x^6n+1}{(2n)!}\]
-\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty \int_0^1 \f{(-1)^n}{(2n)!} \int_0^1 (x^6n+1)\,dx\]
-\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty \int_0^1 \f{(-1)^n}{(2n)!} \f{x^{6n+2}}{6n+2}\Big|_0^1\]
-\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty \int_0^1 \f{(-1)^n}{(2n)! (6n+2)}\]
+Recall that $\cos(x) = \sum_{n=0}^\infty (-1)^n \f{x^{2n}}{(2n)!}$
+\[ \cos(x^3) = \sum_{n=0}^\infty (-1)^n \f{x^{6n}}{(2n)!}\]
+\[ x \cos(x^3) = \sum_{n=0}^\infty (-1)^n \f{x^{6n+1}}{(2n)!}\]
+\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty \f{(-1)^n}{(2n)!} \int_0^1 (x^{6n+1})\,dx\]
+\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty  \f{(-1)^n}{(2n)!} \f{x^{6n+2}}{6n+2}\Big|_0^1\]
+\[ \int_0^1 x \cos(x^3)\,dx = \sum_{n=0}^\infty  \f{(-1)^n}{(2n)! (6n+2)}\]
 Apply ASET, Let $b_{n} = \f{1}{(2n)! (6n+2)}$
 \[(2n+1)!(6(n+1) + 2 ) \geq (2n)!(6n+2)\]
 \[\f{1}{(2n+1)!(6(n+1) + 2 )} \leq \f{1}{(2n)!(6n+2)}\]
@@ -1995,7 +1995,7 @@ Guess and check because cannot isolate for $n$.
 \[ (2\times (2+1))!(6(2+1) + 2 ) = 720\times 20 = 14400 \geq 10000\]
 \[\int_6^1 x \cos (x^3)\,dx = \sum_{i=0}^2 \f{(-1)^i}{(2i)! (6i+2)}\]
 Find the first three terms to get the approximation.
-\[ = \f{(-1)^0}{0! 2} + \f{(-1)^1}{2!(8)} + \f{(-1)^2}{4! (14)} = \f{1}{2} + \f{1}{16} + \f{1}{336} = \f{168-21 + 1}{336} = \f{148}{336} = \f{37}{84}\]
+\[ = \f{(-1)^0}{0! 2} + \f{(-1)^1}{2!(8)} + \f{(-1)^2}{4! (14)} = \f{1}{2} - \f{1}{16} + \f{1}{336} = \f{168-21 + 1}{336} = \f{148}{336} = \f{37}{84}\]
 \end{sol}
 \end{exmp}
 % \section{Parametric Equations}
