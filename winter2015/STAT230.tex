@@ -1,0 +1,109 @@
+\documentclass[english, 12pt]{article}
+\usepackage{yingconfig}
+
+% ========================Variables======================================
+\newcommand{\coursecode}{STAT 230}
+\newcommand{\coursename}{Probability}
+\newcommand{\thisprof}{Professor N. Mohammad}
+\newcommand{\curterm}{Winter 2014}
+
+\begin{document}
+\notesheader
+\section{Introduction}
+\begin{note}
+Assignment are handed in on learn. Electronic copy only
+\end{note}
+\subsection{Introduction}
+\begin{defn}
+\textbf{Probability} is the study of randomnesses and uncertainty.
+\begin{itemize}
+\item Variability in population, processes or phenomena
+\end{itemize}
+\end{defn}
+\begin{defn}
+\textbf{Classic Interpretatation} makes assumptions about the physical world to deduce probability.
+\[ \f{\text{\# ways an event can occur}}{\text{Total \# of outcomes}}\]
+\end{defn}
+\begin{defn}
+\textbf{Relative-frequency interpretation} is when the probability of specific outcome is defined as the proportion of times it occurs over the long run. May only be used if the experiment may be repeated.
+\end{defn}
+\begin{defn}
+\textbf{Frequency} is just the amount of times an event occurs while \textbf{relative frequency} is a fraction of the amount of times an event occurs over the total amount of possible outcomes.
+\end{defn}
+\begin{defn}
+\textbf{Personal-probability interpretation} is the degree to which a given individual believes the event wil happen.
+\end{defn}
+\begin{qte}
+\textbf{Coherent} means that personal probability of one event does not contradict personal probability of another.
+\end{qte}
+\begin{exmp}
+If the probability of finding a parking space is 0.2, the probability of not finding one should be 0.8.
+\end{exmp}
+\subsection{Probability Models}
+\begin{defn}
+\textbf{Experiment} is any action, phenomenon, or process whose outcome is subject to uncertainty.
+\end{defn}
+\begin{defn}
+\textbf{Trial} is a single repetition of an experiment.
+\end{defn}
+\begin{defn}
+\textbf{Sample space}, denoted by $S$, is the set of possible distinct outcomes. In a single trial, only one outcome may occur. The sample space may be either \textbf{discrete} or \textbf{continuous}. 
+\end{defn}
+\begin{defn}
+An \textbf{event} is any subset of outcomes contained in the sample space $S$. 
+\begin{itemize}
+\item \textbf{Simple} - one outcome
+\item \textbf{Compound} - more than one outcome
+\end{itemize}
+\end{defn}
+\subsection*{Probability notation}
+$P(\text{event})$ is used to denote the probability of an event occurring. The \textbf{compliment} is the probability of an event not happening and is denoted as $P(A^c)$ or $P(\overline{A})$
+\begin{defn}
+The odds in \textbf{favour} of an event is the odds of an event occurring compared to its compliment.
+\[\f{P(A)}{P(A^c)} = \f{P(A)}{1-P(A)}\]
+The odds against is the reciprocal of odds in favour.
+\end{defn}
+\begin{thrm}
+\[\sum_{i=0}^k P(A_{i}) = 1\]
+The set $P(A_{i}), i = 1,2,\dots$ is the probability distribution on $S$.
+\end{thrm}
+\begin{thrm}
+If $A$ and $B$ are two events wirh $A \subseteq B$, then $P(A) \leq P(B)$
+\end{thrm}
+\begin{defn}
+Two events are \textbf{mutually exclusive} or \textbf{disjoint} if they cannot happen simultaneously.
+\[A \cap B = \emptyset \]
+\end{defn}
+\tabularnewline
+\subsection{Counting Techniques}
+Counting Principle $\bullet$ Permutations $\bullet$ Combinations\\\\
+
+\begin{defn}
+\textbf{Addition rule}: When there are $m$ ways to perform $A$, and $n$ ways to perform $B$, there are $m+n$ ways to perform $A$ \textbf{OR} $B$.
+\end{defn}
+\begin{defn}
+\textbf{Product rule}: Where there are $p$ ways to perform $A$, and $q$ ways to perform $B$, there are $m \times n$ ways to perform $A$ \textbf{AND} $B$.
+\end{defn}
+\begin{defn}
+\textbf{Uniform Probability Model}:
+\[P(A) = \f{\text{Outcomes in } A}{\text{Outcomes in } S} \]
+\end{defn}
+
+\begin{defn}
+\textbf{Permutation} is an arrangement of elements in an ordered list.
+\begin{note}
+The amount of ways to arrange $n$ items (all of them have to be used) is $n!$
+\end{note}
+\[P_{k,n} = \f{n!}{(n-k)!}\]
+\end{defn}
+
+\begin{defn}
+Any unordered sequence of $k$ objects taken from a set of $n$ distinct objects is called a \textbf{combination}.
+\[C_{k,n} = {n \choose k} = \f{n!}{k! (n-k)!}\]
+\end{defn}
+\begin{exmp}
+\textbf{Binomial Theorem}:
+\[(1+x)^n = {n \choose 0} + {n \choose 1} x + {n \choose 2} x^2 + \dots + {n \choose n} x^n\]
+\end{exmp}
+\end{document}
+

@@ -1,0 +1,141 @@
+\documentclass[english, 12pt]{article}
+\usepackage{yingconfig}
+
+% ========================Variables======================================
+\newcommand{\coursecode}{MATH 136}
+\newcommand{\coursename}{Linear Algebra}
+\newcommand{\thisprof}{Professor M. Rubinstein}
+\newcommand{\curterm}{Winter 2014}
+
+\begin{document}
+\notesheader
+\section{Introduction}
+Linear Algebra 
+\begin{itemize}
+\item Systems of linear equations
+\item Related geometry
+\item Matrices
+\item Vector spaces, $\R^n$
+\end{itemize}
+$\R^n$ consists of n-tuples of real numbers, where $n \in \N$. 
+\begin{defn}
+\textbf{Points/vectors} are elements of $\R^n$.
+\end{defn}
+\subsubsection*{Notation}
+\[\R^n = \{(x_{1},x_{2},\dots,x_{n})\,|\, x_{1},x_{2},\dots,x_{n} \in \R \}\]
+\[x_{1} + x_{2} = 3\]
+\[2 x_{1} + 5 x_{2} = 4\]
+\[
+\begin{bmatrix}
+1 & 1\\
+2 & 5
+\end{bmatrix}
+\begin{bmatrix}
+x_{1}\\
+x_{2}
+\end{bmatrix}
+=
+\begin{bmatrix}
+3\\
+4
+\end{bmatrix}
+\]
+Two vectors in $\R^n$ are equal if all coordinates are equal.
+\subsubsection*{Vector Operations}
+Let $\vx \in \R^n, \alpha \in \R$
+\begin{align*}
+& \text{Addition} & \text{Scalar Multiplication} \\
+& \vx + \vy = 
+\begin{bmatrix}
+x_{1} + y_{1} \\
+x_{2} + y_{2} \\
+\vdots \\
+x_{n} + y_{n}
+\end{bmatrix} \in \R^n & 
+\alpha \vx = 
+\begin{bmatrix}
+\alpha x_{1} \\
+\alpha x_{2} \\
+\vdots \\
+\alpha x_{n} 
+\end{bmatrix} \in \R^n
+\end{align*}
+
+\begin{defn}
+$\vec{0}$ is the \textbf{additive identity}
+\end{defn}
+\begin{defn}
+Given a vector $\vx \in \R^n$, $-\vx$ is the \textbf{additive inverse}.
+\end{defn}
+\begin{defn}
+A sum of scalar multiples of a combination of vectors is a \textbf{linear combination}
+\[c_{1} \vv_{1} + c_{2} \vv_{2} + \cdots + c_{k} \vv_{k}:\,c_{1}\dots c_{k} \in \R\]
+\end{defn}
+\begin{thrm}
+If $\vx,\vy,\vw \in \R^n$, and $c,d \in \R$, then
+\begin{itemize}
+\item $\vx + \vy \in \R^n$
+\item $(\vx + \vy) + \vw = \vx + (\vy + vw)$
+\item $\vx + \vy = \vy + \vx$
+\item $\exists\, \vec{0} \in \R^n$ such that $\vx + \vec{0} = \vx\qquad\forall \vx \in \R^n$
+\item $\forall \vx \in \R^n$, there exists a vector $(- \vx) \in \R^n$ such that $\vx + (- \vx) = \vec{0}$
+\item $c \vx \in \R^n$
+\item $c (d \vx) = (cd) \vx$
+\item $(c+d) \vx = c \vx + d \vy$
+\item $c (\vx + vy) = c \vx + c \vy$
+\item $1 \vx = \vx$
+\end{itemize}
+\end{thrm}
+
+
+\begin{defn}
+The set $S$ of all possible linear combinations of a set of vectors $B = (\vec{v}_{1} , \dots , \vec{v}_{k})$ in $\R^n$ is called the \textbf{span} of the set $B$ and we write
+\[S = \text{Span B} =\{t_{1} \vec{v}_{1} + t_{2} \vv_{2} + \cdots + t_{k}\vv_{k}\}\]
+$S$ is \textbf{spanned} by B and that B is a spanning set for $S$.
+\end{defn}
+
+
+For a set 
+\[  \{t_{1} \vec{v}_{1} + \dots + t_{k} \vec{v}_{k} + \vec{b} | t_{1},\dots,t_{k} \in \R \}\]
+can be written as 
+\[  \vx = t_{1} \vec{v}_{1} + \dots + t_{k} \vec{v}_{k} + \vec{b} , t_{1},\dots,t_{k} \in \R\]
+
+In $\R^n$, two linearly independent vectors $\vx_{1}$ and $\vx_{2}$ generate a plane.
+
+\begin{defn}
+A set of vectors in $\R^n$ is said to be \textbf{linearly dependent} if there exists coefficients $c_{1},\dots,c_{k}$, not all $0$, such that
+\[\vec{0} = c_{1} \vec{v}_{1} + \cdots + c_{k} \vec{v}_{k}\]
+Either $0$ vector or two or more vectors are colinear (scalar multiple).
+\end{defn}
+\begin{defn}
+A set of vectors is \textbf{linearly independent} if the only solution is $c_{1} = c_{2} = \cdots = c_{k} = 0$ (\textbf{trivial solution})
+\end{defn}
+
+\begin{defn}
+If a subset of $\R^n$ can be written as a span of vectors $\vec{v}_{1},\dots,\vec{v}_{k}$ where $\{\vec{v}_{1},\dots,\vec{v}_{k}\}$ is linearly independent, then $\{\vec{v}_{1},\dots,\vec{v}_{k}\}$ is a \textbf{basis} for $S$. The basis of the set $\{\vec{0}\}$ is the empty set.
+\end{defn}
+
+\begin{thrm}
+If $\beta= \{\vv_{1},\dots,\vv_{k}\}$ is a basis for a subset $S$ of $\R^n$, then every vector $\vx \in S$ can be written as unique linear combination of $\vv_{1},\dots,\vv_{k}$.
+\end{thrm}
+\begin{defn}
+The \textbf{standard basis} in $\R^n$ is a set of vectors where each vector's ith component is $1$, and all other components are $0$.
+\end{defn}
+\begin{defn}
+Let $\vx,vy \in \R^n$. The set with vector equation $\vw = c_{1} \vx + \vy$ with $ c_{1} \in \R$ is a \textbf{line} in $\R^n$ that passes through $\vy$.
+\end{defn}
+\begin{defn}
+Let $\vv_{1},\vv_{2},\vy \in \R^n$ with $\{\vv_{1},\vv_{2}\}$ being a linearly independent set. The set with the vector equation $\vx = c_{1} \vv_{1} + c_{2} \vv_{2} + \vy$ with $c_{1},c_{2} \in \R$ is a \textbf{plane} in $\R^n$ which passes through $\vy$.
+\end{defn}
+\begin{defn}
+Let $\vv_{1},\dots,\vv_{k},\vy \in \R^n$ with the set being linearly independent. The set with the vector equation $\vx = c_{1} v_{1} + \cdots + c_{k} \vv_{k} + \vy$ with $c_{1},\dots,c_{k}$ is a \textbf{k-plane} in $R^n$ with passes through $\vy$.
+\end{defn}
+\begin{defn}
+A \textbf{hyperplane} is a subspace of one dimension less than its ambient space.
+\end{defn}
+
+
+\begin{thrm}
+\textbf{Subset Test}: Let $\mathbb{S}$ be a non-empty subset of $\R^n$. If $\vx + \vy \in \mathbb{S}$ and $c \vx \in \mathbb{S}$ for all $\vx,\vy \in \mathbb{S}$ and $c \in \R$, then $\mathbb{S}$ is a subspace of $\R^n$
+\end{thrm}
+\end{document}

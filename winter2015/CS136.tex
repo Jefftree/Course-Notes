@@ -1,0 +1,79 @@
+\documentclass[english, 12pt]{article}
+\usepackage{yingconfig}
+
+% ========================Variables======================================
+\newcommand{\coursecode}{CS 136}
+\newcommand{\coursename}{.rkt in C}
+\newcommand{\thisprof}{Professor M. Petrick}
+\newcommand{\curterm}{Winter 2014}
+
+\begin{document}
+\notesheader
+\section{Introduction}
+Lab: MC 3027, 10am-6
+\todo{Add intro}
+
+\section{Modularization}
+\begin{defn}
+A \textbf{module} is a collection of functions that share a common aspect or purpose. \textbf{Modularization} is dividing programs into modules.
+\begin{itemize}
+\item Reusability
+\item Maintainability
+\item Abstraction
+\end{itemize}
+\end{defn}
+\begin{defn}
+\textbf{provide} is used in a module to specify the identifiers availabie in the module.
+\end{defn}
+fun.rkt
+\begin{lstlisting}[language=Scheme]
+(provide fun?) ;Allows use of function outside of program
+(define lofn `(-3 7 42 136 1337 4010 8675309))
+;; (fun? n) determines if n is a fun integer
+;; fun?: Int -> Bool
+(define (fun? n)
+  (not (false? (member n lofn))))
+\end{lstlisting}
+\begin{defn}
+\textbf{require} is used to identify a module that the current program depends on.
+\end{defn}
+implementation.rkt
+\begin{lstlisting}[language=Scheme]
+(require "fun.rkt")
+;;Able to use provided functions in required file
+(fun? 7) ; => #t
+(fun? -7) ; => #f
+\end{lstlisting}
+\subsection{Scope}
+\begin{itemize}
+\item \textbf{Local:} Visible only in local region
+\item \textbf{Module:} Only visible in the module it is defined in
+\item \textbf{Program:} Visible outside the module.
+\end{itemize}
+\begin{qte}
+\textbf{require} also outputs the final value of any of the top-level expressions in the module. Only definitions should be included in modules.
+\end{qte}
+\begin{defn}
+A module \textbf{interface} is the list of functions that a module provides. Documentation should be provided.
+\begin{itemize}
+\item Description of module
+\item List of functions provided
+\item Contract and purpose for each provided function
+\end{itemize}
+\end{defn}
+\begin{defn}
+The \textbf{implementation} is the code for the module.
+\begin{itemize}
+\item Hides implementation details from client
+\item Security
+\item Flexibility to modify implementation
+\end{itemize}
+\end{defn}
+
+\begin{defn}
+\textbf{High cohesion} means that all interface functions are related.
+\end{defn}
+\begin{defn}
+\textbf{Low coupling} means that there is little interaction between modules.
+
+\end{document}
