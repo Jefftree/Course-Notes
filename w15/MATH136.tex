@@ -142,4 +142,36 @@ A \textbf{hyperplane} is a subspace of one dimension less than its ambient space
 If $\vec{0}$ is not in the set, definitely not subset. If it is, further investigation needed.
 \end{qte}
 
+
+\begin{defn}
+$S \in \R^n$ is closed under scalar multiplication if for all $\vx \in S$ and $\alpha \in \R$, $\alpha \vx \in S$.
+\end{defn}
+
+\begin{thrm}
+If $\{\vv_{1},\dots,\vv_{k}\}$ is a set of vectors in $\R^n$, then $\spn \{\vv_{1},\dots,\vv_{k}\}$ is a subspace of $\R^n$.
+\end{thrm}
+
+\begin{thrm}
+If $\vx,\vy \in \R^2$, and $\theta$ is the angle between them, then 
+\[\vx \dot \vy = ||\vx||\,||\vy||\, \cos \theta\]
+\end{thrm}
+\begin{thrm}
+Given two vectors $\vx,vy$, their dot product is defined by 
+\[\vx \dot \vy = x_{1} y_{1} + x_{2} + y_{2} + \cdots + x_{n} y_{n} = \sum_{i=1}^n x_{i} y_{i}\]
+\end{thrm}
+\begin{thrm}
+If $\vx \dot \vy = 0$, then $\vx$ and $\vy$ are \textbf{orthogonal}.
+\end{thrm}
+\begin{qte}
+The zero vector $\vec{0} \in \R^n$ is orthogonal to every vector in $\R^n$.
+\end{qte}
+\begin{thrm}
+The \textbf{cross product} of $\vx,\vy \in \R^3$ is given by 
+\[\vx \times \vy = 
+\begin{bmatrix}
+x_{2}y_{3} - x_{3} y_{2} \\
+- (x_{1} y_{3} - x_{3} y_{1}) \\
+x_{1} y_{2} - x_{2} y_{1}
+\end{bmatrix}\]
+\end{thrm}
 \end{document}
