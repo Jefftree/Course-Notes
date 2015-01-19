@@ -77,7 +77,23 @@ The \textbf{implementation} is the code for the module.
 \textbf{Low coupling} means that there is little interaction between modules.
 \end{defn}
 
-\begin{defn}
+\begin{qte}
 Always truncate decimals
+\end{qte}
+
+
+
+\begin{lstlisting}[language=C]
+int main (void) {
+  printf(``Hello World! \n'')
+}
+\end{lstlisting}
+
+
+\begin{defn}
+\%d is used as a placeholder to the values that follow.
+\begin{lstlisting}[language=C]
+printf("%d plus %d is: %d\n", 1 + 1, 2, 2 + 2);
+\end{lstlisting}
 \end{defn}
 \end{document}
