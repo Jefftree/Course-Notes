@@ -10,10 +10,6 @@
 \begin{document}
 \notesheader
 \section{Introduction}
-\begin{note}
-Assignment are handed in on learn. Electronic copy only
-\end{note}
-\subsection{Introduction}
 \begin{defn}
 \textbf{Probability} is the study of randomnesses and uncertainty.
 \begin{itemize}
@@ -105,5 +101,39 @@ Any unordered sequence of $k$ objects taken from a set of $n$ distinct objects i
 \textbf{Binomial Theorem}:
 \[(1+x)^n = {n \choose 0} + {n \choose 1} x + {n \choose 2} x^2 + \dots + {n \choose n} x^n\]
 \end{exmp}
+
+\begin{defn}
+The \textbf{union} of two events $A$ and $B$, $A \cup B$ is the set containing all outcomes in either $A$ or $B$.
+\end{defn}
+\begin{defn}
+The \textbf{intersection} of two events $A$ and $B$, $ A \cup B$ is the set containing all outcomes that are in both $A$ and $B$.
+\end{defn}
+\begin{defn}
+The \textbf{empty set}, $\emptyset$ is the set containing no outcomes.
+\end{defn}
+
+\begin{defn}
+The probability of \textbf{either} event happening is the sum of their individual probabilities:
+\[ P(A \cup B) = P(A) + P(B)\]
+only if $A$ and $B$ are mutually exclusive.
+\end{defn}
+\begin{note}
+For non-mutually exclusive events, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+\[P(A \cup B \cup C) = P(A) + P(B) + P(C) - \lbrack P (A \cap B) + P(A \cap C) + P (B \cup C)\rbrack + P (A \cap B \cap C)\]
+\end{note}
+\begin{defn}
+Two events are \textbf{independent} if and only if 
+\[ P(A \cap B) = P(A) P(B)\]
+\end{defn}
+
+\begin{defn}
+The conditional probability of $A$ given $B$ is defined by
+\[ P(A | B) = \f{P(A \cap B)}{P(B)}\]
+\end{defn}
+\begin{note}
+If two events $A$ and $B$ are independent, then 
+\[P(A) = P(A | B)\]
+\end{note}
+
 \end{document}
 
