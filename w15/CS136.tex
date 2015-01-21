@@ -95,5 +95,56 @@ int main (void) {
 \begin{lstlisting}[language=C]
 printf("%d plus %d is: %d\n", 1 + 1, 2, 2 + 2);
 \end{lstlisting}
+In racket, ~a is used as a placeholder.
+\begin{lstlisting}[language=Scheme]
+(printf ``There are ~a lights!\n'' ``four'')
+(printf ``There are ~a lights!\n'' 'four) ; Both lines are same
+\end{lstlisting}
 \end{defn}
+
+\todo{Thurs before JAn 20}
+
+\begin{defn}
+Structures in C are very similar to racket. 
+\begin{lstlisting}[language=C]
+struct posn {
+  int x;
+  int y;
+}; //Do not forget the semicolon
+
+const struct posn p = {3,4}; // Initialization
+const struct posn pp = {y=4,x=3}; // This works too
+const struct posn pp = {x=3}; // Uninitialized integers are set to 0.
+
+const int a = p.x;
+const int b = p.y;
+\end{lstlisting}
+\end{defn}
+
+
+\begin{defn}
+\textbf{begin} produces the value of the last exprssion
+\begin{lstlisting}[language=Scheme]
+(define (mystery)
+  (begin ; implicit, this line not needed
+    (+ 1 2) ; evaluated, not used
+    (+ 2 2))) ;outputs 4
+\end{lstlisting}
+\end{defn}
+\begin{qte}
+Anything that is not \#f in Racket is true.
+\end{qte}
+
+\begin{defn}
+The \textbf{functional programming paradigm} is to only use constant values that never change. Functions produce new values rather than changing existing ones. In functional programming, there are no side effects.
+\end{defn}
+
+\begin{defn}
+A \textbf{side effect} does more than produce a value it also changes the state of the program. Sometimes used to debug.
+\end{defn}
+
+\begin{defn}
+\textbf{printf} in C returns an int representing the number of characters printed.
+\end{defn}
+
 \end{document}
