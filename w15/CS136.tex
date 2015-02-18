@@ -9,9 +9,6 @@
 
 \begin{document}
 \notesheader
-\section{Introduction}
-Lab: MC 3027, 10am-6
-\todo{Add intro}
 
 \section{Modularization}
 \begin{defn}
@@ -82,14 +79,11 @@ Always truncate decimals
 \end{qte}
 
 
-
 \begin{lstlisting}[language=C]
 int main (void) {
   printf(``Hello World! \n'')
 }
 \end{lstlisting}
-
-
 \begin{defn}
 \%d is used as a placeholder to the values that follow.
 \begin{lstlisting}[language=C]
@@ -101,8 +95,6 @@ In racket, ~a is used as a placeholder.
 (printf ``There are ~a lights!\n'' 'four) ; Both lines are same
 \end{lstlisting}
 \end{defn}
-
-\todo{Thurs before JAn 20}
 
 \begin{defn}
 Structures in C are very similar to racket. 
@@ -134,7 +126,7 @@ const int b = p.y;
 \begin{qte}
 Anything that is not \#f in Racket is true.
 \end{qte}
-
+\section{Imperative Programming}
 \begin{defn}
 The \textbf{functional programming paradigm} is to only use constant values that never change. Functions produce new values rather than changing existing ones. In functional programming, there are no side effects.
 \end{defn}
@@ -144,7 +136,322 @@ A \textbf{side effect} does more than produce a value it also changes the state 
 \end{defn}
 
 \begin{defn}
-\textbf{printf} in C returns an int representing the number of characters printed.
+In an expression statement, the \textbf{value} of the expression is \textbf{ignored}.
+\begin{lstlisting}[language=C]
+3 + 4;
+\end{lstlisting}
 \end{defn}
+
+\begin{defn}
+A \textbf{block} $\{\}$, is known as a compound statement, and contains a sequence of statements.  Within a block, \textbf{local scope definitons} can also be included.
+\end{defn}
+
+\begin{defn}
+\textbf{printf} in C returns an int representing the number of characters printed. 
+\end{defn}
+
+\begin{defn}
+\textbf{Control flow statements} change the flow of a program and the order in which other statements are executed.
+\begin{itemize}
+\item \textbf{return} statement ends the execution of a function and returns a value.
+\item \textbf{if} and \textbf{else} statements execute statements conditionally
+\end{itemize}
+\end{defn}
+\begin{qte}
+The defining characteristic of \textbf{imperative programming paradigm} is to \textbf{manipulate state}.
+\end{qte}
+
+\begin{defn}
+\textbf{State} refers to the value of a data at a moment in time.
+\end{defn}
+
+\begin{defn}
+When the value of a variable is changed, it is called \textbf{mutation}.
+\begin{lstlisting}[language=C]
+int x = 5;
+struct posn p = {3,4};
+\end{lstlisting}
+\end{defn}
+\begin{defn}
+\textbf{Prefix} and \textbf{postfix} increment operator:
+\begin{lstlisting}[language=C]
+x++ // Produces old value, and increments as side effect
+++x // Increments x and then produces the value
+\end{lstlisting}
+\end{defn}
+
+\section{C Model}
+
+\begin{defn}
+A \textbf{bit} has two states: $0$ or $1$. A \textbf{byte} is $8$ bits of storage. Each byte is in one of $256$ possible states.
+\end{defn}
+
+
+\begin{defn}
+\textbf{Memory addresses} are represented in hex (prefixed with $0x$), so a typical address would be $0xFFFFF$.
+\end{defn}
+
+\begin{defn}
+\textbf{sizeof} produces the amount of space (bytes) a variable uses.
+\begin{itemize}
+\item A \textbf{char} is $1$ byte.
+\item An \textbf{int} is $4$ bytes.
+\item An \textbf{address} is $8$ bytes. 
+\end{itemize}
+\end{defn}
+
+\begin{note}
+When a variable is initialized, three steps occur:
+\begin{itemize}
+\item Reserves space in memory to store the variable
+\item Records the address to the location
+\item Store the value of the variable at the address.
+\end{itemize}
+\begin{center}
+\begin{lstlisting}[language=C]
+int n = 4;
+\end{lstlisting}
+\begin{tabular}{|c|c|c|c|}
+\hline
+identifier & type & bytes & address \\
+\hline
+$n$ & int & $4$ & $0x5000$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{note}
+\begin{qte}
+A variable definition reserves space, but declaration does not.
+\end{qte}
+
+\begin{note}
+If an int is larger than the maximum $2^31 - 1$ or smaller than the minimum $- 2^31$, overflow will occur. Remember to always try and avoid chance of overflow wherever possible.
+\end{note}
+
+\begin{note}
+For characters, A is $65$, $a$ is 97, space is $32$, $0$ is $48$, and newline is $10$ in ASCII.
+\end{note}
+
+\begin{note}
+The \text{sizeof} a structure is at least the sum of the size of each field.
+\end{note}
+
+
+\begin{defn}
+A \textbf{float} represents real numbers and has a larger range than int. Floats are very imprecise, and doubles are usually used instead.
+\end{defn}
+
+
+\subsection{Memory}
+Memory can be modelled as 
+\begin{center}
+\begin{tabular}{|c|}
+\hline
+Code \\
+\hline
+Read-Only Data \\
+\hline
+Global Data \\
+\hline
+Heap \\
+\hline
+Stack \\
+\hline
+\end{tabular}
+\end{center}
+\begin{defn}
+Converting source code to machine code is known as \textbf{compiling}
+\end{defn}
+
+\begin{note}
+Global constants are stored in read-only, and global variables are stored in global data. The space is reserved before execution.
+\end{note}
+
+\begin{defn}
+\textbf{control flow} is used to model how programs are executed.
+\end{defn}
+
+\begin{defn}
+The history of what a program needs to do is called the \textbf{call stack}. When a function is called, it is pushed onto the call stack. When a return is used, an entry is popped off the stack.
+\end{defn}
+
+\begin{defn}
+An entry pushed onto a call stack is a \textbf{stack frame}. A stack frame consists of
+\begin{itemize}
+\item Argument values
+\item Local variables
+\item Return address
+\end{itemize}
+\end{defn}
+\begin{qte}
+When the function returns, the entire stack frame is destroyed along with its local variables.
+\end{qte}
+
+\begin{defn}
+When the stack frame is too large, it can collide with other sections of memory. This is called \textbf{stack overflow}.
+\end{defn}
+
+\begin{qte}
+All global variables that are uninitialized are automatically initialized to 0. Uninitiaized local variables have an arbitrary initial value.
+\end{qte}
+
+\subsection{Loops}
+\begin{defn}
+\textbf{while} reeatedly loops back and executes the statement until the expression is false.
+\end{defn}
+
+\begin{defn}
+The \textbf{do} statement is similar to the while statement but evaluates the expression after execution. Because of this, the loop is always executed at least once.
+\end{defn}
+
+\begin{defn}
+\textbf{break} is used to break out of a loop.
+\end{defn}
+
+\begin{defn}
+\textbf{continue} skips the current block of execution and continues the loop.
+\end{defn}
+
+\begin{lstlisting}[language=C]
+int num = 6;
+while (num!=0) { // 6,3,2,1, end
+  if (num == 6) {
+    num -= 3;
+    continue;
+  } 
+  num --;
+}
+\end{lstlisting}
+
+\begin{defn}
+\textbf{for} is similar to a condensed form of a while loop.
+\begin{lstlisting}[language=C]
+for (int i = 0 ; i < 5; i++) { body }
+\end{lstlisting}
+Any component may be omitted in a for loop. An omitted expression is always true. Commas may be used for compound statements in the setup of a for loop.
+\end{defn}
+
+\section{Pointers}
+
+\begin{defn}
+The \textbf{address operator} \& produces the starting address of where the value of an identifier is stored in memory.
+\end{defn}
+
+\begin{defn}
+By adding a * before an identifier, it becomes a pointer, and its value is an address.
+\begin{lstlisting}[language=C]
+i = 42; 
+int *p = &i; // p points to i
+printf(``p is %p'', p); \\ prints the address of i
+\end{lstlisting}
+\end{defn}
+
+\begin{defn}
+The \textbf{indirection operator} * is the inverse of address operator and produces the value of what a pointer points at.
+\begin{lstlisting}[language=C]
+int = 42;
+int *p = &i; //points at address of i
+int j = *p // 42
+\end{lstlisting}
+\end{defn}
+\begin{note}
+C mostly ignores whitespace, so the following lines are all equivalent.
+\begin{lstlisting}[language=C]
+int *pi = &i; // style A (preferred)
+int * pi = &i; // style B
+int* pi = &i; // style C
+\end{lstlisting}
+\end{note}
+
+\begin{defn}
+By adding multiple asterisks, a pointer to a pointer may be declared.
+\begin{lstlisting}[language=C]
+int i = 42;
+int *pi = &i; // address of i
+int **ppi = &pi; // address of pi
+\end{lstlisting}
+\end{defn}
+
+\begin{defn}
+\textbf{NULL} is a pointer value that represents that the pointer points to nothing.
+\end{defn}
+
+\subsection{Pointer Assignment}
+The value of what a pointer is pointing at may be changed. They can be dereferenced to change the value of the variable they point at without actually using the variable.
+\begin{lstlisting}[language=C]
+int i = 5;
+int j = 6;
+int *p = &i;
+int *q = p; 
+*q = j; // i = 6
+\end{lstlisting}
+
+\begin{note}
+Pointers may be used to emulate \textbf{pass by reference} even though C is pass by value.
+
+
+\begin{lstlisting}[language=C]
+void inc(int *p) {
+  *p += 1;
+}
+
+int main(void) {
+  int x = 5;
+  inc(&x); // note the &
+  printf("x = %d\n", x); // NOW it's 6
+}
+\end{lstlisting}
+This may also be used on structures, but brackets must be added around the dereference \textbf{(*p).x}
+\end{note}
+
+\begin{defn}
+The \textbf{arrow selection operator} (->) combines the indirection and selection operators. This may only be used with a pointer to a structure.
+\begin{lstlisting}[language=C]
+int sqr_dist (struct posn *p1, struct posn *p2) {
+  const int xdist = p1->x - p2->x;
+  const int ydist = p1->y - p2->y;
+  return xdist * xdist + ydist * ydist;
+}
+\end{lstlisting}
+\begin{note}
+These parameters may also be mutated.
+\end{note}
+\end{defn}
+
+\section{I/O \& Testing}
+
+\begin{defn}
+\textbf{fprintf} has an addition parameter that points to a file. It is similar to printf but prints directly to the file.
+\begin{lstlisting}[language=C]
+int main(void) {
+  FILE * file_ptr;
+  file_ptr = fopen("hello.txt","w");   // w for write
+  fprintf(file_ptr, "Hello World!\n");
+  fclose(file_ptr);
+}
+\end{lstlisting}
+\end{defn}
+
+\begin{defn}
+In Racket, \textbf{(read)} is used to get a value from keyboard.
+\begin{lstlisting}[language=Scheme]
+(define key-inp (read))
+\end{lstlisting}
+Text is interpreted as symbols unless it is surrounded with double quotes.
+\end{defn}
+
+\begin{defn}
+In C, \textbf{scanf} is used for keyboard input. scanf returns the number of values successfully read. If there is an error, 0 is returned by scanf.
+\begin{lstlisting}[language=C]
+int count = scanf(``%d'', &i); // Reads integer, and stores it in i. Count should be 1.
+\end{lstlisting}
+\end{defn}
+\begin{note}
+When reading in characters, it may be beneficial to ignore whitespace.
+\begin{lstlisting}[language=C]
+int count = scanf(``%c'', &c); // May read whitespace
+int count2 = scanf (`` %c'', &c); // Skips whitespace
+\end{lstlisting}
+\end{note}
 
 \end{document}
