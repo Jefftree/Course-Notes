@@ -9,7 +9,7 @@
 
 \begin{document}
 \notesheader
-\section{Introduction}
+\section{Vectors}
 Linear Algebra 
 \begin{itemize}
 \item Systems of linear equations
@@ -18,6 +18,7 @@ Linear Algebra
 \item Vector spaces, $\R^n$
 \end{itemize}
 $\R^n$ consists of n-tuples of real numbers, where $n \in \N$. 
+\subsection{Vector Properties}
 \begin{defn}
 \textbf{Points/vectors} are elements of $\R^n$.
 \end{defn}
@@ -134,7 +135,7 @@ Let $\vv_{1},\dots,\vv_{k},\vy \in \R^n$ with the set being linearly independent
 A \textbf{hyperplane} is a subspace of one dimension less than its ambient space.
 \end{defn}
 
-
+\subsection{Subspaces}
 \begin{thrm}
 \textbf{Subspace Test}: Let $\mathbb{S}$ be a non-empty subset of $\R^n$. If $\vx + \vy \in \mathbb{S}$ and $c \vx \in \mathbb{S}$ for all $\vx,\vy \in \mathbb{S}$ and $c \in \R$, then $\mathbb{S}$ is a subspace of $\R^n$
 \end{thrm}
@@ -153,14 +154,14 @@ If $\{\vv_{1},\dots,\vv_{k}\}$ is a set of vectors in $\R^n$, then $\spn \{\vv_{
 
 \begin{thrm}
 If $\vx,\vy \in \R^2$, and $\theta$ is the angle between them, then 
-\[\vx \dot \vy = ||\vx||\,||\vy||\, \cos \theta\]
+\[\vx \cdot \vy = ||\vx||\,||\vy||\, \cos \theta\]
 \end{thrm}
 \begin{thrm}
 Given two vectors $\vx,vy$, their dot product is defined by 
 \[\vx \dot \vy = x_{1} y_{1} + x_{2} + y_{2} + \cdots + x_{n} y_{n} = \sum_{i=1}^n x_{i} y_{i}\]
 \end{thrm}
 \begin{thrm}
-If $\vx \dot \vy = 0$, then $\vx$ and $\vy$ are \textbf{orthogonal}.
+If $\vx \cdot \vy = 0$, then $\vx$ and $\vy$ are \textbf{orthogonal}.
 \end{thrm}
 \begin{qte}
 The zero vector $\vec{0} \in \R^n$ is orthogonal to every vector in $\R^n$.
@@ -174,4 +175,177 @@ x_{2}y_{3} - x_{3} y_{2} \\
 x_{1} y_{2} - x_{2} y_{1}
 \end{bmatrix}\]
 \end{thrm}
+
+\begin{qte}
+Cross product is not associative. $\vv \times (\vw \times \vx) \neq (\vv \times \vw) \times \vx$.
+\end{qte}
+
+\begin{thrm}
+Let $\vv,\vw, \vec{b} \in \R^3$ with $\{\vv,\vw\}$ being a linear independent set, and define $\vec{n} = \vv \times \vw$. If $P$ is a plane with the vector equation
+\[ \vx = c \vv + d \vw + \vec{b}, \qquad c,d \in \R\]
+then an alternate equation for the plane is 
+\[(\vx - \vec{b}) \cdot \vec{n} = 0\]
+$n$ is a normal vector to the plane $P$.
+Rearranging: $n_{1} x_{1} + n_{2} x_{2} + n_{3} x_{3} = n_{1} a_{1} + n_{2} a_{2} + n_{3} a_{3}$.
+\end{thrm}
+
+\subsection{Projections}
+\begin{defn}
+Let $\vu,\vv \in \R^n$ with $\vv \neq \vec{0}$. The \textbf{projection of $\vu$ onto $\vv$} is
+\[\operatorname{proj}_{\vv} (\vu) = \f{\vu \cdot \vv}{||\vv||^2} \vv\]
+The \textbf{perpendicular of $\vu$ onto $\vv$} is
+\[\operatorname{perp}_{\vv}(\vu) = \vu - \operatorname{proj}_{\vv}(\vu)\]
+\end{defn}
+\begin{qte}
+To project a vector onto a plane, take the perpendicular of the vector projected onto the normal of the plane.
+\end{qte}
+
+\section{Systems of Linear Equations}
+
+\begin{defn}
+A system of linear equations in $n$ variables
+\begin{equation}
+c x_{1} + c x_{2} + \cdots + c x_{n} = b_{1}
+\end{equation}
+\begin{equation}
+c x_{1} + c x_{2} + \cdots + c x_{n} = b_{2}
+\end{equation}
+\begin{equation}
+c x_{1} + c x_{2} +\cdots + c x_{n} = b_{3}
+\end{equation}
+$\vec{s} = \begin{bmatrix} s_{1} \\ s_{2} \\ \vdots \end{bmatrix} \in \R^n$ is a solution to the system if all the equations are satisfied when $x_{i}$ is set to $s_{i}$.\\\\
+If a system has a solution, it is \textbf{consistent}. If not, it is \textbf{inconsistent}.
+\end{defn}
+\begin{defn}
+A \textbf{solution set} is the set of all solutions of a system of linear equations. Two systems of equations are equivalent if they have the same solution set.
+\end{defn}
+
+\begin{defn}
+The \textbf{coefficient matrix} of a system is denoted by $A = \begin{bmatrix} a_{11}  & a_{21} & \cdots \\ a_{21} & a_{22} & \cdots \end{bmatrix}$.
+\end{defn}
+\begin{defn}
+The \textbf{augment matrix} is 
+\[
+\begin{bmatrix}[cc|c]
+  a_{11} & a_{12} & b_{1}\\
+  a_{21} & a_{22} & b_{2}
+\end{bmatrix}
+\]
+\end{defn}
+\begin{thrm}
+If two augmented matrices are row equivalent, then the system of linear equations associated with each matrix are equivalent.
+\end{thrm}
+\begin{mthd}
+The three \textbf{elementary row operations} for solving a system of linear equations are:
+\begin{enumerate}
+\item Multiplying a row by a scalar
+\item Adding a multiple of one row to another
+\item Swapping two rows
+\end{enumerate}
+\end{mthd}
+\begin{defn}
+A matrix is said to be in \textbf{reduced row echelon form} if:
+\begin{enumerate}
+  \item All rows containing a non-zero entry are above rows which only contain zeroes.
+  \item The first non-zero entry in each row is 1. (\textbf{leading one}).
+  \item Leading one on each zero row is to the right of the leading one on any row above it.
+  \item Leading one is the only non-zero entry in its column.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Let $R$ be the RREF of a coefficient matrix of a system of linear equations. If the jth column does not contain a leading one, $x_{j}$ is a \textbf{free variable}.
+\end{defn}
+
+\begin{defn}
+The \textbf{rank} of a matrix is the number of leading ones in the RREF of the matrix.
+\end{defn}
+
+\begin{thrm}
+Let $A$ be the $m \times n$ coefficient matrix of a system of linear equations.
+\begin{enumerate}
+\item IF the rank of $A$ is less than the rank for the augmented matrix, then the system is inconsistent.
+\item If the system is inconsistent, then the system contains $n - \text{ rank}\,A$ free variables. A consistent system has a unique solution if and only if rank $A=n$.
+\item rank $A=m$ if and only if the system is consistent for every $\vec{b} \in \R^m$
+\end{enumerate}
+\end{thrm}
+
+\begin{defn}
+A system of linear equations is said to be \textbf{homogeneous system} if the right-hand side only contains zeroes. It has the form $\begin{bmatrix} A\, |\, \vec{0} \end{bmatrix}$.
+\end{defn}
+
+\begin{thrm}
+The solution set of a homogeneneous systesm of $M$ linear equations in $n$ variables is a subspace of $R^n$.
+\end{thrm}
+
+\section{Matrices}
+\begin{defn}
+A $m \times n$ \textbf{matrix} is a rectangular array with $m$ rows and $n$ columns.
+\end{defn}
+
+\begin{defn}
+The \textbf{zero matrix}, denoted as $O_{m,n}$ is the matrix whose entries are all $0$.
+\end{defn}
+
+\begin{defn}
+The \textbf{transpose} of an $m \times n$ matrix $A$ is the $n \times m$ matrix $A^T$ whose ij-th entry is the ji-th entry of $A$.
+\[ (A^T)_{ij} = (A)_{ji}\]
+\end{defn}
+
+\begin{thrm}
+For any $m \times n$ matrices $A$ and $B$ and scalar $c \in \R$, 
+\begin{itemize}
+\item $(A^T)^T = A$
+\item $(A+B)^T = A^T + B^T$
+\item $(cA)^T = cA^T$
+\end{itemize}
+\end{thrm}
+
+\begin{defn}
+\textbf{Matrix-Vector multiplication:} Let $A$ be an $m \times n$ matrix whose rows are denoted $\vec{a}_{i}^T$ for $1 \leq i \leq m$. Then, for any $\vx \in \R^n$, we define
+\[ A \vx = \begin{bmatrix} \vec{a}_{1} \cdot \vx \\ \vdots \\ \vec{a}_{m} \cdot \vx \end{bmatrix} \]
+An alternate form is 
+\[ A \vx = x_{1} \begin{bmatrix} a_{11} \\ \vdots \\ a_{m1} \end{bmatrix} + \cdots + x_{n} \begin{bmatrix} a_{1n} \\ \vdots \\ a_{mn} \end{bmatrix} \]
+\end{defn}
+
+\begin{mthd}
+\textbf{Matrix Multiplication:} Let $A$ be an $m \times n$ matrix and let $B = \lbrack \vec{b}_{1}\, \cdots\, \vec{b}_{p} \rbrack$ be an $n \times p$ matrix. Then, $AB$ is the $m \times p$ matrix 
+\[ AB = \lbrack A \vec{b}_{1} \, \cdots \, A \vec{b}_{p}\rbrack \]
+\end{mthd}
+
+\begin{note}
+The number of columns of $A$ must equal to the number of rows of $B$ for this to be defined. The resulting matrix will have the same rows as $A$ and same columns as $B$.
+\end{note}
+
+\begin{qte}
+Matrix Multiplication is NOT commutative. $AB \neq BA$., if $AB = AC$, $B \neq C$.
+\end{qte}
+
+\begin{defn}
+The $n \times n$ \textbf{identity matrix}, denoted as $I$, is the matrix containing a diagonal row of $1$s and everything else set to $0$. The columns of $I_{n}$ are the standard basis vectors of $\R^n$. \\\\
+For every $n \times n$ matrix, $A$, $AI = A$.
+\end{defn}
+
+\begin{defn}
+\textbf{Block matrix}:
+\begin{exmp}
+Let $A = \begin{bmatrix} 1 & -1 & 3 & 4 \\ 0 & 0 & 0 & 0 \\ 0 & 3 & 1 & 2 \end{bmatrix} $. By reducing $A$ into blocks, we can write
+\[ A = \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{bmatrix} \]
+with $A_{11} = \begin{bmatrix} 1 & -1 \\ 0 & 0 \end{bmatrix}$, $A_{12} = \begin{bmatrix} 3 & 4 \\ 0 & 0 \end{bmatrix}$, 
+$A_{21} = \begin{bmatrix} 0 & 3 \end{bmatrix} $, $A_{22} = \begin{bmatrix} 1 & 2 \end{bmatrix}$. \\
+These are useful to distribute matrix multiplication over multiple computers to speed up the process.
+\end{exmp}
+\end{defn}
+
+\subsection{Linear Mapping}
+
+\begin{defn}
+A function $L : \R^n \rightarrow \R^m$ is said to be a \textbf{linear mapping} if for every $\vx,\vy \in \R^n$ and $b,c \in \R$, we have
+\[ L(b\vx + c \vy) = bL(\vx) + cL(\vy)\]
+\end{defn}
+\begin{note}
+This definition can be used to prove linear mapping.
+\end{note}
+
+
 \end{document}
