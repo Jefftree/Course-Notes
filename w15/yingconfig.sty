@@ -152,6 +152,15 @@ numberwithin=section]{mtd}
 %========================HEADER============================================
 
 
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+
 %\renewcommand*{\familydefault}{\sfdefault}
 \renewcommand*\rmdefault{ppl}
 
@@ -227,6 +236,7 @@ numberwithin=section]{mtd}
 \newcommand{\U}{{\mathcal{U}}}
 
 \newcommand{\vv}{\vec{v}}
+\newcommand{\vu}{\vec{u}}
 \newcommand{\vw}{\vec{w}}
 \newcommand{\vx}{\vec{x}}
 \newcommand{\vy}{\vec{y}}
