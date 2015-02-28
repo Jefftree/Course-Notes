@@ -97,7 +97,7 @@ In racket, ~a is used as a placeholder.
 \end{defn}
 
 \begin{defn}
-Structures in C are very similar to racket. 
+Structures in C are very similar to racket.
 \begin{lstlisting}[language=C]
 struct posn {
   int x;
@@ -147,7 +147,7 @@ A \textbf{block} $\{\}$, is known as a compound statement, and contains a sequen
 \end{defn}
 
 \begin{defn}
-\textbf{printf} in C returns an int representing the number of characters printed. 
+\textbf{printf} in C returns an int representing the number of characters printed.
 \end{defn}
 
 \begin{defn}
@@ -196,7 +196,7 @@ A \textbf{bit} has two states: $0$ or $1$. A \textbf{byte} is $8$ bits of storag
 \begin{itemize}
 \item A \textbf{char} is $1$ byte.
 \item An \textbf{int} is $4$ bytes.
-\item An \textbf{address} is $8$ bytes. 
+\item An \textbf{address} is $8$ bytes.
 \end{itemize}
 \end{defn}
 
@@ -243,7 +243,7 @@ A \textbf{float} represents real numbers and has a larger range than int. Floats
 
 
 \subsection{Memory}
-Memory can be modelled as 
+Memory can be modelled as
 \begin{center}
 \begin{tabular}{|c|}
 \hline
@@ -318,7 +318,7 @@ while (num!=0) { // 6,3,2,1, end
   if (num == 6) {
     num -= 3;
     continue;
-  } 
+  }
   num --;
 }
 \end{lstlisting}
@@ -340,7 +340,7 @@ The \textbf{address operator} \& produces the starting address of where the valu
 \begin{defn}
 By adding a * before an identifier, it becomes a pointer, and its value is an address.
 \begin{lstlisting}[language=C]
-i = 42; 
+i = 42;
 int *p = &i; // p points to i
 printf(``p is %p'', p); \\ prints the address of i
 \end{lstlisting}
@@ -382,7 +382,7 @@ The value of what a pointer is pointing at may be changed. They can be dereferen
 int i = 5;
 int j = 6;
 int *p = &i;
-int *q = p; 
+int *q = p;
 *q = j; // i = 6
 \end{lstlisting}
 
@@ -454,4 +454,51 @@ int count2 = scanf (`` %c'', &c); // Skips whitespace
 \end{lstlisting}
 \end{note}
 
+\todo{Start of arrays}
+\section{Arrays initialization slide}
+\begin{lstlisting}[language=C]
+int a[5]; // Valid, size defined
+int b[] = {4,8,15,16,23,42}; //Valid size can be computed
+int c[]; // Invalid
+\end{lstlisting}
+
+\begin{defn}
+The \textbf{length} if an array is the number of elements in the array.
+\end{defn}
+
+\begin{defn}
+The \textbf{size of an array} is the number of bytes it occupies in memory.
+\end{defn}
+
+\begin{qte}
+C does not explicitly keep track of the array length.
+\end{qte}
+
+\begin{lstlisting}[language=C]
+int a[] = {2,4}; // a by default points to a[0]
+assert(&a == &a[0]);
+assert(a == &a);
+assert(*a == a[0])
+\end{lstlisting}
+
+\begin{note}
+An array cannot be mutated. Only its elements can change.
+\begin{lstlisting}[language=C]
+int a[3] = {0, 0, 0};
+int b[3] = {1, 2, 3};
+a = b; // INVALID
+\end{lstlisting}
+\end{note}
+
+\begin{qte}
+When passing an array to a function, typically the length of the array is unknown and must be provided as a separate parameter.
+\end{qte}
+
+\begin{qte}
+Pointer arithmetic is only valid within an array.
+\end{qte}
+
+If there are two pointers p and q
+\[p-q = \f{(p-q)}{\text{sizeof(*p)}}\]
+midterm up to 8-26
 \end{document}
