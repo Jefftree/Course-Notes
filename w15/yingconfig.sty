@@ -5,7 +5,6 @@
 \newmdenv[hidealllines=true,backgroundcolor=red!20]{shaded}
 
 
-
 \usepackage{notes}
 \usepackage[textsize=tiny]{todonotes}
 
@@ -75,17 +74,15 @@
 }
 
 
-\usepackage{courier}
-
 \lstset{frame=tblr,
-  basicstyle={\ttfamily\small},
+  basicstyle={\ttfamily},
   numbers=left,
-  keywordstyle=\color{blue},
+  keywordstyle=\color{blue}\bfseries,
   commentstyle=\color{dkgreen},
   stringstyle=\color{mauve},
   backgroundcolor=\color{yellow},
   showspaces=false,
-  showstringspaces=false, 
+  showstringspaces=false,
   tabsize=2,
   escapeinside={\%*}{*)}
 }
@@ -208,7 +205,7 @@ numberwithin=section]{mtd}
 %\end{abstract}
 
 \tableofcontents{}
-\noindent 
+\noindent
 \rule[0.5ex]{1\columnwidth}{1pt}
 \par
 \vfill
