@@ -10,48 +10,61 @@
 \begin{document}
 \notesheader
 \section{Introduction}
+
 \begin{defn}
 \textbf{Probability} is the study of randomnesses and uncertainty.
 \begin{itemize}
 \item Variability in population, processes or phenomena
 \end{itemize}
 \end{defn}
+
 \begin{defn}
 \textbf{Classic Interpretatation} makes assumptions about the physical world to deduce probability.
 \[ \f{\text{\# ways an event can occur}}{\text{Total \# of outcomes}}\]
 \end{defn}
+
 \begin{defn}
 \textbf{Relative-frequency interpretation} is when the probability of specific outcome is defined as the proportion of times it occurs over the long run. May only be used if the experiment may be repeated.
 \end{defn}
+
 \begin{defn}
 \textbf{Frequency} is just the amount of times an event occurs while \textbf{relative frequency} is a fraction of the amount of times an event occurs over the total amount of possible outcomes.
 \end{defn}
+
 \begin{defn}
 \textbf{Personal-probability interpretation} is the degree to which a given individual believes the event wil happen.
 \end{defn}
+
 \begin{qte}
 \textbf{Coherent} means that personal probability of one event does not contradict personal probability of another.
 \end{qte}
+
 \begin{exmp}
 If the probability of finding a parking space is 0.2, the probability of not finding one should be 0.8.
 \end{exmp}
+
 \subsection{Probability Models}
+
 \begin{defn}
 \textbf{Experiment} is any action, phenomenon, or process whose outcome is subject to uncertainty.
 \end{defn}
+
 \begin{defn}
 \textbf{Trial} is a single repetition of an experiment.
 \end{defn}
+
 \begin{defn}
-\textbf{Sample space}, denoted by $S$, is the set of possible distinct outcomes. In a single trial, only one outcome may occur. The sample space may be either \textbf{discrete} or \textbf{continuous}. 
+\textbf{Sample space}, denoted by $S$, is the set of possible distinct outcomes. In a single trial, only one outcome may occur. The sample space may be either \textbf{discrete} or \textbf{continuous}.
 \end{defn}
+
 \begin{defn}
-An \textbf{event} is any subset of outcomes contained in the sample space $S$. 
+An \textbf{event} is any subset of outcomes contained in the sample space $S$.
 \begin{itemize}
 \item \textbf{Simple} - one outcome
 \item \textbf{Compound} - more than one outcome
 \end{itemize}
 \end{defn}
+
 \subsection*{Probability notation}
 $P(\text{event})$ is used to denote the probability of an event occurring. The \textbf{compliment} is the probability of an event not happening and is denoted as $P(A^c)$ or $P(\overline{A})$
 \begin{defn}
@@ -59,27 +72,33 @@ The odds in \textbf{favour} of an event is the odds of an event occurring compar
 \[\f{P(A)}{P(A^c)} = \f{P(A)}{1-P(A)}\]
 The odds against is the reciprocal of odds in favour.
 \end{defn}
+
 \begin{thrm}
 \[\sum_{i=0}^k P(A_{i}) = 1\]
 The set $P(A_{i}), i = 1,2,\dots$ is the probability distribution on $S$.
 \end{thrm}
+
 \begin{thrm}
 If $A$ and $B$ are two events wirh $A \subseteq B$, then $P(A) \leq P(B)$
 \end{thrm}
+
 \begin{defn}
 Two events are \textbf{mutually exclusive} or \textbf{disjoint} if they cannot happen simultaneously.
 \[A \cap B = \emptyset \]
 \end{defn}
 \tabularnewline
+
 \subsection{Counting Techniques}
 Counting Principle $\bullet$ Permutations $\bullet$ Combinations\\\\
 
 \begin{defn}
 \textbf{Addition rule}: When there are $m$ ways to perform $A$, and $n$ ways to perform $B$, there are $m+n$ ways to perform $A$ \textbf{OR} $B$.
 \end{defn}
+
 \begin{defn}
 \textbf{Product rule}: Where there are $p$ ways to perform $A$, and $q$ ways to perform $B$, there are $m \times n$ ways to perform $A$ \textbf{AND} $B$.
 \end{defn}
+
 \begin{defn}
 \textbf{Uniform Probability Model}:
 \[P(A) = \f{\text{Outcomes in } A}{\text{Outcomes in } S} \]
@@ -97,17 +116,22 @@ The amount of ways to arrange $n$ items (all of them have to be used) is $n!$
 Any unordered sequence of $k$ objects taken from a set of $n$ distinct objects is called a \textbf{combination}.
 \[C_{k,n} = {n \choose k} = \f{n!}{k! (n-k)!}\]
 \end{defn}
+
 \begin{exmp}
 \textbf{Binomial Theorem}:
 \[(1+x)^n = {n \choose 0} + {n \choose 1} x + {n \choose 2} x^2 + \dots + {n \choose n} x^n\]
 \end{exmp}
 
+\section{Chapter 4}
+
 \begin{defn}
 The \textbf{union} of two events $A$ and $B$, $A \cup B$ is the set containing all outcomes in either $A$ or $B$.
 \end{defn}
+
 \begin{defn}
 The \textbf{intersection} of two events $A$ and $B$, $ A \cup B$ is the set containing all outcomes that are in both $A$ and $B$.
 \end{defn}
+
 \begin{defn}
 The \textbf{empty set}, $\emptyset$ is the set containing no outcomes.
 \end{defn}
@@ -117,12 +141,14 @@ The probability of \textbf{either} event happening is the sum of their individua
 \[ P(A \cup B) = P(A) + P(B)\]
 only if $A$ and $B$ are mutually exclusive.
 \end{defn}
+
 \begin{note}
 For non-mutually exclusive events, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
 \[P(A \cup B \cup C) = P(A) + P(B) + P(C) - \lbrack P (A \cap B) + P(A \cap C) + P (B \cup C)\rbrack + P (A \cap B \cap C)\]
 \end{note}
+
 \begin{defn}
-Two events are \textbf{independent} if and only if 
+Two events are \textbf{independent} if and only if
 \[ P(A \cap B) = P(A) P(B)\]
 \end{defn}
 
@@ -130,10 +156,200 @@ Two events are \textbf{independent} if and only if
 The conditional probability of $A$ given $B$ is defined by
 \[ P(A | B) = \f{P(A \cap B)}{P(B)}\]
 \end{defn}
+
 \begin{note}
-If two events $A$ and $B$ are independent, then 
+If two events $A$ and $B$ are independent, then
 \[P(A) = P(A | B)\]
 \end{note}
+
+\begin{qte}
+Show all steps to combinations and permutation. (formulas)
+\end{qte}
+
+\begin{defn}
+A set of events is \textbf{exhaustive} when at least one of the events must occur.
+\end{defn}
+
+\subsubsection*{Disease Problems}
+
+\begin{defn}
+Terminology:
+\begin{itemize}
+\item \textbf{False positive} is when test indicates positive and is wrong (true status is negative). $(T\,|\,D^c)$
+\item \textbf{False negative} is when a test indicates a negative status and is wrong (true status is positive). $(T^c\,|\,D)$
+\item \textbf{Sensitivity/ True positive} is when a test indicates a positive status and is correct. $(T\,|\,D)$
+\item textbf{Specificity/ True negative} is when a test indicates a negative status and is wrong (true status is negative) $(T^c\,|\,D^c)$
+\end{itemize}
+\end{defn}
+
+\begin{exmp}
+A cheap blood test for HIV has the following characteristics:
+\begin{itemize}
+\item False positive rate is $0.5\%$
+\item False negative rate is $2\%$
+\item Around $0.04\%$ of Canadian males are infected with HIV
+\end{itemize}
+Determine the probability that if a male tests positive for HIV, he actually has HIV.
+\begin{sol}
+Let $D$ represent has disease and $T$ represent test positive. We are looking for $P(D\,|\,T)$. This is equivalent to
+\[P(D\,|\,T) = \f{P(DT)}{P(T)}\]
+Given information:
+\[P(D) = 0.0004, P(D^c) = 0.9996\]
+\[P(T^c\,|\,D)= 0.02, P(T\,|\,D) = 0.98\]
+\[P(T\,|\,D^c) = 0.005, P(T^c\,|\,D^c) = 0.995\]
+Now for the calculations
+\[ P(DT) = P(T\,|\,D) \cdot P(D) = 0.98 \cdot 0.0004 = 0.000392\]
+\[P(T) = P(DT) + P(D^cT) = P(DT) + P(T\,|\,D^c) \cdot P(D^c) = 0.000392 + 0.005 \cdot 0.9996 = 0.00539\]
+\[P(D\,|\,T) = \f{0.000392}{0.00539} = 0.0727\]
+\end{sol}
+\end{exmp}
+
+\begin{thrm}
+\textbf{Bayes's Theorem} states: Let $A_{1},A_{2},\dots,A_{k}$ be mutually exclusive with prior probabilities $P(A_{i})\,i=1,2,\dots,k$. Then for any other event $B$ where $P(B) > 0$, the positerior probability of $A_{j}$ given that $B$ has occurred is
+\[P(A_{j} | B) = \f{P(A_{J} \cap B)}{P(B)} \]
+\end{thrm}
+
+\section{Distributions}
+
+\begin{defn}
+A \textbf{variable} is any characteristic whose value may change from one object to another in the population. They are denoted by lowercase letters.
+\end{defn}
+\subsection*{Types of Variables}
+
+\begin{defn}
+\textbf{Numeric variable} is a quantitative variable.
+\begin{itemize}
+\item \textbf{Continuous variable}: Can take values consisting of an entire interval ith infinite number of real values. (eg: time)
+\item \textbf{Discrete variable}: Can only take finite number of real values (even if limits may approach infinity). (eg number of people)
+\end{itemize}
+\end{defn}
+
+\begin{defn}
+\textbf{Categorical variables} have values that describe a quality or characeristic of a data unit.
+\begin{itemize}
+\item \textbf{Ordinal variables} take on values that can be ordered/ranked. (grades, clothing size)
+\item \textbf{Nominal variables} take on value that are not able to be sequentialized. (gender)
+\end{itemize}
+\end{defn}
+
+\begin{defn}
+\textbf{Univariate Data} only involve a single variable. Main purpose of these is for central tendency analysis.
+\end{defn}
+
+\begin{defn}
+\textbf{Bivariate data} involves two variables, and deals with causes or relationships. Analysis of variables simultaneously for correlation.
+\end{defn}
+
+\begin{defn}
+\textbf{Multivariate data} involve more than two variables for more in depth analysis.
+\end{defn}
+
+\begin{defn}
+A \textbf{random variable} is a function whose domain is the sample space and whose range is the set of possible values of the variable. It maps each outcome in the sample space with an outcome based on what the r.v. represents.
+
+\begin{exmp}Let $X$ denote number of heads in two coin flips. $P(X = 0) = \f{1}{4}$.
+\[\text{Sample space: } \{TT,HT,TH,HH\}\]
+
+\begin{displaymath}
+   X = \left\{
+     \begin{array}{lr}
+       0 : &TT \\
+       1 : &HT,TH\\
+       2 : &HH\\
+     \end{array}
+   \right.
+\end{displaymath}
+\end{exmp}
+\end{defn}
+
+\begin{defn}
+The \textbf{probability function} of a random variable, $X$ is a function
+\[f(x) = P(X=x)\qquad \forall x \in \mathbb{S}\]
+Properties include:
+\[f(x) \geq 0 \qquad \forall x \in \mathbb{S}\]
+\[\sum_{x \in \mathbb{S}} f(x) = 1\]
+\end{defn}
+
+\begin{defn}
+A \textbf{probability distribution} of $X$ is a description of the probabilities associated with all the possible values of $X$. It shows how the total probably of $1$ is distributed among the various values of $X$.
+\end{defn}
+
+\begin{defn}
+The \textbf{cumulative distribution function} is defined by
+\[F(x) = P(X \leq x) = \sum_i^x f(i)\]
+For a number $x$, $F(x)$ is the probability that the observed value will be at most $x$.
+\end{defn}
+
+\begin{mthd}
+To calculate the cdf, first $P(x)$ must be determined for all values of $x$. Then add each $f(x)$ to all the previous ones to obtain $P(x)$. For example if the range was $\{0,1,2\}$
+\[ F(1) = P(X \leq 1) = P(1) + (0)\]
+\begin{displaymath}
+   F(x) = \left\{
+     \begin{array}{lr}
+       \# : & x < 0 \\
+       \# : & 0 \leq x < 1\\
+       \# : &1 \leq x < 2\\
+     \end{array}
+   \right.
+\end{displaymath}
+\end{mthd}
+
+\begin{note}
+For any number $a$ and $b$ with $a \leq b$,
+\[P(a \leq X \leq b) = F(b) - F(a-)\]
+$a-$ represents the largest $X$ value that is strictly less than $a$.
+\end{note}
+
+\begin{note}
+In addition: $f(x) = F(x) - F(x-1)$
+\end{note}
+
+\subsection{Uniform Distribution}
+\begin{defn}
+\textbf{Uniform distribution} is where each outcome has equal probability. If the range was from $a$ to $b$,
+\begin{displaymath}
+   P(X = x) = \left\{
+     \begin{array}{lr}
+       \f{1}{b-a+1} = \f{1}{n} &: x \in \lbrack a,b \rbrack\\
+       0 &: x \not\in \lbrack a,b \rbrack \\
+     \end{array}
+   \right.
+\end{displaymath}
+Examples of this distribution include rolling a fair die, flipping a fair coin.
+\end{defn}
+
+\subsection{Binomial Distribution}
+\begin{defn}
+\textbf{Binomial distributions} are based on the probability experiments for which the results of each trial can be either a success or faillure. Requirements include:
+\begin{itemize}
+\item Experiment is repeated for fixed number of trials
+\item Only two possible outcomes for each trial
+\item Trials are independent
+\item Probability of success is fixed
+\item If sampling is without replacement, only use binomial distribution if the sample size is at most $5\%$ of the population size.
+\end{itemize}
+\end{defn}
+\subsubsection*{Formula}
+\begin{itemize}
+\item $p$ denotes the probability of success in a trial.
+\item $q = 1 - p$ denotes the probability of failure in a trial.
+\item $X$ is the range of successes in n tries (where $x = 0,\cdots,n$)
+\end{itemize}
+\[P(X = x) = b(x;n,p) = {n \choose x} p^x (1-p)^{n-x},\,0 \leq x \leq n\]
+We write $x\sim$ Binomial$(n,p)$.
+
+\todo{On chapter 5c}
+
+\section{cpt 7, pg 35}
+\begin{note}
+Mean is denoted as $\mu$.
+\end{note}
+
+\begin{defn}
+\textbf{Variance} is a measure of the spread of the recorded values on a variable. It is a measure of dispersion.
+\[ s^2 = \f{\sum_{i=1}^n (x_{i}- \overline{x})^2}{n-1}\]
+\end{defn}
+
 
 \end{document}
 
