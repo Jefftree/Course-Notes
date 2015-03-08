@@ -340,16 +340,90 @@ We write $x\sim$ Binomial$(n,p)$.
 
 \todo{On chapter 5c}
 
-\section{cpt 7, pg 35}
-\begin{note}
-Mean is denoted as $\mu$.
-\end{note}
-
+\section{Value and Variance}
 \begin{defn}
-\textbf{Variance} is a measure of the spread of the recorded values on a variable. It is a measure of dispersion.
-\[ s^2 = \f{\sum_{i=1}^n (x_{i}- \overline{x})^2}{n-1}\]
+A histogram displays information on the frequency and relative frequency of each $x$ in the data set.
 \end{defn}
 
+\subsubsection*{Characteristics}
+\begin{itemize}
+\item \textbf{Symmetry}: if the graph is symmetrical.
+\item \textbf{Unimodal}: if there is a single promiment peak. (Local maximum)
+\item \textbf{Bimodal}: Two prominent peaks
+\item \textbf{Multimodal}: More than two prominent peaks.
+\end{itemize}
+
+\begin{defn}
+\textbf{Skewedness} refers to whether the data is pulled to wards a side. Could be positively skewed (towards left) or negatively skewed (towards right).
+\end{defn}
+
+\begin{defn}
+The \textbf{arithmetic mean} denotes the arithmetic average value of observations. (Average)\\\
+The \textbf{sample mean} measure the location, balance, and center of a sample.
+\[\overline{x} = \f{1}{n} \sum_{i=1}^n x_{i}\]
+The \textbf{population mean} is a weighted average in a probability distribution.
+\[ \mu = \sum_{i=1}^N x_{i} \cdot f(x)\]
+\end{defn}
+
+\begin{defn}
+The \textbf{median} is the middle value in the \textbf{ordered sample}. If there are two, take the average of the two.
+\end{defn}
+
+\begin{defn}
+The \textbf{mode} is the value that occurs most often.
+\end{defn}
+
+\begin{defn}
+\textbf{Outliers} are values that are very far from the rest of the data. Outlists affect the mean, but generally do not affect median and mode.
+\end{defn}
+
+\begin{defn}
+\textbf{Variance} is a measure of the spread of the recorded values on a variable. It is a measure of dispersion. The \textbf{sample variance} is
+\[ s^2 = \f{\sum_{i=1}^n (x_{i}- \overline{x})^2}{n-1}\]
+For $N$ observations in a population, the \textbf{population variance} is
+\[\sigma^2 = \sum_{i=1}^N (x_{i} - \mu)^2 \cdot f(x) = \f{\sum_{i=1}^N (x_{i} - \mu)^2}{N}\]
+\end{defn}
+
+\begin{defn}
+$E(X)$ is the expected value of a distribution and is usually denoted as $\mu_{x}$.\\\\
+Variance of $X$, denoted as $\sigma^2$ is
+\[\sigma^2 = V(X) = \sum (x-\mu)^2 f(x) = E(X- \mu)^2 = \sum x^2 f(x) - \mu^2 = E(X^2) - \lbrack E(X) \rbrack ^2\]
+\end{defn}
+\[\text{Var} (X) = E(X^2) - \mu ^2\]
+\[\text{Var}(x) = E(X(X-1)) + \mu - \mu^2\]
+
+If $X$ is a discrete random variable with the probability function $f(x)$, then the expected value of a function $g(x)$ applied to all the values of $X$ is
+\[E(g(x)) = \sum g(x) f(x)\]
+\subsubsection*{Properties of Expected Value}
+\[E(a\,g(X) + b) = a E(g(X)) + b\]
+\subsubsection*{Rules of Variance}
+\[V(aX + b) = a^2 \sigma^2_{x}\]
+\[\sigma_{ax+b} = |a| \sigma_{x}\]
+\begin{note}
+The addition of a constant does not affect variance because it only changes location of mean value, but entire graph is shifted so spread is the same.
+\end{note}
+
+If $X$ \textasciitilde Bin$(n,p)$ then
+\[\mu_{x} = E(X) = np\]
+\[\sigma^2 = Var(X) = np(1-p)\]
+
+If $X$ follows hypergeometric:
+\[p = \f{r}{N}\]
+\[E(X) = np\]
+\[V(X) = \f{N-n}{N-1} np(1-p)\]
+
+If $X$ follows Poisson distribution
+\[\mu = \lambda\]
+\[\sigma^2 = \lambda\]
+
+
+If $X$ follows uniform distribution
+\[\mu = \f{a+b}{2}\]
+\[\sigma^2 = \f{(b-a+1)^2 - 1}{12}\]
+
+If $X$ follows negative binomial
+\[\mu = \f{kq}{p}\]
+\[\sigma = \f{kq}{p^2}\]
 
 \end{document}
 
