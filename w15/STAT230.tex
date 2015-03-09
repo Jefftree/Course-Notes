@@ -426,6 +426,111 @@ If $X$ follows negative binomial
 \[\sigma = \f{kq}{p^2}\]
 
 
+\todo{cpt 7}
+
+
+
+\section{Continuous Probability Distributions}
+
+\begin{defn}
+A random variable that can accept any value within an interval of numbers is \textbf{continuous}. Since there is an infinite amount of numbers between any two intervals, $P(X=x) = 0$ for each $x$ within the range.
+\end{defn}
+
+\begin{defn}
+A \textbf{probability distribution} for a \textbf{continuous variable} $X$ is a function $f(x)$, and it measures an interval such that for any two numbers $a \leq b$,
+\[P(a \leq X \leq b) = \int_a^b f(x)\,dx\]
+\end{defn}
+
+\begin{note}
+Since $\int_a^a f(x) = 0$, $P(a \leq X \leq b) = P(a < X < b)$.
+\end{note}
+
+\begin{exmp}
+Suppose that $X$ is a continuous rv with a probability density function
+\begin{displaymath}
+   f(x) = \left\{
+     \begin{array}{lr}
+       C(4x-2x^2) : 0 < x < 2 \\
+       0 : \text{otherwise}
+     \end{array}
+   \right.
+\end{displaymath}
+\begin{itemize}
+\item Find the value of $C$
+\item Find $P(X > 1)$
+\end{itemize}
+
+\begin{sol}
+\[C \int_0^2 (4x 02x^2)\,dx = 1\]
+\[C (2x^2 - \f{2x^3}{3})\Big|_0^2 = 1\]
+\[C = \f{3}{8}\]
+\[f(x)=\f{3}{8}(4x-2x^2),\,0<x<2\]
+Therefore
+\[P (X > 1) = \int_1^2 f(x)\,dx = \f{3}{8} \int_1^2 (4x - 2x^2)\,dx = \f{1}{2}\]
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Let the continuous rv $X$ denote the current measured in a thin wire in milliamperes. Assume that the range of $X$ is $\lbrack 0.200\rbrack$ mA, and the probability density function is
+\begin{displaymath}
+   f(x) = \left\{
+     \begin{array}{lr}
+       0.05 : 0 \leq x \leq 20 \\
+       0 : \text{otherwise}
+     \end{array}
+   \right.
+\end{displaymath}
+What is the probability that a current measurement is less than $10$ milliamperes?
+
+\begin{sol}
+\[P (X < 10) = \int_0^{10} 0.05\,dx = 0.05 x\Big|_0^{10} = 0.5\]
+\end{sol}
+\end{exmp}
+
+\begin{defn}
+The \textbf{cumulative distribution function}, $F(x)$ for a \textbf{continuous random variable},$X$, is defined by
+\[F(x) = P(X \leq x) = \int_{-\infty}^x f(y)\,dy\]
+\end{defn}
+
+\subsubsection*{Properties of cdf}
+\begin{itemize}
+\item $\lim_{x \to \pm \infty} F(x) = 0$
+\item $F(x)$ is a non-decreasing function of $x$.
+\item $P(a < X \leq b) = F(b) - F(a)$
+\item $P(X = a) = 0$
+\end{itemize}
+
+\begin{exmp}
+Utilizing the previous battery example, the cdf is
+\[F(x) = \int_0^x f(u)\,du = 0.05x\]
+\begin{displaymath}
+   F(x) = \left\{
+     \begin{array}{lr}
+       0 : x < 0 \\
+       0.05x : 0 \leq x < 20 \\
+       1 : x \geq 20
+     \end{array}
+   \right.
+\end{displaymath}
+\end{exmp}
+
+\begin{note}
+If $X$ is a continuous rv with pdf $f(x)$, and cdf $F(x)$, then at every number for which $F'(x)$ exists,
+\[F'(x) = f(x)\]
+\end{note}
+
+\begin{defn}
+The \textbf{percentile} refers to the value for which a percentage of data falls below. For example being in the 99th percentile means that $99\%$ of people in the sample space are below you.
+\end{defn}
+
+\todo{Stopped at change of variable}
+
+
+
+
+
+
+
 
 \todo{Up to normal distribution}
 
