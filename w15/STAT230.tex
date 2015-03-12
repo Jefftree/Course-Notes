@@ -282,7 +282,7 @@ For a number $x$, $F(x)$ is the probability that the observed value will be at m
 
 \begin{mthd}
 To calculate the cdf, first $P(x)$ must be determined for all values of $x$. Then add each $f(x)$ to all the previous ones to obtain $P(x)$. For example if the range was $\{0,1,2\}$
-\[ F(1) = P(X \leq 1) = P(1) + (0)\]
+\[ F(1) = P(X \leq 1) = P(1) + P(0)\]
 \begin{displaymath}
    F(x) = \left\{
      \begin{array}{lr}
@@ -329,6 +329,7 @@ Examples of this distribution include rolling a fair die, flipping a fair coin.
 \item If sampling is without replacement, only use binomial distribution if the sample size is at most $5\%$ of the population size.
 \end{itemize}
 \end{defn}
+
 \subsubsection*{Formula}
 \begin{itemize}
 \item $p$ denotes the probability of success in a trial.
@@ -338,11 +339,58 @@ Examples of this distribution include rolling a fair die, flipping a fair coin.
 \[P(X = x) = b(x;n,p) = {n \choose x} p^x (1-p)^{n-x},\,0 \leq x \leq n\]
 We write $x\sim$ Binomial$(n,p)$.
 
-\todo{On chapter 5c}
+
+
+\begin{defn}
+The \textbf{Hypergeometric Distribution} is where a sample is taken from a finite population without replacement. Similar to binomial distribution, each trial has the possibility of success or failure. $N$ is the population, $n$ is the sample selected, $r$ is the total amount of successes available in the population, and $x$ represents the amount of successes within the selected sample.
+\[P(X=x) = \f{{r\choose x} {n-1 \choose n - x}}{{N \choose n}},\,x = 0,1,\dots,n\]
+\begin{qte}
+Choose $x$ successes from the success samples, and out of the remaining failures, $N-r$, choose $n-x$ (failures in sample), all over the total amount of ways to select $n$ things in the population $N$.
+\end{qte}
+\end{defn}
+
+\begin{defn}
+The \textbf{negative binomial distribution} is based on an experiment satisfying thes conditions (similar to binomial)
+\begin{itemize}
+\item Independent trials
+\item Only success or failure
+\item P(success) is constant
+\item \textbf{Experiment continues until k successes have occurred}
+\end{itemize}
+The rv in this distribution is the number of failures obtained before the kth success occurs.
+\[ f(x) = P(X =x) = {x + k - 1 \choose x} p^k (1-p)^x\]
+\end{defn}
+
+\begin{defn}
+The \textbf{geometric distribution} is a special case of negative binomial where $k$ is fixed at $1$.
+\[f(x) = P(X=x) = p(1-p)^x\]
+\end{defn}
+
+\begin{defn}
+The \textbf{Poisson Distribution} is used to model the number of events occurring within a given time. It can be used as a limiting case of the binomial distribution where $n$ is very large and $p$ is very small.
+\[f(x) = \f{e^{-\lambda} \lambda^x}{x!},\, x = 0,1,2,\cdots,\infty\]
+\begin{note}
+$\lambda = np$ from a binomial distribution.
+\end{note}
+\begin{qte}
+This approximation can be used as a substitute if $n > 50$ and $np < 5$.
+\end{qte}
+\end{defn}
+
+\begin{defn}
+\textbf{Poisson Process:} must satisfy three conditions.
+\begin{itemize}
+\item Independence
+\item Individuality (chance of 2 or more events occuring in the same interval close to 0)
+\item Homogencity: Events occur at uniform or homogeneous rate $\lambda$ over time
+\end{itemize}
+$\mu = \lambda t$
+\end{defn}
 
 \section{Value and Variance}
+
 \begin{defn}
-A histogram displays information on the frequency and relative frequency of each $x$ in the data set.
+A \textbf{histogram} displays information on the frequency and relative frequency of each $x$ in the data set.
 \end{defn}
 
 \subsubsection*{Characteristics}
@@ -399,6 +447,7 @@ If $X$ is a discrete random variable with the probability function $f(x)$, then 
 \subsubsection*{Rules of Variance}
 \[V(aX + b) = a^2 \sigma^2_{x}\]
 \[\sigma_{ax+b} = |a| \sigma_{x}\]
+
 \begin{note}
 The addition of a constant does not affect variance because it only changes location of mean value, but entire graph is shifted so spread is the same.
 \end{note}
@@ -425,10 +474,7 @@ If $X$ follows negative binomial
 \[\mu = \f{kq}{p}\]
 \[\sigma = \f{kq}{p^2}\]
 
-
 \todo{cpt 7}
-
-
 
 \section{Continuous Probability Distributions}
 
@@ -525,10 +571,54 @@ The \textbf{percentile} refers to the value for which a percentage of data falls
 
 \todo{Stopped at change of variable}
 
+\begin{defn}
+The \textbf{expected value} of a continuous random variable $X$ is,
+\[E(X) = \int_{-\infty}^\infty x f(x)\,dx\]
+Similarly, if $f(x)$ and $g(x)$ are functions of $X$, then
+\[E(g(x)) = \int_{-\infty}^\infty g(x) f(x)\,dx\]
+\end{defn}
 
+\begin{exmp}
+Find $E(X)$ if the probability density function is $f(x) = 2x,\, 0 \leq x \leq 1$.
 
+\begin{sol}
+\[E(X) = \int_{-\infty}^\infty x f(x)\,dx = \int_0^1 2x \cdot x\,dx = \f{2x^3}{3}\Big|_0^1 = \f{2}{3}\]
+\end{sol}
+\end{exmp}
 
+\begin{exmp}
+Suppose
+\begin{displaymath}
+   f(x) = \left\{
+     \begin{array}{lr}
+       1 : 0 \leq x \leq 1 \\
+       0 : \text{otherwise}
+     \end{array}
+   \right.
+\end{displaymath}
 
+\begin{displaymath}
+   h(x) = \left\{
+     \begin{array}{lr}
+       1-x : 0 \leq x < \f{1}{2} \\
+       x : \f{1}{2} \leq x \leq 1
+     \end{array}
+   \right.
+\end{displaymath}
+Find E(h(x))
+
+\begin{sol}
+\[E(h(x)) = \int_0^{\f{1}{2}} (1-x)\cdot 1\,dx + \int_{-\f{1}{2}}^1 x \cdot 1\,dx\]
+\[E(h(x)) = \left(x - \f{x^2}{2}\right)\Big|_0^{\f{1}{2}} + \left(\f{x^2}{2}\right)\Big|_{\f{1}{2}}^1\]
+\end{sol}
+\end{exmp}
+
+\begin{defn}
+If the random variable $X$ is continuous with the pdf $f(x)$, then the variance is
+\[\text{Var}(X) = E((X-\mu)^2) = \int_{-\infty}^\infty (x-\mu)^2 f(x)\,dx = \int_{-\infty}^\infty x^2 f(x)\,dx - \mu^2\]
+\end{defn}
+
+\todo{Slide 42: variance of continuous function}
 
 
 
