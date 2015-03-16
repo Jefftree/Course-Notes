@@ -9,16 +9,15 @@
 
 \begin{document}
 \notesheader
-\section{Vectors}
-Linear Algebra 
-\begin{itemize}
-\item Systems of linear equations
-\item Related geometry
-\item Matrices
-\item Vector spaces, $\R^n$
-\end{itemize}
-$\R^n$ consists of n-tuples of real numbers, where $n \in \N$. 
-\subsection{Vector Properties}
+
+\section{Vectors in Euclidean Space}
+
+\subsection{Vector Addition and Scalar Multiplication}
+
+\begin{defn}
+$\R^n$ consists of n-tuples of real numbers, where $n \in \N$.
+\end{defn}
+
 \begin{defn}
 \textbf{Points/vectors} are elements of $\R^n$.
 \end{defn}
@@ -27,51 +26,43 @@ $\R^n$ consists of n-tuples of real numbers, where $n \in \N$.
 \[x_{1} + x_{2} = 3\]
 \[2 x_{1} + 5 x_{2} = 4\]
 \[
-\begin{bmatrix}
-1 & 1\\
-2 & 5
-\end{bmatrix}
-\begin{bmatrix}
-x_{1}\\
-x_{2}
-\end{bmatrix}
-=
-\begin{bmatrix}
-3\\
-4
-\end{bmatrix}
-\]
+\begin{bmatrix} 1 & 1 \\ 2 & 5 \end{bmatrix}
+\begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix} =
+\begin{bmatrix} 3\\ 4 \end{bmatrix} \]
 Two vectors in $\R^n$ are equal if all coordinates are equal.
 \subsubsection*{Vector Operations}
 Let $\vx \in \R^n, \alpha \in \R$
 \begin{align*}
 & \text{Addition} & \text{Scalar Multiplication} \\
-& \vx + \vy = 
+& \vx + \vy =
 \begin{bmatrix}
 x_{1} + y_{1} \\
 x_{2} + y_{2} \\
 \vdots \\
 x_{n} + y_{n}
-\end{bmatrix} \in \R^n & 
-\alpha \vx = 
+\end{bmatrix} \in \R^n &
+\alpha \vx =
 \begin{bmatrix}
 \alpha x_{1} \\
 \alpha x_{2} \\
 \vdots \\
-\alpha x_{n} 
+\alpha x_{n}
 \end{bmatrix} \in \R^n
 \end{align*}
 
 \begin{defn}
-$\vec{0}$ is the \textbf{additive identity}
+$\vec{0}$ is the \textbf{additive identity}.
 \end{defn}
+
 \begin{defn}
 Given a vector $\vx \in \R^n$, $-\vx$ is the \textbf{additive inverse}.
 \end{defn}
+
 \begin{defn}
 A sum of scalar multiples of a combination of vectors is a \textbf{linear combination}
 \[c_{1} \vv_{1} + c_{2} \vv_{2} + \cdots + c_{k} \vv_{k}:\,c_{1}\dots c_{k} \in \R\]
 \end{defn}
+
 \begin{thrm}
 If $\vx,\vy,\vw \in \R^n$, and $c,d \in \R$, then
 \begin{itemize}
@@ -88,29 +79,38 @@ If $\vx,\vy,\vw \in \R^n$, and $c,d \in \R$, then
 \end{itemize}
 \end{thrm}
 
-
 \begin{defn}
 The set $S$ of all possible linear combinations of a set of vectors $B = (\vec{v}_{1} , \dots , \vec{v}_{k})$ in $\R^n$ is called the \textbf{span} of the set $B$ and we write
 \[S = \text{Span B} =\{t_{1} \vec{v}_{1} + t_{2} \vv_{2} + \cdots + t_{k}\vv_{k}\}\]
 $S$ is \textbf{spanned} by B and that B is a spanning set for $S$.
 \end{defn}
 
-
-For a set 
+\begin{note}
+A set in the form
 \[  \{t_{1} \vec{v}_{1} + \dots + t_{k} \vec{v}_{k} + \vec{b} | t_{1},\dots,t_{k} \in \R \}\]
-can be written as 
+can be written as
 \[  \vx = t_{1} \vec{v}_{1} + \dots + t_{k} \vec{v}_{k} + \vec{b} , t_{1},\dots,t_{k} \in \R\]
-
 In $\R^n$, two linearly independent vectors $\vx_{1}$ and $\vx_{2}$ generate a plane.
+\end{note}
+
+\begin{thrm}
+If $\vv_{k}$ can be written as a linear combination of $\vv_{1},\dots,\vv_{k-1}$, then
+\[\spn\{\vv_{1},\dots,\vv_{k}\} = \spn\{\vv_{1},\dots,\vv_{k-1}\}\]
+\end{thrm}
 
 \begin{defn}
 A set of vectors in $\R^n$ is said to be \textbf{linearly dependent} if there exists coefficients $c_{1},\dots,c_{k}$, not all $0$, such that
 \[\vec{0} = c_{1} \vec{v}_{1} + \cdots + c_{k} \vec{v}_{k}\]
 Either $0$ vector or two or more vectors are colinear (scalar multiple).
 \end{defn}
+
 \begin{defn}
 A set of vectors is \textbf{linearly independent} if the only solution is $c_{1} = c_{2} = \cdots = c_{k} = 0$ (\textbf{trivial solution})
 \end{defn}
+
+\begin{thrm}
+If a set of vectors $\{\vv_{1},\dots,\vv_{k}\}$ contains the zero evctor, then it is linearly dependent.
+\end{thrm}
 
 \begin{defn}
 If a subset of $\R^n$ can be written as a span of vectors $\vec{v}_{1},\dots,\vec{v}_{k}$ where $\{\vec{v}_{1},\dots,\vec{v}_{k}\}$ is linearly independent, then $\{\vec{v}_{1},\dots,\vec{v}_{k}\}$ is a \textbf{basis} for $S$. The basis of the set $\{\vec{0}\}$ is the empty set.
@@ -119,30 +119,36 @@ If a subset of $\R^n$ can be written as a span of vectors $\vec{v}_{1},\dots,\ve
 \begin{thrm}
 If $\beta= \{\vv_{1},\dots,\vv_{k}\}$ is a basis for a subset $S$ of $\R^n$, then every vector $\vx \in S$ can be written as unique linear combination of $\vv_{1},\dots,\vv_{k}$.
 \end{thrm}
+
 \begin{defn}
 The \textbf{standard basis} in $\R^n$ is a set of vectors where each vector's ith component is $1$, and all other components are $0$.
 \end{defn}
+
 \begin{defn}
 Let $\vx,vy \in \R^n$. The set with vector equation $\vw = c_{1} \vx + \vy$ with $ c_{1} \in \R$ is a \textbf{line} in $\R^n$ that passes through $\vy$.
 \end{defn}
+
 \begin{defn}
 Let $\vv_{1},\vv_{2},\vy \in \R^n$ with $\{\vv_{1},\vv_{2}\}$ being a linearly independent set. The set with the vector equation $\vx = c_{1} \vv_{1} + c_{2} \vv_{2} + \vy$ with $c_{1},c_{2} \in \R$ is a \textbf{plane} in $\R^n$ which passes through $\vy$.
 \end{defn}
+
 \begin{defn}
 Let $\vv_{1},\dots,\vv_{k},\vy \in \R^n$ with the set being linearly independent. The set with the vector equation $\vx = c_{1} v_{1} + \cdots + c_{k} \vv_{k} + \vy$ with $c_{1},\dots,c_{k}$ is a \textbf{k-plane} in $R^n$ with passes through $\vy$.
 \end{defn}
+
 \begin{defn}
 A \textbf{hyperplane} is a subspace of one dimension less than its ambient space.
 \end{defn}
 
 \subsection{Subspaces}
+
 \begin{thrm}
 \textbf{Subspace Test}: Let $\mathbb{S}$ be a non-empty subset of $\R^n$. If $\vx + \vy \in \mathbb{S}$ and $c \vx \in \mathbb{S}$ for all $\vx,\vy \in \mathbb{S}$ and $c \in \R$, then $\mathbb{S}$ is a subspace of $\R^n$
 \end{thrm}
+
 \begin{qte}
 If $\vec{0}$ is not in the set, definitely not subset. If it is, further investigation needed.
 \end{qte}
-
 
 \begin{defn}
 $S \in \R^n$ is closed under scalar multiplication if for all $\vx \in S$ and $\alpha \in \R$, $\alpha \vx \in S$.
@@ -152,23 +158,38 @@ $S \in \R^n$ is closed under scalar multiplication if for all $\vx \in S$ and $\
 If $\{\vv_{1},\dots,\vv_{k}\}$ is a set of vectors in $\R^n$, then $\spn \{\vv_{1},\dots,\vv_{k}\}$ is a subspace of $\R^n$.
 \end{thrm}
 
+\subsection{Dot Product}
+
 \begin{thrm}
-If $\vx,\vy \in \R^2$, and $\theta$ is the angle between them, then 
+If $\vx,\vy \in \R^2$, and $\theta$ is the angle between them, then
 \[\vx \cdot \vy = ||\vx||\,||\vy||\, \cos \theta\]
 \end{thrm}
-\begin{thrm}
-Given two vectors $\vx,vy$, their dot product is defined by 
+
+\begin{defn}
+Given two vectors $\vx,vy$, their dot product is defined by
 \[\vx \dot \vy = x_{1} y_{1} + x_{2} + y_{2} + \cdots + x_{n} y_{n} = \sum_{i=1}^n x_{i} y_{i}\]
+\end{defn}
+
+\begin{thrm}
+Let $\vx,\vy\,\vz \in \R^n$ and let $s,t \in \R$. Then
+\begin{itemize}
+\item $\vx \cdot \vx \geq 0$ and $\vx \cdot \vx = 0$ if and only if $\vx = \vec{0}$
+\item $\vx \cdot \vy = \vy \cdot \vx$
+\item $\vx \cdot (s\vy + t \vz) = s (\vx \cdot \vy) + t (\vx \cdot \vz)$
+\end{itemize}
 \end{thrm}
+
 \begin{thrm}
 If $\vx \cdot \vy = 0$, then $\vx$ and $\vy$ are \textbf{orthogonal}.
 \end{thrm}
+
 \begin{qte}
 The zero vector $\vec{0} \in \R^n$ is orthogonal to every vector in $\R^n$.
 \end{qte}
+
 \begin{thrm}
-The \textbf{cross product} of $\vx,\vy \in \R^3$ is given by 
-\[\vx \times \vy = 
+The \textbf{cross product} of $\vx,\vy \in \R^3$ is given by
+\[\vx \times \vy =
 \begin{bmatrix}
 x_{2}y_{3} - x_{3} y_{2} \\
 - (x_{1} y_{3} - x_{3} y_{1}) \\
@@ -183,7 +204,7 @@ Cross product is not associative. $\vv \times (\vw \times \vx) \neq (\vv \times 
 \begin{thrm}
 Let $\vv,\vw, \vec{b} \in \R^3$ with $\{\vv,\vw\}$ being a linear independent set, and define $\vec{n} = \vv \times \vw$. If $P$ is a plane with the vector equation
 \[ \vx = c \vv + d \vw + \vec{b}, \qquad c,d \in \R\]
-then an alternate equation for the plane is 
+then an alternate equation for the plane is
 \[(\vx - \vec{b}) \cdot \vec{n} = 0\]
 $n$ is a normal vector to the plane $P$.
 Rearranging: $n_{1} x_{1} + n_{2} x_{2} + n_{3} x_{3} = n_{1} a_{1} + n_{2} a_{2} + n_{3} a_{3}$.
@@ -193,17 +214,23 @@ Rearranging: $n_{1} x_{1} + n_{2} x_{2} + n_{3} x_{3} = n_{1} a_{1} + n_{2} a_{2
 \begin{defn}
 Let $\vu,\vv \in \R^n$ with $\vv \neq \vec{0}$. The \textbf{projection of $\vu$ onto $\vv$} is
 \[\operatorname{proj}_{\vv} (\vu) = \f{\vu \cdot \vv}{||\vv||^2} \vv\]
+\end{defn}
+
+\begin{defn}
 The \textbf{perpendicular of $\vu$ onto $\vv$} is
 \[\operatorname{perp}_{\vv}(\vu) = \vu - \operatorname{proj}_{\vv}(\vu)\]
 \end{defn}
+
 \begin{qte}
 To project a vector onto a plane, take the perpendicular of the vector projected onto the normal of the plane.
 \end{qte}
 
 \section{Systems of Linear Equations}
 
+\subsection{Systems of Linear Equations}
+
 \begin{defn}
-A system of linear equations in $n$ variables
+A {system of linear equations in $n$ variables}
 \begin{equation}
 c x_{1} + c x_{2} + \cdots + c x_{n} = b_{1}
 \end{equation}
@@ -216,15 +243,23 @@ c x_{1} + c x_{2} +\cdots + c x_{n} = b_{3}
 $\vec{s} = \begin{bmatrix} s_{1} \\ s_{2} \\ \vdots \end{bmatrix} \in \R^n$ is a solution to the system if all the equations are satisfied when $x_{i}$ is set to $s_{i}$.\\\\
 If a system has a solution, it is \textbf{consistent}. If not, it is \textbf{inconsistent}.
 \end{defn}
+
+\begin{thrm}
+Assume the system of linear equations with $a_{1},\dots,a_{n}, b \in \R$ has two distinct solutions $\vec{s} = \begin{bmatrix} s_{1} \\ \vdots \\ s_{n} \end{bmatrix}$ and $\vec{t} = \begin{bmatrix} t_{1} \\ \vdots \\ t_{n} \end{bmatrix}$. Then $\vx = \vec{s} + c(\vec{s} - \vec{t})$ is a distinct solution for each $c \in \R$.
+\end{thrm}
+
 \begin{defn}
 A \textbf{solution set} is the set of all solutions of a system of linear equations. Two systems of equations are equivalent if they have the same solution set.
 \end{defn}
 
+\subsection{Solving Systems of Linear Equation}
+
 \begin{defn}
 The \textbf{coefficient matrix} of a system is denoted by $A = \begin{bmatrix} a_{11}  & a_{21} & \cdots \\ a_{21} & a_{22} & \cdots \end{bmatrix}$.
 \end{defn}
+
 \begin{defn}
-The \textbf{augment matrix} is 
+The \textbf{augment matrix} is
 \[
 \begin{bmatrix}[cc|c]
   a_{11} & a_{12} & b_{1}\\
@@ -232,9 +267,7 @@ The \textbf{augment matrix} is
 \end{bmatrix}
 \]
 \end{defn}
-\begin{thrm}
-If two augmented matrices are row equivalent, then the system of linear equations associated with each matrix are equivalent.
-\end{thrm}
+
 \begin{mthd}
 The three \textbf{elementary row operations} for solving a system of linear equations are:
 \begin{enumerate}
@@ -243,8 +276,13 @@ The three \textbf{elementary row operations} for solving a system of linear equa
 \item Swapping two rows
 \end{enumerate}
 \end{mthd}
+
+\begin{thrm}
+If two augmented matrices are row equivalent, then the system of linear equations associated with each matrix are equivalent.
+\end{thrm}
+
 \begin{defn}
-A matrix is said to be in \textbf{reduced row echelon form} if:
+A matrix is said to be in \textbf{reduced row echelon form} (RREF) if:
 \begin{enumerate}
   \item All rows containing a non-zero entry are above rows which only contain zeroes.
   \item The first non-zero entry in each row is 1. (\textbf{leading one}).
@@ -252,6 +290,10 @@ A matrix is said to be in \textbf{reduced row echelon form} if:
   \item Leading one is the only non-zero entry in its column.
 \end{enumerate}
 \end{defn}
+
+\begin{thrm}
+The RREF of a matrix is unique.
+\end{thrm}
 
 \begin{defn}
 Let $R$ be the RREF of a coefficient matrix of a system of linear equations. If the jth column does not contain a leading one, $x_{j}$ is a \textbf{free variable}.
@@ -278,10 +320,35 @@ A system of linear equations is said to be \textbf{homogeneous system} if the ri
 The solution set of a homogeneneous systesm of $M$ linear equations in $n$ variables is a subspace of $R^n$.
 \end{thrm}
 
-\section{Matrices}
+\section{Matrices and Linear Mappings}
+
+\subsection{Operations on Matrices}
+
 \begin{defn}
 A $m \times n$ \textbf{matrix} is a rectangular array with $m$ rows and $n$ columns.
 \end{defn}
+
+\begin{defn}
+\textbf{Addition and scalar multiplication of matrices:} Let $A,B \in M_{m \times n} (\R)$ and $c \in \R$. $A+B$ and $cA$ are defined as
+\[(A + B)_{ij} = (A)_{ij} + (B)_{ij}\]
+\[(cA)_{ij} = c(A)_{ij}\]
+\end{defn}
+
+\begin{thrm}
+Let $A,B,C$ be $m \times n$ matrices and let $c,d \in \R$
+\begin{enumerate}
+\item $A + B$ is an $m \times n$ matrix
+\item $(A + B) + C = A + (B + C)$
+\item $A + B = B + A$
+\item There exists a matrix such that $A + O_{m,n} = A$. This is called the \textbf{zero matrix}
+\item There exists a matrix $(-A)$ such that $A + (-A) = O_{m,n}$
+\item $cA \in M_{m \times n}$
+\item $c(dA) = cd(A)$
+\item $(c + d)A = cA + dA$
+\item $c(A + B) = cA + cB$
+\item $1A = A$
+\end{enumerate}
+\end{thrm}
 
 \begin{defn}
 The \textbf{zero matrix}, denoted as $O_{m,n}$ is the matrix whose entries are all $0$.
@@ -293,23 +360,28 @@ The \textbf{transpose} of an $m \times n$ matrix $A$ is the $n \times m$ matrix 
 \end{defn}
 
 \begin{thrm}
-For any $m \times n$ matrices $A$ and $B$ and scalar $c \in \R$, 
+For any $m \times n$ matrices $A$ and $B$ and scalar $c \in \R$,
 \begin{itemize}
 \item $(A^T)^T = A$
 \item $(A+B)^T = A^T + B^T$
-\item $(cA)^T = cA^T$
+\item $(cA)^T = c(A^T)$
 \end{itemize}
 \end{thrm}
 
 \begin{defn}
 \textbf{Matrix-Vector multiplication:} Let $A$ be an $m \times n$ matrix whose rows are denoted $\vec{a}_{i}^T$ for $1 \leq i \leq m$. Then, for any $\vx \in \R^n$, we define
 \[ A \vx = \begin{bmatrix} \vec{a}_{1} \cdot \vx \\ \vdots \\ \vec{a}_{m} \cdot \vx \end{bmatrix} \]
-An alternate form is 
+An alternate form is
 \[ A \vx = x_{1} \begin{bmatrix} a_{11} \\ \vdots \\ a_{m1} \end{bmatrix} + \cdots + x_{n} \begin{bmatrix} a_{1n} \\ \vdots \\ a_{mn} \end{bmatrix} \]
 \end{defn}
 
+\begin{thrm}
+If $\vec{e}_{i}$ is the ith standard basis vector for $\R^i$ and $A = \lbrack \vec{a}_{1},\dots,\vec{a}_{n} \rbrack$ is an $m \times n$ matrix, then
+\[A \vec{e}_i = \vec{a}_{i}\]
+\end{thrm}
+
 \begin{mthd}
-\textbf{Matrix Multiplication:} Let $A$ be an $m \times n$ matrix and let $B = \lbrack \vec{b}_{1}\, \cdots\, \vec{b}_{p} \rbrack$ be an $n \times p$ matrix. Then, $AB$ is the $m \times p$ matrix 
+\textbf{Matrix Multiplication:} Let $A$ be an $m \times n$ matrix and let $B = \lbrack \vec{b}_{1}\, \cdots\, \vec{b}_{p} \rbrack$ be an $n \times p$ matrix. Then, $AB$ is the $m \times p$ matrix
 \[ AB = \lbrack A \vec{b}_{1} \, \cdots \, A \vec{b}_{p}\rbrack \]
 \end{mthd}
 
@@ -317,25 +389,44 @@ An alternate form is
 The number of columns of $A$ must equal to the number of rows of $B$ for this to be defined. The resulting matrix will have the same rows as $A$ and same columns as $B$.
 \end{note}
 
+\begin{thrm}
+If $A,B,C$ are matrices of the correct size so the required products are defined and $t \in \R$, then
+\begin{itemize}
+\item $A(B+C) = AB _ AC$
+\item $t (AB) = (tA)B + A(tB)$
+\item $A(BC) = (AB)C$
+\item $(AB)^T = B^T A^T$
+\end{itemize}
+\end{thrm}
+
 \begin{qte}
 Matrix Multiplication is NOT commutative. $AB \neq BA$., if $AB = AC$, $B \neq C$.
 \end{qte}
 
-\begin{defn}
-The $n \times n$ \textbf{identity matrix}, denoted as $I$, is the matrix containing a diagonal row of $1$s and everything else set to $0$. The columns of $I_{n}$ are the standard basis vectors of $\R^n$. \\\\
-For every $n \times n$ matrix, $A$, $AI = A$.
-\end{defn}
+\begin{thrm}
+Suppose that $A$ and $B$ are $m \times n$ matrices such that $A\vx = B\vx$ for every $\vx \in \R^n$, then $A=B$.
+\end{thrm}
 
 \begin{defn}
-\textbf{Block matrix}:
+The $n \times n$ \textbf{identity matrix}, denoted as $I$, is the matrix containing a diagonal row of $1$s and everything else set to $0$. The columns of $I_{n}$ are the standard basis vectors of $\R^n$. \\\\
+For every $n \times n$ matrix, $A$, $AI = A = IA$.
+\end{defn}
+
+\begin{thrm}
+If $I$ is the matrix $I = \lbrack \vec{e}_1,\dots,\vec{e}_n \rbrack$ then for any $n \times n$ matrix where $IA = A = AI$
+\end{thrm}
+
+\begin{thrm}
+The multiplicative identity for $M_{n\times n} (\R)$ is unique.
+\end{thrm}
+
 \begin{exmp}
-Let $A = \begin{bmatrix} 1 & -1 & 3 & 4 \\ 0 & 0 & 0 & 0 \\ 0 & 3 & 1 & 2 \end{bmatrix} $. By reducing $A$ into blocks, we can write
+\textbf{Block matrix}: Let $A = \begin{bmatrix} 1 & -1 & 3 & 4 \\ 0 & 0 & 0 & 0 \\ 0 & 3 & 1 & 2 \end{bmatrix} $. By reducing $A$ into blocks, we can write
 \[ A = \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{bmatrix} \]
-with $A_{11} = \begin{bmatrix} 1 & -1 \\ 0 & 0 \end{bmatrix}$, $A_{12} = \begin{bmatrix} 3 & 4 \\ 0 & 0 \end{bmatrix}$, 
+with $A_{11} = \begin{bmatrix} 1 & -1 \\ 0 & 0 \end{bmatrix}$, $A_{12} = \begin{bmatrix} 3 & 4 \\ 0 & 0 \end{bmatrix}$,
 $A_{21} = \begin{bmatrix} 0 & 3 \end{bmatrix} $, $A_{22} = \begin{bmatrix} 1 & 2 \end{bmatrix}$. \\
 These are useful to distribute matrix multiplication over multiple computers to speed up the process.
 \end{exmp}
-\end{defn}
 
 \subsection{Linear Mapping}
 
@@ -346,6 +437,85 @@ A function $L : \R^n \rightarrow \R^m$ is said to be a \textbf{linear mapping} i
 \begin{note}
 This definition can be used to prove linear mapping.
 \end{note}
+
+\begin{exmp}
+Prove that the function $L: \R^3 \rightarrow \R^2$ defined by $L(x_{1},x_{2},x_{3}) = (3x_{1} - x_{2},2x_{1} + 2 x_{3})$ is a linear mapping.
+\begin{sol}
+\begin{align*}
+L(b\vx + c \vy) &= L(b(x_{1},x_{2},x_{3}) + c(y_{1},y_{2},y_{3})) \\
+&= L( b x_{1} + c y_{1}, b x_{2} + c y _{2}, b x_{3} + c y_{3})
+&= (3 (b x_{1} + c y_{1}) - (b x_{2} + c y_{2})), 2 (b x_{1} + c y_{1}) + 2 (b x_{3} + c y_{3})
+&= b(3 x_{1} - x_{2}, 2 x_{1} + 2 x_{3}) + c (3 y_{1} - y_{2},2 y_{1} + 2 y_{3})
+&= bL(\vx) + c L(\vy)
+\end{align*}
+\end{sol}
+\end{exmp}
+
+\begin{thrm}
+Every linear mapping can be represented as a matrix mapping whose columns are the images of the standard basis vector of $\R^n$ under $L$. $L(\vx) = \lbrack L \rbrack \vx$ where
+\[\lbrack L \rbrack = \lbrack L(\vec{e}_{1}) \cdots L(\vec{e}_{n}) \rbrack\]
+\end{thrm}
+\todo{This theorem still confusing}
+\begin{exmp}
+Determine the standard matrix of $L(x_{1},x_{2},x_{3}) = (3x_{1} - x_{2} , 2 x_{1} + 2 x_{3})$
+\begin{sol}
+\[L(1,0,0) = (3,2)\]
+\[ L(0,1,0) = (-1,0)\]
+\[L (0,0,1) = (0,2)\]
+\[ \lbrack L \rbrack = \lbrack L(\vec{e}_{1}) \qquad L(\vec{e}_{2}) \qquad L(\vec{e}_{3}) \rbrack = \begin{bmatrix} 3 & -1 & 0 \\ 2 & 0 & 2 \end{bmatrix}\]
+\end{sol}
+\end{exmp}
+
+\begin{defn}
+The \textbf{rotation} in $\R^2$ is
+\[R_{\theta}(x_{1},x_{2}) = (x_{1} \cos \theta - x_{2} \sin \theta, x_{1} \sin \theta + x_{2} \cos \theta)\]
+The standard matrix of $\R_{\theta}$ is
+\[ \lbrack r_{\theta} \rbrack = \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix}\]
+\end{defn}
+
+\begin{thrm}
+Let $R_{\theta}: \R^2 \rightarrow \R^2$ be a rotation with rotation matrix $A = \lbrack \R_{\theta} \rbrack$. Then the columns of $A$ are orthogonal unit vectors.
+\end{thrm}
+
+\todo{Reflections}
+
+\subsection{Special Subspaces}
+\begin{itemize}
+\item \textbf{kernel}: $\text{ker}(L) = \{ \vx \in \R^n | L(\vx) = \vec{0}\}$
+\item \textbf{range}: $R(L) = \{ L(\vx) \in \R^m | \vx \in \R^n\}$
+\end{itemize}
+\todo{ Range, kernel and other stuff (colspace, etc)}
+
+\subsection{Operations on Linear Mapping}
+\begin{defn}
+\textbf{Addition \& Scalar Multiplication}:
+\[(L + M)(\vx) = L(\vx) + M(\vx)\]
+\[(cL)(\vx) = c L(\vx)\]
+\end{defn}
+
+\begin{note}
+Two linear mappings $L$ and $M$ are equal if and only if they have the same domain, same range, and $L(\vx) = M(\vx)$ for all $\vx$ in the domain.
+\end{note}
+\todo{Operations on Linear Mapping}
+
+\section{Vector Spaces}
+
+\begin{defn}
+Let $\mathbb{V}$ be a set. The elements of $\mathbb{V}$ are vectors denoted as $\vx$. $\mathbb{V}$ is called a \textbf{vector space over $\R$} if there is an operation of addition and scalar multiplication such that for any $\vx,\vy,\vv \in \mathbb{V}$ and $a,b \in \R$,
+\begin{enumerate}
+\item $\vx + \vy \in \mathbb{V}$
+\item $(\vx + \vy) + \vv = \vx + (\vy + \vv)$
+\item $\vx + \vy = \vy + \vx$
+\item The zero vector exists in $\mathbb{V}$, $\vx + \vec{0} = \vx$
+\item For each $\vx \in \mathbb{V}$, there exists $-\vx$ such that $\vx + (- \vx) = \vec{0}$, known as the \textbf{additive inverse}
+\item $a\vx \in \mathbb{V}$
+\item $a (b\vx) = (ab)\vx$
+\item $(a+b)\vx = a\vx + b\vx$
+\item $a(\vx + \vy) = a\vx + a\vy$
+\item $1\vx = \vx$
+\end{enumerate}
+\end{defn}
+
 
 
 \end{document}
