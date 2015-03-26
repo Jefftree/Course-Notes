@@ -317,7 +317,7 @@ A system of linear equations is said to be \textbf{homogeneous system} if the ri
 \end{defn}
 
 \begin{thrm}
-The solution set of a homogeneneous systesm of $M$ linear equations in $n$ variables is a subspace of $R^n$.
+The solution set of a homogeneneous systems of $M$ linear equations in $n$ variables is a subspace of $R^n$.
 \end{thrm}
 
 \section{Matrices and Linear Mappings}
@@ -430,10 +430,16 @@ These are useful to distribute matrix multiplication over multiple computers to 
 
 \subsection{Linear Mapping}
 
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix, and let $F: \R^n \rightarrow \R^m$ be defined by $f(\vx) = A\vx$. Then for all $\vx,\vy \in \R^n$ and $b,c \in \R$ we have
+\[f(b\vx + c\vy) = bf(\vx) + cf(\vy)\]
+\end{thrm}
+
 \begin{defn}
 A function $L : \R^n \rightarrow \R^m$ is said to be a \textbf{linear mapping} if for every $\vx,\vy \in \R^n$ and $b,c \in \R$, we have
 \[ L(b\vx + c \vy) = bL(\vx) + cL(\vy)\]
 \end{defn}
+
 \begin{note}
 This definition can be used to prove linear mapping.
 \end{note}
@@ -455,7 +461,9 @@ L(b\vx + c \vy) &= L(b(x_{1},x_{2},x_{3}) + c(y_{1},y_{2},y_{3})) \\
 Every linear mapping can be represented as a matrix mapping whose columns are the images of the standard basis vector of $\R^n$ under $L$. $L(\vx) = \lbrack L \rbrack \vx$ where
 \[\lbrack L \rbrack = \lbrack L(\vec{e}_{1}) \cdots L(\vec{e}_{n}) \rbrack\]
 \end{thrm}
+
 \todo{This theorem still confusing}
+
 \begin{exmp}
 Determine the standard matrix of $L(x_{1},x_{2},x_{3}) = (3x_{1} - x_{2} , 2 x_{1} + 2 x_{3})$
 \begin{sol}
@@ -477,16 +485,89 @@ The standard matrix of $\R_{\theta}$ is
 Let $R_{\theta}: \R^2 \rightarrow \R^2$ be a rotation with rotation matrix $A = \lbrack \R_{\theta} \rbrack$. Then the columns of $A$ are orthogonal unit vectors.
 \end{thrm}
 
-\todo{Reflections}
+\begin{defn}
+Let $\text{refl}_{\vec{n}}: \R^n \rightarrow \R^n$ denote the linear mapping which maps a vector $\vx$ to its mirror image in the hyperplane with normal vector $\vec{n}$. The reflection of $\vx$ over the line witth the normal vector $\vec{n}$ is given by
+\[\text{refl}_{\vec{n}} = \vx - 2 \text{proj}_{\vec{n}} \vx\]
+\end{defn}
 
 \subsection{Special Subspaces}
-\begin{itemize}
-\item \textbf{kernel}: $\text{ker}(L) = \{ \vx \in \R^n | L(\vx) = \vec{0}\}$
-\item \textbf{range}: $R(L) = \{ L(\vx) \in \R^m | \vx \in \R^n\}$
-\end{itemize}
-\todo{ Range, kernel and other stuff (colspace, etc)}
+\begin{defn}
+Let $L:\R^n \rightarrow \R^m$ be a linear mapping. The \textbf{kernel} is defined by
+\[\text{ker}(L) = \{ \vx \in \R^n | L(\vx) = \vec{0}\}\]
+The set of all vectors in $\R^n$ (domain) where when $L$ is applied, becomes the zero vector.
+\end{defn}
+
+\begin{thrm}
+Let $L:\R^n \rightarrow \R^m$ be a linear mapping. Then $L(\vec{0}) = \vec{0}$.
+\end{thrm}
+
+\begin{thrm}
+Let $L: \R^n \rightarrow \R^m$ be a linear mapping. Then $\text{ker}(L)$ is a subspace of $\R^n$.
+\end{thrm}
+
+\begin{defn}
+Let $L: \R^n \rightarrow \R^m$ be a linear mapping. The \textbf{range} is
+\[R(L) = \{ L(\vx) \in \R^m | \vx \in \R^n\}\]
+The set of all vectors in the codomain where $L(\vx)$ is defined.
+\end{defn}
+\todo{Proofs with these, pg 69}
+
+\begin{thrm}
+Let $L: \R^n \rightarrow \R^m$ be a linear mapping. Then $R(L)$ is a subspace of $\R^m$.
+\end{thrm}
+
+\subsubsection{Four Fundamental Subspaces of a Matrix}
+
+\begin{thrm}
+Let $L: \R^n\rightarrow\R^m$ be a linear mapping and let $A = \lbrack L \rbrack$ be the standard matrix of $L$. Then, $\vx \in \text{ker}(L)$ if and only if $A\vx = \vec{0}$.
+\end{thrm}
+
+\begin{defn}
+Let $A$ be an $m \times n$ matrix. The set of all $\vx \in \R^n$ such that $A\vx = \vec{0}$ is called the \textbf{nullspace} of $A$. We write
+\[\text{Null}(A) = \{\vx \in \R^n | A\vx = \vec{0}\}\]
+\end{defn}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix. A consistent system of linear equations $A\vx = \vec{b}$ has a unique solution if and only if $\text{Null}(A) = \{\vec{0}\}$.
+\end{thrm}
+
+\begin{thrm}
+Let $L:\R^n \rightarrow \R^m$ be a linear mpping with standard matrix $\lbrack L \rbrack = A = \lbrack \vec{a}_{1} \cdots \vec{a}_{n} \rbrack$. Then
+\[R(L) = \spn\{\vec{a}_{1},\dots,\vec{a}_{n}\}\]
+\end{thrm}
+
+\begin{defn}
+Let $A = \lbrack \vec{a}_{1} \cdots \vec{a}_n \rbrack$. The \textbf{columnspace} of $A$ s the subspace of $\R^m$ defined by
+\[\text{Col}(A) = \spn\{\vec{a}_1,\dots,\vec{a}_n\} = \{A\vx \in \R^m | \vx \in \R^n\}\]
+It is the span of a set created from the columns of $A$.
+\end{defn}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix. Then $\text{Col}(A) = \R^m$ if and only if $\text{rank}(A) = m$.
+\end{thrm}
+
+\begin{defn}
+Let $A$ be an $m \times n$ matrix. The \textbf{rowspace} of $A$ is the subspace of $\R^n$ defined by
+\[\text{Row}(A) = \{A^T \vx \in \R^n | \vx \in \R^m\}\]
+It is the span of the rows of $A$.
+\end{defn}
+
+\begin{defn}
+Let $A$ be an $m \times n$ matrix. The \textbf{left nullspace} of $A$ is the subspace of $\R^m$ defined by
+\[\text{Null}(A^T) = \{\vx \in \R^m | A^T \vx = \vec{0}\}\]
+It is the nullspace of the transpose of $A$.
+\end{defn}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix. If $\vec{a} \in \text{Row}(A)$ and $\vx \in \text{Null}(A)$, then $\vec{a} \cdot \vx = 0$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix. If $\vec{a} \in \text{Col}(A)$ and $\vx \in \text{Null}(A^T)$, then $\vec{a} \cdot \vx = 0$.
+\end{thrm}
 
 \subsection{Operations on Linear Mapping}
+
 \begin{defn}
 \textbf{Addition \& Scalar Multiplication}:
 \[(L + M)(\vx) = L(\vx) + M(\vx)\]
@@ -496,7 +577,38 @@ Let $R_{\theta}: \R^2 \rightarrow \R^2$ be a rotation with rotation matrix $A = 
 \begin{note}
 Two linear mappings $L$ and $M$ are equal if and only if they have the same domain, same range, and $L(\vx) = M(\vx)$ for all $\vx$ in the domain.
 \end{note}
-\todo{Operations on Linear Mapping}
+
+\begin{thrm}
+Let $L,M,N \in \mathbb{L}$ and let $c_{1},c_{2}$ be real scalars. Then
+\begin{itemize}
+\item $L + M \in \mathbb{L}$
+\item $(L + M) + N = L + (M + N)$
+\item $L + M = M + L$
+\item There exists a linear mapping $O: \R^n \rightarrow \R^m$ such that $L + O = L$. This means $O(\vx) = \vec{0}$ for all $\vx \in \R^n$.
+\item There exists $(-L)$ such that $L + (-L) = O$.
+\item $c_{1} L \in \mathbb{L}$
+\item $c_{1} (c_{2} L) = (c_{1} c_{2}) L$
+\item $(c_{1} + c_{2}) L = c_{1} L + c_2 L$
+\item $c_{1} (L + M) = c_1 L + c_1 M$
+\item $1L = L$
+\end{itemize}
+\end{thrm}
+
+\begin{thrm}
+Let $L: \R^n \rightarrow \R^m$ and $M: \R^n \rightarrow \R^m$ be linear mapping and let $c \in \R$. Then
+\[\lbrack L + M \rbrack = \lbrack L \rbrack + \lbrack M \rbrack\]
+\[\lbrack cL \rbrack = c \lbrack L \rbrack\]
+\end{thrm}
+
+\begin{defn}
+Let $L:\R^n \rightarrow \R^m$ and $M:\R^n \rightarrow \R^m$ be linear mappings. Then $M$ composed of $L$ is the function $M \circ L: \R^n \rightarrow \R^p$ defined by
+\[(M \circ L)(\vx) = M(L(\vx))\]
+\end{defn}
+
+\begin{thrm}
+Let $L: \R^n \rightarrow \R^m$ and $M: \R^n \rightarrow \R^m$ be linear mappings. then $M \circ L$ is a linear mapping and
+\[\lbrack M \circ L \rbrack = \lbrack M \rbrack \lbrack L \rbrack\]
+\end{thrm}
 
 \section{Vector Spaces}
 
@@ -515,7 +627,6 @@ Let $\mathbb{V}$ be a set. The elements of $\mathbb{V}$ are vectors denoted as $
 \item $1\vx = \vx$
 \end{enumerate}
 \end{defn}
-
 
 
 \end{document}
