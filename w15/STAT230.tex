@@ -620,8 +620,6 @@ If the random variable $X$ is continuous with the pdf $f(x)$, then the variance 
 
 \todo{Slide 42: variance of continuous function}
 
-
-
 \todo{Up to normal distribution}
 
 \begin{defn}
@@ -636,6 +634,109 @@ To convert a normal distribution to a standard score (z-score),
 \begin{note}
 Since our z table does not have negatives, when calculating $\phi(-x)$, use $1 - \phi(x)$ since the distribution is symmetrical.
 \end{note}
+
+\todo{Start with cpt 8b}
+\subsection{Exponential Distribution}
+\begin{defn}
+$X$ is said to follow \textbf{exponential distribution} if the pdf of $X$ is
+\[f(x;\lambda) = \lambda e^{\lambda x}\]
+The cdf for this function is $F(x;\lambda) = 1 - e^{- \lambda x}$. \\\\
+It is used to describe the time or distance until some event happens.
+\[E(X) = \mu = \f{1}{\lambda}\]
+\[\text{Var}(X) = \f{1}{\lambda^2}\]
+
+\begin{note}
+If the \textbf{average rate of occurrence} in a Poisson process is given, $\lambda$ is used. If the \textbf{average waiting time for an occurrence} then $\theta$ is used. We use $\theta = \f{1}{\lambda}$
+\end{note}
+\end{defn}
+
+\begin{exmp}
+The time between arrivals of cars at a gas pump station follows an exponential distribution with an average time between arrivals of 3 minutes. What is teh probability that the time between two successive arrivals will be 2 mins or less.
+
+\begin{sol}
+Must calculate $P(X \leq 2)$. From the question, $\theta = 3$, so $F(x) = 1 - e^{-\f{x}{3}}$. $F(2) = 1 - e^{-\f{2}{3}} = 0.4866$.
+\end{sol}
+\end{exmp}
+
+\begin{note}
+Exponential distributions are memoryless, so for example the probability of waiting 15 mins given that you have already waited 5 mins is the same as the probability without the initial waiting.
+\[P((X > c + b)\,|\, X > b) = P(X > c)\]
+\end{note}
+
+\section{Multivariate Distributions}
+
+\begin{defn}
+Let $X$ and $Y$ represent two discrete random  variables in the sample space $\mathbb{S}$. The \textbf{joint probability function $f(x,y)$} is
+\[f(x,y) = P(X = x \text{ and } Y = y) = P(X = x,Y = y)\]
+\end{defn}
+
+\begin{note}
+If in a joint probability distribution, you are only asked to find one variable (eg: $P(X > 1)$), then you have to include all the possible values for the other variable (eg: $\sum^{\text{all y}} P(X > 1. Y = i)$).
+\end{note}
+
+\begin{defn}
+The \textbf{marginal probability functions} of $X$ and $Y$, denoted $f_X(x)$ and $f_Y(y)$ are given by
+\[f_X(a) = \sum^{\text{all y}} f(x,y)\]
+\[f_Y(b) = \sum^{\text{all x}} f(x,y)\]
+\end{defn}
+
+\begin{exmp}
+Let the joint distribution of $X$ and $Y$ be given by
+\[f(x,y) = \f{x + y}{30}\qquad x = 0,1,2,3 \qquad y = 0,1,2\]
+Find the marginal distribution function of $X$ and $Y$.
+
+\begin{sol}
+\[f_X(x) = \sum_{y = 0}^2 \f{x + y}{30} = \f{1}{30}((x + 0) + (x + 1) + (x + 2)) = \f{x+1}{10}\]
+
+\begin{displaymath}
+   f_X(x) = \left\{
+     \begin{array}{lr}
+       \f{x+1}{10} : & x = 0,1,2,3 \\
+       0 : & \text{otherwise}\\
+     \end{array}
+   \right.
+\end{displaymath}
+Similarly, by computation,
+\begin{displaymath}
+   f_Y(y) = \left\{
+     \begin{array}{lr}
+       \f{2y+3}{15} : & y = 0,1,2 \\
+       0 : & \text{otherwise}\\
+     \end{array}
+   \right.
+\end{displaymath}
+
+\begin{note}
+An alternative solution would be to make a table and sum up the rows and columns, but that is a lot of work.
+\end{note}
+\end{sol}
+\end{exmp}
+
+\begin{defn}
+The random variables $X,Y,\dots$ are \textbf{independent random variables} if for every subset of the variables, the joint probability function of the subset is equal to the product of the marginal probability functions.
+\[f(x,y) = f(x) \cdot f(y)\qquad \forall x,y \in \mathbb{S}\]
+\end{defn}
+
+\begin{defn}
+The conditional probability function of $X$ given $Y = y$ is given by
+\[f(x|y) = \f{f(x,y)}{f_Y(y)}\]
+and similarly
+\[f(y|x) = \f{f(x,y)}{f_X(x)}\]
+\end{defn}
+
+\begin{exmp}
+Suppose the joint probabililty function of $X$ and $Y$ is given by
+\[f(0,0) = 0.4, f(0,1) = 0.2, f(1,0) = 0.1, f(1,1) = 0.3\]
+Calculate the conditional probabiltiy function of $X$ given that $Y = 1$.
+
+\begin{sol}
+\[f_Y(1) = \sum^{\text{all x}} f(x,1) = f(0,1) + f(1,1) = 0.5\]
+\[f_{X|Y}(0 | 1) = \f{f(0,1)}{f_Y(1)} = \f{0.2}{0.5} = \f{2}{5}\]
+\[f_{X|Y}(1|1) = \f{f(1,1)}{f_Y(1)} = \f{0.3}{0.5} = \f{3}{5}\]
+\end{sol}
+\end{exmp}
+
+\todo{p33, bi,poisson distribution with multivariable, and change of variable}
 
 \end{document}
 
