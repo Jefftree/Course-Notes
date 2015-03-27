@@ -651,7 +651,7 @@ If the \textbf{average rate of occurrence} in a Poisson process is given, $\lamb
 \end{defn}
 
 \begin{exmp}
-The time between arrivals of cars at a gas pump station follows an exponential distribution with an average time between arrivals of 3 minutes. What is teh probability that the time between two successive arrivals will be 2 mins or less.
+The time between arrivals of cars at a gas pump station follows an exponential distribution with an average time between arrivals of 3 minutes. What is the probability that the time between two successive arrivals will be 2 mins or less.
 
 \begin{sol}
 Must calculate $P(X \leq 2)$. From the question, $\theta = 3$, so $F(x) = 1 - e^{-\f{x}{3}}$. $F(2) = 1 - e^{-\f{2}{3}} = 0.4866$.
@@ -727,7 +727,7 @@ and similarly
 \begin{exmp}
 Suppose the joint probabililty function of $X$ and $Y$ is given by
 \[f(0,0) = 0.4, f(0,1) = 0.2, f(1,0) = 0.1, f(1,1) = 0.3\]
-Calculate the conditional probabiltiy function of $X$ given that $Y = 1$.
+Calculate the conditional probability function of $X$ given that $Y = 1$.
 
 \begin{sol}
 \[f_Y(1) = \sum^{\text{all x}} f(x,1) = f(0,1) + f(1,1) = 0.5\]
@@ -735,8 +735,68 @@ Calculate the conditional probabiltiy function of $X$ given that $Y = 1$.
 \[f_{X|Y}(1|1) = \f{f(1,1)}{f_Y(1)} = \f{0.3}{0.5} = \f{3}{5}\]
 \end{sol}
 \end{exmp}
-
 \todo{p33, bi,poisson distribution with multivariable, and change of variable}
+
+\subsection{Multinomial Distribution}
+
+Suppose an experiment is repeated independently n times with k distinct types of outcome each time. Each experiment can result in any one of k possible outcomes, with probabilities $p_1,\dots,p_k$ each time. If $X$ denotes the number of times the ith type occurs, then $(X_1,\dots,X_k)$ has a multinomial distribution.
+\[f(X_1 = x_1,\dots,X_k = x_k) = \f{n!}{x_1 !\cdots x_k !} p_{1}^{x1} \cdot p_{2}^{x2} \cdots p_{k}^{xk}\]
+
+\begin{exmp}
+Suppose that a fair die is rolled twelve times. The probability that 1 appears 4 times, 2 and 3 appear 3 times each, 4 and 5 appear once each, and 6 not at all is
+\[\f{12!}{4!3!3!1!1!0!} (\f{1}{6})^4 (\f{1}{6})^3 (\f{1}{6})^3 (\f{1}{6})^1 (\f{1}{6})^1 (\f{1}{6})^0\]
+\[= \f{12!}{4!3!3!} (\f{1}{6})^{12}\]
+\end{exmp}
+
+\todo{Some stuff in the middle}
+
+\begin{defn}
+If $X$ is a discrete random variable with probability function $f(x) = P(X = x)$, then the expected value is
+\[E(X) = \mu_X = \sum^{\text{all x}} x f(x)\]
+\[E(g(X)) = \sum^{\text{all x}} g(x) f(x)\]
+Similarly,
+\[E(XY) = \sum^{\text{all(x,y)}} xy f(x,y)\]
+\[E(g,X,Y) = \sum^{\text{all(x,y)}} g(x,y) f(x,y)\]
+\[E(X+Y) = E(X) + E(Y)\]
+\end{defn}
+
+If $X$ and $Y$ are independent, then for any functions $h$ and $g$,
+\[E(g(X) h(Y)) = E(g(X)) E(h(Y))\]
+\[E(ag(X,Y) + b h(X,Y)) = a E(g(X,Y)) + b E(h(X,Y))\]
+
+\begin{defn}
+\textbf{Deterministic relationship} has no variance nor uncertainty. If the value of one variable is known, the other variable can be determined exactly. (Eg: Unit conversions). Represented as $y = \beta_0 + \beta_{1} x$
+\end{defn}
+
+\begin{defn}
+\textbf{Statistical relationship} has both variance and uncertainty. For a fixed value of $x$ there is unertainty in the value of the second variable $y$/
+\end{defn}
+
+\begin{defn}
+\textbf{Regression analysis} is the part of statistics that investigates the relationship between two or more variables related in nondeterministic fashion. For this course, \textbf{covariance} and \textbf{correlation coefficient} are analyzed.
+\end{defn}
+
+\begin{defn}
+The \textbf{covariance} between two random variables is
+\[\text{Cov}(X,Y) = E \lbrack (X - \mu_X)(Y - \mu_Y) \rbrack\]
+\[= \sum (x - \mu_X)(y-\mu_Y) f(x,y)\]
+\[\text{Cov}(X,Y) = E(XY) - \mu_X \cdot \mu_Y\]
+This measures how much two random variables change together.
+\end{defn}
+
+\begin{note}
+If $X$ and $Y$ are independent, then $\text{Cov}(X,Y) = 0$, but the converse is not true.
+\end{note}
+
+\begin{defn}
+The \textbf{correlation coefficient}, denoted as $\text{Corr}(X,Y)$, $\rho_{X,Y}$ or just $\rho$ is defined by
+\[\rho_{X,Y} = \f{\text{Cov}(X,Y)}{\sigma_X \cdot \sigma_Y}\]
+If $a$ and $c$ have the same sign (both positive/negative),
+\[\text{Corr}(aX+b,cY+d) = \text{Corr}(X,Y)\]
+The relationship is strong if $|\rho| > 0.8$, moderate if $0.5 < |\rho| < 0.8$, and weak if $|\rho| < 0.5$.
+$\rho$ measures the degree of \textbf{linear relationship} between $X$ and $Y$.
+\end{defn}
+
 
 \end{document}
 
