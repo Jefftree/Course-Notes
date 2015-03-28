@@ -14,6 +14,7 @@
 
 \subsection{Vector Addition and Scalar Multiplication}
 
+
 \begin{defn}
 $\R^n$ consists of n-tuples of real numbers, where $n \in \N$.
 \end{defn}
@@ -611,6 +612,8 @@ Let $L: \R^n \rightarrow \R^m$ and $M: \R^n \rightarrow \R^m$ be linear mappings
 
 \section{Vector Spaces}
 
+\subsection{Vector Spaces}
+
 \begin{defn}
 Let $\mathbb{V}$ be a set. The elements of $\mathbb{V}$ are vectors denoted as $\vx$. $\mathbb{V}$ is called a \textbf{vector space over $\R$} if there is an operation of addition and scalar multiplication such that for any $\vx,\vy,\vv \in \mathbb{V}$ and $a,b \in \R$,
 \begin{enumerate}
@@ -627,6 +630,139 @@ Let $\mathbb{V}$ be a set. The elements of $\mathbb{V}$ are vectors denoted as $
 \end{enumerate}
 \end{defn}
 
+\begin{exmp}
+Is the empty set a vector space?
+\begin{sol}
+No. It does not contain $\vec{0}$ even though the other statements are vacuously true.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Let $\mathbb{V} = \{\vec{0}\}$ and define addition by $\vec{0} + \vec{0} = \vec{0}$ and scalar multiplication by $c \vec{0} = \vec{0}$. Show that $\mathbb{V}$ is a vector space.
+\begin{sol}
+Must show that it satisfies all ten axioms.
+\begin{enumerate}
+\item The only element in $\mathbb{V}$ is $\vec{0}$ and $\vec{0} + \vec{0} = \vec{0} \in \mathbb{V}$
+\item $(\vec{0} + \vec{0}) + \vec{0} = \vec{0} + (\vec{0} + \vec{0})$
+\item $\vec{0} + \vec{0} = \vec{0} = \vec{0} + \vec{0}$
+\item $\vec{0} + \vec{0} = \vec{0}$ so the zero vector is in the set.
+\item Additive inverse of $\vec{0}$ is $\vec{0}$.
+\item $a\vec{0} = \vec{0} \in \mathbb{V}$
+\item $a(b\vec{0}) = a\vec{0} = \vec{0} = (ab)\vec{0}$
+\item $(a+b)\vec{0} = \vec{0} = \vec{0} + \vec{0} = a\vec{0} + b\vec{0}$
+\item $a(\vec{0} + \vec{0}) = a\vec{0} = \vec{0} = \vec{0} + \vec{0} = a\vec{0} + a\vec{0}$
+\item $1\, \vec{0} = \vec{0}$
+\end{enumerate}
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Let $\mathbb{S}  = \{x \in \R | x > 0\}$. Define addition in $\mathbb{S}$ by $x \oplus y = xy$ and define sclar multiplication by $c \odot x = x^c$ for all $x,y \in \mathbb{S}$ and all $c \in \R$. Prove that $\mathbb{S}$ is a vector space under these operations.
+
+
+\begin{sol}
+Must should that $\mathbb{S}$ satisfies all ten vector space axioms. For any $x,y,z \in \mathbb{S}$ and $a,b \in \R$ we have
+\begin{enumerate}
+\item $x \oplus y = xy > 0 $ since $ x > 0$ and $y > 0$, hence $x \oplus y \in \mathbb{S}$
+\item $(x \oplus y) \oplus z = (xy) \oplus z = (xy)z  x(yz) = x \oplus (yz) = x \oplus (y \oplus z)$
+\item $x \oplus y = xy = yx = y \oplus x$
+\item The zero vector is $1$ because $1 \in \mathbb{S}$ and $x \oplus 1 = x1 = x$
+\item $\f{1}{x}$ is the additive inverse of $x$ since $\f{1}{x} \in \mathbb{S}$ and $\f{1}{x} \oplus x = 1$.
+\item $a \odot x = x^n > 0$ since $x > 0$ so $a \odot x \in \mathbb{S}$.
+\item $a \odot (b \odot x) = a \odot x^b = (x^b)^a = x^{ab} = (ab) \odot x$
+\item $(a+b) \odot x = x^{a+b} = x^a x^b = x^a \oplus x^b = a \odot x \oplus b \odot x$
+\item $a \odot (x \oplus y) = a \odot (xy) = (xy)^a = x^a y^a = x^a \oplus y^a = a \odot x \oplus a \odot y$
+\item $1x = x^1 = x$
+\end{enumerate}
+Therefore $\mathbb{S}$ is a vector space.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+$\mathbb{V} = \{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} | x_1,x_2 \in \R\}$ with standard scalar multiplication, but addition defined by
+\[\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} = \begin{bmatrix} x_1 + y_2 \\ y_1 + x_2 \end{bmatrix}\]
+\begin{sol}
+This is not a vector space because $\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$ but $\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$\\
+This does not satisfy V3.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Show that the set $\Z^2$ = $\left\{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} | x_1,x_2 \in \Z \right\}$ is not a vector space under standard addition and scalar multiplication of vectors.
+\begin{sol}
+Observe that $\begin{bmatrix} 1 \\ 2 \end{bmatrix} \in \Z^2$, but $\sqrt{2} \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} \sqrt{2} \\ 2 \sqrt{2} \end{bmatrix} \not\in \Z^2$. Hence this does not satisfy V6 and is not a vector space.
+\end{sol}
+\end{exmp}
+
+\begin{thrm}
+Let $\mathbb{V}$ be a vector space with addition defined by $\vx + \vy$ and scalar multiplication defined by $c \vx$ for all $\vx,\vy \in \mathbb{V}$, and $c \in \R$, Then
+\begin{itemize}
+\item $0 \vec{x} = \vec{0}$ for all $\vx \in \mathbb{V}$
+\item $- \vx = (-1)\vx$ for all $\vx \in \mathbb{V}$
+\end{itemize}
+\end{thrm}
+
+\subsubsection{Subspaces}
+
+\begin{defn}
+Let $\mathbb{V}$ be a vector space. If $\mathbb{S}$ is a subset of $\mathbb{V}$ and $\mathbb{S}$ is a vector space under the same operations as $\mathbb{V}$, then $\mathbb{S}$ is called a \textbf{subspace} of $\mathbb{V}$.
+\end{defn}
+
+\begin{thrm}
+Let $\mathbb{S}$ be a non-empty subset of $\mathbb{V}$. If $\vx + \vy \in \mathbb{S}$ and $c\vx \in \mathbb{S}$ for all $\vx,\vy \in \mathbb{S}$, and $c \in \R$ under the operations of $\mathbb{V}$, then $\mathbb{S}$ is a subspace of $\mathbb{V}$
+\end{thrm}
+
+\begin{exmp}
+Is $\W = \{p(x) \in P_2(\R)|p(2) = 0\}$ a subspace of $P_2(\R)$?
+\begin{sol}
+In $P_2(\R)$ the zero vector is the polynomial that satisfies $z(x) = 0$ for all $x$. Hence $z(x) \in \W$ since $z(2) = 0$. Therefore $\W$ is non-empty.\n
+Let $p(x),q(x) \in \W$. Then $p(2) = 0, q(2) = 0, (p+q)(2) = p(2) + q(2) = 0 + 0 = 0$. Hence $(p+q) \in \W$ and $\W$ is closed under addition.\n
+Similarly, $(cp)(2) = cp(2) = c0 = 0$ for all $c \in \R$ so $(cp) \in \W$. Thus, it is also closed unders calar multiplication. Therefore $\W$ is a subspace of $P_2(\R)$ by the Subspace Test.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+IS $T = \{a + bx + cx^2 \in P_3(\R)|a^2 - b^2 = 0\}$ a subspace of $P_2(\R)$?
+\begin{sol}
+Observe $-1 + 4x \not\in T$. Therefore this is not a subspace.
+\end{sol}
+\end{exmp}
+
+\subsubsection{Spanning}
+\begin{defn}
+Let $B = \{\vv_1,\dots,\vv_k\}$ be a set of vectors in a vector space $\V$. Then we define the \textbf{span} of $B$ by
+\[\spn(B) = \{c_1 \vv_1 + \cdots + c_k \vv_k | c_1,\dots,c_k \in \R\}\]
+$\spn B$ is \textbf{spanned} by $B$ and $B$ is a \textbf{spanning set} for $\spn B$.
+\end{defn}
+
+\begin{thrm}
+If
+If $B = \{\vv_1,\dots,\vv_k\}$ is a span of vectors in a vector space $\V$, then $\spn B$ is a subspace of $\V$.
+\end{thrm}
+
+\begin{thrm}
+Let $\V$ be a vector space and $\vv_1,\dots,vv_k \in \V$. Then $v_i \in \spn \{\vv_1,\dots,\vv_{i-1},\vv_{i+1},\dots,\vv_k\}$.
+\end{thrm}
+
+\begin{exmp}
+Determine if $p(x) = 3 - 4x + 2x^2$ is in $\spn\{1+2x,1-x+3x^2,2-x+x^2\}$ in $P_2(\R)$.
+\begin{sol}
+Must determine if there exists coefficients such that
+\begin{align*}
+3 - 2x + 2x^2 &= c_{1}(1+2x) + c_{2} (1-x+3x^2) + c_{3}(2-x+x^2) \\
+&= (c_{1} + c_{2} + 3 c_{3}) + (2c_{1} - c_{2} - c_{3}) x + (3c_{2} + c_{3})x^2
+\end{align*}
+Collect like coefficients
+\end{sol}
+\begin{align*}
+c_{1} + c_{2} + 3 c_{3} &= 3 \\
+2c_{1} - c_{2} - c_{3} &= 4 \\
+3c_{2} + c_{3} &= 2 \\
+\end{align*}
+\[\begin{bmatrix}[ccc|c] 1 & 1 & 2 & 3 \\ 3 & -1 & -1 & 4 \\  & 3 & 1 & 2 \end{bmatrix} \sim \begin{bmatrix}[ccc|c] 1 & 0 & 0 & -1 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 2 \end{bmatrix}\]
+Therefore $p(x) \in \spn\{1+2x,1-x+2x^2,2-x+x^2\}$
+\end{exmp}
+
 \section{Inverses and Determinants}
 
 \section{Diagonalization}
@@ -634,7 +770,6 @@ Let $\mathbb{V}$ be a set. The elements of $\mathbb{V}$ are vectors denoted as $
 
 \todo{Alot of stuff here}
 \subsubsection*{3/27/15}
-
 
 \begin{exmp}
 Consider $A$ = $\begin{bmatrix} 3 & 6 & 7 \\ 3 & 3 & 7 \\ 5 & 6 & 5 \end{bmatrix}$. with corresponding eigenvectors $\vv_{1} = \begin{bmatrix} 1 \\ -2 \\ 1 \end{bmatrix}$ since
@@ -716,9 +851,6 @@ Find all eigenvalues of
 Therefore the eigenvalues are $\lambda_1 = 8, \lambda_2 = 8, \lambda_3 = 1$
 \end{sol}
 \end{exmp}
-
-
-
 
 
 
