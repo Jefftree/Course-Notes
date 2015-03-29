@@ -114,12 +114,12 @@ The amount of ways to arrange $n$ items (all of them have to be used) is $n!$
 
 \begin{defn}
 Any unordered sequence of $k$ objects taken from a set of $n$ distinct objects is called a \textbf{combination}.
-\[C_{k,n} = {n \choose k} = \f{n!}{k! (n-k)!}\]
+\[C_{k,n} = \binom{n}{k} = \frac{n!}{k! (n-k)!}\]
 \end{defn}
 
 \begin{exmp}
 \textbf{Binomial Theorem}:
-\[(1+x)^n = {n \choose 0} + {n \choose 1} x + {n \choose 2} x^2 + \dots + {n \choose n} x^n\]
+\[(1+x)^n = \binom{n}{0} + \binom{n}{1} x + \binom{n}{2} x^2 + \dots + \binom{n}{n} x^n\]
 \end{exmp}
 
 \section{Chapter 4}
@@ -336,14 +336,14 @@ Examples of this distribution include rolling a fair die, flipping a fair coin.
 \item $q = 1 - p$ denotes the probability of failure in a trial.
 \item $X$ is the range of successes in n tries (where $x = 0,\cdots,n$)
 \end{itemize}
-\[P(X = x) = b(x;n,p) = {n \choose x} p^x (1-p)^{n-x},\,0 \leq x \leq n\]
+\[P(X = x) = b(x;n,p) = \binom{n}{x} p^x (1-p)^{n-x},\,0 \leq x \leq n\]
 We write $x\sim$ Binomial$(n,p)$.
 
 
 
 \begin{defn}
 The \textbf{Hypergeometric Distribution} is where a sample is taken from a finite population without replacement. Similar to binomial distribution, each trial has the possibility of success or failure. $N$ is the population, $n$ is the sample selected, $r$ is the total amount of successes available in the population, and $x$ represents the amount of successes within the selected sample.
-\[P(X=x) = \f{{r\choose x} {n-1 \choose n - x}}{{N \choose n}},\,x = 0,1,\dots,n\]
+\[P(X=x) = \f{\binom{r}{x} \binom{n-1}{n - x}}{\binom{N}{n}},\,x = 0,1,\dots,n\]
 \begin{qte}
 Choose $x$ successes from the success samples, and out of the remaining failures, $N-r$, choose $n-x$ (failures in sample), all over the total amount of ways to select $n$ things in the population $N$.
 \end{qte}
@@ -358,7 +358,7 @@ The \textbf{negative binomial distribution} is based on an experiment satisfying
 \item \textbf{Experiment continues until k successes have occurred}
 \end{itemize}
 The rv in this distribution is the number of failures obtained before the kth success occurs.
-\[ f(x) = P(X =x) = {x + k - 1 \choose x} p^k (1-p)^x\]
+\[ f(x) = P(X =x) = \binom{x + k - 1}{x} p^k (1-p)^x\]
 \end{defn}
 
 \begin{defn}
@@ -725,7 +725,7 @@ and similarly
 \end{defn}
 
 \begin{exmp}
-Suppose the joint probabililty function of $X$ and $Y$ is given by
+Suppose the joint probability function of $X$ and $Y$ is given by
 \[f(0,0) = 0.4, f(0,1) = 0.2, f(1,0) = 0.1, f(1,1) = 0.3\]
 Calculate the conditional probability function of $X$ given that $Y = 1$.
 
@@ -750,6 +750,28 @@ Suppose that a fair die is rolled twelve times. The probability that 1 appears 4
 
 \todo{Some stuff in the middle}
 
+\begin{defn}
+Let $P$ be a $n \times n$ matrix. $P$ is a \textbf{transition probability matrix} when the conditional probabilities are given by corresponding elements of the matrix
+\[P(X_{n+1} = j | X_{n} = i) = P_{ij}\]
+\end{defn}
+
+\begin{exmp}
+Suppose that the probability that tomorrow is rainy given that today is not raining is $\alpha$. The probability that tomorrow is dry given that today is rainy is $\beta$.The random variable $X_{n}, n = 0,1,2,\dots$ form a \textbf{Markov chain} with 2 possible states and having probability transition matrix
+\[P=\begin{bmatrix} 1 - \alpha & \alpha \\ \beta & 1 - \beta \end{bmatrix}\]
+The rows represent the current day, columns represent tomorrow, with first row and column representing dry and 2nd row and column representing rainy.
+\end{exmp}
+
+\begin{qte}
+Every row in the Markov chain must add up to $1$.
+\end{qte}
+
+\begin{defn}
+A \textbf{stohastic matrix} has the property that all its rows add up to $1$.
+\end{defn}
+
+\begin{defn}
+A \textbf{double stochastic matrix} has the property that both all its rows and columns add up to $1$.
+\end{defn}
 \begin{defn}
 If $X$ is a discrete random variable with probability function $f(x) = P(X = x)$, then the expected value is
 \[E(X) = \mu_X = \sum^{\text{all x}} x f(x)\]
@@ -797,6 +819,28 @@ The relationship is strong if $|\rho| > 0.8$, moderate if $0.5 < |\rho| < 0.8$, 
 $\rho$ measures the degree of \textbf{linear relationship} between $X$ and $Y$.
 \end{defn}
 
+% TODO: 9c starts here
 
+\begin{defn}
+Given a collection of $n$ random variables $X_1,\dots,X_n$, the random variable
+\[Y = a_1 X_1 + \cdots + a_n X_n = \sum_{i=1}^n a_{i} X_i\]
+is called a linear combination of the $X_{i}$s. The mean is given by
+\[E(a_1 X_1 + \cdots + a_n X_n) = a_1 E(X_1) + \cdots + a_n E(X_n) = a_1 \mu_1 + \cdots + a_n \mu_n\]
+\end{defn}
+
+\begin{thrm}
+\textbf{Variance of a linear combination of random variables:} \\
+If $X_1,\dots,X_n$ are independent, then
+\[\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y)\]
+\[V(a_1 X_1 + \cdots + a_n X_n) = a_{1}^2 V(X_1) + \cdots + a_{n}^2 V(X_n) = a_{1}^2 \sigma_{1}^2 + \cdots + a_{n}^2 \sigma_{n}^2\]
+If $X_1,\dots,X_n$ are dependent, then
+\[\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y) + 2 \text{Cov}(X,Y)\]
+\end{thrm}
+
+\[E(X_{1} - X_{2}) = E(X_{1}) - E(X_{2})\]
+If $X_{1}$ and $X_{2}$ are independent,
+\[V(X_{1} - X_{2}) = V(X_{1}) + V(X_{2})\]
+
+\todo{The women problem on pg 12 9c}
 \end{document}
 
