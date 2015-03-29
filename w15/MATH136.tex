@@ -932,9 +932,116 @@ If $S$ is a subspace of a finite dimensional vector space $\V$, then $\text{dim}
 
 \begin{thrm}
 If $B = \{\vv_1,\dots,\vv_n\}$ is a basis for a vector space $\V$, then every vector $\vv \in \V$ can be represented as a \textbf{unique} linear combination of $\vv_1,\dots,\vv_n$.
+\begin{proof}
+Since $B$ is a basis, it a spanning set. Ths for every vector $\vv \in \V$ there exists constants such that
+\[c_1 \vv_1 + \cdots + c_n \vv_n = \vv\]
+Assume that there also exists constants such that $d_1 \vv_1 + \cdots + d_n \vv_n = \vv$. Then
+\[c_1 \vv_1 + \cdots + c_n \vv_n = d_1 \vv_1 + \cdots + d_n \vv_n = \vv\]
+\[(c_1 - d_1) \vv_1 + \cdots + (c_n - d_n)\vv_n = \vec{0}\]
+But this implies $c_i = d_i$ for all $1 \leq i \leq n$ since $B$ is linearly independent. Thus there exists only one linear combination of the vectors in $B$ that equals $\vv$.
+\end{proof}
 \end{thrm}
 
+\begin{defn}
+Let $\V$ be a vector space with basis $B = \{\vv_1,\dots,\vv_n\}$. For any $\vv \in \V$, the \textbf{coordinate vector} of $\vv$ with respect to $B$ is
+\[\lbrack \vv \rbrack_B = \begin{bmatrix} b_{1} \\ \vdots \\ b_{n} \end{bmatrix}\]
+where $\vv = b_1\vv_1 + \cdots + b_n\vv_n$.
+\end{defn}
 
+\begin{exmp}
+Given that $B = \left\{\begin{bmatrix} 1 & 1 \\ 0 & 2 \end{bmatrix}, \begin{bmatrix} 0 & 1 \\ 0 & 1 \end{bmatrix}, \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\right\}$ is a basis for a subspace $S$ of $M_{2 \times 2}(\R)$ and $\lbrack A \rbrack_B = \begin{bmatrix} 2 \\ -1 \\ 3 \end{bmatrix}$, what is $A$?
+\begin{sol}
+We have $A = 2 \begin{bmatrix} 1 & 1 \\ 0 & 2 \end{bmatrix} + (-1) \begin{bmatrix} 0 & 1 \\ 0 & 1 \end{bmatrix} + 3 \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix} = \begin{bmatrix} 5 & 7 \\ 6 & 6 \end{bmatrix}$
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Consider the basis $B = \{1,(x-1),(x-1)^2\}$ for $P_2(\R)$. Find the B coordinate vectors of $p(x) = 3 - 5x + 4x^2$ and $q(x) = x$.
+\begin{sol}
+Must find constants such that
+\begin{align*}
+3 - 5x + 4x^2 &= c_{1} + c_{2} (x-1) + c_{3} (x-1)^2 \\
+&= (c_1 - c_2 + c_3) + (c_2 - 2c_3)x + c_3 x^2
+\end{align*}
+Similarly, we need to find
+\begin{align*}
+x &= d_1 + d_2(x-1) + d_3 (x-1)^2\\
+&= (d_1 - d_2 + d_3) + (d_2 - 2d_3)x + d_3 x^2
+\end{align*}
+The coefficients for both these augmented matrices are the same, so a double augmented matrix can be created.
+\[\begin{bmatrix}[ccc|c|c] 1 & -1 & 1 & 3 & 0 \\ 0 & 1 & -2 & -5 & 1 \\ 0 & 0 & 1 & 4 & 0 \end{bmatrix} \sim \begin{bmatrix}[ccc|c|c] 1 & 0 & 0 & 2 & 1 \\ 0 & 1 & 0 & 3 & 1 \\ 0 & 0 & 1 & 4 & 0 \end{bmatrix}\]
+Therefore $\lbrack 3 - 5x + 4x^2 \rbrack_B = \begin{bmatrix} 2 \\ 3 \\ 4 \end{bmatrix}$, and $\lbrack x \rbrack_B = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}$.
+\end{sol}
+\end{exmp}
+
+\begin{thrm}
+If $\V$ is a vector space with $B = \{\vv_1,\dots,\vv_n\}$, then for any $\vv,\vw \in \V$, and $s,t \in \R$, we have
+\[\lbrack s \vv + t \vw \rbrack_B = s \lbrack \vv \rbrack_b + t \lbrack \vw \rbrack_B\]
+\begin{proof}
+Let $\vv = b_1 \vv_1 + \cdots + b_n \vv_n$ and $w = c_1 \vv_1 + \cdots c_n \vv_n$. Then we have
+\[s\vv + t \vw = (sb_1 + tc_1) \vv_1 + \cdots + (sb_n + tc_n) \vv_n\]
+Therefore,
+\[\lbrack s \vv + t \vw \rbrack_B = \begin{bmatrix} sb_1 + tc_1 \\ \vdots \\ sb_n + tc_n \end{bmatrix} = s \begin{bmatrix} b_1 \\ \vdots \\b_n \end{bmatrix} + t \begin{bmatrix} c_1 \\ \vdots \\c_n \end{bmatrix} = s \lbrack \vv \rbrack_B + t \lbrack \vw \rbrack_B\]
+\end{proof}
+\end{thrm}
+
+\subsubsection{Change of Coordinates}
+
+\begin{exmp}
+Let $B$ be any basis for $\R^3$ and let $\vx \in \R^3$.
+\[\vx = x_1 \ve_1 + x_2 \ve_2 + x_3 \ve_3 \]
+If we find the coordinates of the standard basis vectors with respect to the basis $B$, then calculating $\lbrack x \rbrack_B$ will be easy
+\begin{align*}
+\left\lbrack \begin{bmatrix} x_1 \\ x_2 \\x_3 \end{bmatrix} \right\rbrack_B &= \lbrack x_1 \ve_1 + x_2 \ve_2 + x_3 \ve_3 \rbrack_B \\
+&= x_1 \lbrack \ve_1 \rbrack_B + x_2 \lbrack \ve_2 \rbrack_B + x_2 \lbrack \ve_2 \rbrack_B \\
+&= \left \lbrack \lbrack \ve_1 \rbrack_B + \lbrack \ve_2 \rbrack_B + \lbrack \ve_3 \rbrack_B \right \rbrack \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+\end{align*}
+We call $_BP_S = \lbrack \ve_1 \rbrack_B + \lbrack \ve_2 \rbrack_B + \lbrack \ve_3 \rbrack_B$ the change of coordinates matrix from the standard basis $S$ to the basis $B$.
+\end{exmp}
+
+\begin{exmp}
+Let $B = \left\{\begin{bmatrix} 1 \\ 3 \\ -1 \end{bmatrix}, \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 3 \\ 4 \\ 1 \end{bmatrix}\right\} = \{\vec{b}_1, \vec{b}_2, \vec{b}_3\}$.\n
+Find $\lbrack \vx \rbrack_B$ for any $\vx \in \R^3$.
+\begin{sol}
+\[\ve_1 = c_1 \vb_1 + c_2 \vb_2 + c_3 \vb_3\]
+\[\ve_2 = d_1 \vb_1 + d_2 \vb_2 + d_3 \vb_3\]
+\[\ve_3 = f_1 \vb_1 + f_2 \vb_2 + f_3 \vb_3\]
+Use a triple augmented matrix to find the coefficients
+\[\begin{bmatrix}[ccc|ccc] 1 & 2 & 3 & 1 & 0 & 0 \\ 3 & 1 & 4 & 0 & 1 & 0 \\ -1 & 1 & 1 & 0 & 0 & 1 \end{bmatrix} \sim \begin{bmatrix}[ccc|ccc] 1 & 0 & 0 & \f 3 5 & - \f 1 5 & -1 \\ 0 & 1 & 0 & \f 7 5 & - \f 4 5 & -1 \\ 0 & 0 & 1 & - \f 4 5 & \f 3 5 & 1 \end{bmatrix}\]
+\[\lbrack \vx \rbrack_B = _B P_S = \left \lbrack \lbrack \ve_1 \rbrack_B + \lbrack \ve_2 \rbrack_B + \lbrack \ve_3 \rbrack_B \right \rbrack = \begin{bmatrix} \f 3 5 & - \f 1 5 & 1 \\ \f 7 5 & - \f 4 5 & -1 \\ - \f 4 5 & \f 3 5 & 1 \end{bmatrix}\]
+\[\lbrack \vx \rbrack_B = _B P_S \vx = \begin{bmatrix} \f 3 5 x_1 - \f 1 5 x_2 + x_3\\ \f 7 5 x_1 - \f 4 5 x_2 - x_3 \\ - \f 4 5 x_1 + \f 3 5 x_2 + x_3\end{bmatrix}\]
+\end{sol}
+\end{exmp}
+
+\begin{defn}
+Let $B = \{\vv+1,\dots,\vv_n\}$ and $C$ both be basis for a vector space $\V$. The \textbf{change of coordinate matrix} from B-coordinate to C-coordinate is defined by
+\[_CP_B = \lbrack \lbrack \vv_1 \rbrack_C \cdots \lbrack \vv_n \rbrack_C \rbrack\]
+and $\forall \vx \in \V$, we have
+\[\lbrack \vx \rbrack_C = _CP_B \lbrack \vx \rbrack_B\]
+\end{defn}
+
+\begin{exmp}
+Let $B = \{1 + 3x,2+x\}$ and $C = \{-1+x,5-4x\}$ both be basis of $P_1(\R)$. Find $_CP_B$ and $_BP_C$.
+
+\begin{sol}
+To find $_CP_B$, must find the C-coordinate of the vectors in $B$,
+\[1 + 3x = c_1 (-1 + x) + c_2 (5-4x)\]
+\[2+x = d_1(-1+x) + d_2(5-4x)\]
+Create a double augmented matrix and row reduce
+\[\begin{bmatrix}[cc|cc] -1 & 5 & 1 & 2 \\ 1 & -4 & 3 & 1 \end{bmatrix} \sim \begin{bmatrix}[cc|cc] 1 & 0 & 19 & 13 \\ 0 & 1 & 4 & 3 \end{bmatrix}\]
+Therefore $_CP_B = \begin{bmatrix} 19 & 13 \\ 4 & 3 \end{bmatrix}$. To find $_BP_C$,
+\[-1 + x = c_1 (1 + 3x) + c_2 (2 + x)\]
+\[5 - 4x = d_1(1+3x) + d_2 (2+x)\]
+Creating a double augmented matrix and row reducing gives
+\[\begin{bmatrix}[cc|cc] 1 & 2 & -1 & 5 \\ 3 & 1 & 1 & -4 \end{bmatrix} \sim \begin{bmatrix}[cc|cc] 1 & 0 & \f 3 5 & - \f{13}{5} \\ 0 & 1 & - \f 4 5 & \f{19}{15} \end{bmatrix}\]
+Therefore $_BP_C = \begin{bmatrix} \f 3 5 & -\f{13}{5} \\ - \f 4 5 & \f{19}{5} \end{bmatrix}$.
+\end{sol}
+\end{exmp}
+
+\begin{thrm}
+If $B$ and $C$ are bases for an n-dimensional vector space $\V$, then the change of coordinate matrices $_CP_B$ and $_BP_C$ satisfy
+\[_CP_B\,_BP_C = I = \,_BP_C\,_CP_B\]
+\end{thrm}
 
 \section{Inverses and Determinants}
 
