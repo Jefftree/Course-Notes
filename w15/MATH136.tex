@@ -763,6 +763,179 @@ c_{1} + c_{2} + 3 c_{3} &= 3 \\
 Therefore $p(x) \in \spn\{1+2x,1-x+2x^2,2-x+x^2\}$
 \end{exmp}
 
+\begin{defn}
+A set of vectors $\{\vv_1,\dots,\vv_k\}$ in a vector space $\V$ is \textbf{linearly dependent} if there exists at least one non-zero coefficient that satisfies
+\[\vec{0} = c_1\vv_1 + \cdots + c_k\vv_k\]
+The set is \textbf{linearly independent} if the only solution is the trivial solution.
+\end{defn}
+
+\begin{thrm}
+A set of vectors $\{\vv_1,\dots,\vv_k\}$ in a vector space $\V$ is linearly dependent if and only if there exists $1 \leq i \leq k$ such that
+\[\vv_i \in \spn \{\vv_1,\dots,\vv_{i-1},\vv_{i+1},\vv_k\}\]
+\end{thrm}
+
+\begin{thrm}
+A set of vectors $\{\vv_1,\dots,\vv_k\}$ in a vector space $\V$ which contains the zero vector is linearly dependent.
+\end{thrm}
+
+\begin{exmp}
+Determine if the set $\{1 + x + 2x^2,x-x^2,-2x^2\}$ is linearly independent.
+\begin{sol}
+A set is linear independnet if and only if the only solution to
+\[0 = c_{1} (1 + x + 2x^2) + c_{}(x-x^2) + c_{3} (-2 + x^2)\]
+is $c_1 = c_2 = c_3 = 0$. Rearranging,
+\[(c_1 - 2c_3) + (c_1 + c_2) x + (2c_1 - c_2 + c_3)x^2 = 0\]
+Solve the homogeneous system,
+\[\begin{bmatrix} 1 & 0 & -2 \\ 1 & 1 & 0 \\ 2 & -1 & 1 \end{bmatrix} \sim \identity \]
+This system has a unique solution, thus the set is linearly independent.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Determine if $\{1 + 2x + x^2,3 + 3x + 2x^2, 5 + x + 3x^2\}$ is linearly independent in $P_2(\R)$.
+\begin{sol}
+\begin{align*}
+0 &= c_{1}(1 + 2x + x^2) + c_{2}(3 + 3x + 2x^2) + c_{3} (5 + x + 3x^2)\\
+&= (c_{1} + 3c_{2} + 5 c_{3}) + (2c_{1} + 3c_2 + c_3) x + (c_1 + 2c_2 + 2c_3)x^2
+\end{align*}
+\[\begin{bmatrix} 1 & 3 & 5 \\ 2 & 3 & 1 \\ 1 & 2 & 2 \end{bmatrix} \sim \begin{bmatrix} 1 & 0 & -4 \\ 0 & 1 & 3 \\ 0 & 0 & 0 \end{bmatrix}\]
+Since there are infinitely many solutions, the system is linearly dependent.
+\end{sol}
+\end{exmp}
+
+\subsection{Bases and Dimension}
+
+\begin{defn}
+Let $\V$ be a vector space. The set $B$ is called a basis for $\V$ if $B$ is linearly independent spanning set for $\V$.
+\end{defn}
+
+\begin{exmp}
+Find the standard basis for $P_n(\R)$.
+\begin{sol}
+Every vector in $P_n(\R)$ has teh form
+\[P(x) = a_0 + a_1x + \cdots + a_n x^n\]
+Thus the set $\{1,x,\dots,x^n\}$ spans $P_n(\R)$. In addition
+\[0 + 0x + \cdots + 0x^n = a_0 + a_1 x + \cdots + a_n x^n\]
+By equating like powers of $x$, the only solution is the trivial solution. Therefore $\{1,x,\dots,x^n\}$ is a linearly independent spanning set for $P_n(\R)$ and is its standard basis.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Prove that $B = \{1,(1-x),(1-x)^2\}$ is a basis for $P_2(\R)$.
+\begin{sol}
+Let $p(x) = a + bx + cx^2$.
+\begin{align*}
+a + bx + cx^2 &= c_{1} + c_{2}(1-x) + c_{3} (1-x)^2 \\
+&= (c_0 + c_1 + c_2) + (-c_1 - 2c_2)x + c_2 x^2
+\end{align*}
+Therefore,
+\begin{align*}
+c_0 + c_1 + c_2 &=a\\
+-c_1 - 2c_2 &=b\\
+c_2 &=c
+\end{align*}
+If the system is row reduced, we . Thus $B$ is a linearly independent spanning set for $P_2(\R)$.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Find a basis for the space of $M_{2\times2}(\R)$ defined by
+\[S = \left\{\begin{bmatrix} a & b \\ 0 & c \end{bmatrix} | a-b = 2c\right\}\]
+\begin{sol}
+Every vector has the form
+\[\begin{bmatrix} a & b \\ 0 & c \end{bmatrix} = \begin{bmatrix} a & a-2c \\ 0 & c \end{bmatrix} = a \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix} + c \begin{bmatrix} 0 & -2 \\ 0 & 1 \end{bmatrix}\]
+Thus $B = \left\{\begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & -2 \\ 0 & 1 \end{bmatrix}\right\}$ spans $S$, and is clearly linearly independent. Therefore it is a basis for $S$.
+\end{sol}
+\end{exmp}
+
+\begin{thrm}
+Let $B = \{\vv_1,\dots,\vv_n\}$ be a basis for a vector space $\V$ and let $C = \{\vw_1,\dots,\vw_k\}$ be a set in $\V$. If $k > n$ (rank) then $C$ is linearly dependent.
+
+\begin{proof}
+Consider $0 = c_1\vw_1 + \cdots + c_k \vw_k$. \n
+Since $B$ is a basis for $\V$, we can write every vector $\vw$ as a linear combination of the vectors in $B$.
+\[w_i = a_{i1}\vv_1 + \cdots + a_{in} \vv_n,\, \text{ for } 1 \leq i \leq k\]
+Substituting,
+\[ 0 = (c_1  a_{11} + \cdots + c_k a_{k1})\vv_1 + \cdots + (c_1 a_{1n} + \cdots + c_k a_{kn}) \vv_n\]
+Since $B$ is a basis, it is linearly independent, and the only solution is when
+\[c_1 a_{11} + \cdots + c_k a_{k1} = 0\]
+\[\vdots\]
+\[c_1 a_{1n} + \cdots + c_k a_{kn} = 0\]
+Since $k > n$, the system has infinitely many solutions by the system rank theorem, so the equation has infinitely many solutions, and hence $C$ is linearly independent.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $B = \{\vv_1,\dots,\vv_n\}$ and $C = \{ \vw_1,\dots,\vw_k\}$ are bases for the vector space $\V$, then $k = n$.
+
+\begin{proof}
+Since $B$ is a basis and $C$ is linearly independent, $k \leq n$ by the previous theorem. Similary, since $C$ is a basis and $B$ is linearly independent, $n \neq k$. Hence $n = k$.
+\end{proof}
+\end{thrm}
+
+\begin{defn}
+Let $\{\vv_1,\dots,\vv_k\}$ be a basis for the vector space $\V$. The \textbf{dimension} of $\V$ is $n$ (number of elements in the basis) and we write
+\[\text{dim}(V) = n\]
+If $V = \{\vec{0}\}$ then $\text{dim}(V) = 0$. If $\V$ does not have a basis with a finite number of vectors in it, then $\V$ is \textbf{infinite dimensional}.
+\end{defn}
+
+\begin{exmp}
+Some common dimensions
+\begin{itemize}
+\item The dimension of $\R^n$ is $n$.
+\item The dimension of $P_n(\R)$ is $n+1$.
+\item The dimension if $M_{m \times n}(\R)$ is $mn$
+\item The vector space $P(\R)$ of all polynomials with eral coefficients is infinite dimensional since the basis is $\{1,x,x^2,\dots\}$.
+\end{itemize}
+\end{exmp}
+
+\begin{exmp}
+The basis of $B = \left\{\begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & -2 \\ 0 & 1 \end{bmatrix}\right\}$ is $2$ because there are two elements in the set.
+\end{exmp}
+
+\begin{thrm}
+Let $\V$ be an n-dimensional vector space. Then
+
+\begin{enumerate}
+\item A set of more than $n$ vectors in $\V$ must be inearly dependent.
+\item A set of fewer than $n$ vectors in $\V$ cannot span $\V$.
+\item A set of $n$ vectors in $\V$ is linearly independent if and only if it spans $\V$.
+\end{enumerate}
+\end{thrm}
+
+\begin{thrm}
+If $\V$ is an n-dimensional vector space and $\{\vv_1,\dots,\vv_k\}$ is a linearly independent set in $\V$ with $k < n$, then there exists vectors $\vw_{k+1},\dots,\vw_{n}$ in $\V$ such that $\{\vv_1,\dots,\vv_k,\vw_{k+1},\dots,\vw_n\}$ is a basis for $\V$.
+
+\begin{proof}
+By Theorem 4.2.3, $\{\vv_1,\dots,\vv_k\}$ does not span $\V$.Let $\vw_{k+1}$ be a vector in $\V$ such that $\vw_{k+1} \not \in \spn\{\vv_1,\dots,\vv_k\}$. If $k+1 = n$, then by Theorem 4.2.3, $\{\vv_1,\dots,\vv_k,\vw_{k+1}\}$ is a basis. Else, repeat the procedure until it is true, and the set will be
+\[\{\vv_1,\dots,\vv_k,\vw_{k+1},\dots,\vw_n\}\]
+\end{proof}
+\end{thrm}
+
+\begin{exmp}
+Find a basis for the hyperplane with the equation $2x_1 + x_2 - x_3 - x_4 = 0$ and extend the basis to be a basis for $\R^4$.
+
+\begin{sol}
+Pick three vectors that are linearly independent and satisfy the hyperplane.\\
+\[\vv_1 = \begin{bmatrix} 0 \\ 2 \\ 1 \\ 1\end{bmatrix}, \vv_2 = \begin{bmatrix} 0 \\ 0 \\ -1 \\ 1 \end{bmatrix}, \vv_3 = \begin{bmatrix} 1 \\ 0 \\ 1 \\ 1 \end{bmatrix}\]
+Clearly the set $\{\vv_1,\vv_2,\vv_3\}$ is linearly independent, so it is a basis by Theorem 4.2.3 since the dimension of a hyperplanein $\R^4$ is $3$. To extend the basis to $\R^4$, we pick
+\[\vec{n} = \begin{bmatrix} 2 \\ 1 \\ -1 \\ -1 \end{bmatrix}\]
+(Observe that this vector is not spanned by the hyperplane). By Theorem 4.2.4, $\{\vv_1,\vv_2,\vv_3,\vec{n}\}$ is a basis for $\R^4$.
+\end{sol}
+\end{exmp}
+
+\begin{cor}
+If $S$ is a subspace of a finite dimensional vector space $\V$, then $\text{dim}(S) \leq \text{dim}(V)$.
+\end{cor}
+
+\subsection{Coordinates}
+
+\begin{thrm}
+If $B = \{\vv_1,\dots,\vv_n\}$ is a basis for a vector space $\V$, then every vector $\vv \in \V$ can be represented as a \textbf{unique} linear combination of $\vv_1,\dots,\vv_n$.
+\end{thrm}
+
+
+
 \section{Inverses and Determinants}
 
 \section{Diagonalization}
