@@ -1169,7 +1169,87 @@ For an $n \times n$ matrix $A$, the following are equivalent
 To solve a system $A\vx = \vb$, we can simply rearrange to get $\vx = A^{-1} \vb$.
 \end{thrm}
 
-\todo{End of invertible matrix theorem}
+\begin{exmp}
+Solve the system of linear equations:
+\[2x_1 + 4x_2 = 3\]
+\[-x_1 - 5x_2 = 5\]
+The system has coefficient matrix $\begin{bmatrix} 2 & 4 \\ -1 & 1\end{bmatrix}$ and $\vb = \begin{bmatrix} 3 \\ 5 \end{bmatrix}$. Since $ad-bc \neq 0$ we know that $A$ is invertible
+\[A^{-1} = \f{1}{6} \begin{bmatrix} -5 & -4 \\ 1 & 2 \end{bmatrix}\]
+\[\vx = A^{-1}\vb = A^{-1} = \f{1}{6} \begin{bmatrix} -5 & -4 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 3 \\ 5 \end{bmatrix} = \begin{bmatrix} \f{35}{6} \\ -\f{13}{6} \end{bmatrix}\]
+\end{exmp}
+
+\subsection{Elementary Matrices}
+
+\begin{note}
+Observe the correlation between matrix multiplication and row operation
+\begin{align*}
+\begin{bmatrix} k & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} a & b \\ c & d \end{bmatrix} &= \begin{bmatrix} ka & kb \\ c & d \end{bmatrix} \begin{matrix} kR_1 \\ ~ \end{matrix} \\
+\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} a & b \\ c & d \end{bmatrix} &= \begin{bmatrix} c & d \\ a & b \end{bmatrix} \begin{matrix} R_1 \leftrightarrow R_2 \\ ~ \end{matrix} \\
+\begin{bmatrix} 1 & -s \\ 0 & 1 \end{bmatrix} \begin{bmatrix} a & b \\ c & d \end{bmatrix} &= \begin{bmatrix} a -sc & b - sd \\ c & d \end{bmatrix} \begin{matrix} R_1 - sR_2 \\ ~ \end{matrix}
+\end{align*}
+\end{note}
+
+\begin{defn}
+An $n \times n$ matrix $E$ is called an elementary matrix if it can be obtained from the $n \times n$ identity matrix by performing exactly one elementary row operation.
+\end{defn}
+
+\begin{thrm}
+If $E$ is an elementary matrix, then $E$ is invertible. Moreover $E^{-1}$ is the elementary matrix corresponding to the reverse elementary row operations of $E$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $m \times m$ matrix, and $E$ is an $m \times m$ matrix corresponding to the row operation of $R_i + cR_j$, for $i \neq j$, then $EA$ is the matrix obtained from $A$ by performing teh row operation $R_i + cR_j$ on $A$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix and let $E$ be the $m \times m$ elementary matrix corresponding to the row operation of $cR_i$. Then $EA$ is the matrix obtained from $A$ by performing the row operation $cR_i$ on $A$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix and let $E$ be the $m \times m$ elementary matrix corresponding to the row operation $R_i \leftrightarrow R_j $, for $ i \neq j$. Then $EA$ is teh matrix obtained from $A$ by performing the row operation $R_i \leftrightarrow R_j$ on $A$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix, and let $E$ be an $m \times m$ elementary matrix. Then
+\[\text{rank}(EA) = \text{rank}(A)\]
+\end{thrm}
+
+\begin{note}
+To find something like $E_3E_2E_1A$ without multiplying, where $A,E$ are all $m \times m$ matrices, simply determine the row operation to obtain the elementary matrices, and apply them to the matrix $A$.
+\end{note}
+
+\begin{thrm}
+If $A$ is an $m \times n$ matrix in its RREF form, then there exists a sequence $E_k,\dots,E_2,E_1,$ of $m \times m$ matrices such that
+$E_k\,\cdots\,E_2 E_1 A = R$. In particular
+\[A = E_1^{-1}\,\cdots\,E_k^{-1}R\]
+
+\begin{proof}
+We know that $A$ can be reduced to its RREF, $R$ with a sequence of elementary row operations. Let $E_1$ be the first operation, $E_2$ be teh second row operation, and so on. By the previous few theorems,
+\[E_k\,\cdots\,E_2 E_1 A = R\]
+\end{proof}
+\end{thrm}
+
+\begin{qte}
+Matrix multiplication begins from the right. that is $E_2E_1A = E_2(E_1A)$.
+\end{qte}
+
+\begin{thrm}
+If $A$ is an invertible matrix, then $A$ and $A^{-1}$ can be written as a product of elementary matrices.
+\end{thrm}
+
+\begin{defn}
+Let $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$. The \textbf{determinant} of $A$ is defined as
+\[\text{det}(A) = ad-bc = \begin{vmatrix} a & b \\ c & d \end{vmatrix}\]
+\end{defn}
+
+\begin{exmp}
+Calculate $\text{det}\begin{bmatrix} 1 & 7 \\ -3 7 2 \end{bmatrix}$.
+\begin{sol}
+\[\text{det}\begin{vmatrix} 1 & 7 \\ -3 7 2 \end{vmatrix} = (1)(2) - (7)(-3) = 23\]
+\end{sol}
+\end{exmp}
+
+\todo{Extending determinant to 3x3}
 
 \section{Diagonalization}
 
