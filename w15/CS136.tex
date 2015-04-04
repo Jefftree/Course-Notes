@@ -454,8 +454,8 @@ int count2 = scanf (`` %c'', &c); // Skips whitespace
 \end{lstlisting}
 \end{note}
 
-\todo{Start of arrays}
-\section{Arrays initialization slide}
+\section{Arrays and Strings}
+
 \begin{lstlisting}[language=C]
 int a[5]; // Valid, size defined
 int b[] = {4,8,15,16,23,42}; //Valid size can be computed
@@ -495,10 +495,241 @@ When passing an array to a function, typically the length of the array is unknow
 \end{qte}
 
 \begin{qte}
-Pointer arithmetic is only valid within an array.
+In an array, pointers can be subtracted. However, pointer arithmetic is only valid within an array.
 \end{qte}
 
-If there are two pointers p and q
-\[p-q = \f{(p-q)}{\text{sizeof(*p)}}\]
-midterm up to 8-26
+\begin{note}
+If there are two pointers $p$ and $q$,
+\[p-q = \f{(p-q)}{sizeof(*p)}\]
+\[p + i = p + i \times sizeof(*p)\]
+$p\lbrack i \rbrack $ is equivalent to $*(p + i)$.
+\end{note}
+
+\begin{exmp}
+In \textbf{array pointer notation} square brackets are not used, and all array elements are accessed through pointer arithmetic.
+
+\begin{lstlisting}[language=C]
+// Pointer notation
+int sum_array(const int *a, int len) {
+  int sum = 0;
+  for (const int *p = a; p < a + len; ++p) {
+    sum+=*p;
+  }
+  return sum;
+}
+
+// Square bracket notation
+int sum_array(const int a[], int len) {
+  int sum = 0;
+  for (int i = 0; i < len; ++i) {
+    sum+=a[i];
+  }
+  return sum;
+}
+\end{lstlisting}
+\end{exmp}
+
+\begin{defn}
+\textbf{Multi-dimensional data} can be represented by mapping the higher dimensions down to one. That is, to select an element at a specific row and column, you would do $\text{data}\lbrack row \& NUMCOLS + col \rbrack$.
+\end{defn}
+
+\begin{defn}
+\textbf{Function pointers} store the starting address of a function within the code section. A function pointer in C can only point to a function that already exists.
+\begin{lstlisting}[language=C]
+int add1(int i) {
+  return i + 1;
+}
+
+int (*fp)(int) = add1;
+// Return value first, then name of function, then its parameters
+// Now you can call the function with fp(int i)
+
+// Another is to use it as a parameter
+// The below function adds 70 to a number, n
+int doSomething(int (*fcn)(int), int n) {
+  return fcn(n) + 69;
+}
+\end{lstlisting}
+\end{defn}
+
+\begin{note}
+These function pointers are useful for abstract list functions seen in Racket.
+\begin{lstlisting}[language=C]
+void array_map(int (*f)(int), int a[], int len) {
+  for (int i = 0; i < len; ++i) {
+    a[i] = f(a[i]);
+  }
+}
+\end{lstlisting}
+\end{note}
+\subsection{Strings}
+\begin{defn}
+A \textbf{string} in C is just an array of characters terminated by a null character `\\0'. If a string is initialized as an array, the null terminator is necessary, but if it is initialized with double quotes, then the null terminator is automatically added.
+\begin{lstlisting}[language=C]
+char a[] = {'c','a','t','\0'};
+char b[] = ``cat'' // Equivalent
+\end{lstlisting}
+\end{defn}
+
+\begin{defn}
+C strings used in statements (eg with printf) are known as \textbf{string literals}. For these statements, a null terminated const char array is created in the \textbf{read-only data section}.
+\end{defn}
+
+\begin{defn}
+The \textbf{strlen} function returns the length of the string, NOT THE LENGTH OF THE ARRAY. It also does not include the null character. It is found in the <string.h> library.
+\end{defn}
+
+\begin{defn}
+Strings are compared by their \textbf{lexicographical order}. That is, for each character, sort by the ASCII values of the characters. If the end of one string is encountered, it precedes teh other string. The \textbf{strcmp(s1,s2)} function returns 0 if the strings are identical, -1 if s1 < s2, and 1 if s1 > s2.
+\end{defn}
+
+\begin{note}
+Do not compare strings directly (eg: s1 == s2). This only compares pointers, not the actual content!.
+\end{note}
+
+\begin{qte}
+When allocating space for a string, DO NOT FORGET THE NULL CHARACTER.
+\end{qte}
+
+\begin{defn}
+\textbf{strcpy(char * dest, const char *src)} copies the content of the string src to dest. \textbf{strcat(char * dest, const char *src)} appends the content of src to dest. Make sure that array is large enough so the content may be copied without \textbf{buffer overflow}.
+\end{defn}
+
+\section{Efficiency}
+
+\begin{defn}
+An \textbf{algorithm} is a step-by-step description of how to solve a problem.
+\end{defn}
+
+\begin{defn}
+\textbf{Time efficiency} is how long an algorithm takes to solve a problem.
+\end{defn}
+
+\begin{defn}
+\textbf{Space efficiency} is how much space/memory an algorithm requires to solve a problem.
+\end{defn}
+
+\begin{defn}
+In this course, the running time of a function is a function of $n$, denoted $T(n)$. $n$ is usually the length of the input (array, number size, etc). They are usually measured in the worst case.
+\end{defn}
+
+\begin{defn}
+\textbf{Big O Notation} showcases the \textbf{order} of a running time. That is, it is the dominant power as $n \to \infty$.
+\end{defn}
+
+\begin{exmp}
+When adding two orders, the result is the largest of the two orders.\\
+$O(log\,n) + O(n) = (n)$ and $O(1) + O(1) = O(1)$.
+\end{exmp}
+
+\begin{exmp}
+When multiplying two orders, the result is the product of the two orders.\\
+$O(log\,n) \times O(n) = O(n\,log\,n)$ and $O(1) \times O(n) = O(n)$.
+\end{exmp}
+
+\begin{defn}
+\textbf{Simple functions} are functions without recursion or iteration. In C, all operations and O(1), so the running time of a simple function is
+\[O(1) + \cdots + O(1) = O(1)\]
+\end{defn}
+
+\todo{Should include racket running times slide?}
+
+\begin{defn}
+For recursive functions, we analyze the \textbf{recurrence relation}. For now, use a table to determine the runtime.
+
+\[T(n) = O(1) + T(n - k_1) = O(n)\]
+\[T(n) = O(n) + T(n - k_1) = O(n^2)\]
+\[T(n) = O(1) + T(\f{n}{k_2})\]
+\[T(n) = O(1) + k_2 \cdot T(\f{n}{k_2})\]
+\[T(n) = O(n) + k_2 \cdot T(\f{n}{k_2})\]
+\[T(n) = O(1) + T(n-k_1) + T(n-k_1') = O(2^n)\]
+An example of $2^n$ is the recursive fibonacci sequence.
+\end{defn}
+
+\begin{mthd}
+\textbf{Procedure for recursive functions}:
+\begin{enumerate}
+\item Identify order of function excluding recursion
+\item Determine size of input for next recursive calls
+\item Write full recurrence relation, and look up in a table
+\end{enumerate}
+\end{mthd}
+
+\begin{defn}
+\textbf{Iterative analysis} utilizes \textbf{summations} instead of recurrence relations.
+\begin{lstlisting}[language=C]
+for (i = 1; i <=n; i++) {
+  printf("*");
+} //O(n) time
+\end{lstlisting}
+\[T(n) = \sum_{i=1}^n O(1) = \underbrace{O(1) + \cdots + O(1)}_n = n \times o(1) = O(n)\]
+\end{defn}
+
+\begin{note}
+If a given list is of constant length (not dependant on input size), all operations are O(1).
+\begin{lstlisting}[language=C]
+for (int i = 0; i < 696969; i++) {
+  sum+=a[i];
+}
+// O(1) linear time because a large number is still a constant.
+\end{lstlisting}
+\[\sum_{i=1}^{log\,n} O(1) = O(log\,n)\]
+\[\sum_{i=1}^{n} O(1) = O(n)\]
+\[\sum_{i=1}^{n} O(n) = O(n^2)\]
+\[\sum_{i=1}^{n} O(i) = O(n^2)\]
+\end{note}
+
+\begin{mthd}
+\textbf{Procedure for iteration}
+\begin{enumerate}
+\item Work from innermst loop to outermost
+\item Determine number of iterations in the loop
+\item Determine running time per iteration
+\itm Write summation and simplify expression
+\end{enumerate}
+\end{mthd}
+
+\begin{note}
+When the loop counter changes geometrically, the number of lterations is often logarithmic.
+\begin{lstlisting}[language=C]
+while (n > 0) {
+  // Do something
+  n /= 10;
+}
+\end{lstlisting}
+\end{note}
+
+\begin{exmp}
+\textbf{Sorting Algorithm:}
+\begin{itemize}
+\item Insertion Sort: O(n^2)
+\item Selection Sort: O(n^2)
+\item Merge Sort: O(n log n)
+\item Quick Sort: O(n^2)
+\end{itemize}
+\end{exmp}
+
+\begin{defn}
+A function is \textbf{tail recursive} if the recursive call is alwasy the last expression to be evaluated. With tail recursion, the previous stack frame can be \textbf{reused} for the next recursion.
+\end{defn}
+
+\section{Dynamic Memory}
+
+\begin{defn}
+\textbf{Dynamic memory} is allocaetd from the \textbf{heap} while the programming is running.
+\end{defn}
+
+\todo{Dynamic Memory}
+\section{Linked Data}
+
+\begin{defn}
+A \textbf{linked list node} usually contains an item and a link (pointer) to the next node.
+\begin{lstlisting}[language=C]
+struct llnode {
+  int item;
+  struct llnode * next;
+}
+\end{lstlisting}
+\end{defn}
+
 \end{document}
