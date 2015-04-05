@@ -839,6 +839,205 @@ The worst case running time of searching for an item in a tree is when the tree 
 Linked lists and trees can be thought of as special cases of \textbf{graphs}. Graphs link \textbf{nodes} with \textbf{edges}, and may be undirected, directed, allow cycles, or be acyclic.
 
 \section{Abstract Data Types}
+Almost every data structure is some combination of the following \textbf{core} data structures.
+\begin{itemize}
+\item Primitive
+\item Structures
+\item Arrays
+\item Linked Lists
+\item Trees
+\item Graphs
+\end{itemize}
+Selecting an appropriate data structure is important in \textbf{program design}. Be sure to consider the following
+\begin{itemize}
+\item Frequency of adding/removing items
+\item Searching
+\item Access to a specific index
+\item Preservation of order, rearranged?
+\item Duplicates allowed?
+\end{itemize}
 
+\begin{defn}
+\textbf{Sequenced data} is data that must have its sequence preserved. (eg: competition results). \textbf{Unsequenced data} is data that can be permutated. (eg lists of things).
+\end{defn}
+
+\begin{tabular}{|l|c|c|}
+\hline
+Function & Dynamic Array & Linked List \\
+\hline
+item\_at & $O(n)$ & $O(n)$ \\
+search & $O(n)$ & $O(n)$ \\
+insert\_at & $O(n)$ & $O(n)$ \\
+insert\_front & $O(n)$ & $O(1)$ \\
+insert\_back & $O(1)$ & $O(1)$ \\
+remove\_at & $O(n)$ & $O(n)$ \\
+remove\_front & $O(n)$ & $O(1)$ \\
+remove\_back & $O(1)$ & $O(1)$ \\
+\hline
+\end{tabular}
+\begin{exmp}
+\textbf{Good Design Decisions:}
+\begin{itemize}
+\item Array is good if frequent access of elements at specific positions is needed (random access)
+\item Linked list is good for sequenced data that frequently adds and removes data
+\item Self-balancing BST is good for unsequenced data if search, add \& remove are all frequent
+\item Sortd array is good if you rarely add/remove elements, but frequently search for elements and select data in sorted order.
+\end{itemize}
+\end{exmp}
+
+\begin{defn}
+An \textbf{abstract data type} is a mathematical model for storing and access data through \textbf{operations}. ADTs are \textbf{implemented} as data storage modules that only allows access to the data through teh interface functions.
+\end{defn}
+
+\begin{defn}
+S supports \textbf{opaque structures} through \textbf{incomplete declarations} where a structure is declared without any fields. Only a pointer to a structure may be declared.
+\end{defn}
+
+\begin{defn}
+The \textbf{typedef} keyword allows you to create your own type from previously existing types.
+\begin{lstlisting}[language=C]
+typedef int Integer;
+typedef int * IntPtr;
+
+Integer i;
+IntPtr p = &i;
+\end{lstlisting}
+This is often used to simplify complex declarations.
+\end{defn}
+
+\begin{exmp}
+In general when providing an ADT to a client, you would provide
+\begin{itemize}
+\item Opaque structure definition (sometimes with typedef)
+\item Operations: (create, destroy, other useful operations)
+\begin{lstlisting}[language=C]
+struct account;
+typedef struct account * Account;
+//Operations
+Account create_account(const char * username, const char * password);
+void destroy_acount(Account a);
+//Other
+bool is_correct_password(Account a, const char *password);
+\end{lstlisting}
+\end{itemize}
+\end{exmp}
+
+\begin{defn}
+\textbf{Collection ADTs} are designed to store an arbitrary number of items: stack, queue, sequence, dictionary, and set.
+\end{defn}
+
+\begin{defn}
+The \textbf{stack ADT} is a collection of items that are stacked togther, items are pushed onto and popped from the top of stack. Stacks follow LIFO.\n
+Operations: \textbf{push(s,i), pop(s), top(s), is\_empty(s)}
+\end{defn}
+
+\begin{note}
+When popping from a stack, only the value that the stack holds should be returned, and the node that was on the stack should be deallocated.
+\begin{lstlisting}[language=C]
+int pop(Stack s) {
+  assert(!is_empty(s));
+  int ret - s->topnode->item;
+  struct llnode * backup = s->topnode;
+  s->topnode = s->topnode->next;
+  free(backup);
+  return ret;
+}
+\end{lstlisting}
+\end{note}
+
+\begin{defn}
+A \textbf{queue} is a lineup where new items go to the abck of the line, and items are removed from the front of the line. Queue follows FIFO.\n
+Operations: \textbf{add\_back(q,i), remove\_front(q), front(q), is\_empty(q)}
+\end{defn}
+
+\begin{defn}
+The \textbf{sequence} ADT is useful when you need to retrieve, insert or delete an item at any position in the sequence. \n
+Operations: \textbf{item\_at(s,k),insert\_at(s,k,i), remove\_at(s,k), length(s)}
+\end{defn}
+
+\begin{defn}
+The \textbf{dictionary} ADT is a collection of \textbf{pairs} of \textbf{keys} and \textbf{values}. Each key is unique and has a corresponding value, but values may not be unique. Dictionaries are unsequenced, and useful when quick lookups are required.\n
+Operations: \textbf{lookup(d,k), insert(d,k,v), remove(d,k)}
+\end{defn}
+
+\begin{defn}
+The \textbf{set} ADT is similar to a mathematical set. It is a dictionary with no values, unsequenced, and usually sorted.\n
+Operations: \textbf{member(s,i), add(s,i), union(s1,s2), intersection(s1,s2), difference(s1,s2), is\_subset(s1,s2), size(s)}
+\end{defn}
+
+\begin{note}
+Typical implementations for the ADTs
+\begin{itemize}
+\item \textbf{Stack}: Linked list/ dynamic array
+\item \textbf{Queue}: Linked list
+\item \textbf{Sequence}: Linked list/ dynamic array
+\item \textbf{Dictionary/Set}: Self-balancing BST/ Hash table
+\end{itemize}
+\end{note}
+
+\begin{exmp}
+Sometimes it is necessary for a stack to support types other than just integers. One way is to use typedef.
+\begin{lstlisting}[language=C]
+//item.h
+typedef int ItemType // can be anything
+\end{lstlisting}
+Then the ADT module would implement stuff like
+\begin{lstlisting}[language=C]
+struct llnode {
+  ItemType item;
+  struct llnode * next;
+}
+void push(Stack s, ItemType i)  {...}
+\end{lstlisting}
+However, this method still only allows one type to be used with the stack.
+\end{exmp}
+
+\begin{defn}
+The \textbf{void pointer} can point to any type, and are esentially just memory addresses. They can be converted, but they cannot be directly dereferenced. The void pointers must be converted to a different pointer before dereferencing.
+\begin{lstlisting}[language=C]
+int i = 42;
+void *vp = &i;
+int j = &vp; // Invalid
+
+int *ip = vp;
+int k = *ip; // Valid
+int l = *(int *) vp; // Also valid, known as casting
+\end{lstlisting}
+\end{defn}
+
+\begin{note}
+Dictionary and set ADTs often sort and compare items, which is a problem with void pointers. A solution is to use a \textbf{comparison function} (pointer) stored in the ADT so that it would just call the function whenever comparison is necessary.
+\end{note}
+\begin{lstlisting}[language=C]
+typedef int (* DictKeyCompare) (const void * ,const void * );
+
+// create a dictionary that uses key comparison function f
+Dictionary create_Dictionary (DictKeyCompare f);
+\end{lstlisting}
+\begin{qte}
+In the implementation, the function pointer must be stored in the ADT. The comparison function would return -1 if $a < b$, 0 if $a == b$, and 1 if $a > b$.
+\end{qte}
+
+\begin{exmp}
+The lookup function would then utilize the comparison function to compare.
+\begin{lstlisting}[language=C]
+void * lookup (Dictionary d, void * k) {
+  struct bstnode *t = d->root;
+  while (t) {
+    int result = d->key_compare(k,t->key);
+    if (result < 0) {
+      t = t->left;
+    } else if (result < 0) {
+      t = t->right
+    } else {
+      return t->value; // Found
+    }
+  }
+  return NULL; // Not in dictionary
+}
+\end{lstlisting}
+\end{exmp}
+
+\todo{Above and Beyond section, not tested but looks pretty useful}
 
 \end{document}
