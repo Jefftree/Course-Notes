@@ -716,10 +716,62 @@ A function is \textbf{tail recursive} if the recursive call is alwasy the last e
 \section{Dynamic Memory}
 
 \begin{defn}
-\textbf{Dynamic memory} is allocaetd from the \textbf{heap} while the programming is running.
+\textbf{Dynamic memory} is allocated from the \textbf{heap} while the programming is running.
 \end{defn}
 
-\todo{Dynamic Memory}
+\begin{defn}
+The \textbf{exit(EXIT\_FAILURE)} function stops the program execution. (Useful for debugging where there are fatal errors.).
+\end{defn}
+
+\begin{defn}
+The \textbf{heap} can be thought of as a big pile of memory that is available. When memory is dynamically borrowed from the heap, it is known as \textbf{allocation}. When the memory is returned, it is called \textbf{deallocation}.
+\end{defn}
+
+\begin{defn}
+The \textbf{malloc} function obtains memory from the heap.
+\begin{lstlisting}[language=C]
+// malloc(s) requests s bytes of memory from the heap and returns
+// a pointer to it.
+// It returns NULL of not enough memory is available
+void * malloc (size_t s);
+ //Examples
+int * pi = malloc(sizeof(int));
+struct posn *pp = malloc(sizeof (struct posn));
+char * yes = malloc(sizeof(char) * (strlen(s) + 1))
+// Must include null terminator for strings
+\end{lstlisting}
+\end{defn}
+
+\begin{defn}
+The \textbf{free} function returns the memory at the given address back to teh heap. The given parameter must e from a previous malloc.
+\end{defn}
+
+\begin{defn}
+A \textbf{memory leak} occurs when allocated memory is not eventually freed.
+\begin{lstlisting}[language=C]
+int * ptr;
+ptr = malloc(sizeof(int));
+ptr = malloc(sizeof(int)); // Cannot free first block of memory
+\end{lstlisting}
+Once a free occurs, if the address is used again, it will be invalid and may cause unwanted behaviour in the program.
+\end{defn}
+
+\begin{defn}
+In Racket, memory does not need to be freed because it has a \textbf{garbage collector}. The program automatically returns memory not in use to the heap. Unfortunately this can affect performance.
+\end{defn}
+
+\begin{defn}
+The \textbf{realloc} function resizes a given array to a specific length. It allocates or deallocates memory depending on the resize.
+\begin{lstlisting}[language=C]
+void * realloc (void * ptr, size_t s);
+\end{lstlisting}
+\end{defn}
+
+\begin{note}
+When appending items to a dynamically allocated array, it would take too long to call realloc every time an item was added. A popular strategy to fix this is to \textbf{double} the size of the array when it is full. This reduces the time from $O(n^2)$ to $O(n)$ where $n$ is the number of calls to append.\n
+The \textbf{amortized} (averaged) run-time of append would then be $O(n)/n = O(1)$.
+\end{note}
+
 \section{Linked Data}
 
 \begin{defn}
@@ -731,5 +783,62 @@ struct llnode {
 }
 \end{lstlisting}
 \end{defn}
+
+\begin{defn}
+In the \textbf{wrapper strategy}, we wrap each list so it is inside of another structure.
+\begin{lstlisting}[language=C]
+struct llist {
+  struct llnode * front;
+}
+\end{lstlisting}
+Some common functions would be to create and destroy the list.
+\begin{lstlisting}[language=C]
+struct llist * create_list() {
+  struct llist *lst = malloc(sizeof(struct llst));
+  lst->front = NULL;
+  return lst;
+}
+
+void destroy_list(struct llist *lst) {
+  free_list(lst->front);
+  free(lst);
+}
+\end{lstlisting}
+Some additional information may be stored in the wrapper to speed up certain processes. This is known as an \textbf{augmentation strategy}. For example, to retrieve the length of the list, $O(n)$ time would be required, but if the length was stored as another variable, $O(1)$ time would be needed. Two common items are length and a pointer to the last item of the list to make adding to front or back $O(1)$.
+\end{defn}
+
+\begin{note}
+The wrapper approach introduces entirely new ways that the information can be corrupted. For example, what if the length field does not accurately reflect the true length?\n
+When information is stored in more than one way, it is susceptible to \textbf{integrity} (consistency) issues.
+\end{note}
+
+\begin{defn}
+\textbf{BST}:
+\begin{lstlisting}[language=C]
+struct bstnode {
+  int item;
+  strict bstnode * left;
+  strict bstnode * right;
+}
+\end{lstlisting}
+\end{defn}
+
+\begin{defn}
+The \textbf{depth} of a node is the number of nodes from the root to the node, including the root.
+\end{defn}
+
+\begin{defn}
+The \textbf{height} of a tee is the maximum depth in the tree.
+\end{defn}
+
+\begin{note}
+The worst case running time of searching for an item in a tree is when the tree is \textbf{unbalanced} and every node in the tree must be visited. $O(n)$. A \textbf{balanced} tree is where the height is $O(log n)$. A \textbf{self-balancing tree} rearranges nodes to ensure that the tree is always balanced.
+\end{note}
+
+\subsection{Graphs}
+Linked lists and trees can be thought of as special cases of \textbf{graphs}. Graphs link \textbf{nodes} with \textbf{edges}, and may be undirected, directed, allow cycles, or be acyclic.
+
+\section{Abstract Data Types}
+
 
 \end{document}
