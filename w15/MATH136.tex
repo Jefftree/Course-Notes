@@ -449,9 +449,9 @@ Prove that the function $L: \R^3 \rightarrow \R^2$ defined by $L(x_{1},x_{2},x_{
 \begin{sol}
 \begin{align*}
 L(b\vx + c \vy) &= L(b(x_{1},x_{2},x_{3}) + c(y_{1},y_{2},y_{3})) \\
-&= L( b x_{1} + c y_{1}, b x_{2} + c y _{2}, b x_{3} + c y_{3})
-&= (3 (b x_{1} + c y_{1}) - (b x_{2} + c y_{2})), 2 (b x_{1} + c y_{1}) + 2 (b x_{3} + c y_{3})
-&= b(3 x_{1} - x_{2}, 2 x_{1} + 2 x_{3}) + c (3 y_{1} - y_{2},2 y_{1} + 2 y_{3})
+&= L( b x_{1} + c y_{1}, b x_{2} + c y _{2}, b x_{3} + c y_{3}) \\
+&= (3 (b x_{1} + c y_{1}) - (b x_{2} + c y_{2})), 2 (b x_{1} + c y_{1}) + 2 (b x_{3} + c y_{3}) \\
+&= b(3 x_{1} - x_{2}, 2 x_{1} + 2 x_{3}) + c (3 y_{1} - y_{2},2 y_{1} + 2 y_{3}) \\
 &= bL(\vx) + c L(\vy)
 \end{align*}
 \end{sol}
@@ -461,8 +461,6 @@ L(b\vx + c \vy) &= L(b(x_{1},x_{2},x_{3}) + c(y_{1},y_{2},y_{3})) \\
 Every linear mapping can be represented as a matrix mapping whose columns are the images of the standard basis vector of $\R^n$ under $L$. $L(\vx) = \lbrack L \rbrack \vx$ where
 \[\lbrack L \rbrack = \lbrack L(\vec{e}_{1}) \cdots L(\vec{e}_{n}) \rbrack\]
 \end{thrm}
-
-\todo{This theorem still confusing}
 
 \begin{exmp}
 Determine the standard matrix of $L(x_{1},x_{2},x_{3}) = (3x_{1} - x_{2} , 2 x_{1} + 2 x_{3})$
@@ -1059,7 +1057,7 @@ The left inverse of $B$ is $A$. The right inverse of $A$ is $B$.
 \begin{thrm}
 If $A$ is an $m \times n$ matrix with $n > m$, then $A$ cannot have a right inverse.
 \begin{proof}
-\[ I = AB = \lbrack A\vb_1 \cdots A\vb+m \rbrack = \lbrack \ve_1 \cdots \ve_m \rbrack\]
+\[ I = AB = \lbrack A\vb_1 \cdots A\vb_m \rbrack = \lbrack \ve_1 \cdots \ve_m \rbrack\]
 Need to find $\vb_i$ such that $A\vb_i = \ve_i$. But this is just solving $m$ systems of linear equations with the same coefficient matrix. If we row reduce $\lbrack A | I_m \rbrack$ to RREF, we can find a solution to each equation. For this to be reduced to the identity matrix, we require $\text{rank}(A) = M$. Therefore we require that $n \geq m$.
 \end{proof}
 \end{thrm}
@@ -1103,7 +1101,7 @@ Assume that $AB=I$ and consider the homogeneous system
 \[\vx = \vec{0}\]
 So the system has a unique solution and by the system rank theorem, the coefficient matrix $B$ has $\text{rank}(n)$. This implies that $B\vx = \vy$ is consistent for all $y \in \R^n$.
 \[BA\vy = BA(B\vx) = B(AB)\vx = BI(vx) = B\vx = \vy = I\vy\]
-By the matrices equal theorem \todo{wut}, $BA = I$, and we can repeat the previous procedure to obtain $\text{rank}(A) = n$,
+By the matrices equal theorem, $BA = I$, and we can repeat the previous procedure to obtain $\text{rank}(A) = n$,
 \end{proof}
 \end{thrm}
 
@@ -1198,7 +1196,7 @@ If $E$ is an elementary matrix, then $E$ is invertible. Moreover $E^{-1}$ is the
 \end{thrm}
 
 \begin{thrm}
-If $A$ is an $m \times m$ matrix, and $E$ is an $m \times m$ matrix corresponding to the row operation of $R_i + cR_j$, for $i \neq j$, then $EA$ is the matrix obtained from $A$ by performing teh row operation $R_i + cR_j$ on $A$.
+If $A$ is an $m \times m$ matrix, and $E$ is an $m \times m$ matrix corresponding to the row operation of $R_i + cR_j$, for $i \neq j$, then $EA$ is the matrix obtained from $A$ by performing the row operation $R_i + cR_j$ on $A$.
 \end{thrm}
 
 \begin{thrm}
@@ -1237,22 +1235,97 @@ Matrix multiplication begins from the right. that is $E_2E_1A = E_2(E_1A)$.
 If $A$ is an invertible matrix, then $A$ and $A^{-1}$ can be written as a product of elementary matrices.
 \end{thrm}
 
+\subsection{Determinants}
+
 \begin{defn}
 Let $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$. The \textbf{determinant} of $A$ is defined as
 \[\text{det}(A) = ad-bc = \begin{vmatrix} a & b \\ c & d \end{vmatrix}\]
 \end{defn}
 
 \begin{exmp}
-Calculate $\text{det}\begin{bmatrix} 1 & 7 \\ -3 7 2 \end{bmatrix}$.
+Calculate $\text{det}\begin{bmatrix} 1 & 7 \\ -3 & 2 \end{bmatrix}$.
 \begin{sol}
-\[\text{det}\begin{vmatrix} 1 & 7 \\ -3 7 2 \end{vmatrix} = (1)(2) - (7)(-3) = 23\]
+\[\text{det}\begin{vmatrix} 1 & 7 \\ -3 & 2 \end{vmatrix} = (1)(2) - (7)(-3) = 23\]
 \end{sol}
 \end{exmp}
 
-\todo{Extending determinant to 3x3}
+\begin{defn}
+Let $A$ be an $n \times n$ matrix with $n \geq 2$. Let $A(i,j)$ be the $n-1 \times n-1$ matrix obtained from $A$ by deleting the $i$-th row and the $j$-th column. The \textbf{cofactor} of $a_{ij}$ is
+\[C_{ij} = (-1)^{i+j} \text{det}\,A(i,j)\]
+\end{defn}
+
+\begin{defn}
+Let $A$ be an $n \times n$ matrix with $n \geq 2$. Then, the \textbf{determinant} if $A$ is defined as
+\[\text{det }A = \sum_{i=1}^n a_{i1}C_{i1}\]
+where the determinant of a $1 \times 1$ matrix is defined to be $\text{det}\lbrack c\rbrack = c$
+\end{defn}
+
+\begin{note}
+The determinant of a matrix is denoted with square lines instead of square brackets.
+\end{note}
+
+\begin{thrm}
+Let $A$ be an $n \times n$ matrix.
+\[\text{det }A = \sum_{k=1}^n a_{ik}C_{ik}\]
+\[\text{det }A = \sum_{k=1}^n a_{ij}C_{kj}\]
+The cofactor expansion can be called upon any row or column to obtain the determinant.
+\end{thrm}
+
+\begin{note}
+Since determinants can be calculated with a cofactor expansion along any row or column, it is best to use the row/col with the most zeros.
+\end{note}
+
+\begin{defn}
+An $m \times n$ matrix is said to be \textbf{upper triangular} if  $M_{ij} = 0$ whenever $i > j$. It is \textbf{lower triangular} if $M_{ij} = 0$ whenever $ i < j$.
+\end{defn}
+
+\begin{thrm}
+If a matrix is upper or lower triangular, the determinant is just the product of the numbers along the diagonal
+\[\text{det }A = a_{11}a_{22}\cdots a_{nn}\]
+\begin{proof}
+If $A$ is a $2 \times 2$ upper triangular matrix, then det $A=a_{11}a_{22}$ as required. Assume that if $B$ is an $(n-1) \times (n-1)$ upper triagular matrix, then det $B = \b_{11}\cdotsb_{(n-1)(n-1)}$. Let $A$ be an $n \times n$ upper triangular matrix. Expandin the determinant along the first column gives
+\[\text{det }A = a_{11}(-1)^{1+1}C_{11} + 0 + \cdots + 0 = a_{11} \text{det }A(1,1)\]
+But $A(1,1)$ is the $(n-1) \times (n-1)$ upper triangular matrix formed by deeting the first row and first column of $A$. Thus, det $A(1,1) = a_{11}a_{22}\cdots a_{(n-1)(n-1)}$ by the inductive hypothesis. Thus det $A = a_{11}a_{22}\cdots a_{nn}$ as required.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $B$ is the matrix obtained by multiplying one row of $A$ by $c \in \R$, then det $B = c$ det $A$.
+\end{thrm}
+
+\begin{thrm}
+If $B$ is the matrix obtained from $A$ by swapping two rows of $A$. Then det $B = -$det $A$.
+\end{thrm}
+
+\begin{thrm}
+If a matrix $A$ has two identical rows, then det $A = 0$.
+\end{thrm}
+
+\begin{thrm}
+If $B$ is the matrix obtained from $A$ by adding a multiple of one row of $A$ to another, then det $B = $det $A$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $n \times n$ matrix and let $E$ be an $n \times n$ elementary matrix. Then det $EA = $det $E$ det $A$.
+\end{thrm}
+
+\begin{thrm}
+An $n \times n$ matrix is invertible if and only if its determinant is not $0$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ and $B$ are $n \times n$ matrices, then det $(AB) = $det $A$ det $B$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an invertible matrix, then det $A^{-1} = \f{1}{\text{det }A}$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix, then det $A = $ det $A^T$.
+\end{thrm}
 
 \section{Diagonalization}
-
 
 \todo{Alot of stuff here}
 \subsubsection*{3/27/15}
@@ -1338,6 +1411,188 @@ Therefore the eigenvalues are $\lambda_1 = 8, \lambda_2 = 8, \lambda_3 = 1$
 \end{sol}
 \end{exmp}
 
+\subsubsection*{3/30/15}
+\subsection{temp}
 
+\begin{defn}
+Let $A$ be an $n \times n$ matrix. The \textbf{characteristic polynomial} of $A$ is the nth degree polynomial
+\[C(\lambda) = \text{det}(A - \lambda)\]
+\end{defn}
+
+\begin{thrm}
+A scalar $\lambda$ is an eigenvalue of an $n \times n$ matrix $A$ if and only if $C(\lambda) = 0$
+\end{thrm}
+
+\begin{defn}
+Let $A$ be an $n \times n$ matrix with eigenvalue $\lambda$. The nullspace of $A - \lambda I$ is the \textbf{eigenspace} of $\lambda$. The eigenspace is denoted as $E_\lambda$
+\end{defn}
+
+\begin{defn}
+Let $A$ be an $n \times n$ matrix with eigenvalue $\lambda_1$. The \textbf{algebraic multiplicity} of $\lambda_2$, denoted $a_{\lambda_1}$, is the number of times that the $\lambda_1$ is a root of the characteristic polynomial $C(\lambda)$. If $C(\lambda) = (\lambda - \lambda_1)^kC_1(\lambda)$, where $C_1(\lambda_1) \neq 0$. Then $a_{\lambda_k} = k$
+\end{defn}
+
+\begin{defn}
+The \textbf{geometric multiplicity} of $\lambda$, denoted $g_{\lambda_1}$ is the dimension of its eigenspace. So $g_{\lambda_1} = \text{dim}(E_{\lambda_1})$
+\end{defn}
+
+\begin{exmp}
+Find teh algebraic and geometric multiplicity of all eigenvalues of $A = \begin{bmatrix} 1 & 2 & -2 \\ -2 & 5 & -2 \\ -6 & 6 & 03 \end{bmatrix}$
+\begin{sol}
+We have
+\[C(\lambda) = \text{det}(A - \lambda I) = \begin{vmatrix} 1 - \lambda & 2 & -2 \\ -2 & 5 - \lambda & -2 \\ -6 & 6 & -3 \lambda \end{vmatrix}\]
+\[ = \begin{vmatrix} 1 - \lambda & 0 & -2 \\ -2 & 3 - \lambda & -2 \\ -6 & 3 - \lambda & -3 - \lambda \end{vmatrix} = \begin{vmatrix} 1 - \lambda & 0 & -2 \\ -2 & 3 - \lambda & -2 \\ -4 & 0 & -1 - \lambda \end{vmatrix}\]
+\[= (3-\lambda)(\lambda^2 - 9) = - (\lambda - 3)^2(\lambda + 3)\]
+Thus, the eigenvalues are $\lambda_1 = 3$ and $\lambda_2 = -3$.
+\[a_{\lambda_1} = 2 \qquad a_{\lambda_2} = 1\]
+For $\lambda_1 = 3$,
+\[A - 3I = \begin{bmatrix} -2 & 2 & -2 \\ -2 & 2 & -2 \\ -6 & 6 & -6 \end{bmatrix} \sim \begin{bmatrix} 1 & -1 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0\end{bmatrix}\]
+Thus, a basis for the eigenspace $E_{\lambda_1}$ is $\left\{\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix} \right\}$.
+\[g_{\lambda_2} = 2\]
+For $\lambda_2 = -3$
+\[A + 3I = \begin{bmatrix} 4 & 2 & -2 \\ -2 & 8 & -2 \\ -6 & 6 & 0 \end{bmatrix} \sim \begin{bmatrix} 1 & 0 & -\f{1}{3} \\ 0 & 1 & - \f{1}{3} \\ 0 & 0 & 0 \end{bmatrix}\]
+Thus a basis for the eigenspace $E_{\lambda_2}$ is $\left\{\begin{bmatrix} 1 \\ 1 \\ 3 \end{bmatrix} \right\}$.
+\[g_{\lambda_2} = 1\]
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+Find the algebraic and geometric multiplicity of all eigenvalues of $A = \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 1 \end{bmatrix}$.
+
+\begin{sol}
+The determinant is just $(1-\lambda)^3$ because it is a triangular matrix (multiply along diagonal).
+Thus the only eigenvalue is $\lambda_1 = 1$, with $a_{\lambda_1} = 3$. \n
+For $\lambda_1 = 1$
+\[A - 1I = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{bmatrix}\]
+Thus a basis for $E_{\lambda_1}$ is $\left\{\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}\right\}$. Therefore $g_{\lambda_1} = 1$
+\end{sol}
+\end{exmp}
+
+\begin{thrm}
+If $A$ is an $n \times n$ upper or lower trianglar matrix, then the eigenvalues of $A$ are the diagonal entries of $A$.
+\end{thrm}
+
+\begin{qte}
+\begin{thrm}
+If $A$ and $B$ are similar matrices, then $A$ and $B$ have the same characteristic polynomial, and hence the same eigenvalues.
+\end{thrm}
+\todo{Prove the theorem}
+\end{qte}
+
+\begin{thrm}
+IF $A$ is an $n \times n$ matrix, with eigenvalue $\lambda_1$, then
+\[1 \leq g_{\lambda_1} \leq a_{\lambda_1}\]
+\end{thrm}
+
+\subsection{Diagonalization}
+
+\begin{defn}
+An $n \times n$ matrix $A$ is said to be \textbf{diagonalizable} if $A$ is similar to a diagonal matrix $D$. If $P^{-1}AP = D$, then we say that $P$ \textbf{diagonalizes} $A$.
+\end{defn}
+
+\begin{thrm}
+A matrix $A \in M_{n \times n}(\R)$ is diagonalizable if and only if there exists a basis $\{\vv_1,\dots,\vv_n\}$ for $\R^n$ of eigenvectors of $A$.
+\begin{proof}
+Assume that $A$ is diagonalizable. By definition, there exists an invertible matrix $P = \lbrack \vv_1\,\cdots\,\vv_n \rbrack$ such that
+\[P^{-1}AP = D\]
+where $D = \text{diag}(\lambda_1,\cdots,\lambda_n)$ is diagonal. Since $D$ is diagonal, the eigenvalues of $D$ are $\lambda_1,\dots,\lambda_n$. Therefore, by Lemma 6.2.3, $\lambda_1,\dots,\lambda_n$ are also the eigenvalues of $A$. \n
+Thus
+\[AP = PD\]
+\[A \lbrack \vv_1 \cdots \vv_n \rbrack = P \lbrack \lambda_1 \ve_1 \cdots \lambda_n \ve_n \rbrack\]
+\[\lbrack A\vv_1 \cdots A\vv_n \rbrack = \lbrack \lambda_1 P\ve_1 \cdots \lambda_n P\ve_n \rbrack\]
+\[\lbrack A\vv_1 \cdots A\vv_n \rbrack = \lbrack \lambda_1 \vv_1 \cdots \lambda_n \vv_n \rbrack\]
+Thus $A\vv_1 = \lambda_1 \vv_1$ for $1 \leq i \leq n$. Moreover, since $P$ is invertible, $\{\vv_1,\dots,\vv_n\}$ is a basis for $\R^n$ by the Invertible Matrix Theorem, and this implies that $\vv_i \neq \vec{0}$ for $1 \leq i \leq n$.\n
+
+On the other hand, if $\{\vv_1,\dots,\vv_n\}$ is a basis for $\R^n$ of eigenvectors, then the matrix $P = \lbrack \vv_1 \cdots \vv_n \rbrack$ is invertible by the INvertible Matrix Theorem and we have
+\[P^{-1} AP = P^{-1} \lbrack A \vv_1 \cdots \vv_n \rbrack\]
+\[=\lbrack \lambda_1 \vv_1 \cdots \lambda_n \vv_n \rbrack\]
+\[=\lbrack \ve_1 \cdots \ve_n \rbrack\]
+dots
+\[=\text{diag}(\lambda_1,\dots,\lambda_n)\]
+\todo{Finish this}
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix with eigenpairs,
+$(\lambda_1,\vv_1),\dots,(\lambda_k,\vv_k)$ where $\lambda_i \neq \lambda_j$, for $i \neq j$, then $\{\vv_1,\dots,\vv_k\}$ is linearly independent.
+\end{thrm}
+
+\begin{thrm}
+Of $A$ is an $ n\times n$ matrix with distinct eigenvaleus, and $B$ is a basis for the eigenspace of $\lambda_1$ for $i \leq i \leq k$, then $B_1 \cup \cdots \cup B_k$ is a linearlly independent set.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix with distinct eigenvallues $\lambda_1.\dots,\lambda_k$, then $A$ is diagonalizable if and only if $g_{\lambda_i} = g_{\lambda_k}$ for $1 \leq i \leq k$.
+\end{thrm}
+
+\begin{note}
+If $\lambda$ is an eigenvalue of $A$ such that $g_\lambda < a_\lambda$, then $\lambda$ is said to be \textbf{deficient}.
+\end{note}
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix with $n$ distinct eigenvalues, then $A$ is diagonalizable.
+\end{thrm}
+
+\begin{exmp}
+For each of the matrices, diagonalize them
+\[A = \begin{bmatrix} 5 & 8 & 16 \\ 4 & 1 & 8 \\ -4 & -4 & -11 \end{bmatrix}\]
+\begin{sol}
+\[C(\lambda) = \begin{vmatrix} 5 - \lambda& 8 & 16 \\ 4 & 1 - \lambda& 8 \\ -4 & -4 & -11 - \lambda \end{vmatrix}\]
+\[C(\lambda) = \begin{vmatrix} 5 - \lambda& 8 & 16 \\ 0 & -3 - \lambda& -3 - \lambda \\ -4 & -4 & -11 - \lambda \end{vmatrix}\]
+\[C(\lambda) = \begin{vmatrix} 5 - \lambda& 8 & 8 \\ 0 & -3 - \lambda& 0 \\ -4 & -4 & -7 - \lambda \end{vmatrix}\]
+\[= -(\lambda + 3)(\lambda^2 + 2\lambda - 3) = -(\lambda + 3)^2(\lambda - 1)\]
+Therefore the eigenvalues are $\\lambda_1 = -3$ with an algebraic multiplicity of $2$, and $\lambda_2 = 1$ with an algebraic multiplicity of $1$. \n
+For $\lambda_1 = -3$,
+\[A - (-3)I = \begin{bmatrix} 8 & 8 & 16 \\ 4 & 4 & 8 \\ -4 & -4 & - 8\end{bmatrix} \sim \begin{bmatrix} 1 & 1 & 2 \\0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}\]
+Thus a basis for $E_{\lambda_1}$ is $\left\{\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix} \begin{bmatrix} -2 \\ 0 \\ 1 \end{bmatrix} \right\}$, hence $g_{\lambda_1} = 2$. \n
+For $\lambda_2 = 1$, we get
+\[A - I = \begin{bmatrix} 4 & 8 & 16 \\ 4 & 0 & 8 \\ -4 & -4 & 12 \end{bmatrix} \sim \begin{bmatrix} 1 & 0 & 2 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix}\]
+Thus a basis for $E_{\lambda_2}$ is $\left\{\begin{bmatrix} -2 \\ -1 \\ 1 \end{bmatrix}\right\}$.\n
+Then the change of basis matrix which diagonalizes $A$ is
+\[P = \begin{bmatrix} -1 & -2 & -2 \\ 1 & 0 & -1 \\ 0 & 1 & 1 \end{bmatrix}\]
+\[P^{-1}AP = \begin{bmatrix} -3 & 0 & 0 \\ 0 & -3 & 0 \\ 0 & 0 & 1 \end{bmatrix}\]
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+\[B = \begin{bmatrix} 2 & 1 & 1 \\ 2 & 1 & -2 \\ -1 & 0 & -2\end{bmatrix}\]
+\begin{sol}
+The characteristic polynomial is
+\[C(\lambda) = \begin{vmatrix} 2- \lambda & 1 & 1 \\ 2 & 1 -\lambda& -2 \\ -1 & 0 & -2 - \lambda\end{vmatrix} = \begin{vmatrix} 3 - \lambda & 1 & 1 \\ 0 & 1 -\lambda & -2 \\ -3 -\lambda & 0 & -2 \lambda \end{vmatrix}\]
+\[=(3-\lambda)(\lambda-1)(\lambda+2) - (\lambda+3)(-2-(1-\lambda))\]
+\[=-(\lambda-3)(\lambda^2 + 2\lambda + 1) = - (\lambda-3)(\lambda+1)^2\]
+Hence the eigenvalues are $\lambda_1 = 3$ and $\lambda_2 = -1$ with $a_{\lambda_1} = 1,a_{\lambda_2} = 2$
+For $\lambda_2$
+\[B-\lambda_2I = \begin{bmatrix} 3 & 1 & 1 \\2 & 2 & -2 \\ -1 & 0 & -1 \end{bmatrix} \sim \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & -2 \\ 0 & 0 & 0\end{bmatrix}\]
+Thus a basis for $E_{\lambda_2}$ is $\left\{\begin{bmatrix} -1 \\ 2 \\ 1 \end{bmatrix} \right\}$. This $g_{\lambda_2} = 1 < a_{\lambda_2}$, so $B$ is not diagonalizable.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+\[C = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}\]
+\begin{sol}
+\[C(\lambda) = \begin{vmatrix} - \lambda & 1 \\ -1 & -\lambda \end{vmatrix} = \lambda^2 + 1\]
+Since $C$ has a non-real eignvalue, it is not diagonalizable over $\R$.
+\end{sol}
+\end{exmp}
+
+\begin{exmp}
+\[A \begin{bmatrix} 2 & 2 \\ 2 & 2 \end{bmatrix}\]
+\begin{sol}
+\[C(\lambda) = \begin{vmatrix} 2 - \lambda & 2 \\ 2 & 2 - \lambda \end{vmatrix} = \lambda^2 - 4\lambda = \lambda(\lambda -4)\]
+So the eigenvalues are $\lambda_1 = 0$ and $\lambda_2 = 4$ with $a_{\lambda_1} = 1 = a_{\lambda_2}$.\n
+A basis for $E_{\lambda_1} = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$ and $E_{\lambda_2} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$. \n
+Thus $P = \begin{bmatrix} -1 & 1 \\ 1 & 1 \end{bmatrix}$ and $P^{-1}AP = \begin{bmatrix} 0 & 0 \\ 0 & 4 \end{bmatrix}$.
+\end{sol}
+\end{exmp}
+
+\begin{thrm}
+If $A$ is an $n\times n$ matrix, then
+\begin{itemize}
+\item the determinant of $A$ equals the product of the eigenvalues
+\item $\lambda$ is an eigenvalue of $A$ if and only if $\text{det}(A) = 0$. If it is, then the geometric multiplicity of $0$ equals $1 - \text{rank}(A)$.
+\item The trace of $A$ equals the sum of the eigenvalues.
+\end{itemize}
+\end{thrm}
 
 \end{document}
