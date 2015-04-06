@@ -30,6 +30,7 @@ Investment banking offer transaction and advisory services for a commission.
 \begin{defn}
 A \textbf{market} is for lenders and investors to provide capital to borrowers and businesses.
 \end{defn}
+
 \begin{defn}
 \textbf{Organic cash flow} is what a company generates on its own.
 \end{defn}
@@ -661,13 +662,13 @@ All on computer
 \section{Valuing Stocks}
 
 \subsection{Dividend-Discount Model}
-Potential cash flows for an investment include the sale of stock (capital gain), and the dividend.
+The \textbf{dividend-discount model} accounts for potential cash flows for an investment include the sale of stock (capital gain), and the dividend.
 
 \begin{exmp}
-Suppose you expect a stock to pay dividends of $0.56$ per share and trade for $45.60$ per share at the end of the year. If the investments with equivalent risk has an expected return of $6.8$, what is the most you would pay?
+Suppose you expect a stock to pay dividends of $0.56$ per share and trade for $45.60$ per share at the end of the year. If the investments with equivalent risk has an expected return of $6.8\%$, what is the most you would pay?
 \begin{sol}
 \[P_{0} = \f{Div_{1} + P_{1}}{1 + r_{g}} = \f{0.56 + 45.60}{1.0680} = 43.13\]
-\[\text{Dividend Yield} = \f{1.92}{43.13}\]
+\[\text{Dividend Yield} = \f{0.56}{43.13}\]
 \[\text{Capital Gains Yield} = \f{45.6 - 43.13}{43.13}\]
 \end{sol}
 \end{exmp}
@@ -679,7 +680,7 @@ In a Constant Divdend Growth Model, the price is equivalent to
 
 \begin{defn}
 The dividend discount model discounts both the dividend and the capital gain to predict the current price of a stock.
-\[P_{0} = \f{Div_{1}}{1 + r_{g}} + \f{Div_{2}}{(1 + r_{g})^2} + \cdots + \f{Div_{n}}{(1 + r_{g})^n} + \f{P_{1}}{(1 + r_{g})^n}\]
+\[P_{0} = \f{Div_{1}}{1 + r_{g}} + \f{Div_{2}}{(1 + r_{g})^2} + \cdots + \f{Div_{n}}{(1 + r_{g})^n} + \f{P_{1}}{(1 + r_{g})^n} = \sum_{t=1}^\infty \f{Div_t}{(1+r_e)^t}\]
 \begin{note}
 The dividend here is the dividend at the end of \textbf{year 1}, not year 0.
 \end{note}
@@ -689,11 +690,79 @@ The dividend here is the dividend at the end of \textbf{year 1}, not year 0.
 Most banks in Canada have a dividend payout ratio of around 40-50 percent.
 \end{qte}
 
-\subsubsection*{A Simple Model of Growth}
+
+\subsection{Constant Dividend Growth}
+The simplest forecast for a firm's future dividends states that they'll grow at a constant rate forever. This is simply a perpetuity.
+\[P_0 = \f{Div_1}{r_e-g}\]
+\[r_e = \f{Div_1}{P_0} + g\]
+
+\subsection{A Simple Model of Growth}
+
+\begin{defn}
+The \textbf{Dividend Payout Ratio} is teh fraction of earnings paid as dividends each year.
+\[Div_1 = EPS_t \times \text{Dividend Payout Rate}_t\]
+\end{defn}
+
+\begin{note}
 Assuming shares outstanding is constant, the firm can increase dividends in three ways
 \begin{itemize}
 \item Increase net income
-\item Increase dividend payout ratje
+\item Increase dividend payout ratio
 \item Decrease shares outstanding
 \end{itemize}
+and it can do one of two things with its earnings:
+\begin{itemize}
+\item Pay them out to investors
+\item Retain and reinvest
+\end{itemize}
+\[\text{Changes in Earnings} = \text{New Investment} \times \text{Return on New Investment}\]
+\[\text{New Investment} = \text{Earnings} \times \text{Retention Rate}\]
+\[\text{Earnings growth Rate} = \f{\text{Changes in Earnings}}{\text{Earnings}}\]
+\[g = \text{Retention Rate} \times \text{Return on New Investment}\]
+\end{note}
+
+\begin{qte}
+Constant dividend growth model to value is stack cannot be used of growth rate is not constant.
+\end{qte}
+
+
+\begin{exmp}
+EPS for a company was $\$2$ per share in the past year, and are expected to grow at a rate of $20\%$ per year until the end of year 4. At that point, investments will be cut and $60\%$ of its earnings will be paid as dividends and growth will slow down to a long-run rate of $4\%$. If the cost if capital is $8\%$, what is the value of the share today.
+
+\begin{sol}
+From year 4 onwards, the company's dividends will grow at the expected long-run rate of $4\%$ per year, and the constant dividend growth model can be used to project price at teh end of year 3.
+\[Div_4 = \f{2 \times (1.20)^4}{0.6} = 2.49\]
+\[P_3 = \f{Div_4}{r_e - g} = \f{2.49}{0.08-0.04} = 62.25\]
+Then apply the dividend discount model with this terminal value
+\[P_0 = \f{Div_1}{1+r_e} + \f{Div_2}{(1+r_e)^2} + \f{Div_3}{(1+r_e)^3} + \f{P_3}{(1+r_e)^3} = \f{62.25}{(1.08)^3} = 49.42\]
+\end{sol}
+\end{exmp}
+
+\begin{note}
+There is a tremendous amount of uncertainty associated with forecasting a firm's dividend growth rate and future dividends. Small changes in teh assumed rates can lead to large changes in the estimated stock price.
+\end{note}
+
+\subsection{Share Repurchases and Total Payout Model}
+
+\begin{defn}
+\textbf{Share repurchase} is where a firm uses excess cash to buy back its own stock.
+\end{defn}
+The total payout model is
+\[P_0 = \f{PV(\text{Future Dividends and Repurchases})}{\text{Shares Outstanding}_0}\]
+Simply discount the total payout, and divide by the current number of shares outstanding.
+
+\subsection{Discount Cash Flow}
+This determines the value of the firm to all investors, including both equity and debt holders.
+\[\text{Enterprise Value} = \text{Market Value of Equity} + \text{Debt} + \text{Cash}\]
+
+\[\text{Free Cash Flow} = EBIT \times (1 - i) + \text{Depreciation} - \text{Capital Expenditures} - \text{Changes in Net Working Capital}\]
+\[V_0 = PV(\text{Future Fre Cash Flow of Firm})\]
+\[P_0 = \f{V_0 + \text{Cash}_0 - \text{Debt}_0}{\text{Shares Outstanding}_0}\]
+
+
+
+
+
+
+
 \end{document}
