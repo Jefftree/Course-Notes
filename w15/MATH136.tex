@@ -1283,7 +1283,7 @@ An $m \times n$ matrix is said to be \textbf{upper triangular} if  $M_{ij} = 0$ 
 If a matrix is upper or lower triangular, the determinant is just the product of the numbers along the diagonal
 \[\text{det }A = a_{11}a_{22}\cdots a_{nn}\]
 \begin{proof}
-If $A$ is a $2 \times 2$ upper triangular matrix, then det $A=a_{11}a_{22}$ as required. Assume that if $B$ is an $(n-1) \times (n-1)$ upper triagular matrix, then det $B = \b_{11}\cdotsb_{(n-1)(n-1)}$. Let $A$ be an $n \times n$ upper triangular matrix. Expandin the determinant along the first column gives
+If $A$ is a $2 \times 2$ upper triangular matrix, then det $A=a_{11}a_{22}$ as required. Assume that if $B$ is an $(n-1) \times (n-1)$ upper triangular matrix, then det $B = b_{11}\cdots b_{(n-1)(n-1)}$. Let $A$ be an $n \times n$ upper triangular matrix. Expanding the determinant along the first column gives
 \[\text{det }A = a_{11}(-1)^{1+1}C_{11} + 0 + \cdots + 0 = a_{11} \text{det }A(1,1)\]
 But $A(1,1)$ is the $(n-1) \times (n-1)$ upper triangular matrix formed by deeting the first row and first column of $A$. Thus, det $A(1,1) = a_{11}a_{22}\cdots a_{(n-1)(n-1)}$ by the inductive hypothesis. Thus det $A = a_{11}a_{22}\cdots a_{nn}$ as required.
 \end{proof}
