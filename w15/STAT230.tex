@@ -507,7 +507,7 @@ Suppose that $X$ is a continuous rv with a probability density function
 \end{itemize}
 
 \begin{sol}
-\[C \int_0^2 (4x 02x^2)\,dx = 1\]
+\[C \int_0^2 (4x -2x^2)\,dx = 1\]
 \[C (2x^2 - \f{2x^3}{3})\Big|_0^2 = 1\]
 \[C = \f{3}{8}\]
 \[f(x)=\f{3}{8}(4x-2x^2),\,0<x<2\]
@@ -569,7 +569,56 @@ If $X$ is a continuous rv with pdf $f(x)$, and cdf $F(x)$, then at every number 
 The \textbf{percentile} refers to the value for which a percentage of data falls below. For example being in the 99th percentile means that $99\%$ of people in the sample space are below you.
 \end{defn}
 
-\todo{Stopped at change of variable}
+\begin{note}
+Sometimes it is useful to change the variable to solve a specific problem. The process is
+\begin{itemize}
+\item Write the cdf of $Y$ as a function of $X$
+\item Use $F_X(x) to find F_Y(y)$ If pdf is needed, differentiate $F_Y(y)$
+\item Find the range of values of $y$
+\end{itemize}
+\end{note}
+
+\begin{exmp}
+\begin{displaymath}
+   f(x) = \left\{
+     \begin{array}{lr}
+       \f 1 4 : 0 \leq x < 4 \\
+       0 : \text{otherwise}
+     \end{array}
+   \right.
+\end{displaymath}
+
+\begin{displaymath}
+   F(x) = \left\{
+     \begin{array}{lr}
+        0: x < 0 \\
+       \f x 4 : 0 \leq x < 4 \\
+       1 : x \geq 4
+     \end{array}
+   \right.
+\end{displaymath}
+Let $Y = \f 1 X$. Find $f(y)$
+\begin{sol}
+
+\begin{align*}
+F_Y(y) &= P(Y \leq y) = P\left(\f 1 X \leq y\right) = P \left(X \geq \f 1 y\right) \\
+&= 1 - P\left(X < \f 1 y\right) \\
+&= 1 - F_X\left(\f 1 y\right)
+\end{align*}
+Substitute $\f 1 y$ for $x$ in $F_X(x)$
+\[F_Y(y) = 1 - \f{\f{1}{y}}{4} = 1 - \f{1}{4y}\]
+To obtain $f_Y(y)$, simply differentiate the cdf. New bounds are determined by subbing in $y$ for $x$.
+\[0 < x \leq 4 \implies 0 < \f{1}{y} \leq 4 \implies \infty > y \geq \f{1}{4} \implies y \geq \f{1}{4} \]
+\begin{displaymath}
+   f_Y(y) = \left\{
+     \begin{array}{lr}
+       \f {1}{4y^2} : y \geq \f{1}{4} \\
+       0 : \text{otherwise}
+     \end{array}
+   \right.
+\end{displaymath}
+\end{sol}
+\end{exmp}
 
 \begin{defn}
 The \textbf{expected value} of a continuous random variable $X$ is,
@@ -615,27 +664,44 @@ Find E(h(x))
 
 \begin{defn}
 If the random variable $X$ is continuous with the pdf $f(x)$, then the variance is
-\[\text{Var}(X) = E((X-\mu)^2) = \int_{-\infty}^\infty (x-\mu)^2 f(x)\,dx = \int_{-\infty}^\infty x^2 f(x)\,dx - \mu^2\]
+\[\text{Var}(X) = E((X-\mu)^2) = \int_{-\infty}^\infty (x-\mu)^2 f(x)\,dx = \int_{-\infty}^\infty x^2 f(x)\,dx - \mu^2 = E(X^2) - E(\mu^2)\]
 \end{defn}
 
-\todo{Slide 42: variance of continuous function}
+\begin{defn}
+A continuous random variable has \textbf{uniform distribution} from $a$ to $b$ if all subinterals of a fixed length are equally likely
 
-\todo{Up to normal distribution}
+\begin{displaymath}
+   f_(x) = \left\{
+     \begin{array}{lr}
+       \f{1}{b-a} :  a \leq x \leq b \\
+       0 : & \text{otherwise}\\
+     \end{array}
+   \right.
+\end{displaymath}
+$\mu = E(X) = \f{(a+b)}{2}$ and $\sigma^2 = V(X) = \f{(b-a)^2}{2}$
+\end{defn}
+
+\begin{exmp}
+If $X$ is uniformly distributed over $(0,10)$, find $P(3 < X < 8)$.
+\begin{sol}
+\[P)3 < X < 8) = \int_3^8 \f{1}{10}\,dx = \f{1}{2}\]
+\end{sol}
+\end{exmp}
 
 \begin{defn}
 The normal distribution with parameter values $\mu = 0, \sigma = 1$ is the \textbf{standard normal distribution}. A random variable that follows this distribution is a standard normal random variable, and is denoted as $Z$.
 \end{defn}
 
+\begin{note}
 To convert a normal distribution to a standard score (z-score),
 \[z = \f{\text{observed mean} - \text{mean}}{\text{standard distribution}}\]
 \[z = \f{x - \mu}{\sigma}\]
-
+\end{note}
 
 \begin{note}
 Since our z table does not have negatives, when calculating $\phi(-x)$, use $1 - \phi(x)$ since the distribution is symmetrical.
 \end{note}
 
-\todo{Start with cpt 8b}
 \subsection{Exponential Distribution}
 \begin{defn}
 $X$ is said to follow \textbf{exponential distribution} if the pdf of $X$ is
@@ -652,7 +718,6 @@ If the \textbf{average rate of occurrence} in a Poisson process is given, $\lamb
 
 \begin{exmp}
 The time between arrivals of cars at a gas pump station follows an exponential distribution with an average time between arrivals of 3 minutes. What is the probability that the time between two successive arrivals will be 2 mins or less.
-
 \begin{sol}
 Must calculate $P(X \leq 2)$. From the question, $\theta = 3$, so $F(x) = 1 - e^{-\f{x}{3}}$. $F(2) = 1 - e^{-\f{2}{3}} = 0.4866$.
 \end{sol}
@@ -749,6 +814,7 @@ Suppose that a fair die is rolled twelve times. The probability that 1 appears 4
 \end{exmp}
 
 \todo{Some stuff in the middle}
+\todo{Actually a lot of stuff in the middle}
 
 \begin{defn}
 Let $P$ be a $n \times n$ matrix. $P$ is a \textbf{transition probability matrix} when the conditional probabilities are given by corresponding elements of the matrix
@@ -842,5 +908,17 @@ If $X_{1}$ and $X_{2}$ are independent,
 \[V(X_{1} - X_{2}) = V(X_{1}) + V(X_{2})\]
 
 \todo{The women problem on pg 12 9c}
+
+\section{Normal Approximations}
+
+\begin{defn}
+\textbf{Central Limit Theorem: }
+For almost all distributions with a given mean and variance, as the sample approaches infinity ($n \to infty$), the probability distribution will approach the $N(0,1)$ distribution function.
+\end{defn}
+
+\begin{note}
+When approximating discrete distributions using the normal distribution a \textbf{continuity correction} should be used to improve the accuracy of the approximation.
+\end{note}
+
 \end{document}
 
