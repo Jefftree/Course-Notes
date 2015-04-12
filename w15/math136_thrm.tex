@@ -1,0 +1,636 @@
+%%
+%% This is file, `file.tex',
+%% generated with the extract package.
+%%
+%% Generated on :  2015/04/12,12:53
+%% From source  :  MATH136.tex
+%% Using options:  active,generate=file,extract-cmd={section,subsection},extract-env=thrm
+%%
+\documentclass[english,12pt]{article}
+\usepackage{yingconfig}
+
+\newcommand{\coursecode}{MATH 136}
+\newcommand{\coursename}{Linear Algebra}
+\newcommand{\thisprof}{Professor M. Rubinstein}
+\newcommand{\curterm}{Winter 2014}
+
+\begin{document}
+\notesheader
+
+\section{Vectors in Euclidean Space}
+
+\subsection{Vector Addition and Scalar Multiplication}
+
+\begin{thrm}
+If $\vx,\vy,\vw \in \R^n$, and $c,d \in \R$, then
+\begin{itemize}
+\item $\vx + \vy \in \R^n$
+\item $(\vx + \vy) + \vw = \vx + (\vy + vw)$
+\item $\vx + \vy = \vy + \vx$
+\item $\exists\, \vec{0} \in \R^n$ such that $\vx + \vec{0} = \vx\qquad\forall \vx \in \R^n$
+\item $\forall \vx \in \R^n$, there exists a vector $(- \vx) \in \R^n$ such that $\vx + (- \vx) = \vec{0}$
+\item $c \vx \in \R^n$
+\item $c (d \vx) = (cd) \vx$
+\item $(c+d) \vx = c \vx + d \vy$
+\item $c (\vx + vy) = c \vx + c \vy$
+\item $1 \vx = \vx$
+\end{itemize}
+\end{thrm}
+
+\begin{thrm}
+If $\vv_{k}$ can be written as a linear combination of $\vv_{1},\dots,\vv_{k-1}$, then
+\[\spn\{\vv_{1},\dots,\vv_{k}\} = \spn\{\vv_{1},\dots,\vv_{k-1}\}\]
+\end{thrm}
+
+\begin{thrm}
+If a set of vectors $\{\vv_{1},\dots,\vv_{k}\}$ contains the zero evctor, then it is linearly dependent.
+\end{thrm}
+
+\begin{thrm}
+If $\beta= \{\vv_{1},\dots,\vv_{k}\}$ is a basis for a subset $S$ of $\R^n$, then every vector $\vx \in S$ can be written as unique linear combination of $\vv_{1},\dots,\vv_{k}$.
+\end{thrm}
+
+\subsection{Subspaces}
+
+\begin{thrm}
+\textbf{Subspace Test}: Let $\mathbb{S}$ be a non-empty subset of $\R^n$. If $\vx + \vy \in \mathbb{S}$ and $c \vx \in \mathbb{S}$ for all $\vx,\vy \in \mathbb{S}$ and $c \in \R$, then $\mathbb{S}$ is a subspace of $\R^n$
+\end{thrm}
+
+\begin{thrm}
+If $\{\vv_{1},\dots,\vv_{k}\}$ is a set of vectors in $\R^n$, then $\spn \{\vv_{1},\dots,\vv_{k}\}$ is a subspace of $\R^n$.
+\end{thrm}
+
+\subsection{Dot Product}
+
+\begin{thrm}
+If $\vx,\vy \in \R^2$, and $\theta$ is the angle between them, then
+\[\vx \cdot \vy = ||\vx||\,||\vy||\, \cos \theta\]
+\end{thrm}
+
+\begin{thrm}
+Let $\vx,\vy\,\vz \in \R^n$ and let $s,t \in \R$. Then
+\begin{itemize}
+\item $\vx \cdot \vx \geq 0$ and $\vx \cdot \vx = 0$ if and only if $\vx = \vec{0}$
+\item $\vx \cdot \vy = \vy \cdot \vx$
+\item $\vx \cdot (s\vy + t \vz) = s (\vx \cdot \vy) + t (\vx \cdot \vz)$
+\end{itemize}
+\end{thrm}
+
+\begin{thrm}
+If $\vx \cdot \vy = 0$, then $\vx$ and $\vy$ are \textbf{orthogonal}.
+\end{thrm}
+
+\begin{thrm}
+The \textbf{cross product} of $\vx,\vy \in \R^3$ is given by
+\[\vx \times \vy =
+\begin{bmatrix}
+x_{2}y_{3} - x_{3} y_{2} \\
+- (x_{1} y_{3} - x_{3} y_{1}) \\
+x_{1} y_{2} - x_{2} y_{1}
+\end{bmatrix}\]
+\end{thrm}
+
+\begin{thrm}
+Let $\vv,\vw, \vec{b} \in \R^3$ with $\{\vv,\vw\}$ being a linear independent set, and define $\vec{n} = \vv \times \vw$. If $P$ is a plane with the vector equation
+\[ \vx = c \vv + d \vw + \vec{b}, \qquad c,d \in \R\]
+then an alternate equation for the plane is
+\[(\vx - \vec{b}) \cdot \vec{n} = 0\]
+$n$ is a normal vector to the plane $P$.
+Rearranging: $n_{1} x_{1} + n_{2} x_{2} + n_{3} x_{3} = n_{1} a_{1} + n_{2} a_{2} + n_{3} a_{3}$.
+\end{thrm}
+
+\subsection{Projections}
+
+\section{Systems of Linear Equations}
+
+\subsection{Systems of Linear Equations}
+
+\begin{thrm}
+Assume the system of linear equations with $a_{1},\dots,a_{n}, b \in \R$ has two distinct solutions $\vec{s} = \begin{bmatrix} s_{1} \\ \vdots \\ s_{n} \end{bmatrix}$ and $\vec{t} = \begin{bmatrix} t_{1} \\ \vdots \\ t_{n} \end{bmatrix}$. Then $\vx = \vec{s} + c(\vec{s} - \vec{t})$ is a distinct solution for each $c \in \R$.
+\end{thrm}
+
+\subsection{Solving Systems of Linear Equation}
+
+\begin{thrm}
+If two augmented matrices are row equivalent, then the system of linear equations associated with each matrix are equivalent.
+\end{thrm}
+
+\begin{thrm}
+The RREF of a matrix is unique.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be the $m \times n$ coefficient matrix of a system of linear equations.
+\begin{enumerate}
+\item IF the rank of $A$ is less than the rank for the augmented matrix, then the system is inconsistent.
+\item If the system is inconsistent, then the system contains $n - \text{ rank}\,A$ free variables. A consistent system has a unique solution if and only if rank $A=n$.
+\item rank $A=m$ if and only if the system is consistent for every $\vec{b} \in \R^m$
+\end{enumerate}
+\end{thrm}
+
+\begin{thrm}
+The solution set of a homogeneneous systems of $M$ linear equations in $n$ variables is a subspace of $R^n$.
+\end{thrm}
+
+\section{Matrices and Linear Mappings}
+
+\subsection{Operations on Matrices}
+
+\begin{thrm}
+Let $A,B,C$ be $m \times n$ matrices and let $c,d \in \R$
+\begin{enumerate}
+\item $A + B$ is an $m \times n$ matrix
+\item $(A + B) + C = A + (B + C)$
+\item $A + B = B + A$
+\item There exists a matrix such that $A + O_{m,n} = A$. This is called the \textbf{zero matrix}
+\item There exists a matrix $(-A)$ such that $A + (-A) = O_{m,n}$
+\item $cA \in M_{m \times n}$
+\item $c(dA) = cd(A)$
+\item $(c + d)A = cA + dA$
+\item $c(A + B) = cA + cB$
+\item $1A = A$
+\end{enumerate}
+\end{thrm}
+
+\begin{thrm}
+For any $m \times n$ matrices $A$ and $B$ and scalar $c \in \R$,
+\begin{itemize}
+\item $(A^T)^T = A$
+\item $(A+B)^T = A^T + B^T$
+\item $(cA)^T = c(A^T)$
+\end{itemize}
+\end{thrm}
+
+\begin{thrm}
+If $\vec{e}_{i}$ is the ith standard basis vector for $\R^i$ and $A = \lbrack \vec{a}_{1},\dots,\vec{a}_{n} \rbrack$ is an $m \times n$ matrix, then
+\[A \vec{e}_i = \vec{a}_{i}\]
+\end{thrm}
+
+\begin{thrm}
+If $A,B,C$ are matrices of the correct size so the required products are defined and $t \in \R$, then
+\begin{itemize}
+\item $A(B+C) = AB _ AC$
+\item $t (AB) = (tA)B + A(tB)$
+\item $A(BC) = (AB)C$
+\item $(AB)^T = B^T A^T$
+\end{itemize}
+\end{thrm}
+
+\begin{thrm}
+Suppose that $A$ and $B$ are $m \times n$ matrices such that $A\vx = B\vx$ for every $\vx \in \R^n$, then $A=B$.
+\end{thrm}
+
+\begin{thrm}
+If $I$ is the matrix $I = \lbrack \vec{e}_1,\dots,\vec{e}_n \rbrack$ then for any $n \times n$ matrix where $IA = A = AI$
+\end{thrm}
+
+\begin{thrm}
+The multiplicative identity for $M_{n\times n} (\R)$ is unique.
+\end{thrm}
+
+\subsection{Linear Mapping}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix, and let $F: \R^n \rightarrow \R^m$ be defined by $f(\vx) = A\vx$. Then for all $\vx,\vy \in \R^n$ and $b,c \in \R$ we have
+\[f(b\vx + c\vy) = bf(\vx) + cf(\vy)\]
+\end{thrm}
+
+\begin{thrm}
+Every linear mapping can be represented as a matrix mapping whose columns are the images of the standard basis vector of $\R^n$ under $L$. $L(\vx) = \lbrack L \rbrack \vx$ where
+\[\lbrack L \rbrack = \lbrack L(\vec{e}_{1}) \cdots L(\vec{e}_{n}) \rbrack\]
+\end{thrm}
+
+\begin{thrm}
+Let $R_{\theta}: \R^2 \rightarrow \R^2$ be a rotation with rotation matrix $A = \lbrack \R_{\theta} \rbrack$. Then the columns of $A$ are orthogonal unit vectors.
+\end{thrm}
+
+\subsection{Special Subspaces}
+
+\begin{thrm}
+Let $L:\R^n \rightarrow \R^m$ be a linear mapping. Then $L(\vec{0}) = \vec{0}$.
+\end{thrm}
+
+\begin{thrm}
+Let $L: \R^n \rightarrow \R^m$ be a linear mapping. Then $\text{ker}(L)$ is a subspace of $\R^n$.
+\end{thrm}
+
+\begin{thrm}
+Let $L: \R^n \rightarrow \R^m$ be a linear mapping. Then $R(L)$ is a subspace of $\R^m$.
+\end{thrm}
+
+\begin{thrm}
+Let $L: \R^n\rightarrow\R^m$ be a linear mapping and let $A = \lbrack L \rbrack$ be the standard matrix of $L$. Then, $\vx \in \text{ker}(L)$ if and only if $A\vx = \vec{0}$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix. A consistent system of linear equations $A\vx = \vec{b}$ has a unique solution if and only if $\text{Null}(A) = \{\vec{0}\}$.
+\end{thrm}
+
+\begin{thrm}
+Let $L:\R^n \rightarrow \R^m$ be a linear mpping with standard matrix $\lbrack L \rbrack = A = \lbrack \vec{a}_{1} \cdots \vec{a}_{n} \rbrack$. Then
+\[R(L) = \spn\{\vec{a}_{1},\dots,\vec{a}_{n}\}\]
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix. Then $\text{Col}(A) = \R^m$ if and only if $\text{rank}(A) = m$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix. If $\vec{a} \in \text{Row}(A)$ and $\vx \in \text{Null}(A)$, then $\vec{a} \cdot \vx = 0$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix. If $\vec{a} \in \text{Col}(A)$ and $\vx \in \text{Null}(A^T)$, then $\vec{a} \cdot \vx = 0$.
+\end{thrm}
+
+\subsection{Operations on Linear Mapping}
+
+\begin{thrm}
+Let $L,M,N \in \mathbb{L}$ and let $c_{1},c_{2}$ be real scalars. Then
+\begin{itemize}
+\item $L + M \in \mathbb{L}$
+\item $(L + M) + N = L + (M + N)$
+\item $L + M = M + L$
+\item There exists a linear mapping $O: \R^n \rightarrow \R^m$ such that $L + O = L$. This means $O(\vx) = \vec{0}$ for all $\vx \in \R^n$.
+\item There exists $(-L)$ such that $L + (-L) = O$.
+\item $c_{1} L \in \mathbb{L}$
+\item $c_{1} (c_{2} L) = (c_{1} c_{2}) L$
+\item $(c_{1} + c_{2}) L = c_{1} L + c_2 L$
+\item $c_{1} (L + M) = c_1 L + c_1 M$
+\item $1L = L$
+\end{itemize}
+\end{thrm}
+
+\begin{thrm}
+Let $L: \R^n \rightarrow \R^m$ and $M: \R^n \rightarrow \R^m$ be linear mapping and let $c \in \R$. Then
+\[\lbrack L + M \rbrack = \lbrack L \rbrack + \lbrack M \rbrack\]
+\[\lbrack cL \rbrack = c \lbrack L \rbrack\]
+\end{thrm}
+
+\begin{thrm}
+Let $L: \R^n \rightarrow \R^m$ and $M: \R^n \rightarrow \R^m$ be linear mappings. then $M \circ L$ is a linear mapping and
+\[\lbrack M \circ L \rbrack = \lbrack M \rbrack \lbrack L \rbrack\]
+\end{thrm}
+
+\section{Vector Spaces}
+
+\subsection{Vector Spaces}
+
+\begin{thrm}
+Let $\mathbb{V}$ be a vector space with addition defined by $\vx + \vy$ and scalar multiplication defined by $c \vx$ for all $\vx,\vy \in \mathbb{V}$, and $c \in \R$, Then
+\begin{itemize}
+\item $0 \vec{x} = \vec{0}$ for all $\vx \in \mathbb{V}$
+\item $- \vx = (-1)\vx$ for all $\vx \in \mathbb{V}$
+\end{itemize}
+\end{thrm}
+
+\begin{thrm}
+Let $\mathbb{S}$ be a non-empty subset of $\mathbb{V}$. If $\vx + \vy \in \mathbb{S}$ and $c\vx \in \mathbb{S}$ for all $\vx,\vy \in \mathbb{S}$, and $c \in \R$ under the operations of $\mathbb{V}$, then $\mathbb{S}$ is a subspace of $\mathbb{V}$
+\end{thrm}
+
+\begin{thrm}
+If
+If $B = \{\vv_1,\dots,\vv_k\}$ is a span of vectors in a vector space $\V$, then $\spn B$ is a subspace of $\V$.
+\end{thrm}
+
+\begin{thrm}
+Let $\V$ be a vector space and $\vv_1,\dots,vv_k \in \V$. Then $v_i \in \spn \{\vv_1,\dots,\vv_{i-1},\vv_{i+1},\dots,\vv_k\}$.
+\end{thrm}
+
+\begin{thrm}
+A set of vectors $\{\vv_1,\dots,\vv_k\}$ in a vector space $\V$ is linearly dependent if and only if there exists $1 \leq i \leq k$ such that
+\[\vv_i \in \spn \{\vv_1,\dots,\vv_{i-1},\vv_{i+1},\vv_k\}\]
+\end{thrm}
+
+\begin{thrm}
+A set of vectors $\{\vv_1,\dots,\vv_k\}$ in a vector space $\V$ which contains the zero vector is linearly dependent.
+\end{thrm}
+
+\subsection{Bases and Dimension}
+
+\begin{thrm}
+Let $B = \{\vv_1,\dots,\vv_n\}$ be a basis for a vector space $\V$ and let $C = \{\vw_1,\dots,\vw_k\}$ be a set in $\V$. If $k > n$ (rank) then $C$ is linearly dependent.
+
+\begin{proof}
+Consider $0 = c_1\vw_1 + \cdots + c_k \vw_k$. \n
+Since $B$ is a basis for $\V$, we can write every vector $\vw$ as a linear combination of the vectors in $B$.
+\[w_i = a_{i1}\vv_1 + \cdots + a_{in} \vv_n,\, \text{ for } 1 \leq i \leq k\]
+Substituting,
+\[ 0 = (c_1  a_{11} + \cdots + c_k a_{k1})\vv_1 + \cdots + (c_1 a_{1n} + \cdots + c_k a_{kn}) \vv_n\]
+Since $B$ is a basis, it is linearly independent, and the only solution is when
+\[c_1 a_{11} + \cdots + c_k a_{k1} = 0\]
+\[\vdots\]
+\[c_1 a_{1n} + \cdots + c_k a_{kn} = 0\]
+Since $k > n$, the system has infinitely many solutions by the system rank theorem, so the equation has infinitely many solutions, and hence $C$ is linearly independent.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $B = \{\vv_1,\dots,\vv_n\}$ and $C = \{ \vw_1,\dots,\vw_k\}$ are bases for the vector space $\V$, then $k = n$.
+
+\begin{proof}
+Since $B$ is a basis and $C$ is linearly independent, $k \leq n$ by the previous theorem. Similary, since $C$ is a basis and $B$ is linearly independent, $n \neq k$. Hence $n = k$.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+Let $\V$ be an n-dimensional vector space. Then
+
+\begin{enumerate}
+\item A set of more than $n$ vectors in $\V$ must be inearly dependent.
+\item A set of fewer than $n$ vectors in $\V$ cannot span $\V$.
+\item A set of $n$ vectors in $\V$ is linearly independent if and only if it spans $\V$.
+\end{enumerate}
+\end{thrm}
+
+\begin{thrm}
+If $\V$ is an n-dimensional vector space and $\{\vv_1,\dots,\vv_k\}$ is a linearly independent set in $\V$ with $k < n$, then there exists vectors $\vw_{k+1},\dots,\vw_{n}$ in $\V$ such that $\{\vv_1,\dots,\vv_k,\vw_{k+1},\dots,\vw_n\}$ is a basis for $\V$.
+
+\begin{proof}
+By Theorem 4.2.3, $\{\vv_1,\dots,\vv_k\}$ does not span $\V$.Let $\vw_{k+1}$ be a vector in $\V$ such that $\vw_{k+1} \not \in \spn\{\vv_1,\dots,\vv_k\}$. If $k+1 = n$, then by Theorem 4.2.3, $\{\vv_1,\dots,\vv_k,\vw_{k+1}\}$ is a basis. Else, repeat the procedure until it is true, and the set will be
+\[\{\vv_1,\dots,\vv_k,\vw_{k+1},\dots,\vw_n\}\]
+\end{proof}
+\end{thrm}
+
+\subsection{Coordinates}
+
+\begin{thrm}
+If $B = \{\vv_1,\dots,\vv_n\}$ is a basis for a vector space $\V$, then every vector $\vv \in \V$ can be represented as a \textbf{unique} linear combination of $\vv_1,\dots,\vv_n$.
+\begin{proof}
+Since $B$ is a basis, it a spanning set. Ths for every vector $\vv \in \V$ there exists constants such that
+\[c_1 \vv_1 + \cdots + c_n \vv_n = \vv\]
+Assume that there also exists constants such that $d_1 \vv_1 + \cdots + d_n \vv_n = \vv$. Then
+\[c_1 \vv_1 + \cdots + c_n \vv_n = d_1 \vv_1 + \cdots + d_n \vv_n = \vv\]
+\[(c_1 - d_1) \vv_1 + \cdots + (c_n - d_n)\vv_n = \vec{0}\]
+But this implies $c_i = d_i$ for all $1 \leq i \leq n$ since $B$ is linearly independent. Thus there exists only one linear combination of the vectors in $B$ that equals $\vv$.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $\V$ is a vector space with $B = \{\vv_1,\dots,\vv_n\}$, then for any $\vv,\vw \in \V$, and $s,t \in \R$, we have
+\[\lbrack s \vv + t \vw \rbrack_B = s \lbrack \vv \rbrack_b + t \lbrack \vw \rbrack_B\]
+\begin{proof}
+Let $\vv = b_1 \vv_1 + \cdots + b_n \vv_n$ and $w = c_1 \vv_1 + \cdots c_n \vv_n$. Then we have
+\[s\vv + t \vw = (sb_1 + tc_1) \vv_1 + \cdots + (sb_n + tc_n) \vv_n\]
+Therefore,
+\[\lbrack s \vv + t \vw \rbrack_B = \begin{bmatrix} sb_1 + tc_1 \\ \vdots \\ sb_n + tc_n \end{bmatrix} = s \begin{bmatrix} b_1 \\ \vdots \\b_n \end{bmatrix} + t \begin{bmatrix} c_1 \\ \vdots \\c_n \end{bmatrix} = s \lbrack \vv \rbrack_B + t \lbrack \vw \rbrack_B\]
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $B$ and $C$ are bases for an n-dimensional vector space $\V$, then the change of coordinate matrices $_CP_B$ and $_BP_C$ satisfy
+\[_CP_B\,_BP_C = I = \,_BP_C\,_CP_B\]
+\end{thrm}
+
+\section{Inverses and Determinants}
+
+\subsection{Matrix Inverses}
+
+\begin{thrm}
+If $A$ is an $m \times n$ matrix with $n > m$, then $A$ cannot have a right inverse.
+\begin{proof}
+\[ I = AB = \lbrack A\vb_1 \cdots A\vb_m \rbrack = \lbrack \ve_1 \cdots \ve_m \rbrack\]
+Need to find $\vb_i$ such that $A\vb_i = \ve_i$. But this is just solving $m$ systems of linear equations with the same coefficient matrix. If we row reduce $\lbrack A | I_m \rbrack$ to RREF, we can find a solution to each equation. For this to be reduced to the identity matrix, we require $\text{rank}(A) = M$. Therefore we require that $n \geq m$.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $m \times n$ matrix with $n > m$, then $A$ cannot have a left inverse.
+\begin{proof}
+If $A$ has a left inverse $C$, then $C$ is an $n \times n$ matrix with $n > m$ with a right inverse, contradicting the previous theorem.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+The inverse of a matrix is unique.
+\begin{proof}
+Assume $B$ and $C$ are both inverses of $A$, then
+\[B = BI = B(AC) = (BA)C = C\]
+Therefore $B = C$, and the inverse is unique.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $A$ and $B$ are $n \times n$ matrices such that $AB = I$, then $A$ and $B$ are invertible and $\text{rank}(A) = \text{rank}(B) = n$.
+\begin{proof}
+Assume that $AB=I$ and consider the homogeneous system
+\[B(\vx) = \vec{0}\]
+\[A(B\vx) = A\vec{0}\]
+\[(AB)\vx = \vec{0}\]
+\[I\vx = \vec{0}\]
+\[\vx = \vec{0}\]
+So the system has a unique solution and by the system rank theorem, the coefficient matrix $B$ has $\text{rank}(n)$. This implies that $B\vx = \vy$ is consistent for all $y \in \R^n$.
+\[BA\vy = BA(B\vx) = B(AB)\vx = BI(vx) = B\vx = \vy = I\vy\]
+By the matrices equal theorem, $BA = I$, and we can repeat the previous procedure to obtain $\text{rank}(A) = n$,
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+IF $A$ and $B$ are invertible matrices, and $c \in \R$ with $c \neq 0$, then
+\begin{itemize}
+\item $(cA)^{-1} = \f{1}{c} A^{-1}$
+\item $(A^T)^{-1} = (A^{-1})^T$
+\item $(AB)^{-1} = B^{-1}A^{-1}$
+\end{itemize}
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix such that $\text{rank}(A) = n$, then $A$ is invertible.
+\begin{proof}
+If $\text{rank}(A) = n$, then the system of equations $A\vb_i = \ve_i$, $1 \leq i \leq n$ are all consistent by Theorem 2.2.3. Let $B = \lbrack \vb_1 \,\cdots\,\vb_n \rbrack$, then we get
+\[AB = A\lbrack \vb_1 \,\cdots\,\vb_n \rbrack = \lbrack A\vb_1 \,\cdots\,A\vb_n \rbrack = I\]
+This by Theorem 5.1.4, $A$ is invertible.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+\textbf{Invertible Matrix Theorem}:
+For an $n \times n$ matrix $A$, the following are equivalent
+\begin{enumerate}
+\item $A$ is invertible
+\item THE RREF of $A$ is $I$
+\item $\text{rank}(A) = n$
+\item The system of equations $A\vx = \vb$ is consistent with a unique solution for all $\vb \in \R^n$
+\item The nullspace of $A$ is $\vec{0}$
+\item The columns of $A$ form a basis for $\R^n$
+\item The rows of $A$ for ma basis for $\R^n$
+\item $A^T$ is invertible
+\end{enumerate}
+To solve a system $A\vx = \vb$, we can simply rearrange to get $\vx = A^{-1} \vb$.
+\end{thrm}
+
+\subsection{Elementary Matrices}
+
+\begin{thrm}
+If $E$ is an elementary matrix, then $E$ is invertible. Moreover $E^{-1}$ is the elementary matrix corresponding to the reverse elementary row operations of $E$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $m \times m$ matrix, and $E$ is an $m \times m$ matrix corresponding to the row operation of $R_i + cR_j$, for $i \neq j$, then $EA$ is the matrix obtained from $A$ by performing the row operation $R_i + cR_j$ on $A$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix and let $E$ be the $m \times m$ elementary matrix corresponding to the row operation of $cR_i$. Then $EA$ is the matrix obtained from $A$ by performing the row operation $cR_i$ on $A$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix and let $E$ be the $m \times m$ elementary matrix corresponding to the row operation $R_i \leftrightarrow R_j $, for $ i \neq j$. Then $EA$ is the matrix obtained from $A$ by performing the row operation $R_i \leftrightarrow R_j$ on $A$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $m \times n$ matrix, and let $E$ be an $m \times m$ elementary matrix. Then
+\[\text{rank}(EA) = \text{rank}(A)\]
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $m \times n$ matrix in its RREF form, then there exists a sequence $E_k,\dots,E_2,E_1,$ of $m \times m$ matrices such that
+$E_k\,\cdots\,E_2 E_1 A = R$. In particular
+\[A = E_1^{-1}\,\cdots\,E_k^{-1}R\]
+
+\begin{proof}
+We know that $A$ can be reduced to its RREF, $R$ with a sequence of elementary row operations. Let $E_1$ be the first operation, $E_2$ be the second row operation, and so on. By the previous few theorems,
+\[E_k\,\cdots\,E_2 E_1 A = R\]
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an invertible matrix, then $A$ and $A^{-1}$ can be written as a product of elementary matrices.
+\end{thrm}
+
+\subsection{Determinants}
+
+\begin{thrm}
+Let $A$ be an $n \times n$ matrix.
+\[\text{det }A = \sum_{k=1}^n a_{ik}C_{ik}\]
+\[\text{det }A = \sum_{k=1}^n a_{ij}C_{kj}\]
+The cofactor expansion can be called upon any row or column to obtain the determinant.
+\end{thrm}
+
+\begin{thrm}
+If a matrix is upper or lower triangular, the determinant is just the product of the numbers along the diagonal
+\[\text{det }A = a_{11}a_{22}\cdots a_{nn}\]
+\begin{proof}
+If $A$ is a $2 \times 2$ upper triangular matrix, then det $A=a_{11}a_{22}$ as required. Assume that if $B$ is an $(n-1) \times (n-1)$ upper triangular matrix, then det $B = b_{11}\cdots b_{(n-1)(n-1)}$. Let $A$ be an $n \times n$ upper triangular matrix. Expanding the determinant along the first column gives
+\[\text{det }A = a_{11}(-1)^{1+1}C_{11} + 0 + \cdots + 0 = a_{11} \text{det }A(1,1)\]
+But $A(1,1)$ is the $(n-1) \times (n-1)$ upper triangular matrix formed by deeting the first row and first column of $A$. Thus, det $A(1,1) = a_{11}a_{22}\cdots a_{(n-1)(n-1)}$ by the inductive hypothesis. Thus det $A = a_{11}a_{22}\cdots a_{nn}$ as required.
+\end{proof}
+\end{thrm}
+
+\begin{thrm}
+If $B$ is the matrix obtained by multiplying one row of $A$ by $c \in \R$, then det $B = c$ det $A$.
+\end{thrm}
+
+\begin{thrm}
+If $B$ is the matrix obtained from $A$ by swapping two rows of $A$. Then det $B = -$det $A$.
+\end{thrm}
+
+\begin{thrm}
+If a matrix $A$ has two identical rows, then det $A = 0$.
+\end{thrm}
+
+\begin{thrm}
+If $B$ is the matrix obtained from $A$ by adding a multiple of one row of $A$ to another, then det $B = $det $A$.
+\end{thrm}
+
+\begin{thrm}
+Let $A$ be an $n \times n$ matrix and let $E$ be an $n \times n$ elementary matrix. Then det $EA = $det $E$ det $A$.
+\end{thrm}
+
+\begin{thrm}
+An $n \times n$ matrix is invertible if and only if its determinant is not $0$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ and $B$ are $n \times n$ matrices, then det $(AB) = $det $A$ det $B$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an invertible matrix, then det $A^{-1} = \f{1}{\text{det }A}$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix, then det $A = $ det $A^T$.
+\end{thrm}
+
+\section{Diagonalization}
+
+\subsection{Similar Matrices}
+
+\begin{thrm}
+Let $A$ and $B$ be $n \times n$ matrices such that $P^{-1}AP = B$ for some invertible matrix $P$. Then
+\begin{itemize}
+\item rank $A = $ rank $B$
+\item det $A = $ det $B$
+\item tr $A = $ tr $B$
+\end{itemize}
+\end{thrm}
+
+\subsection{Eigenvalues \& Eigenvectors}
+
+
+\begin{thrm}
+A scalar $\lambda$ is an eigenvalue of an $n \times n$ matrix $A$ if and only if $C(\lambda) = 0$
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n \times n$ upper or lower trianglar matrix, then the eigenvalues of $A$ are the diagonal entries of $A$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ and $B$ are similar matrices, then $A$ and $B$ have the same characteristic polynomial, and hence the same eigenvalues.
+\end{thrm}
+
+\begin{thrm}
+If $A$ and $B$ are similar matrices, then $A$ and $B$ have the same characteristic polynomial, and hence the same eigenvalues.
+\end{thrm}
+
+\begin{thrm}
+IF $A$ is an $n \times n$ matrix, with eigenvalue $\lambda_1$, then
+\[1 \leq g_{\lambda_1} \leq a_{\lambda_1}\]
+\end{thrm}
+
+\subsection{Diagonalization}
+
+\begin{thrm}
+A matrix $A \in M_{n \times n}(\R)$ is diagonalizable if and only if there exists a basis $\{\vv_1,\dots,\vv_n\}$ for $\R^n$ of eigenvectors of $A$.
+\end{thrm}
+
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix with eigenpairs,
+$(\lambda_1,\vv_1),\dots,(\lambda_k,\vv_k)$ where $\lambda_i \neq \lambda_j$, for $i \neq j$, then $\{\vv_1,\dots,\vv_k\}$ is linearly independent.
+\end{thrm}
+
+\begin{thrm}
+Of $A$ is an $ n\times n$ matrix with distinct eigenvaleus, and $B$ is a basis for the eigenspace of $\lambda_1$ for $i \leq i \leq k$, then $B_1 \cup \cdots \cup B_k$ is a linearlly independent set.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix with distinct eigenvallues $\lambda_1.\dots,\lambda_k$, then $A$ is diagonalizable if and only if $g_{\lambda_i} = g_{\lambda_k}$ for $1 \leq i \leq k$.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n \times n$ matrix with $n$ distinct eigenvalues, then $A$ is diagonalizable.
+\end{thrm}
+
+\begin{thrm}
+If $A$ is an $n\times n$ matrix, then
+\begin{itemize}
+\item the determinant of $A$ equals the product of the eigenvalues
+\item $\lambda$ is an eigenvalue of $A$ if and only if $\text{det}(A) = 0$. If it is, then the geometric multiplicity of $0$ equals $1 - \text{rank}(A)$.
+\item The trace of $A$ equals the sum of the eigenvalues.
+\end{itemize}
+\end{thrm}
+
+\subsection{Powers of Matrices}
+
+\begin{thrm}
+If $D = \text{diag }(d_1,\dots,d_{n})$, then $D^m = \text{diag }(d_1^m,\dots,d_n^m)$.
+\end{thrm}
+
+\begin{thrm}
+If there exists an invertible matrix $p$ such that $P^{-1}AP = D$ is diagonal, then
+\[A^m = PD^mP^{-1}\]
+\end{thrm}
+
+\end{document}
