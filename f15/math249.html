@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="math-249---rip">MATH 249 - Rip</h1>
+<!--Multiset Definiton-->
+<p><span class="math display">\[\def\multiset#1#2{\left(\!\left({#1\atopwithdelims..#2}\right)\!\right)}\]</span></p>
+<h2 id="c-at-most-one-ball-per-box-boxes-indistinguishable.">2C: At most one ball per box, boxes indistinguishable.</h2>
+<p><span class="math inline">\(1\)</span> if <span class="math inline">\(k \leq n, 0\)</span> otherwise</p>
+<p><span class="math display">\[x^{\underline{k}} = x(x-1)(x-2)..(x-k+1)\]</span></p>
+<h2 id="b.-at-most-one-ball-per-box-balls-indistinguishable.">2B. At most one ball per box, balls indistinguishable.</h2>
+<p><strong>Theorem:</strong> <span class="math inline">\(n \choose k\)</span></p>
+<p><strong>Proof:</strong> Let <span class="math inline">\(N,K\)</span> be sets with <span class="math inline">\(|N| = n, |K| = k\)</span>. Let <span class="math inline">\(X=\{K \rightarrow N |f \text{ is injective}\}\)</span>. Let <span class="math inline">\(f \sim g\)</span> if there exists a bijection <span class="math inline">\(\alpha: K \rightarrow K\)</span> such that <span class="math inline">\(f = g \circ \alpha\)</span>. Let <span class="math inline">\(Y\)</span> be the set of equivalence classes of the equivalence relation <span class="math inline">\(\sim\)</span>. Then <span class="math inline">\(|Y|\)</span> is the answer to the problem.</p>
+<p>We saw <span class="math inline">\(|X| = n^\underline{k}\)</span></p>
+<p>Also <span class="math inline">\(|X| = \sum_{C \in Y} |C|\)</span> since <span class="math inline">\(Y\)</span> is a set of disjoint sets whose union <span class="math inline">\(X\)</span></p>
+<p>Suppose <span class="math inline">\(C \in Y, g \in C\)</span> Then <span class="math display">\[ C = \{f \in X | f = g \circ \alpha \text{ for some bijection } \alpha: K \rightarrow K\}\]</span> <span class="math display">\[ = \{g \circ \alpha | \alpha: K \rightarrow K \text{ is a bijection}\}\]</span></p>
+<p>Since <span class="math inline">\(g\)</span> is injective, <span class="math inline">\(g \circ a = g \circ a&#39; \text{ iff } a = a&#39;\)</span> Therefore <span class="math inline">\(|C| =\)</span> # of bijections <span class="math inline">\(= K \rightarrow K = k!\)</span></p>
+<p>Putting it all together</p>
+<p><span class="math inline">\(n^\underline{k} = |X| = \sum_{C \in Y} |C| = k!|Y|\)</span></p>
+<p><span class="math inline">\(|Y| = \frac{n^\underline{k}}{k!} = {n \choose k}\)</span></p>
+<p><strong>Interpretation</strong> If <span class="math inline">\(n,k\)</span> are integers, then <span class="math inline">\(n \choose k\)</span> is the number of <span class="math inline">\(k\)</span>-element subsets of an <span class="math inline">\(n\)</span>-element subset.</p>
+<h2 id="b-no-restriction-balls-indistinguishable">1B: No restriction, balls indistinguishable</h2>
+<p><strong>Interpretation</strong>: <span class="math inline">\(k\)</span>-element multisets from an <span class="math inline">\(n\)</span>-element set.</p>
+<p>Example: If <span class="math inline">\(n=2,k=4\)</span>, there are <span class="math inline">\(5\)</span> <span class="math inline">\(k\)</span>-element multisets from <span class="math inline">\(N={a,b}:\)</span> <span class="math display">\[\{a,a,a,a\},\{a,a,a,b\},\{a,a,b,b\},\{a,b,b,b\},\{b,b,b,b\}\]</span></p>
+<p><strong>Notation:</strong> Define <span class="math inline">\(\multiset{n}{k}= \frac{n^\underline{k}}{k!}= {n+k-1 \choose k}\)</span></p>
+<p><strong>Theorem</strong>: Answer to 1B is <span class="math inline">\(\multiset{n}{k}\)</span></p>
+<p><strong>Proof:</strong> Assume that <span class="math inline">\(N = {1,2,...,n}\)</span>. Let <span class="math inline">\(X\)</span> be the set of <span class="math inline">\(k\)</span>-element multisets from <span class="math inline">\({1,2,...,n}\)</span>. Let <span class="math inline">\(Y\)</span> be the set of <span class="math inline">\(k\)</span>-element subset of <span class="math inline">\({1,2,...,n+k-1}\)</span>. Since we know that <span class="math inline">\(|Y| = {n+k-1 \choose k}\)</span>, we can prove the result by finding a bijection <span class="math inline">\(f: X \rightarrow Y\)</span>.</p>
+<p>If <span class="math inline">\(A \in X\)</span>, we can write <span class="math inline">\(A = {a_1,a_2,...,a_k}\)</span>, where <span class="math display">\[a_1 \leq a_2 \leq ... \leq a_k\]</span></p>
+<p><span class="math display">\[f(A) = \{a_1,a_2 + 1, a_3 + 2,...,a_k + k -1\}\]</span></p>
+<p>Finishing the proof:</p>
+<ul>
+<li><span class="math inline">\(f(A) \in Y\)</span></li>
+<li><span class="math inline">\(f\)</span> is a bijection</li>
+</ul>
+<h2 id="b.-at-least-one-ball-per-box-balls-indistinguishable">3B. At least one ball per box, balls indistinguishable</h2>
+<p><strong>Interpretation</strong>: Compositions of an integer</p>
+<p>How many ways are there to write <span class="math display">\[k=c_1 + c_2 + ... + c_n\]</span> where <span class="math inline">\(c_1,...,c_n\)</span> are positive integers.</p>
+<p>Idea: <span class="math inline">\(c_i\)</span> is the number of balls in the i-th box Since there is at least one ball per box, <span class="math inline">\(c_i\)</span> is a positive integer Note: 1B can be interpreted in a similar war.</p>
+<h2 id="d-at-least-one-ball-per-box-balls-and-boxes-indistinguishable">3D At Least one ball per box, balls and boxes indistinguishable</h2>
+<p><strong>Interpretation</strong>: Partitions of an integer</p>
+<p>How many ways are there to write <span class="math display">\[k = c_1 + c_2 + ... + c_n\]</span> where <span class="math inline">\(c_i,...,c_n\)</span> are positive integers and <span class="math inline">\(c_1 \geq ... \geq c_n\)</span></p>
+<p><strong>Idea</strong>: <span class="math inline">\(c_1\)</span> is the number of balls in the box with the larger number of balls, and so on. (because balls are indistinguishable)</p>
+<p>1D is related to this as well</p>
+</body>
+</html>
