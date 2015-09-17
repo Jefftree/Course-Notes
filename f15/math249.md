@@ -1,13 +1,46 @@
-# MATH 249 - Rip
-
 <!--Multiset Definiton-->
 $$\def\multiset#1#2{\left(\!\left({#1\atopwithdelims..#2}\right)\!\right)}$$
 
+# MATH 249
+
+Combinatorics include enumeration and graph theory.
+
+## Enumeration
+
+The **cardinality** of a set $A$, denoted as $|A|$ is the number of elements it contains if it is finite, or something else if it's infinite.
+
+$\lbrack n \rbrack$ is the set of all positive integers from $1$ to $n$, inclusive. This is represented as $\{1,...,n\},\,\forall n \geq 1$.
+
+A $k$-subset of $\lbrack n \rbrack$ is simply a subset of it that contains $k$ elements. For example, there are $6$ $2$-subsets of $\lbrack 4 \rbrack$, namely $\{1,2\},\{1,3\},\{1,4\},\{2,3\},\{2,4\},\{3,4\}$.
+
+**Example** The number of $k$-subsets of $\lbrack n \rbrack$ is $n \choose k$ for $n = 0,1,...,$ and $k=0,1,...,n$
+
+**Proof**: Let $x$ be the number of $k$-subsets of $\lbrack n \rbrack$. $x$ can be determined indirectly by setting up an equality involving the permutation of $\lbrack n \rbrack$. For any permutation $a_1...a_n$ and any fixed $k=0,..,n$, the elements in $a_1,...a_k$ form a $k$-subset of $\lbrack n \rbrack$, denoted as $\alpha$. Then the elements in $a_{k+1},...,a_n$ form the complement, $\bar{alpha}$, of $\alpha$ with respect to $\lbrack n \rbrack$. For each fixed $\alpha$, there are $k!$ choices of $a_1...a_k$ since it is just a permutation of $\alpha$, and $(n-k)!$ choices of $a_{k+1}...a_n$. Since there are $x$ choices for $\alpha$, then the number of permutations of $\lbrack n \rbrack$ is
+
+$$k!(n-k)!x = n!$$
+
+Rearranging gives $x= {n\choose k}$.
+
+## Bijections
+A **bijection** is a function that maps a set $S$ to another set $T$, and is one to one and onto.
+
+One to one means that the function has a unique element of $T$ for every value of $S$. That is $|T| \geq |S|$.
+Onto means that the function has a unique element $S$ for every value of $T$, and therefore $|S| \geq |T|$.
+
+Therefore it is a function that maps a set's elements to the elements of another set of the exact same size. It is often easier to prove that a bijection has an inverse rather than proving one to one and onto.
+
+### Bijection Inverse Theorem
+
+**Proposition:** a function is a bijection if and only if it has an inverse.
+
+The **inverse** of $f: S \rightarrow T$ is a function $f^{-1}$ such that $\forall x \in S, f^{-1}(f(x)) = x$ and $\forall y \in T, f(f^{-1}(y)) = y$. It reverses a mapping backwards from $T$ to $S$.
+
+# Fun stuff
 
 ## 2C: At most one ball per box, boxes indistinguishable.
 $1$ if $k \leq n, 0$ otherwise
 
-$$x^{\underline{k}} = x(x-1)(x-2)..(x-k+1)$$
+$$x^{\underline{k}} = x(x-1)(x-2)...(x-k+1)$$
 
 ## 2B. At most one ball per box, balls indistinguishable.
 **Theorem:** $n \choose k$
