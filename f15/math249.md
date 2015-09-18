@@ -54,10 +54,6 @@ B. Balls indistinguishable, boxes distinguishable
 C. Balls distinguishable, boxes indistinguishable
 D. Balls distinguishable, boxes indistinguishable
 
-
-
-
-
 ## 2C: At most one ball per box, boxes indistinguishable.
 $1$ if $k \leq n, 0$ otherwise
 
