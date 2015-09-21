@@ -56,15 +56,20 @@
 <li>A. <span class="math inline">\(f \sim g \iff f = g\)</span></li>
 <li>B. $f g $ there is a bijection <span class="math inline">\(\alpha: K \rightarrow K\)</span> such that <span class="math inline">\(f = g \circ a\)</span></li>
 <li>C. <span class="math inline">\(f \sim g \iff\)</span> there is a bijection <span class="math inline">\(\beta : N \rightarrow N\)</span> such that <span class="math inline">\(f = b \circ g\)</span></li>
-<li>D. <span class="math inline">\(f \sim g \iff\)</span> thehre is a bijection <span class="math inline">\(\alpha : K \rightarrow K\)</span> and bijection <span class="math inline">\(\beta: N \rightarrow N\)</span> such that <span class="math inline">\(f = \beta \circ g \circ a\)</span></li>
+<li>D. <span class="math inline">\(f \sim g \iff\)</span> there is a bijection <span class="math inline">\(\alpha : K \rightarrow K\)</span> and bijection <span class="math inline">\(\beta: N \rightarrow N\)</span> such that <span class="math inline">\(f = \beta \circ g \circ a\)</span></li>
 </ul>
+<p><strong>Notation:</strong></p>
+<p><span class="math display">\[x^{\underline k} = x(x-1)(x-2)\dots(x-k+1)\]</span></p>
+<p><span class="math display">\[x^{\bar k} = x(x+1)(x+2)\dots(x+k-1)\]</span></p>
+<p><span class="math display">\[k! = k^{\underline k}\]</span></p>
 <h2 id="a-no-restrictions-and-balls-and-boxes-are-distinguishable">1A: No restrictions and balls and boxes are distinguishable</h2>
 <p><strong>Answer:</strong> <span class="math inline">\(n^k\)</span></p>
 <h2 id="a-at-most-one-ball-per-box-balls-and-boxes-distinguishable">2A: At most one ball per box, balls and boxes distinguishable</h2>
 <p><strong>Answer:</strong> <span class="math inline">\(\frac{n!}{(n-k)!} = n^{\underline k}\)</span></p>
 <h2 id="c-at-most-one-ball-per-box-boxes-indistinguishable.">2C: At most one ball per box, boxes indistinguishable.</h2>
 <p><span class="math inline">\(1\)</span> if <span class="math inline">\(k \leq n, 0\)</span> otherwise</p>
-<p><span class="math display">\[x^{\underline{k}} = x(x-1)(x-2)...(x-k+1)\]</span></p>
+<h2 id="d.-at-most-one-ball-per-box-balls-and-boxes-both-indistinguishable">2D. At most one ball per box, balls and boxes both indistinguishable</h2>
+<p><span class="math inline">\(1\)</span> if <span class="math inline">\(k \leq n, 0\)</span> otherwise</p>
 <h2 id="b.-at-most-one-ball-per-box-balls-indistinguishable.">2B. At most one ball per box, balls indistinguishable.</h2>
 <p><strong>Theorem:</strong> <span class="math inline">\(n \choose k\)</span></p>
 <p><strong>Proof:</strong> Let <span class="math inline">\(N,K\)</span> be sets with <span class="math inline">\(|N| = n, |K| = k\)</span>. Let <span class="math inline">\(X=\{K \rightarrow N |f \text{ is injective}\}\)</span>. Let <span class="math inline">\(f \sim g\)</span> if there exists a bijection <span class="math inline">\(\alpha: K \rightarrow K\)</span> such that <span class="math inline">\(f = g \circ \alpha\)</span>. Let <span class="math inline">\(Y\)</span> be the set of equivalence classes of the equivalence relation <span class="math inline">\(\sim\)</span>. Then <span class="math inline">\(|Y|\)</span> is the answer to the problem.</p>
