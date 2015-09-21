@@ -29,6 +29,21 @@
 <p><strong>Proposition:</strong> a function is a bijection if and only if it has an inverse.</p>
 <p>The <strong>inverse</strong> of <span class="math inline">\(f: S \rightarrow T\)</span> is a function <span class="math inline">\(f^{-1}\)</span> such that <span class="math inline">\(\forall x \in S, f^{-1}(f(x)) = x\)</span> and <span class="math inline">\(\forall y \in T, f(f^{-1}(y)) = y\)</span>. It reverses a mapping backwards from <span class="math inline">\(T\)</span> to <span class="math inline">\(S\)</span>.</p>
 <h1 id="fun-stuff">Fun stuff</h1>
+<h2 id="the-twelve-fold-ways">The Twelve Fold Ways</h2>
+<p>How many ways are there to place <span class="math inline">\(k\)</span> balls in <span class="math inline">\(n\)</span> boxes, assuming</p>
+<p>Restrictions:</p>
+<ol style="list-style-type: decimal">
+<li>No restrictions</li>
+<li>At most one ball per box</li>
+<li>At least one ball per box</li>
+</ol>
+<p>Distinguishability:</p>
+<ul>
+<li>A. Balls distinguishable, boxes distinguishable</li>
+<li>B. Balls indistinguishable, boxes distinguishable</li>
+<li>C. Balls distinguishable, boxes indistinguishable</li>
+<li>D. Balls indistinguishable, boxes indistinguishable</li>
+</ul>
 <h2 id="c-at-most-one-ball-per-box-boxes-indistinguishable.">2C: At most one ball per box, boxes indistinguishable.</h2>
 <p><span class="math inline">\(1\)</span> if <span class="math inline">\(k \leq n, 0\)</span> otherwise</p>
 <p><span class="math display">\[x^{\underline{k}} = x(x-1)(x-2)...(x-k+1)\]</span></p>
@@ -59,11 +74,54 @@
 <h2 id="b.-at-least-one-ball-per-box-balls-indistinguishable">3B. At least one ball per box, balls indistinguishable</h2>
 <p><strong>Interpretation</strong>: Compositions of an integer</p>
 <p>How many ways are there to write <span class="math display">\[k=c_1 + c_2 + ... + c_n\]</span> where <span class="math inline">\(c_1,...,c_n\)</span> are positive integers.</p>
-<p>Idea: <span class="math inline">\(c_i\)</span> is the number of balls in the i-th box Since there is at least one ball per box, <span class="math inline">\(c_i\)</span> is a positive integer Note: 1B can be interpreted in a similar war.</p>
+<p><strong>Idea</strong>: <span class="math inline">\(c_i\)</span> is the number of balls in the i-th box Since there is at least one ball per box, <span class="math inline">\(c_i\)</span> is a positive integer Note: 1B can be interpreted in a similar war.</p>
 <h2 id="d-at-least-one-ball-per-box-balls-and-boxes-indistinguishable">3D At Least one ball per box, balls and boxes indistinguishable</h2>
 <p><strong>Interpretation</strong>: Partitions of an integer</p>
 <p>How many ways are there to write <span class="math display">\[k = c_1 + c_2 + ... + c_n\]</span> where <span class="math inline">\(c_i,...,c_n\)</span> are positive integers and <span class="math inline">\(c_1 \geq ... \geq c_n\)</span></p>
 <p><strong>Idea</strong>: <span class="math inline">\(c_1\)</span> is the number of balls in the box with the larger number of balls, and so on. (because balls are indistinguishable)</p>
 <p>1D is related to this as well</p>
+<h2 id="a-at-least-one-ball-per-box-balls-and-boxes-distinguishable">3A At least one ball per box, balls and boxes distinguishable</h2>
+<p><strong>Interpretation</strong>: Surjective functions</p>
+<h2 id="c.-at-least-one-ball-per-box-boxes-indistinguishable">3C. At least one ball per box, boxes indistinguishable</h2>
+<p><strong>Interpretation:</strong> Set partitions Example: <span class="math inline">\(\{\{1,4\},\{2,5,6\},\{3\},\{7\}\}\)</span> is a partition of <span class="math inline">\(\{1,2,3,4,5,6,7\}\)</span> into four subsets.</p>
+<p>1C is related</p>
+<h2 id="notation">Notation</h2>
+<p><span class="math inline">\(N = Z_{ \geq 0}\)</span> - non negative integers</p>
+<h3 id="degenerate-cases">Degenerate cases</h3>
+<p><span class="math display">\[x^\underline{0} = x^\bar{0} = 1, 0! = 1, {x \choose 0} = 1\]</span></p>
+<p>An empty product (no terms) is always <span class="math inline">\(1\)</span>.</p>
+<p>An empty sum (no terms) is always <span class="math inline">\(0\)</span>.</p>
+<p><span class="math display">\[\lbrack 0 \rbrack = \{\}\]</span></p>
+<p><span class="math display">\[0^0=1\]</span> (indeterminate form)</p>
+<p>If <span class="math inline">\(n\)</span> is a negative integer, then <span class="math inline">\(\frac{1}{n!} = 0\)</span>, and <span class="math inline">\({x \choose n} = 0\)</span></p>
+<h2 id="combinatorics-vs-algebra">Combinatorics vs Algebra</h2>
+<p><strong>Theorem</strong>: <span class="math inline">\({n \choose k} = {n-1 \choose k} + {n-1 \choose k-1}\)</span> for <span class="math inline">\(k,n \in N\)</span></p>
+<p><strong>Proof 1</strong>: (Combinatorics), Let <span class="math inline">\(X = \{\)</span> k-elem subsets of <span class="math inline">\(\lbrack n \rbrack\}.\)</span> Let <span class="math inline">\(Y = \{ k\)</span> or <span class="math inline">\((k-1)\)</span> elem. subsets of <span class="math inline">\(\lbrack n-1 \rbrack\}.\)</span> Then LHS = <span class="math inline">\(|X|\)</span> and RHS = <span class="math inline">\(|Y|\)</span>. We prove the identity by giving a bijection between X and Y.</p>
+<p>Define <span class="math inline">\(f: X \rightarrow Y\)</span> as follows. Given <span class="math inline">\(A \in X\)</span>, a <span class="math inline">\(k\)</span>-elem subset of <span class="math inline">\(\lbrack n \rbrack\)</span>. Let <span class="math inline">\(f(A) = A \setminus \{n\}\)</span>. Then <span class="math inline">\(f(A) \subseteq \lbrack n-1 \rbrack\)</span> has a <span class="math inline">\(k\)</span> or <span class="math inline">\(k-1\)</span> elements so <span class="math inline">\(f(A) \in Y\)</span>.</p>
+<p>Define <span class="math inline">\(g: Y \rightarrow X\)</span> as follows. Given <span class="math inline">\(B \in Y\)</span>, let</p>
+<p><span class="math inline">\(g(B) = B\)</span> if <span class="math inline">\(|B| =k\)</span></p>
+<p><span class="math inline">\(g(B) = B \cup \{n\}\)</span> if <span class="math inline">\(|B| = k-1\)</span></p>
+<p>In either case <span class="math inline">\(|g(B)| = k\)</span>, and <span class="math inline">\(g(B) \subseteq \lbrack n \rbrack\)</span>, so <span class="math inline">\(g(B) \in X\)</span>.</p>
+<p>Verify that <span class="math inline">\(g(f(A)) = A\)</span>, for <span class="math inline">\(A \in X\)</span></p>
+<p>Case 1: <span class="math inline">\(n \not\in A\)</span>, then <span class="math inline">\(f(A) = A \setminus \{n\} = A\)</span>, and <span class="math inline">\(|f(A)| = k\)</span>, so <span class="math inline">\(g(f(A)) = A\)</span></p>
+<p>Case 2: <span class="math inline">\(n \in A\)</span>, then <span class="math inline">\(|f(A)| = k-1\)</span>, so <span class="math inline">\(g(f(A)) = (A \setminus \{n\}) \cup \{n\} = A \cup \{n\} - A\)</span></p>
+<p>Verify that <span class="math inline">\(f(g(B)) = B\)</span>, for <span class="math inline">\(B \in Y\)</span> Case 1: <span class="math inline">\(|B| = k\)</span>, then <span class="math inline">\(g(B) = B\)</span>, and <span class="math inline">\(n \not\in B\)</span>, so <span class="math inline">\(f(g(B)) = f(B) = B\)</span></p>
+<p>Case 2: <span class="math inline">\(|B| = k-1\)</span>, since <span class="math inline">\(n \not\in B\)</span>, we have <span class="math inline">\(f(g(B)) = (B \cup \{n\}) \setminus \{n\} = B \setminus \{n\} = B\)</span></p>
+<p>Thus <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are mutually inverse bijections, as required.</p>
+<p><strong>Proof 2</strong>: (Algebraic). Recall the binomial theorem, which states that for <span class="math inline">\(|x| &lt; 1\)</span>, and <span class="math inline">\(a \in R\)</span>, we have</p>
+<p><span class="math display">\[(1+x)^a = \sum_{j \geq 0} {a \choose j}x^j\]</span></p>
+<p><strong>Notation</strong>: If <span class="math inline">\(A(x) = \sum_{j \geq a} a_j x^j\)</span>, is a polynomial or power series, then <span class="math inline">\(\lbrack x^k \rbrack A(x) = a_k\)</span>. &quot;The coefficient of <span class="math inline">\(x^k\)</span> in <span class="math inline">\(A(x)\)</span> is <span class="math inline">\(a_k\)</span>&quot;</p>
+<p>The binomial theorem can be restated as</p>
+<p><span class="math inline">\(\lbrack x^k \rbrack (1+x)^a = {a \choose k}\)</span> for all <span class="math inline">\(k \in N\)</span></p>
+<p>Consider <span class="math inline">\((1+x)^{n-1} = \sum_{j \geq 0} {a - 1 \choose j} x^j\)</span></p>
+<p>Multiply both sides by <span class="math inline">\((1+x)\)</span></p>
+<p><span class="math display">\[(1+x)^n = (1+x) \sum_{j \geq 0} {a - 1 \choose j} x_j\]</span> <span class="math display">\[=\big\lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \big\rbrack + x \big\lbrack \sum_{j \geq 0} { a - 1 \choose j} x^j \big\rbrack\]</span></p>
+<p><span class="math display">\[= \big\lbrack \sum_{k \geq 0} {a-1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{j \geq 0} {a - 1 \choose j} x^{j+1}\big\rbrack\]</span></p>
+<p><span class="math display">\[ = \big\lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a-1 \choose k-1} x^k \big\rbrack\]</span></p>
+<p><span class="math display">\[= \big\lbrack 1+ \sum_{k \geq 1} {n - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a - 1 \choose k - 1} x^k \big\rbrack\]</span></p>
+<p><span class="math display">\[= 1 + \sum_{ k \geq 1} \big\lbrack{a-1 \choose k} + {a - 1 \choose l - 1} \big\rbrack x^k\]</span></p>
+<p>Therefore <span class="math inline">\(\big\lbrack x^k \big\rbrack (1+x)^n = {n - 1 \choose k} + {n - 1 \choose k - 1}\)</span> for <span class="math inline">\(k \geq 1\)</span></p>
+<p>But we already saw that <span class="math inline">\(\big\lbrack x^k \big\rbrack = {n \choose k}\)</span>. Therefore <span class="math inline">\(n \choose k\)</span> = <span class="math inline">\({n-1 \choose k} + {n-1 \choose k-1}\)</span> for <span class="math inline">\(k \geq 1\)</span></p>
+<p>To finish, check <span class="math inline">\(k = 0\)</span> case.</p>
 </body>
 </html>

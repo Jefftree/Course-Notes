@@ -37,7 +37,6 @@ The **inverse** of $f: S \rightarrow T$ is a function $f^{-1}$ such that $\foral
 
 # Fun stuff
 
-
 ## The Twelve Fold Ways
 How many ways are there to place $k$ balls in $n$ boxes, assuming
 
@@ -49,10 +48,10 @@ Restrictions:
 
 Distinguishability:
 
-A. Balls distinguishable, boxes distinguishable
-B. Balls indistinguishable, boxes distinguishable
-C. Balls distinguishable, boxes indistinguishable
-D. Balls distinguishable, boxes indistinguishable
+- A. Balls distinguishable, boxes distinguishable
+- B. Balls indistinguishable, boxes distinguishable
+- C. Balls distinguishable, boxes indistinguishable
+- D. Balls indistinguishable, boxes indistinguishable
 
 ## 2C: At most one ball per box, boxes indistinguishable.
 $1$ if $k \leq n, 0$ otherwise
@@ -82,7 +81,7 @@ $n^\underline{k} = |X| = \sum_{C \in Y} |C| = k!|Y|$
 
 $|Y| = \frac{n^\underline{k}}{k!} = {n \choose k}$
 
-**Interpretation** If $n,k$ are integers, then $n \choose k$ is the number of $k$-element subseteqs of an $n$-element subseteq.
+**Interpretation** If $n,k$ are integers, then $n \choose k$ is the number of $k$-element subsets of an $n$-element subset.
 
 ## 1B: No restriction, balls indistinguishable
 
@@ -95,7 +94,7 @@ $$\{a,a,a,a\},\{a,a,a,b\},\{a,a,b,b\},\{a,b,b,b\},\{b,b,b,b\}$$
 
 **Theorem**: Answer to 1B is $\multiset{n}{k}$
 
-**Proof:** Assume that $N = {1,2,...,n}$. Let $X$ be the set of $k$-element multisets from ${1,2,...,n}$. Let $Y$ be the set of $k$-element subseteq of ${1,2,...,n+k-1}$.
+**Proof:** Assume that $N = {1,2,...,n}$. Let $X$ be the set of $k$-element multisets from ${1,2,...,n}$. Let $Y$ be the set of $k$-element subset of ${1,2,...,n+k-1}$.
 Since we know that $|Y| = {n+k-1 \choose k}$, we can prove the result by finding a bijection $f: X \rightarrow Y$.
 
 If $A \in X$, we can write $A = {a_1,a_2,...,a_k}$, where
@@ -132,15 +131,15 @@ where $c_i,...,c_n$ are positive integers and $c_1 \geq ... \geq c_n$
 1D is related to this as well
 
 ## 3A At least one ball per box, balls and boxes distinguishable
+
 **Interpretation**: Surjective functions
 
 ## 3C. At least one ball per box, boxes indistinguishable
 
 **Interpretation:** Set partitions
-Example: $\{\{1,4\},\{2,5,6\},\{3\},\{7\}\}$ is a partition of $\{1,2,3,4,5,6,7\}$ into four subseteqs.
+Example: $\{\{1,4\},\{2,5,6\},\{3\},\{7\}\}$ is a partition of $\{1,2,3,4,5,6,7\}$ into four subsets.
 
 1C is related
-
 
 ## Notation
 $N = Z_{ \geq 0}$ - non negative integers
@@ -157,15 +156,15 @@ $$\lbrack 0 \rbrack = \{\}$$
 $$0^0=1$$ (indeterminate form)
 
 If $n$ is a negative integer, then
-$$\frac{1}{n!} = 0$, and ${x \choose n} = 0$$
+$\frac{1}{n!} = 0$, and ${x \choose n} = 0$
 
 ## Combinatorics vs Algebra
 
 **Theorem**: ${n \choose k} = {n-1 \choose k} + {n-1 \choose k-1}$ for $k,n \in N$
 
-**Proof 1**: (Combinatorics), Let $X = \{$ k-elem subseteqs of $\lbrack n \rbrack\}.$ Let $Y = \{ k$ or $(k-1)$ elem. subseteqs of $\lbrack n-1 \rbrack\}.$ Then LHS = $|X|$ and RHS = $|Y|$. We prove the identity by giving a bijection between X and Y.
+**Proof 1**: (Combinatorics), Let $X = \{$ k-elem subsets of $\lbrack n \rbrack\}.$ Let $Y = \{ k$ or $(k-1)$ elem. subsets of $\lbrack n-1 \rbrack\}.$ Then LHS = $|X|$ and RHS = $|Y|$. We prove the identity by giving a bijection between X and Y.
 
-Define $f: X \rightarrow Y$ as follows. Given $A \in X, $ a k elem subseteq of $\lbrack n \rbrack$. Let $f(A) = A \\ \{n\}$. Then $f(A) \subseteq \lbrack n-1 \rbrack$ has a $k$ or $k-1$ elements so $f(A) \in Y$.
+Define $f: X \rightarrow Y$ as follows. Given $A \in X$, a $k$-elem subset of $\lbrack n \rbrack$. Let $f(A) = A \setminus \{n\}$. Then $f(A) \subseteq \lbrack n-1 \rbrack$ has a $k$ or $k-1$ elements so $f(A) \in Y$.
 
 Define $g: Y \rightarrow X$ as follows. Given $B \in Y$, let
 
@@ -177,14 +176,14 @@ In either case $|g(B)| = k$, and $g(B) \subseteq \lbrack n \rbrack$, so $g(B) \i
 
 Verify that $g(f(A)) = A$, for $A \in X$
 
-Case 1: $n \not\in A$, then $f(A) = A \\ \{n\} = A$, and $|f(A)| = k$, so $g(f(A)) = A$
+Case 1: $n \not\in A$, then $f(A) = A \setminus \{n\} = A$, and $|f(A)| = k$, so $g(f(A)) = A$
 
-Case 2: $n \in A$, then $|f(A)| = k-1$, so $g(f(A)) = (A \\ \{n\}) \cup \{n\} = A \cup \{n\} - A$
+Case 2: $n \in A$, then $|f(A)| = k-1$, so $g(f(A)) = (A \setminus \{n\}) \cup \{n\} = A \cup \{n\} - A$
 
 Verify that $f(g(B)) = B$, for $B \in Y$
 Case 1: $|B| = k$, then $g(B) = B$, and $n \not\in B$, so $f(g(B)) = f(B) = B$
 
-Case 2: $|B| = k-1$, since $n \not\in B$, we have $f(g(B)) = (B \cup \{n\}) \\ \{n\} = B \\ \{n\} = B$
+Case 2: $|B| = k-1$, since $n \not\in B$, we have $f(g(B)) = (B \cup \{n\}) \setminus \{n\} = B \setminus \{n\} = B$
 
 Thus $f$ and $g$ are mutually inverse bijections, as required.
 
@@ -204,18 +203,18 @@ Consider $(1+x)^{n-1} = \sum_{j \geq 0} {a - 1 \choose j} x^j$
 Multiply both sides by $(1+x)$
 
 $$(1+x)^n = (1+x) \sum_{j \geq 0} {a - 1 \choose j} x_j$$
-$$=\big\lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \rbrack + x \lbrack \sum_{j \geq 0} { a - 1 \choose j} x^j \rbrack$$
+$$=\big\lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \big\rbrack + x \big\lbrack \sum_{j \geq 0} { a - 1 \choose j} x^j \big\rbrack$$
 
-$$= \lbrack \sum_{k \geq 0} {a-1 \choose k} x^k \rbrack + \lbrack \sum_{j \geq 0} {a - 1 \choose j} x^{j+1}\rbrack$$
+$$= \big\lbrack \sum_{k \geq 0} {a-1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{j \geq 0} {a - 1 \choose j} x^{j+1}\big\rbrack$$
 
-$$ = \lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \rbrack + \lbrack \sum_{k \geq 1} {a-1 \choose k-1} x^k \rbrack$$
+$$ = \big\lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a-1 \choose k-1} x^k \big\rbrack$$
 
-$$= \lbrack 1+ \sum_{k \geq 1} {n - 1 \choose k} x^k \rbrack + \lbrack \sum_{k \geq 1} {a - 1 \choose k - 1} x^k \rbrack$$
+$$= \big\lbrack 1+ \sum_{k \geq 1} {n - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a - 1 \choose k - 1} x^k \big\rbrack$$
 
-$$= 1 + \sum_{ k \geq 1} \lbrack{a-1 \choose k} + {a - 1 \choose l - 1} \rbrack x^k$$
+$$= 1 + \sum_{ k \geq 1} \big\lbrack{a-1 \choose k} + {a - 1 \choose l - 1} \big\rbrack x^k$$
 
-Therefore $\lbrack x^k \rbrack (1+x)^n = {n - 1 \choose k} + {n - 1 \choose k - 1}$ for $k \geq 1$
+Therefore $\big\lbrack x^k \big\rbrack (1+x)^n = {n - 1 \choose k} + {n - 1 \choose k - 1}$ for $k \geq 1$
 
-But we already saw that $\lbrack x^k \rbrack = {n \choose k}$. Therefore $n \choose k$ = ${n-1 \choose k} + {n-1 \choose k-1}$ for $k \geq 1$
+But we already saw that $\big\lbrack x^k \big\rbrack = {n \choose k}$. Therefore $n \choose k$ = ${n-1 \choose k} + {n-1 \choose k-1}$ for $k \geq 1$
 
 To finish, check $k = 0$ case.
