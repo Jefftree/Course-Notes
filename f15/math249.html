@@ -123,5 +123,37 @@
 <p>Therefore <span class="math inline">\(\big\lbrack x^k \big\rbrack (1+x)^n = {n - 1 \choose k} + {n - 1 \choose k - 1}\)</span> for <span class="math inline">\(k \geq 1\)</span></p>
 <p>But we already saw that <span class="math inline">\(\big\lbrack x^k \big\rbrack = {n \choose k}\)</span>. Therefore <span class="math inline">\(n \choose k\)</span> = <span class="math inline">\({n-1 \choose k} + {n-1 \choose k-1}\)</span> for <span class="math inline">\(k \geq 1\)</span></p>
 <p>To finish, check <span class="math inline">\(k = 0\)</span> case.</p>
+<p>This works for all <span class="math inline">\(n \in R\)</span> and not just <span class="math inline">\(n \in N\)</span>.</p>
+<h2 id="placeholder">Placeholder</h2>
+<p>Consider the following:</p>
+<p><span class="math inline">\(a - 1 \choose 0\)</span>, <span class="math inline">\(a-1 \choose 1\)</span>, <span class="math inline">\(a-1 \choose 2\)</span>, <span class="math inline">\(a-1 \choose 3\)</span>, <span class="math inline">\(\dots\)</span></p>
+<p>Instead, consider the power series</p>
+<p><span class="math inline">\(A(x) = {a - 1 \choose 0}\)</span>+ <span class="math inline">\(a-1 \choose 1\)</span> <span class="math inline">\(x\)</span>+ <span class="math inline">\(a-1 \choose 2\)</span> <span class="math inline">\(x^2\)</span>+ <span class="math inline">\(a-1 \choose 3\)</span> <span class="math inline">\(x^3\)</span>+ <span class="math inline">\(\dots\)</span></p>
+<p><span class="math inline">\(xA(x) = {a - 1 \choose 0}x\)</span>+ <span class="math inline">\(a-1 \choose 1\)</span> <span class="math inline">\(x^2\)</span>+ <span class="math inline">\(a-1 \choose 2\)</span> <span class="math inline">\(x^3\)</span>+ <span class="math inline">\(a-1 \choose 3\)</span> <span class="math inline">\(x^4\)</span>+ <span class="math inline">\(\dots\)</span></p>
+<p><span class="math inline">\(\lbrack x^k \rbrack (A(x)) + xA(x)) = {a-1 \choose k} + {a-1 \choose k - 1} =\)</span> RHS</p>
+<p><span class="math inline">\(\lbrack x^k \rbrack (A(x)) + xA(x)) =\)</span> LHS.</p>
+<h2 id="variations-on-the-binomial-theorem">Variations on the binomial theorem</h2>
+<p><span class="math display">\[(1+x)^a = \sum_{k \geq 0} {a \choose k} x^k,\,a \in R, |x| &lt; 1\]</span></p>
+<p><span class="math display">\[(1+x)^n = \sum_{k=0}^n {n \choose k} x^k,\,n \in N\]</span></p>
+<p>Sometimes it's easier to do algebraic manipulations with infinite series.</p>
+<p><strong>Negative binomial theorem:</strong></p>
+<p><span class="math display">\[(1-x)^{-a} = \sum_{k \geq 0} \multiset{a}{k} x^k,\,a \in R, |x| &lt; 1\]</span></p>
+<p>Fibonacci Sequence:</p>
+<p>Consider the series <span class="math inline">\(F(x) = f_0 + f_1 x + f_2 x^2 + f_3 x^3 + \cdots\)</span></p>
+<p>To relate three consecutive terms, consider <span class="math inline">\(F(x), -xF(x), -x^2 F(X)\)</span></p>
+<p><span class="math inline">\(F(x) = f_0 + f_1 x + f_2 x^2 + f_3 x^3 + f_4 x^4\cdots\)</span></p>
+<p><span class="math inline">\(-xF(x) = -f_0 x + -f_1 x^2 + -f_2 x^3 + -f_3 x^4 + \cdots\)</span></p>
+<p><span class="math inline">\(-x^2F(x) = -f_0x^2 + -f_1 x^3 + -f_2 x^4 + \cdots\)</span></p>
+<p>Summing both sides:</p>
+<p><span class="math display">\[F(x) - xF(x) - x^2F(x) = x\]</span></p>
+<p><span class="math display">\[F(x) = \frac{x}{1-x-x^2}\]</span></p>
+<p>Partial fractions: <span class="math inline">\(1 - x - x^2 = (1-\frac{1 + \sqrt{5}}{2} x)(1- \frac{1-\sqrt 5}{2} x)\)</span></p>
+<p><span class="math display">\[F(x) = \frac{A}{(1-\frac{1 + \sqrt{5}}{2} x)} + \frac{B}{(1- \frac{1-\sqrt 5}{2} x)}\]</span></p>
+<p><span class="math inline">\(A = \frac{1}{\sqrt 5}\)</span>, <span class="math inline">\(B= - \frac{1}{\sqrt 5}\)</span></p>
+<p>Geometric series formula</p>
+<p><span class="math display">\[F(x) = \sum_{n \geq 0} \frac{1}{\sqrt 5} \Big(\frac{1 + \sqrt 5}{2}\Big)^n x^n - \sum_{n \geq 0} \frac{1}{\sqrt 5} \Big(\frac{1 - \sqrt{5}}{2}\Big)^n x^n\]</span></p>
+<p><span class="math display">\[f_n = \lbrack x^n \rbrack F(x) = \frac{1}{\sqrt 5} \Big(\frac{1 + \sqrt 5}{2}\Big)^n - \Big(\frac{1 - \sqrt 5}{2}\Big)^n\]</span></p>
+<h2 id="lattice-paths">Lattice Paths</h2>
+<p>A lattice path of length <span class="math inline">\(r\)</span> is a sequence <span class="math inline">\(P_0,P_1,\dots,P_r \in Z^2 \subset R^2\)</span> of points in the plane such that <span class="math inline">\(P_i - P_{i-1} \in \{(0,1),(1,0)\}\)</span>.</p>
 </body>
 </html>

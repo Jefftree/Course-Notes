@@ -218,3 +218,67 @@ Therefore $\big\lbrack x^k \big\rbrack (1+x)^n = {n - 1 \choose k} + {n - 1 \cho
 But we already saw that $\big\lbrack x^k \big\rbrack = {n \choose k}$. Therefore $n \choose k$ = ${n-1 \choose k} + {n-1 \choose k-1}$ for $k \geq 1$
 
 To finish, check $k = 0$ case.
+
+This works for all $n \in R$ and not just $n \in N$.
+
+## Placeholder
+
+Consider the following:
+
+$a - 1 \choose 0$, $a-1 \choose 1$, $a-1 \choose 2$, $a-1 \choose 3$, $\dots$
+
+Instead, consider the power series
+
+$A(x) = {a - 1 \choose 0}$+ $a-1 \choose 1$ $x$+ $a-1 \choose 2$ $x^2$+ $a-1 \choose 3$ $x^3$+ $\dots$
+
+$xA(x) = {a - 1 \choose 0}x$+ $a-1 \choose 1$ $x^2$+ $a-1 \choose 2$ $x^3$+ $a-1 \choose 3$ $x^4$+ $\dots$
+
+$\lbrack x^k \rbrack (A(x)) + xA(x)) = {a-1 \choose k} + {a-1 \choose k - 1} =$ RHS
+
+$\lbrack x^k \rbrack (A(x)) + xA(x)) =$ LHS.
+
+## Variations on the binomial theorem
+
+$$(1+x)^a = \sum_{k \geq 0} {a \choose k} x^k,\,a \in R, |x| < 1$$
+
+$$(1+x)^n = \sum_{k=0}^n {n \choose k} x^k,\,n \in N$$
+
+Sometimes it's easier to do algebraic manipulations with infinite series.
+
+**Negative binomial theorem:**
+
+$$(1-x)^{-a} = \sum_{k \geq 0} \multiset{a}{k} x^k,\,a \in R, |x| < 1$$
+
+Fibonacci Sequence:
+
+Consider the series $F(x) = f_0 + f_1 x + f_2 x^2 + f_3 x^3 + \cdots$
+
+To relate three consecutive terms, consider $F(x), -xF(x), -x^2 F(X)$
+
+$F(x) = f_0 + f_1 x + f_2 x^2 + f_3 x^3 +  f_4 x^4\cdots$
+
+$-xF(x) = -f_0 x + -f_1 x^2 + -f_2 x^3 + -f_3 x^4 + \cdots$
+
+$-x^2F(x) = -f_0x^2 + -f_1 x^3 + -f_2 x^4 + \cdots$
+
+Summing both sides:
+
+$$F(x) - xF(x) - x^2F(x) = x$$
+
+$$F(x) = \frac{x}{1-x-x^2}$$
+
+Partial fractions: $1 - x - x^2 = (1-\frac{1 + \sqrt{5}}{2} x)(1- \frac{1-\sqrt 5}{2} x)$
+
+$$F(x) = \frac{A}{(1-\frac{1 + \sqrt{5}}{2} x)} + \frac{B}{(1- \frac{1-\sqrt 5}{2} x)}$$
+
+$A = \frac{1}{\sqrt 5}$, $B= - \frac{1}{\sqrt 5}$
+
+Geometric series formula
+
+$$F(x) = \sum_{n \geq 0} \frac{1}{\sqrt 5} \Big(\frac{1 + \sqrt 5}{2}\Big)^n x^n - \sum_{n \geq 0} \frac{1}{\sqrt 5} \Big(\frac{1 - \sqrt{5}}{2}\Big)^n x^n$$
+
+$$f_n = \lbrack x^n \rbrack F(x) = \frac{1}{\sqrt 5} \Big(\frac{1 + \sqrt 5}{2}\Big)^n - \Big(\frac{1 - \sqrt 5}{2}\Big)^n$$
+
+## Lattice Paths
+
+A lattice path of length $r$ is a sequence $P_0,P_1,\dots,P_r \in Z^2 \subset R^2$ of points in the plane such that $P_i - P_{i-1} \in \{(0,1),(1,0)\}$.
