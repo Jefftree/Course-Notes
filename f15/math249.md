@@ -53,12 +53,47 @@ Distinguishability:
 - C. Balls distinguishable, boxes indistinguishable
 - D. Balls indistinguishable, boxes indistinguishable
 
+Each way is a function $f: K \rightarrow N$ where $|K| = k$ and $|N|=n$.
+
+**Restrictions**:
+
+1. no restrictions on $f$
+2. $f$ is injective
+3. $f$ is surjective
+
+Distinguishability:
+
+- A. $f \sim g \iff f = g$
+- B. $f \sim g \iff $ there is a bijection $\alpha: K \rightarrow K$ such that $f = g \circ a$
+- C. $f \sim g \iff$ there is a bijection $\beta : N \rightarrow N$ such that $f = b \circ g$
+- D. $f \sim g \iff$ there is a bijection $\alpha : K \rightarrow K$ and bijection $\beta: N \rightarrow N$ such that $f = \beta \circ g \circ a$
+
+**Notation:** 
+
+$$x^{\underline k} = x(x-1)(x-2)\dots(x-k+1)$$
+
+$$x^{\bar k} = x(x+1)(x+2)\dots(x+k-1)$$
+
+$$k! = k^{\underline k}$$
+
+## 1A: No restrictions and balls and boxes are distinguishable
+
+**Answer:** $n^k$
+
+## 2A: At most one ball per box, balls and boxes distinguishable
+
+**Answer:** $\frac{n!}{(n-k)!} = n^{\underline k}$
+
 ## 2C: At most one ball per box, boxes indistinguishable.
+
 $1$ if $k \leq n, 0$ otherwise
 
-$$x^{\underline{k}} = x(x-1)(x-2)...(x-k+1)$$
+## 2D. At most one ball per box, balls and boxes both indistinguishable
+
+$1$ if $k \leq n, 0$ otherwise
 
 ## 2B. At most one ball per box, balls indistinguishable.
+
 **Theorem:** $n \choose k$
 
 **Proof:** Let $N,K$ be sets with $|N| = n, |K| = k$.
