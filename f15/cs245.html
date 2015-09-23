@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="cs-245">CS 245</h1>
+<ul>
+<li>Natural Language</li>
+</ul>
+<h2 id="propositional-logic">Propositional Logic</h2>
+<p><strong>Logic</strong> is the systematic study of the principles of reasoning and inference. - Used for modeling computer hardware, software, and embedded systems. - Designing systems that can apply reason and inferences (artificial intelligence)</p>
+<p>A <strong>proposition</strong> is a declarative sentence that is either <strong>true</strong> or <strong>false</strong>.</p>
+<h2 id="english-to-propositional-logic">English to Propositional Logic</h2>
+<p><span class="math inline">\(\lnot p\)</span>: not p, it is not the case of p</p>
+<p><span class="math inline">\(p \land q\)</span>: p and q, p but q, not only p but q, p while q, p despite q, p yet q, p although q</p>
+<p><span class="math inline">\(p \lor q\)</span>: p or q, p and/or q, p unless q</p>
+<p><span class="math inline">\(p \implies q\)</span>: if p then q, q if p, p only if q, q when p, p is sufficient for q, q is necessary for p</p>
+<p><span class="math inline">\(p \iff q\)</span>: p if and only if q, p is equivalent to q, p exactly if q, p is necessary and sufficient for q</p>
+<p>A logic is formalized for syntax, semantics, and proof procedures.</p>
+<h2 id="syntax">Syntax</h2>
+<p>Atomic propositions are combined into compound propositions, and are analyzed as a set of interrelated propositions.</p>
+<p><strong>Propositions</strong> are represented by formulas which contains a sequence of symbols. An <strong>expression</strong> is a finite sequence of symbols. - Propositional variables - Denoted with lowercase Roman letters - Connectives - Logic operators (NOT, AND, OR) - Punctuation - Brackets</p>
+<p><strong>Binary</strong> connectives (AND, OR, IMPLIES) apply to two things. <strong>Unary</strong> connectives (NOT) are only applied to one.</p>
+<p>A <strong>formula</strong> can be built from a set of proposition variables. A formula can be atom, negation, conjunction, disjunction, implication. It should only take on the type of the outermost type.</p>
+<p><strong>Example</strong>: $(p q) r $ is an implication.</p>
+<h2 id="semantics">Semantics</h2>
+<p>The <strong>semantics</strong> of a logic describes how to interpret the well-formed formulas of the logic.</p>
+<p>A <strong>truth valuation</strong> is a function with the set of all proposition symbols as domain and assigns a truth value (T,F) to each propositional variable.</p>
+<p>For example <span class="math inline">\(t(p) = p^t = T\)</span></p>
+<p>Everything can be built from the nand symbol. (see computer boolean)</p>
+<p>To prove theorems, mathematical induction is used.</p>
+<p><strong>Principle of Mathematical Induction:</strong></p>
+<p>Establish that the base case has a property <span class="math inline">\(P\)</span>. Show that if the property holds for the base case, the next number also holds the property. Conclude that the property holds for all <span class="math inline">\(n \in N,n \geq BC\)</span></p>
+<p><strong>Theorem</strong>: Let <span class="math inline">\(R\)</span> be a property, suppose that</p>
+<ol style="list-style-type: decimal">
+<li>for each atomic formula <span class="math inline">\(p\)</span>, we have <span class="math inline">\(R(p)\)</span></li>
+<li>For each formula <span class="math inline">\(\alpha\)</span>, if <span class="math inline">\(R(\alpha)\)</span> then <span class="math inline">\(R((\lnot \alpha))\)</span></li>
+<li>For each pair of formulas <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(n\)</span>, and each connective <span class="math inline">\(*\)</span>, if <span class="math inline">\(R(\alpha)\)</span> and <span class="math inline">\(R(n)\)</span>, then <span class="math inline">\(R((\alpha * n))\)</span>.</li>
+</ol>
+<h2 id="something-happened-here">Something happened here</h2>
+<h2 id="working-with-formulas">Working with Formulas</h2>
+<p>A formula <span class="math inline">\(\alpha\)</span> is a <strong>tautology</strong> if and only if for every truth valuation <span class="math inline">\(t\)</span>, <span class="math inline">\(\alpha^t = T\)</span></p>
+<p>A formula <span class="math inline">\(\alpha\)</span> is a <strong>contradiction</strong> if and only if for every truth valuation <span class="math inline">\(t\)</span>, <span class="math inline">\(\alpha^t=F\)</span>. Example: <span class="math inline">\(p \land \lnot p\)</span></p>
+<p>A formula <span class="math inline">\(\alpha\)</span> is <strong>satisfiable</strong> if and only if there is some truth valuation <span class="math inline">\(t\)</span>, such that <span class="math inline">\(\alpha^t=T\)</span></p>
+<p><strong>Note:</strong> A formula is satisfiable if and only if it is not a contradiction.</p>
+<p>A <strong>valuation tree</strong> is a shortcut to analyzing what would happen if the entire truth table was filled out.</p>
+</body>
+</html>
