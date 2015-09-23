@@ -317,3 +317,71 @@ $$f_n = \lbrack x^n \rbrack F(x) = \frac{1}{\sqrt 5} \Big(\frac{1 + \sqrt 5}{2}\
 ## Lattice Paths
 
 A lattice path of length $r$ is a sequence $P_0,P_1,\dots,P_r \in Z^2 \subset R^2$ of points in the plane such that $P_i - P_{i-1} \in \{(0,1),(1,0)\}$.
+
+**Theorem:**  The number of lattice paths from $(0,0)$ to $(m,n)$ is $m + n \choose n$.
+
+**Proof:** Each path is represented by a string $s_1s_2\dots s_{m+n}$ with $m$ E's and $n$ N's. Let $\alpha = \{i \in \lbrack m + n \rbrack | s_i = E\}$. Then $\alpha$ is an $m$-element subset of $\lbrack m + n \rbrack$.
+
+Verify that this defines a bijection between our lattice paths and $m$-elements subsets of $\lbrack m + n \rbrack$.
+
+## Dyck Paths
+
+A **Dyck** path or Catalan path is a lattice path $P_0,P_1,\dots,P_{2n}, n \in N$, from $(0,0)$ to $(n,n)$ with the property that $P_i = (x_1,y_i)$, where $x_i \leq y_i$.
+
+Path is entirely on or above the line $y=x$. Endpoints on the line.
+
+The trivial path $P_0 = (0,0)$ is a Dyck path (of length $0$).
+
+Another interpretation is using N as left brackets and E and right brackets. The brackets are always balanced and will never have a right bracket as the first thing in the set.
+
+**Theorem:** The number of Dyck paths of length $2n$ is $\frac{1}{n+1}{2n \choose n}$.
+
+The numbers $\frac{1}{n+1}{2n \choose n}$,$n \in N$ are called the Catalan numbers.
+
+**Outline of proof**
+
+1. Combinatorial argument. Let $c_n$ be the number of Dyck paths of length $2n$. Obtain a recurrence relation.
+2. Algebraic formulation. Consider the series $C(x) = \sum_{m \geq 0} c_n x^n$. Convert the recurrence relation into an algebraic equation involving $C(x)$.
+3. Algebraic extraction. Perform algebraic manipulations on $C(x)$ to compute $c_n$.
+
+**Complete proof:**
+
+Consider a Dyck path $\pi$ of length $2n, n \geq 1$. The first step must be N. $\pi$ must end on the line $y=x$. Consider the first time $\pi$ returns to the line $y=x$. Suppose this is after $2k+2$ steps. Then the $(2k+2)^{th}$ step of $\pi$ is E. Let $pi '$ be the first path of the path, and $\pi ''$ be the second part after returning to the $y=x$ line. Write $\pi=N\pi ' E \pi ''$, where $\pi '$ has length $2k$,$\pi ''$ has length $2(n-k-1)$
+
+$\pi '$ starts and ends on the line $y=x+1$, and never goes below.
+
+$\pi ''$ starts and ends on the line $y=x$, and never goes below.
+
+Hence we have decomposed $\pi = N \pi ' E \pi ''$ where $\pi ', \pi ''$ are Dyck paths. This decomposition is unique.
+
+There are $c_k$ possibilities for $\pi '$, and $c_{n-k-1}$ possibilities for $\pi ''$. Summing over all possibilities for $k$, we obtain the recurrence
+
+$$c_n = \sum_{k=0}^{n-1} c_k c_{n-k-1}, \text{ for } n \geq 1$$.
+
+2. Consider the series $C(x) = \sum_{m \geq 0} c_n x^n$.
+
+**Claim**: $xC(x)^2 - C(x) + 1 = 0$
+
+**Proof of Claim:**
+
+Let $n = j + k + 1$
+
+$$ \begin{align}
+xC(x)^2 &= x\left(\sum_{j \geq 0} c_j x^j\right)\left(\sum_{k \geq 0} c_k x^k\right) = \sum_{j \geq 0} \sum_{k \geq 0} c_j c_k x^{j+k+1} \\
+&=\sum_{n \geq 1} \left(\sum_{k = 0} c_k c_{n-k-1}\right) x^n = \sum_{n \geq 1} c_n x^n \\
+&= C(x) - 1
+\end{align}$$
+
+3. Use the quadratic formula to solve for $C(x)$
+
+$$C(x) = \frac{1 \pm \sqrt{1-4x}}{2x} = \frac{1 \pm (1 - 4x)^{\frac 1 2}}{2x}$$
+
+Use the binomial theorem to expand $(1-4x)^{1/2}$
+
+$$(1-4x)^{1/2} = 1 + \sum_{k \geq 1} {1/2 \choose k} (-4)^k x^k$$
+
+$$\begin{align} {1/2 \choose k} (-4)^k &= \frac{\frac 1 2 -\frac 1 2 -\frac 3 2 ...(-\frac{2k-3}{2})}{k!} \cdot (-1)^k \cdot 2^k \cdot 2^k \\
+&= - \frac{1 \cdot 3 \cdot 5 \cdots (2k-3)}{k!} \cdot 2^k \\
+&= - \frac{1 \cdot 3 \cdot 5 \cdots (2k-3)}{k!} \cdot \frac{2 \cdot 4 \cdot 6 \cdots (2k-2)}{(k-1)!} \cdot 2 \\
+&= - \frac{(2k-2)!}{k!(k-1)!} \cdot 2 = - \frac{2}{k} {2k - 2 \choose k - 1} \end{align}$$
+

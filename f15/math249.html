@@ -178,5 +178,49 @@
 <p><span class="math display">\[f_n = \lbrack x^n \rbrack F(x) = \frac{1}{\sqrt 5} \Big(\frac{1 + \sqrt 5}{2}\Big)^n - \Big(\frac{1 - \sqrt 5}{2}\Big)^n\]</span></p>
 <h2 id="lattice-paths">Lattice Paths</h2>
 <p>A lattice path of length <span class="math inline">\(r\)</span> is a sequence <span class="math inline">\(P_0,P_1,\dots,P_r \in Z^2 \subset R^2\)</span> of points in the plane such that <span class="math inline">\(P_i - P_{i-1} \in \{(0,1),(1,0)\}\)</span>.</p>
+<p><strong>Theorem:</strong> The number of lattice paths from <span class="math inline">\((0,0)\)</span> to <span class="math inline">\((m,n)\)</span> is <span class="math inline">\(m + n \choose n\)</span>.</p>
+<p><strong>Proof:</strong> Each path is represented by a string <span class="math inline">\(s_1s_2\dots s_{m+n}\)</span> with <span class="math inline">\(m\)</span> E's and <span class="math inline">\(n\)</span> N's. Let <span class="math inline">\(\alpha = \{i \in \lbrack m + n \rbrack | s_i = E\}\)</span>. Then <span class="math inline">\(\alpha\)</span> is an <span class="math inline">\(m\)</span>-element subset of <span class="math inline">\(\lbrack m + n \rbrack\)</span>.</p>
+<p>Verify that this defines a bijection between our lattice paths and <span class="math inline">\(m\)</span>-elements subsets of <span class="math inline">\(\lbrack m + n \rbrack\)</span>.</p>
+<h2 id="dyck-paths">Dyck Paths</h2>
+<p>A <strong>Dyck</strong> path or Catalan path is a lattice path <span class="math inline">\(P_0,P_1,\dots,P_{2n}, n \in N\)</span>, from <span class="math inline">\((0,0)\)</span> to <span class="math inline">\((n,n)\)</span> with the property that <span class="math inline">\(P_i = (x_1,y_i)\)</span>, where <span class="math inline">\(x_i \leq y_i\)</span>.</p>
+<p>Path is entirely on or above the line <span class="math inline">\(y=x\)</span>. Endpoints on the line.</p>
+<p>The trivial path <span class="math inline">\(P_0 = (0,0)\)</span> is a Dyck path (of length <span class="math inline">\(0\)</span>).</p>
+<p>Another interpretation is using N as left brackets and E and right brackets. The brackets are always balanced and will never have a right bracket as the first thing in the set.</p>
+<p><strong>Theorem:</strong> The number of Dyck paths of length <span class="math inline">\(2n\)</span> is <span class="math inline">\(\frac{1}{n+1}{2n \choose n}\)</span>.</p>
+<p>The numbers <span class="math inline">\(\frac{1}{n+1}{2n \choose n}\)</span>,<span class="math inline">\(n \in N\)</span> are called the Catalan numbers.</p>
+<p><strong>Outline of proof</strong></p>
+<ol style="list-style-type: decimal">
+<li>Combinatorial argument. Let <span class="math inline">\(c_n\)</span> be the number of Dyck paths of length <span class="math inline">\(2n\)</span>. Obtain a recurrence relation.</li>
+<li>Algebraic formulation. Consider the series <span class="math inline">\(C(x) = \sum_{m \geq 0} c_n x^n\)</span>. Convert the recurrence relation into an algebraic equation involving <span class="math inline">\(C(x)\)</span>.</li>
+<li>Algebraic extraction. Perform algebraic manipulations on <span class="math inline">\(C(x)\)</span> to compute <span class="math inline">\(c_n\)</span>.</li>
+</ol>
+<p><strong>Complete proof:</strong></p>
+<p>Consider a Dyck path <span class="math inline">\(\pi\)</span> of length <span class="math inline">\(2n, n \geq 1\)</span>. The first step must be N. <span class="math inline">\(\pi\)</span> must end on the line <span class="math inline">\(y=x\)</span>. Consider the first time <span class="math inline">\(\pi\)</span> returns to the line <span class="math inline">\(y=x\)</span>. Suppose this is after <span class="math inline">\(2k+2\)</span> steps. Then the <span class="math inline">\((2k+2)^{th}\)</span> step of <span class="math inline">\(\pi\)</span> is E. Let <span class="math inline">\(pi &#39;\)</span> be the first path of the path, and <span class="math inline">\(\pi &#39;&#39;\)</span> be the second part after returning to the <span class="math inline">\(y=x\)</span> line. Write <span class="math inline">\(\pi=N\pi &#39; E \pi &#39;&#39;\)</span>, where <span class="math inline">\(\pi &#39;\)</span> has length <span class="math inline">\(2k\)</span>,<span class="math inline">\(\pi &#39;&#39;\)</span> has length <span class="math inline">\(2(n-k-1)\)</span></p>
+<p><span class="math inline">\(\pi &#39;\)</span> starts and ends on the line <span class="math inline">\(y=x+1\)</span>, and never goes below.</p>
+<p><span class="math inline">\(\pi &#39;&#39;\)</span> starts and ends on the line <span class="math inline">\(y=x\)</span>, and never goes below.</p>
+<p>Hence we have decomposed <span class="math inline">\(\pi = N \pi &#39; E \pi &#39;&#39;\)</span> where <span class="math inline">\(\pi &#39;, \pi &#39;&#39;\)</span> are Dyck paths. This decomposition is unique.</p>
+<p>There are <span class="math inline">\(c_k\)</span> possibilities for <span class="math inline">\(\pi &#39;\)</span>, and <span class="math inline">\(c_{n-k-1}\)</span> possibilities for <span class="math inline">\(\pi &#39;&#39;\)</span>. Summing over all possibilities for <span class="math inline">\(k\)</span>, we obtain the recurrence</p>
+<p><span class="math display">\[c_n = \sum_{k=0}^{n-1} c_k c_{n-k-1}, \text{ for } n \geq 1\]</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Consider the series <span class="math inline">\(C(x) = \sum_{m \geq 0} c_n x^n\)</span>.</li>
+</ol>
+<p><strong>Claim</strong>: <span class="math inline">\(xC(x)^2 - C(x) + 1 = 0\)</span></p>
+<p><strong>Proof of Claim:</strong></p>
+<p>Let <span class="math inline">\(n = j + k + 1\)</span></p>
+<p><span class="math display">\[ \begin{align}
+xC(x)^2 &amp;= x\left(\sum_{j \geq 0} c_j x^j\right)\left(\sum_{k \geq 0} c_k x^k\right) = \sum_{j \geq 0} \sum_{k \geq 0} c_j c_k x^{j+k+1} \\
+&amp;=\sum_{n \geq 1} \left(\sum_{k = 0} c_k c_{n-k-1}\right) x^n = \sum_{n \geq 1} c_n x^n \\
+&amp;= C(x) - 1
+\end{align}\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Use the quadratic formula to solve for <span class="math inline">\(C(x)\)</span></li>
+</ol>
+<p><span class="math display">\[C(x) = \frac{1 \pm \sqrt{1-4x}}{2x} = \frac{1 \pm (1 - 4x)^{\frac 1 2}}{2x}\]</span></p>
+<p>Use the binomial theorem to expand <span class="math inline">\((1-4x)^{1/2}\)</span></p>
+<p><span class="math display">\[(1-4x)^{1/2} = 1 + \sum_{k \geq 1} {1/2 \choose k} (-4)^k x^k\]</span></p>
+<p><span class="math display">\[\begin{align} {1/2 \choose k} (-4)^k &amp;= \frac{\frac 1 2 -\frac 1 2 -\frac 3 2 ...(-\frac{2k-3}{2})}{k!} \cdot (-1)^k \cdot 2^k \cdot 2^k \\
+&amp;= - \frac{1 \cdot 3 \cdot 5 \cdots (2k-3)}{k!} \cdot 2^k \\
+&amp;= - \frac{1 \cdot 3 \cdot 5 \cdots (2k-3)}{k!} \cdot \frac{2 \cdot 4 \cdot 6 \cdots (2k-2)}{(k-1)!} \cdot 2 \\
+&amp;= - \frac{(2k-2)!}{k!(k-1)!} \cdot 2 = - \frac{2}{k} {2k - 2 \choose k - 1} \end{align}\]</span></p>
 </body>
 </html>
