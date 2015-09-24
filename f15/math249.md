@@ -332,7 +332,7 @@ Path is entirely on or above the line $y=x$. Endpoints on the line.
 
 The trivial path $P_0 = (0,0)$ is a Dyck path (of length $0$).
 
-Another interpretation is using N as left brackets and E and right brackets. The brackets are always balanced and will never have a right bracket as the first thing in the set.
+Another interpretation is using N as left brackets and E as right brackets. The brackets are always balanced and will never have a right bracket as the first element in the set.
 
 **Theorem:** The number of Dyck paths of length $2n$ is $\frac{1}{n+1}{2n \choose n}$.
 
@@ -346,7 +346,7 @@ The numbers $\frac{1}{n+1}{2n \choose n}$,$n \in N$ are called the Catalan numbe
 
 **Complete proof:**
 
-Consider a Dyck path $\pi$ of length $2n, n \geq 1$. The first step must be N. $\pi$ must end on the line $y=x$. Consider the first time $\pi$ returns to the line $y=x$. Suppose this is after $2k+2$ steps. Then the $(2k+2)^{th}$ step of $\pi$ is E. Let $pi '$ be the first path of the path, and $\pi ''$ be the second part after returning to the $y=x$ line. Write $\pi=N\pi ' E \pi ''$, where $\pi '$ has length $2k$,$\pi ''$ has length $2(n-k-1)$
+Consider a Dyck path $\pi$ of length $2n, n \geq 1$. The first step must be N. $\pi$ must end on the line $y=x$. Consider the first time $\pi$ returns to the line $y=x$. Suppose this is after $2k+2$ steps. Then the $(2k+2)^{th}$ step of $\pi$ is E. Let $\pi '$ be the first path of the path before returning to the $y=x$ line, and $\pi ''$ be the second part after returning to the $y=x$ line. Write $\pi=N\pi ' E \pi ''$, where $\pi '$ has length $2k$,$\pi ''$ has length $2(n-k-1)$
 
 $\pi '$ starts and ends on the line $y=x+1$, and never goes below.
 
