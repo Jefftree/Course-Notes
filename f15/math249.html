@@ -222,5 +222,37 @@ xC(x)^2 &amp;= x\left(\sum_{j \geq 0} c_j x^j\right)\left(\sum_{k \geq 0} c_k x^
 &amp;= - \frac{1 \cdot 3 \cdot 5 \cdots (2k-3)}{k!} \cdot 2^k \\
 &amp;= - \frac{1 \cdot 3 \cdot 5 \cdots (2k-3)}{k!} \cdot \frac{2 \cdot 4 \cdot 6 \cdots (2k-2)}{(k-1)!} \cdot 2 \\
 &amp;= - \frac{(2k-2)!}{k!(k-1)!} \cdot 2 = - \frac{2}{k} {2k - 2 \choose k - 1} \end{align}\]</span></p>
+<p><span class="math display">\[C(x) = \frac{1 \pm (1 - \sum_{k \geq 1} \frac{2}{k}{2k-2 \choose k-1} x^k)}{2x}\]</span></p>
+<p><span class="math display">\[= \frac{1}{2x} \pm \left(\frac{1}{2x} - \sum_{k \geq 1} \frac{1}{k} {2k-2 \choose k - 1} x^{k-1}\right)\]</span></p>
+<p>The <span class="math inline">\(+\)</span> solution cannot be correct since it gives <span class="math inline">\(\frac{1}{x}\)</span> in <span class="math inline">\(C(x)\)</span>. Therefore the <span class="math inline">\(-\)</span> solution is correct.</p>
+<p><span class="math display">\[= \sum_{k \geq 1} \frac{1}{k} {2k-2 \choose k - 1} x^{k-1} = \sum_{n \geq 0} \frac{1}{n+1} {2n \choose n} x^n\]</span></p>
+<p>Therefore <span class="math inline">\(c_n = \frac{1}{n+1} {2n \choose n}\)</span>.</p>
+<h2 id="combinatorial-proofs">Combinatorial Proofs</h2>
+<p><strong>Theorem</strong>: The number of Dyck paths of length <span class="math inline">\(2n\)</span> is <span class="math inline">\(\frac{1}{n+1} {2n \choose n}\)</span>.</p>
+<p><strong>Combinatorial Proof:</strong> Let <span class="math inline">\(D_n\)</span> be the set of Dyck paths of length <span class="math inline">\(2n\)</span> and let <span class="math inline">\(P_n\)</span> be the set of all lattice paths from <span class="math inline">\((0,0)\)</span> to <span class="math inline">\((n,n)\)</span>. We give a bijection <span class="math inline">\(f: P_n \rightarrow D_n \times \lbrack n + 1 \rbrack\)</span>.</p>
+<p><span class="math inline">\(s_0 s_1 ... s_{2n-2} s_{2n-1}\)</span></p>
+<p><span class="math inline">\(s_1 s_2 ... s_{2n-2} s_{2n-1} s_2n\)</span></p>
+<p><span class="math inline">\(s_2 s_3... s_{2n-1} s_2n s_0\)</span></p>
+<p><span class="math inline">\(\vdots\)</span></p>
+<p><span class="math inline">\(s_{2n} s_0 \cdots s_{2n-3} s_{2n-2}\)</span></p>
+<p>Cross out all paths that aren't in <span class="math inline">\(P_n\)</span> to get a list of <span class="math inline">\(n + 1\)</span> paths.</p>
+<p><strong>Claim:</strong> Exactly one path <span class="math inline">\(\pi\)</span> on this list is a Dyck path. If <span class="math inline">\(\pi\)</span> is the <span class="math inline">\(k^{th}\)</span> path on the list, let <span class="math inline">\(f(s_1 s_2 ... s_{2n}) = (\pi,k)\)</span>.</p>
+<p>From <span class="math inline">\((\pi,k)\)</span>, the path can be cyclically shifted to obtain a path in <span class="math inline">\(P_n\)</span>.</p>
+<p><strong>Example:</strong> For the path <span class="math inline">\(NNEENNE\)</span>, the list is</p>
+<p>NNEENN, NEENNE, EENNEN, ENNENN, NNENNE, <strong>NENNEE</strong>, ENNEEN</p>
+<p>so <span class="math inline">\(f(NEENNE) = (NNENEE,3)\)</span>.</p>
+<p>Each path in the list is a substring of <span class="math inline">\(NNEENNENNEEN\)</span>.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Reach Gouden's notes for complete proof</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Theorem:</strong> For <span class="math inline">\(0 \leq a \leq b\)</span>, the number of lattice paths from <span class="math inline">\((0,0)\)</span> to <span class="math inline">\((a,b)\)</span> that are entirely on or above the line <span class="math inline">\(y=x\)</span> is</p>
+<p><span class="math display">\[{a + b \choose a} - {a + b \choose a - 1}\]</span></p>
+<p><strong>Combinatorial Proof</strong>: Let <span class="math inline">\(X\)</span> be the set of lattice paths from <span class="math inline">\((0,0)\)</span> to <span class="math inline">\((A,b)\)</span> that have at least one point strictly below the line <span class="math inline">\(y=x\)</span>. If we can show that <span class="math inline">\(|X| = {a + b \choose a - 1}\)</span>, we'll be done. To do this, let <span class="math inline">\(Y\)</span> be the set of lattice paths from <span class="math inline">\((1,-1)\)</span> to <span class="math inline">\((a,b)\)</span>. We give a bijection between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
+<p>Let <span class="math inline">\(s_1s_2 \cdots s_{a+b} \in X\)</span>. Since <span class="math inline">\(X\)</span> has at least one point below the line <span class="math inline">\(y=x\)</span>, there must be at least one point on the line <span class="math inline">\(y=x-1\)</span>. Suppose the first such point is after <span class="math inline">\(2k-1\)</span> steps. Define <span class="math display">\[f(s_1 s_2 \cdots s_{a+b}) = \bar{s_1} \bar{s_2} \cdots \bar{s_{2k-1}} s_{2k} \cdots s_{a+b}\]</span> where the bar means <span class="math inline">\(\bar{s_{i}} = N\)</span> if <span class="math inline">\(s_i = E\)</span>, and vice versa.</p>
+<p><strong>Exercise:</strong> Show that this is a bijection.</p>
 </body>
 </html>

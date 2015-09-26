@@ -43,6 +43,7 @@
 <li>For each formula <span class="math inline">\(\alpha\)</span>, if <span class="math inline">\(R(\alpha)\)</span> then <span class="math inline">\(R((\lnot \alpha))\)</span></li>
 <li>For each pair of formulas <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(n\)</span>, and each connective <span class="math inline">\(*\)</span>, if <span class="math inline">\(R(\alpha)\)</span> and <span class="math inline">\(R(n)\)</span>, then <span class="math inline">\(R((\alpha * n))\)</span>.</li>
 </ol>
+<p>This is called <strong>structural induction</strong>.</p>
 <h2 id="something-happened-here">Something happened here</h2>
 <h2 id="working-with-formulas">Working with Formulas</h2>
 <p>A formula <span class="math inline">\(\alpha\)</span> is a <strong>tautology</strong> if and only if for every truth valuation <span class="math inline">\(t\)</span>, <span class="math inline">\(\alpha^t = T\)</span></p>
@@ -50,5 +51,48 @@
 <p>A formula <span class="math inline">\(\alpha\)</span> is <strong>satisfiable</strong> if and only if there is some truth valuation <span class="math inline">\(t\)</span>, such that <span class="math inline">\(\alpha^t=T\)</span></p>
 <p><strong>Note:</strong> A formula is satisfiable if and only if it is not a contradiction.</p>
 <p>A <strong>valuation tree</strong> is a shortcut to analyzing what would happen if the entire truth table was filled out.</p>
+<p>Two formulas are <strong>equivalent</strong>, <span class="math inline">\(\alpha \equiv \beta\)</span> if <span class="math inline">\(\alpha^t = \beta^t\)</span> for every valuation <span class="math inline">\(t\)</span>.</p>
+<p><strong>Lemma:</strong> Suppose that <span class="math inline">\(\alpha \equiv \beta\)</span>. Then for any formula <span class="math inline">\(\gamma\)</span>, and any connective <span class="math inline">\(*\)</span>, the formula <span class="math inline">\(\alpha * \gamma\)</span> and <span class="math inline">\(\beta * \gamma\)</span> are equivalent.</p>
+<p><span class="math display">\[\alpha * \gamma \equiv \beta * \gamma*\]</span></p>
+<p><strong>Example:</strong> Prove <span class="math inline">\((p \land q) \lor (q \land r) \equiv (q \land (p \lor r))\)</span></p>
+<p><strong>Proof</strong>: <span class="math inline">\(= (p \land q) \lor (q \land r)\)</span></p>
+<p><span class="math inline">\(= (q \land p) \lor (q \land r)\)</span></p>
+<p><span class="math inline">\(= (q \land (p \lor r))\)</span></p>
+<p><strong>Simplify</strong>: <span class="math inline">\(p \lor (p \land q)\)</span></p>
+<p><strong>Solution:</strong></p>
+<p><span class="math inline">\(= (p \land T) \lor (p \land q)\)</span></p>
+<p><span class="math inline">\(= p \land (T \lor q)\)</span></p>
+<p><span class="math inline">\(=p\)</span></p>
+<h2 id="class">Class</h2>
+<p>Prove <span class="math inline">\(\lnot(((\lnot p \lor q) \lor r) \land \lnot r \land p) \lor q\)</span></p>
+<p><strong>Example:</strong> Prove or disprove <span class="math inline">\(p \equiv p \land (q \implies p)\)</span></p>
+<p><span class="math inline">\(p \land (q \implies p)\)</span></p>
+<p><span class="math inline">\(p \land (q \lor \lnot p)\)</span> Implication</p>
+<p><span class="math inline">\(p \land (\lnot p \lor q)\)</span> Commutativity</p>
+<p><span class="math inline">\(p\)</span> Simplification II</p>
+<p>LHS=RHS</p>
+<p><strong>Example:</strong> Prove or disprove <span class="math inline">\(p \land (\lnot (\lnot q \land \lnot p) \lor p) \equiv q\)</span></p>
+<p><strong>Solution:</strong> Find an counter example. Select <span class="math inline">\(t(p) = F, t(q) = T\)</span>. LHS = F, RHS = T</p>
+<p>Alternatively, simplify first if a value cannot be found by inspection.</p>
+<p><span class="math inline">\(p \land ((q \lor p) \lor p)\)</span></p>
+<p><span class="math inline">\(p \land (q \lor (p \lor p))\)</span></p>
+<p><span class="math inline">\(p \land (q \lor p)\)</span></p>
+<p><span class="math inline">\(p \land (p \lor q)\)</span></p>
+<p><span class="math inline">\(p\)</span></p>
+<h2 id="logical-consequence">Logical Consequence</h2>
+<p>Let <span class="math inline">\(\sigma\)</span> be a set of formulas and let <span class="math inline">\(\phi\)</span> be a formula. We say that</p>
+<ul>
+<li><span class="math inline">\(\phi\)</span> is a logical consequence of <span class="math inline">\(\sigma\)</span> or</li>
+<li><span class="math inline">\(\sigma\)</span> semantically entails <span class="math inline">\(\phi\)</span>, or</li>
+<li>in symbols, <span class="math inline">\(\sigma |= \phi\)</span></li>
+</ul>
+<p>if and and only if for any truth value <span class="math inline">\(t\)</span></p>
+<p><span class="math display">\[\sigma^t = T \implies\phi^t = T\]</span></p>
+<p><strong>Example:</strong></p>
+<p><span class="math display">\[\{(p \implies q),q\} |= q\]</span></p>
+<p><strong>Solution:</strong> Whenever <span class="math inline">\(\{(p \implies q),q\}\)</span>, <span class="math inline">\(q\)</span> must be true. This can be shown from drawing a truth table.</p>
+<p><strong>Example:</strong> <span class="math inline">\(\{p \implies q, q\} |\not= p\)</span></p>
+<p><strong>Solution:</strong> When <span class="math inline">\(p = F,q = T\)</span>, and the proposition does not hold.</p>
+<p>Additional stuff <span class="math display">\[\{(p \implies q), (q \implies r)\} |= (p \implies r)\]</span></p>
 </body>
 </html>

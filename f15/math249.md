@@ -385,3 +385,59 @@ $$\begin{align} {1/2 \choose k} (-4)^k &= \frac{\frac 1 2 -\frac 1 2 -\frac 3 2 
 &= - \frac{1 \cdot 3 \cdot 5 \cdots (2k-3)}{k!} \cdot \frac{2 \cdot 4 \cdot 6 \cdots (2k-2)}{(k-1)!} \cdot 2 \\
 &= - \frac{(2k-2)!}{k!(k-1)!} \cdot 2 = - \frac{2}{k} {2k - 2 \choose k - 1} \end{align}$$
 
+$$C(x) = \frac{1 \pm (1 - \sum_{k \geq 1} \frac{2}{k}{2k-2 \choose k-1} x^k)}{2x}$$
+
+$$= \frac{1}{2x} \pm \left(\frac{1}{2x} - \sum_{k \geq 1} \frac{1}{k} {2k-2 \choose k - 1} x^{k-1}\right)$$
+
+The $+$ solution cannot be correct since it gives $\frac{1}{x}$ in $C(x)$. Therefore the $-$ solution is correct.
+
+$$= \sum_{k \geq 1} \frac{1}{k} {2k-2 \choose k - 1} x^{k-1} = \sum_{n \geq 0} \frac{1}{n+1} {2n \choose n} x^n$$
+
+Therefore $c_n = \frac{1}{n+1} {2n \choose n}$.
+
+## Combinatorial Proofs
+
+**Theorem**: The number of Dyck paths of length $2n$ is $\frac{1}{n+1} {2n \choose n}$.
+
+**Combinatorial Proof:** Let $D_n$ be the set of Dyck paths of length $2n$ and let $P_n$ be the set of all lattice paths from $(0,0)$ to $(n,n)$. We give a bijection $f: P_n \rightarrow D_n \times \lbrack n + 1 \rbrack$.
+
+$s_0 s_1 ... s_{2n-2} s_{2n-1}$
+
+$s_1 s_2 ... s_{2n-2} s_{2n-1} s_2n$
+
+$s_2 s_3... s_{2n-1} s_2n s_0$
+
+$\vdots$
+
+$s_{2n} s_0 \cdots s_{2n-3} s_{2n-2}$
+
+Cross out all paths that aren't in $P_n$ to get a list of $n + 1$ paths.
+
+**Claim:** Exactly one path $\pi$ on this list is a Dyck path. If $\pi$ is the $k^{th}$ path on the list, let $f(s_1 s_2 ... s_{2n}) = (\pi,k)$.
+
+From $(\pi,k)$, the path can be cyclically shifted to obtain a path in $P_n$.
+
+**Example:** For the path $NNEENNE$, the list is
+
+NNEENN, NEENNE, EENNEN, ENNENN, NNENNE, **NENNEE**, ENNEEN
+
+so $f(NEENNE) = (NNENEE,3)$.
+
+Each path in the list is a substring of $NNEENNENNEEN$.
+
+----------------------------------------------------
+Reach Gouden's notes for complete proof
+----------------------------------------------------
+
+**Theorem:** For $0 \leq a \leq b$, the number of lattice paths from $(0,0)$ to $(a,b)$ that are entirely on or above the line $y=x$ is 
+
+$${a + b \choose a} - {a + b \choose a - 1}$$
+
+**Combinatorial Proof**: Let $X$ be the set of lattice paths from $(0,0)$ to $(A,b)$ that have at least one point strictly below the line $y=x$. If we can show that $|X| = {a + b \choose a - 1}$, we'll be done. To do this, let $Y$ be the set of lattice paths from $(1,-1)$ to $(a,b)$. We give a bijection between $X$ and $Y$.
+
+Let $s_1s_2 \cdots s_{a+b} \in X$. Since $X$ has at least one point below the line $y=x$, there must be at least one point on the line $y=x-1$. Suppose the first such point is after $2k-1$ steps. Define
+$$f(s_1 s_2 \cdots s_{a+b}) = \bar{s_1} \bar{s_2} \cdots \bar{s_{2k-1}} s_{2k} \cdots s_{a+b}$$
+where the bar means $\bar{s_{i}} = N$ if $s_i = E$, and vice versa. 
+
+**Exercise:** Show that this is a bijection.
+
