@@ -441,3 +441,97 @@ where the bar means $\bar{s_{i}} = N$ if $s_i = E$, and vice versa.
 
 **Exercise:** Show that this is a bijection.
 
+## Framework for Generating Functions
+
+**Ingredients:**
+
+- A set $S$ of "combinatorial objects".
+- A function $w: S \rightarrow N$ called the weight function. For $\sigma \in S$, $w(\sigma)$ is called the weight of $\sigma$
+
+General counting problem: for $n \in N$, determine the number of objects in $S$ that have weight $n$.
+
+For example: Determine $\# \{\sigma \in S | w(\sigma) = n \}$. 
+
+**Note:** The $\#$ represents cardinality $|S|$.
+
+A weight function is good if the answer is finite numbers for all $n$.
+
+**Strategy**: Show (almost) every counting problem we encounter into this framework.
+
+**Example:** Fix $m \in N$. Let $S_m = \{0,1\}^m$, the set of binary strings of length $m$. IF $\sigma \in S_m$, define the weight of $\sigma$ to be the number of $1$'s in $\sigma.$
+
+Counting problem becomes: Determine the number of binary strings of length $m$ that have $n$ ones. (Answer: $m \choose n$)
+
+**Example 2:** Let $T$ be the set of all Dyck paths. If $\pi \in T$, define the weight $\pi$ to be the number of $n$ steps in $\pi$.
+
+Counting problem becomes: Determine the number of Dyck paths of length $2n$. (Answer: $\frac{1}{n+1}{2n \choose n}$)
+
+General solution: Define the generating function for $S$ with respect to $w$ to be the power series
+
+$$\phi_S(x) = \sum_{\phi \in S} x^{w(\sigma)}$$
+
+**Proposition:** The nanswer to the counting problem is $\lbrack x^n \rbrack \phi_S(x)$.
+
+Example: $\#\{\sigma \in S | w(\sigma) = n \} =  \lbrack x^n \rbrack \phi_S(x)$.
+
+**Proof:**
+
+$$\lbrack x^n \rbrack \phi_S(x) = \lbrack x^n \rbrack \sum_{\sigma \in S} x^{w(\sigma)} = \lbrack x^n \rbrack \sum_{k \geq 0} \sum_{\sigma \in S , w(\sigma) = k} x^{w(\sigma)}$$
+
+$$i= \lbrack x^n \rbrack \sum_{ k \geq 0} \left(\sum_{\sigma \in S , w(\sigma)=n} x^k \right) =\sum_{\sigma \in S, w(\sigma) = n} 1 = \#\{\sigma \in S | w(\sigma) = k\}$$
+
+**Example 1:** Fix $m \in N$. Let $S_m = \{0,1\}^m$, the set of binary strings of length $m$. IF $\sigma \in S_m$, define the weight of $\sigma$ to be the number of $1$'s in $\sigma.$
+
+Generating function:
+
+$$\phi_{S_m}(x) = \sum_{n = 0}^m {m \choose n} x^n = (1+x)^n$$
+
+**Example 2:** Let $T$ be the set of all Dyck paths. If $\pi \in T$, define the weight $\pi$ to be the number of $n$ steps in $\pi$.
+
+Generating function:
+
+$$\phi_S(x) = \sum_{n=0}^\infty \frac{1}{n+1} {2n \choose n} x^n = \frac{1 - \sqrt{1 - 4x}}{2x}$$
+
+## The sum lemma
+
+**Sum Lemma:** Let $S$ be a set with a weight function $w$, and $A \cup B = S$, then
+
+$$\phi_S(x) = \phi_A(x) + \phi_B(x) - \phi_{A \cap B}(x)$$
+
+**Proof:** For a subset $A \subset S$, let $Z: S \rightarrow Z$ be the indicator function
+
+$Z(\sigma) = 1 $ if $\sigma \in A$, $0$ if $\sigma \not\in A$
+
+Then $Z_A(\sigma) + Z_B(\sigma) - Z_{a \cap B}(\sigma) = 1$ for all $\sigma \in S$, so
+
+$$\phi_A(x) + \phi_B(x) - \phi_{A \cap B} (x)$$
+
+$$= \sum_{\sigma \in S} Z_A(\sigma)x^{w(\sigma} + \sum_{\sigma \in S} Z_B(\sigma) x^{w(\sigma)} - \sum_{\sigma \in S} Z_{A \cap B} (\sigma)x^{w(\sigma)}$$
+
+Sum lemma is most commonly used in case where $A \cap B = \emptyset$, in which case $\phi_{A\cap B} (x) = 0$.
+
+**Generalization:** If $S$ is a set with a weight function $w$, and $S = U_i A_i, A_i \cap A_j = \emptyset$ for $i \neq j$, then
+
+$$\phi_S(x) = \sum_i \phi_{A_i}(x)$$
+
+## The Product Lemma
+
+**Example:**
+
+Problem A. You have 5 loonies and 3 toonies. How many ways to make \$ 7?
+
+Make a table of all possibilities using the dollar amounts.
+x 0 1 2 3 4 5
+0 0 1 2 3 4 5
+2 2 3 4 5 6 *7*
+4 4 5 6 *7* 8 9
+6 6 *7* 8 9 10 11
+
+There are three ways to make \$ 7.
+
+Problem B. Compute $\lbrack x^7 \rbrack(1+x+x^2+x^3+x^4+x^5)(1+x^2+x^4+x^6)$
+
+Solution: Multiply each pair of possible terms and draw out a table
+
+Answer: $\lbrack x^7 \rbrack(1+x+x^2+x^3+x^4+x^5)(1+x^2+x^4+x^6) = 3$
+

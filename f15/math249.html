@@ -254,5 +254,47 @@ xC(x)^2 &amp;= x\left(\sum_{j \geq 0} c_j x^j\right)\left(\sum_{k \geq 0} c_k x^
 <p><strong>Combinatorial Proof</strong>: Let <span class="math inline">\(X\)</span> be the set of lattice paths from <span class="math inline">\((0,0)\)</span> to <span class="math inline">\((A,b)\)</span> that have at least one point strictly below the line <span class="math inline">\(y=x\)</span>. If we can show that <span class="math inline">\(|X| = {a + b \choose a - 1}\)</span>, we'll be done. To do this, let <span class="math inline">\(Y\)</span> be the set of lattice paths from <span class="math inline">\((1,-1)\)</span> to <span class="math inline">\((a,b)\)</span>. We give a bijection between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
 <p>Let <span class="math inline">\(s_1s_2 \cdots s_{a+b} \in X\)</span>. Since <span class="math inline">\(X\)</span> has at least one point below the line <span class="math inline">\(y=x\)</span>, there must be at least one point on the line <span class="math inline">\(y=x-1\)</span>. Suppose the first such point is after <span class="math inline">\(2k-1\)</span> steps. Define <span class="math display">\[f(s_1 s_2 \cdots s_{a+b}) = \bar{s_1} \bar{s_2} \cdots \bar{s_{2k-1}} s_{2k} \cdots s_{a+b}\]</span> where the bar means <span class="math inline">\(\bar{s_{i}} = N\)</span> if <span class="math inline">\(s_i = E\)</span>, and vice versa.</p>
 <p><strong>Exercise:</strong> Show that this is a bijection.</p>
+<h2 id="framework-for-generating-functions">Framework for Generating Functions</h2>
+<p><strong>Ingredients:</strong></p>
+<ul>
+<li>A set <span class="math inline">\(S\)</span> of &quot;combinatorial objects&quot;.</li>
+<li>A function <span class="math inline">\(w: S \rightarrow N\)</span> called the weight function. For <span class="math inline">\(\sigma \in S\)</span>, <span class="math inline">\(w(\sigma)\)</span> is called the weight of <span class="math inline">\(\sigma\)</span></li>
+</ul>
+<p>General counting problem: for <span class="math inline">\(n \in N\)</span>, determine the number of objects in <span class="math inline">\(S\)</span> that have weight <span class="math inline">\(n\)</span>.</p>
+<p>For example: Determine <span class="math inline">\(\# \{\sigma \in S | w(\sigma) = n \}\)</span>.</p>
+<p><strong>Note:</strong> The <span class="math inline">\(\#\)</span> represents cardinality <span class="math inline">\(|S|\)</span>.</p>
+<p>A weight function is good if the answer is finite numbers for all <span class="math inline">\(n\)</span>.</p>
+<p><strong>Strategy</strong>: Show (almost) every counting problem we encounter into this framework.</p>
+<p><strong>Example:</strong> Fix <span class="math inline">\(m \in N\)</span>. Let <span class="math inline">\(S_m = \{0,1\}^m\)</span>, the set of binary strings of length <span class="math inline">\(m\)</span>. IF <span class="math inline">\(\sigma \in S_m\)</span>, define the weight of <span class="math inline">\(\sigma\)</span> to be the number of <span class="math inline">\(1\)</span>'s in <span class="math inline">\(\sigma.\)</span></p>
+<p>Counting problem becomes: Determine the number of binary strings of length <span class="math inline">\(m\)</span> that have <span class="math inline">\(n\)</span> ones. (Answer: <span class="math inline">\(m \choose n\)</span>)</p>
+<p><strong>Example 2:</strong> Let <span class="math inline">\(T\)</span> be the set of all Dyck paths. If <span class="math inline">\(\pi \in T\)</span>, define the weight <span class="math inline">\(\pi\)</span> to be the number of <span class="math inline">\(n\)</span> steps in <span class="math inline">\(\pi\)</span>.</p>
+<p>Counting problem becomes: Determine the number of Dyck paths of length <span class="math inline">\(2n\)</span>. (Answer: <span class="math inline">\(\frac{1}{n+1}{2n \choose n}\)</span>)</p>
+<p>General solution: Define the generating function for <span class="math inline">\(S\)</span> with respect to <span class="math inline">\(w\)</span> to be the power series</p>
+<p><span class="math display">\[\phi_S(x) = \sum_{\phi \in S} x^{w(\sigma)}\]</span></p>
+<p><strong>Proposition:</strong> The nanswer to the counting problem is <span class="math inline">\(\lbrack x^n \rbrack \phi_S(x)\)</span>.</p>
+<p>Example: <span class="math inline">\(\#\{\sigma \in S | w(\sigma) = n \} = \lbrack x^n \rbrack \phi_S(x)\)</span>.</p>
+<p><strong>Proof:</strong></p>
+<p><span class="math display">\[\lbrack x^n \rbrack \phi_S(x) = \lbrack x^n \rbrack \sum_{\sigma \in S} x^{w(\sigma)} = \lbrack x^n \rbrack \sum_{k \geq 0} \sum_{\sigma \in S , w(\sigma) = k} x^{w(\sigma)}\]</span></p>
+<p><span class="math display">\[i= \lbrack x^n \rbrack \sum_{ k \geq 0} \left(\sum_{\sigma \in S , w(\sigma)=n} x^k \right) =\sum_{\sigma \in S, w(\sigma) = n} 1 = \#\{\sigma \in S | w(\sigma) = k\}\]</span></p>
+<p><strong>Example 1:</strong> Fix <span class="math inline">\(m \in N\)</span>. Let <span class="math inline">\(S_m = \{0,1\}^m\)</span>, the set of binary strings of length <span class="math inline">\(m\)</span>. IF <span class="math inline">\(\sigma \in S_m\)</span>, define the weight of <span class="math inline">\(\sigma\)</span> to be the number of <span class="math inline">\(1\)</span>'s in <span class="math inline">\(\sigma.\)</span></p>
+<p>Generating function:</p>
+<p><span class="math display">\[\phi_{S_m}(x) = \sum_{n = 0}^m {m \choose n} x^n = (1+x)^n\]</span></p>
+<p><strong>Example 2:</strong> Let <span class="math inline">\(T\)</span> be the set of all Dyck paths. If <span class="math inline">\(\pi \in T\)</span>, define the weight <span class="math inline">\(\pi\)</span> to be the number of <span class="math inline">\(n\)</span> steps in <span class="math inline">\(\pi\)</span>.</p>
+<p>Generating function:</p>
+<p><span class="math display">\[\phi_S(x) = \sum_{n=0}^\infty \frac{1}{n+1} {2n \choose n} x^n = \frac{1 - \sqrt{1 - 4x}}{2x}\]</span></p>
+<h2 id="the-sum-lemma">The sum lemma</h2>
+<p><strong>Sum Lemma:</strong> Let <span class="math inline">\(S\)</span> be a set with a weight function <span class="math inline">\(w\)</span>, and <span class="math inline">\(A \cup B = S\)</span>, then</p>
+<p><span class="math display">\[\phi_S(x) = \phi_A(x) + \phi_B(x) - \phi_{A \cap B}(x)\]</span></p>
+<p><strong>Proof:</strong> For a subset <span class="math inline">\(A \subset S\)</span>, let <span class="math inline">\(Z: S \rightarrow Z\)</span> be the indicator function</p>
+<p>$Z() = 1 $ if <span class="math inline">\(\sigma \in A\)</span>, <span class="math inline">\(0\)</span> if <span class="math inline">\(\sigma \not\in A\)</span></p>
+<p>Then <span class="math inline">\(Z_A(\sigma) + Z_B(\sigma) - Z_{a \cap B}(\sigma) = 1\)</span> for all <span class="math inline">\(\sigma \in S\)</span>, so</p>
+<p><span class="math display">\[\phi_A(x) + \phi_B(x) - \phi_{A \cap B} (x)\]</span></p>
+<p><span class="math display">\[= \sum_{\sigma \in S} Z_A(\sigma)x^{w(\sigma} + \sum_{\sigma \in S} Z_B(\sigma) x^{w(\sigma)} - \sum_{\sigma \in S} Z_{A \cap B} (\sigma)x^{w(\sigma)}\]</span></p>
+<p>Sum lemma is most commonly used in case where <span class="math inline">\(A \cap B = \emptyset\)</span>, in which case <span class="math inline">\(\phi_{A\cap B} (x) = 0\)</span>.</p>
+<p><strong>Generalization:</strong> If <span class="math inline">\(S\)</span> is a set with a weight function <span class="math inline">\(w\)</span>, and <span class="math inline">\(S = U_i A_i, A_i \cap A_j = \emptyset\)</span> for <span class="math inline">\(i \neq j\)</span>, then</p>
+<p><span class="math display">\[\phi_S(x) = \sum_i \phi_{A_i}(x)\]</span></p>
+<h2 id="the-product-lemma">The Product Lemma</h2>
+<p><strong>Example:</strong></p>
+<p>Problem A. You have 5 loonies and 3 toonies. How many wayas to make $ 7?</p>
 </body>
 </html>
