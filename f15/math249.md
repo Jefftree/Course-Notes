@@ -68,7 +68,7 @@ Distinguishability:
 - C. $f \sim g \iff$ there is a bijection $\beta : N \rightarrow N$ such that $f = b \circ g$
 - D. $f \sim g \iff$ there is a bijection $\alpha : K \rightarrow K$ and bijection $\beta: N \rightarrow N$ such that $f = \beta \circ g \circ a$
 
-**Notation:** 
+**Notation:**
 
 $$x^{\underline k} = x(x-1)(x-2)\dots(x-k+1)$$
 
@@ -429,7 +429,7 @@ Each path in the list is a substring of $NNEENNENNEEN$.
 Reach Gouden's notes for complete proof
 ----------------------------------------------------
 
-**Theorem:** For $0 \leq a \leq b$, the number of lattice paths from $(0,0)$ to $(a,b)$ that are entirely on or above the line $y=x$ is 
+**Theorem:** For $0 \leq a \leq b$, the number of lattice paths from $(0,0)$ to $(a,b)$ that are entirely on or above the line $y=x$ is
 
 $${a + b \choose a} - {a + b \choose a - 1}$$
 
@@ -437,7 +437,7 @@ $${a + b \choose a} - {a + b \choose a - 1}$$
 
 Let $s_1s_2 \cdots s_{a+b} \in X$. Since $X$ has at least one point below the line $y=x$, there must be at least one point on the line $y=x-1$. Suppose the first such point is after $2k-1$ steps. Define
 $$f(s_1 s_2 \cdots s_{a+b}) = \bar{s_1} \bar{s_2} \cdots \bar{s_{2k-1}} s_{2k} \cdots s_{a+b}$$
-where the bar means $\bar{s_{i}} = N$ if $s_i = E$, and vice versa. 
+where the bar means $\bar{s_{i}} = N$ if $s_i = E$, and vice versa.
 
 **Exercise:** Show that this is a bijection.
 
@@ -450,7 +450,7 @@ where the bar means $\bar{s_{i}} = N$ if $s_i = E$, and vice versa.
 
 General counting problem: for $n \in N$, determine the number of objects in $S$ that have weight $n$.
 
-For example: Determine $\# \{\sigma \in S | w(\sigma) = n \}$. 
+For example: Determine $\# \{\sigma \in S | w(\sigma) = n \}$.
 
 **Note:** The $\#$ represents cardinality $|S|$.
 
@@ -506,7 +506,7 @@ Then $Z_A(\sigma) + Z_B(\sigma) - Z_{a \cap B}(\sigma) = 1$ for all $\sigma \in 
 
 $$\phi_A(x) + \phi_B(x) - \phi_{A \cap B} (x)$$
 
-$$= \sum_{\sigma \in S} Z_A(\sigma)x^{w(\sigma} + \sum_{\sigma \in S} Z_B(\sigma) x^{w(\sigma)} - \sum_{\sigma \in S} Z_{A \cap B} (\sigma)x^{w(\sigma)}$$
+$$= \sum_{\sigma \in S} Z_A(\sigma)x^{w(\sigma)} + \sum_{\sigma \in S} Z_B(\sigma) x^{w(\sigma)} - \sum_{\sigma \in S} Z_{A \cap B} (\sigma)x^{w(\sigma)}$$
 
 Sum lemma is most commonly used in case where $A \cap B = \emptyset$, in which case $\phi_{A\cap B} (x) = 0$.
 
@@ -535,3 +535,18 @@ Solution: Multiply each pair of possible terms and draw out a table
 
 Answer: $\lbrack x^7 \rbrack(1+x+x^2+x^3+x^4+x^5)(1+x^2+x^4+x^6) = 3$
 
+**Product Lemma:** 
+
+Sets $A,B$, $\alpha$ weight function on $A$, $\beta$ weight function on $B$. $w$ weight function on $A \times B$. $\gamma \in Z$
+
+$w(a,b) = \alpha(A) \beta(B) \in A \times B$
+
+$\phi_{A \times B}(x) = x^{\gamma} \phi_A(x) \phi B(x)$
+
+**Proof:** $\phi_{A \times B}(x) = \sum_{(a,b) \in A \times B} x^{w(a,b)}$
+
+$$\sum_{a \in A} \sum_{b \in B} x^{\alpha(A) + \beta(B) + \gamma}$$
+
+$$= x^\gamma \left(s\sum_{a \in A} x^{\alpha(a)} x^{\beta(b)}\right)$$
+
+$$w(a_1,\dots,a_i) \alpha_i(a_i) + \gamma, \qquad \forall (a,b) \in A \times B$$
