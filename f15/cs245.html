@@ -122,5 +122,13 @@
 <p>Direct proof. Establish <span class="math inline">\(\sum \vDash \phi\)</span>. Give a proof with <span class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_n\)</span> as assumptions and obtain <span class="math inline">\(\phi\)</span> as conclusion.</p>
 <p>Refutations (indirect proofs, proof by contradiction)</p>
 <p>Establish <span class="math inline">\(\sum \vDash \phi\)</span>. Assume <span class="math inline">\(\lnot \phi\)</span> and <span class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_n\)</span> and obtain a contradiction as conclusion. This works because any valuation that makes <span class="math inline">\(\sum\)</span> true must make <span class="math inline">\(\lnot \phi\)</span> false and make <span class="math inline">\(\phi\)</span> true.</p>
+<p><strong>Resolution</strong> is a refutation system with the following influence rule.</p>
+<p><span class="math inline">\(\frac{a \lor p \,\, \lnot p \land b}{a \lor b}\)</span></p>
+<p>for any variable <span class="math inline">\(p\)</span> and formula <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
+<p>Consider the following as special cases</p>
+<p>Unit Resolution <span class="math inline">\(\frac{a \lor p\qquad \lnot p}{a}\)</span></p>
+<p>Contradiction: <span class="math inline">\(\frac{p\qquad \lnot p}{\text{Contradiction}}\)</span></p>
+<h2 id="resolution">Resolution</h2>
+<p>To prove <span class="math inline">\(\{p,q\}_{\text{res}} p \land q\)</span>, derive a contradiction from the assumptions <span class="math inline">\(\{p,q,\lnot(p\land q)\}\)</span></p>
 </body>
 </html>

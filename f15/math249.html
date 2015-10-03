@@ -307,7 +307,96 @@ xC(x)^2 &amp;= x\left(\sum_{j \geq 0} c_j x^j\right)\left(\sum_{k \geq 0} c_k x^
 <p><span class="math inline">\(\phi_{A \times B}(x) = x^{\gamma} \phi_A(x) \phi B(x)\)</span></p>
 <p><strong>Proof:</strong> <span class="math inline">\(\phi_{A \times B}(x) = \sum_{(a,b) \in A \times B} x^{w(a,b)}\)</span></p>
 <p><span class="math display">\[\sum_{a \in A} \sum_{b \in B} x^{\alpha(A) + \beta(B) + \gamma}\]</span></p>
-<p><span class="math display">\[= x^\gamma \left(s\sum_{a \in A} x^{\alpha(a)} x^{\beta(b)}\right)\]</span></p>
-<p><span class="math display">\[w(a_1,\dots,a_i) \alpha_i(a_i) + \gamma, \qquad \forall (a,b) \in A \times B\]</span></p>
+<p><span class="math display">\[= x^\gamma \left(\sum_{a \in A} x^{\alpha(a)} x^{\beta(b)}\right)\]</span></p>
+<p><span class="math display">\[w(a_1,\dots,a_i) = \alpha_i(a_i) + \gamma, \qquad \forall (a,b) \in A \times B\]</span></p>
+<p>then</p>
+<p><span class="math display">\[\phi_{A_1 x \dots A_k x}(x) =x^\gamma \prod_{i=1}^k \phi_{A_i}(x)\]</span></p>
+<h2 id="compositions-of-an-integer">Compositions of an Integer</h2>
+<p>Problem: <span class="math inline">\(n,k \in N\)</span>. Determine the number of <span class="math inline">\((c_1,\dots, c_k) \in N\)</span> such that <span class="math inline">\(c_1 + c_2 + \cdots + c_k = n\)</span></p>
+<p><span class="math inline">\(N^k = N\times N \cdots \times N\)</span></p>
+<p>Set of objects: <span class="math inline">\(N^k\)</span></p>
+<p>Weight function: <span class="math inline">\(w: N^k \rightarrow N\)</span></p>
+<p><span class="math display">\[w(c_1,\dots,c_k) = c_1 + \cdots + c_k\]</span></p>
+<p>Define <span class="math inline">\(\gamma: N \rightarrow N\)</span> weight function</p>
+<p><span class="math inline">\(\alpha(i) = i\)</span></p>
+<p>Then <span class="math inline">\(w(a_1, \dots, a_i) = \sum_{i=1}^k \alpha(a_i)\)</span></p>
+<p>Then <span class="math inline">\(\phi_N(x) = 1 + x + x^2 + \cdots = (1-x)^{-1}\)</span></p>
+<p>Answer = <span class="math inline">\(\lbrack x^n \rbrack \phi_N (x) = \lbrack x^n \rbrack (1-x)^{-k} = \multiset{k}{n} = \multiset{n+k-1}{n}\)</span></p>
+<p>A composition of <span class="math inline">\(n\)</span> with <span class="math inline">\(k\)</span> parts is a <span class="math inline">\(k\)</span>-tuple, <span class="math inline">\((c_1,\dots,c_k) = (N \geq 1)^k\)</span> such that <span class="math inline">\(c_1 + c_2 + \cdots + c_k = n\)</span></p>
+<ul>
+<li><span class="math inline">\(c_1,\dots,c_k\)</span> are called the parts</li>
+<li>There is a unique composition of <span class="math inline">\(0\)</span>, it has <span class="math inline">\(0\)</span> parts.</li>
+</ul>
+<table>
+<colgroup>
+<col width="62%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">Problem: Determine the number of compositions in <span class="math inline">\(n\)</span> with <span class="math inline">\(k\)</span> parts.</td>
+</tr>
+<tr class="even">
+<td align="left">Set of objects: <span class="math inline">\((N \geq 1)^k\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Weight function: <span class="math inline">\(w: (N \geq 1) \rightarrow N\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Consider <span class="math inline">\(1+1+1 \cdots + 1) = n\)</span></p>
+<p>Change <span class="math inline">\(k-1\)</span> plus signs into <span class="math inline">\(,\)</span></p>
+<hr />
+<p>Determine all compositions of <span class="math inline">\(n\)</span> with an even number of parts.</p>
+<p>Solution: Let <span class="math inline">\(S\)</span> be the set of all compositions with even number parts, and</p>
+<p>Define the weight of a composition to be the sm of its parts.</p>
+<p>Let <span class="math inline">\(N_{\text{odd}}\)</span> represent the set of all odd numbers.</p>
+<p>Then <span class="math inline">\(S = (N_{\text{odd}})^0 \cup (N_{\text{odd}})^2 \cup (N_{\text{odd}})^4 \cup \dots\)</span></p>
+<p><span class="math inline">\(= \bigcup_{k=0}^n (N_{\text{odd}^{2k}})\)</span></p>
+<p><span class="math inline">\(\phi_S(x) = \sum_{k=0}^n \phi_{N_{\text{odd}^{2k}}(x)\)</span></p>
+<p>$=<em>{N</em>{odd}}</p>
+<p>=$</p>
+<p><span class="math inline">\(= \lbrack x^n \rbrac \frac{1}{1-x^2(1-x^2)^{-2}}\)</span></p>
+<hr />
+<p>If <span class="math inline">\(S\)</span> is a finite set, <span class="math inline">\(\phi_S(x)\)</span> is a polynomial</p>
+<p>If <span class="math inline">\(S\)</span> is an infinite set, then <span class="math inline">\(\phi_S (x)\)</span> is a power series.</p>
+<p>In some problems the radius of convergence could be <span class="math inline">\(0\)</span>. In some problems <span class="math inline">\(\phi_S &#39; (p)\)</span> for <span class="math inline">\(p \in \lbrack 0,1)\)</span> computes an expected value.</p>
+<h2 id="formal-power-series">Formal Power Series</h2>
+<p>Construct a framework to work with power series without worrying about the radius of convergence.</p>
+<p>Redefine everything that doesn't include the traditional concept of a limit.</p>
+<p><span class="math display">\[A(x) = \sum_{n \geq 0} a_n x^n = a_0 + a_1 x + a_2 x^2 + \cdots\]</span></p>
+<p>where <span class="math inline">\(a_0,a_1,\dots\)</span> are real n umbers</p>
+<p>The difference is in the interpretation and allowable operations.</p>
+<p><span class="math inline">\(R\lbrack \lbrack x \rbrack \rbrack\)</span> denotes the set of formal power series with real coefficients. This a commutative ring returning</p>
+<p><span class="math inline">\(A(X) = \sum_{n \geq 0} a_n x^n \qquad B(x) = \sum_{n \geq 0} b_n x^n\)</span></p>
+<p>Addition</p>
+<p><span class="math inline">\(A_(x) + b(x) = \sum_{n \geq 0} (a_n + b_n) x^n\)</span></p>
+<p>Multiplication</p>
+<p><span class="math inline">\(A(x)B(X) = \sum_{n \geq 0} \left( \sum_{k=0}^n a_k b_{n-k}\right) x^n\)</span></p>
+<p>Additive and multiplicative identities</p>
+<p><span class="math inline">\(0 = \sum_{n \geq 0} 0x^n \qquad 1 = 1 + \sum_{n \geq 1} 0 x^n\)</span></p>
+<p>Other operations:</p>
+<p>Coefficient extraction:</p>
+<p><span class="math inline">\(\lbrack x^n \rbrack A(x) = a_n\)</span></p>
+<p>Scalar multiplication:</p>
+<p><span class="math inline">\(cA(x) = \sum_{N \geq 0} (cA_n) x^n, c \in R\)</span></p>
+<p>Formal derivative (satisfies usual derivative rules):</p>
+<p><span class="math display">\[\frac{d}{dx} A(x) = \sum_{n \geq 0} na_n x^{n-1} = \sum_{n \geq 0} (n + 1) a_{n+1} x^n\]</span></p>
+<p>Formal integral, satisfies usual anti derivative rules:</p>
+<p><span class="math display">\[ I_A A(x) = \sum_{n \geq 0} \frac{a_n}{n+1} x^{n+1} = \sum_{n \geq 1} \frac{a_{n-1}}{n} x^n\]</span></p>
+<p>Sometimes we can substitute. Two cases where <span class="math inline">\(A(B(x))\)</span> is allowed.</p>
+<ol style="list-style-type: decimal">
+<li>If <span class="math inline">\(A(x) = \sum_{m=0}^d a_n x^n\)</span> is a polynomial of degree <span class="math inline">\(d\)</span>, then we an define</li>
+</ol>
+<p><span class="math display">\[A(B(x)) = \sum_{n = 0}^d a_n B(x)^n\]</span></p>
+<p>...which makes sense because we only need to perform finitely many basic operations.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>If <span class="math inline">\(\lbrack x^0 \rbrack B(x) = 0\)</span>, then define</li>
+</ol>
+<p><span class="math display">\[A(B(x)) = \sum_{n \geq 0} a_n B(x)^n\]</span></p>
+<p>Key point: IF we want to know <span class="math inline">\(\lbrack x^m \rbrack A(B(x))\)</span>, then <span class="math inline">\(B(x)^n\)</span> won't contribute for <span class="math inline">\(n &gt; m\)</span>, so <span class="math inline">\(\lbrack x^m \rbrack A(B(x)) = \lbrack x_m \rbrack \sum_{n=0}^m a_n B(x)^n\)</span>. Can pretend <span class="math inline">\(A(x)\)</span> is a polynomial.</p>
+<p>In all other cases <span class="math inline">\(A(B(x))\)</span> is not defined. Can't substitute numbers.</p>
+<p><strong>Theorem:</strong> <span class="math inline">\(A(X) \in R\lbrack \lbrack x \rbrack \rbrack\)</span> has a multiplicative inverse iff <span class="math inline">\(\lbrack x^0 \rbrack A(x) \neq 0\)</span></p>
+<p><strong>Proof:</strong> First suppose <span class="math inline">\(\lbrack x^n \rbrack A(x) = 0\)</span>. Then <span class="math inline">\(\lbrack x^0 \rbrack A(x) B(x) = 0\)</span> for any <span class="math inline">\(B(x)\)</span>, so we can't have <span class="math inline">\(A(x) B(x) = 1\)</span>.</p>
+<p>continue next class</p>
 </body>
 </html>

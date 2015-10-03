@@ -535,7 +535,7 @@ Solution: Multiply each pair of possible terms and draw out a table
 
 Answer: $\lbrack x^7 \rbrack(1+x+x^2+x^3+x^4+x^5)(1+x^2+x^4+x^6) = 3$
 
-**Product Lemma:** 
+**Product Lemma:**
 
 Sets $A,B$, $\alpha$ weight function on $A$, $\beta$ weight function on $B$. $w$ weight function on $A \times B$. $\gamma \in Z$
 
@@ -547,6 +547,149 @@ $\phi_{A \times B}(x) = x^{\gamma} \phi_A(x) \phi B(x)$
 
 $$\sum_{a \in A} \sum_{b \in B} x^{\alpha(A) + \beta(B) + \gamma}$$
 
-$$= x^\gamma \left(s\sum_{a \in A} x^{\alpha(a)} x^{\beta(b)}\right)$$
+$$= x^\gamma \left(\sum_{a \in A} x^{\alpha(a)} x^{\beta(b)}\right)$$
 
-$$w(a_1,\dots,a_i) \alpha_i(a_i) + \gamma, \qquad \forall (a,b) \in A \times B$$
+$$w(a_1,\dots,a_i) = \alpha_i(a_i) + \gamma, \qquad \forall (a,b) \in A \times B$$
+
+then
+
+$$\phi_{A_1 x \dots A_k x}(x) =x^\gamma \prod_{i=1}^k \phi_{A_i}(x)$$
+
+## Compositions of an Integer
+
+Problem: $n,k \in N$. Determine the number of $(c_1,\dots, c_k) \in N$ such that $c_1 + c_2 + \cdots + c_k = n$
+
+$N^k = N\times N \cdots \times N$
+
+Set of objects: $N^k$
+
+Weight function: $w: N^k \rightarrow N$
+
+$$w(c_1,\dots,c_k) = c_1 + \cdots + c_k$$
+
+Define $\gamma: N \rightarrow N$ weight function
+
+$\alpha(i) = i$
+
+Then  $w(a_1, \dots, a_i) = \sum_{i=1}^k \alpha(a_i)$
+
+
+Then $\phi_N(x) = 1 + x + x^2 + \cdots = (1-x)^{-1}$
+
+Answer = $\lbrack x^n \rbrack \phi_N (x) = \lbrack x^n \rbrack (1-x)^{-k} = \multiset{k}{n} = \multiset{n+k-1}{n}$
+
+A composition of $n$ with $k$ parts is a $k$-tuple, $(c_1,\dots,c_k) = (N \geq 1)^k$ such that $c_1 + c_2 + \cdots + c_k = n$
+
+- $c_1,\dots,c_k$ are called the parts
+- There is a unique composition of $0$, it has $0$ parts.
+
+---------------------------------------------
+Problem: Determine the number of compositions in $n$ with $k$ parts.
+
+Set of objects: $(N \geq 1)^k$
+
+Weight function: $w: (N \geq 1) \rightarrow N$
+------------------------------------
+
+Consider $1+1+1 \cdots + 1) = n$
+
+Change $k-1$ plus signs into $,$
+
+-------------------------------
+
+Determine all compositions of $n$ with an even number of parts.
+
+Solution: Let $S$ be the set of all compositions with even number parts, and
+
+Define the weight of a composition to be the sm of its parts.
+
+Let $N_{\text{odd}}$ represent the set of all odd numbers.
+
+Then $S = (N_{\text{odd}})^0 \cup (N_{\text{odd}})^2 \cup (N_{\text{odd}})^4 \cup \dots$
+
+$= \bigcup_{k=0}^n (N_{\text{odd}^{2k}})$
+
+$\phi_S(x) = \sum_{k=0}^n \phi_{N_{\text{odd}^{2k}}(x)$
+
+$=\phi_{N_{odd}}
+
+=\frac{1}{1-x^2(1-x^2)^{-2}}$
+
+$= \lbrack x^n \rbrac \frac{1}{1-x^2(1-x^2)^{-2}}$
+
+-------------------
+
+If $S$ is a finite set, $\phi_S(x)$ is a polynomial
+
+If $S$ is an infinite set, then $\phi_S (x)$ is a power series.
+
+In some problems the radius of convergence could be $0$. In some problems $\phi_S ' (p)$ for $p \in \lbrack 0,1)$ computes an expected value.
+
+## Formal Power Series
+
+Construct a framework to work with power series without worrying about the radius of convergence.
+
+Redefine everything that doesn't include the traditional concept of a limit.
+
+$$A(x) = \sum_{n \geq 0} a_n x^n = a_0 + a_1 x + a_2 x^2 + \cdots$$
+
+where $a_0,a_1,\dots$ are real n umbers
+
+The difference is in the interpretation and allowable operations.
+
+$R\lbrack \lbrack x \rbrack \rbrack$ denotes the set of formal power series with real coefficients.
+This a commutative ring returning
+
+$A(X) = \sum_{n \geq 0} a_n x^n \qquad B(x) = \sum_{n \geq 0} b_n x^n$
+
+Addition
+
+$A_(x) + b(x) = \sum_{n \geq 0} (a_n + b_n) x^n$
+
+Multiplication
+
+$A(x)B(X) = \sum_{n \geq 0} \left( \sum_{k=0}^n a_k b_{n-k}\right) x^n$
+
+Additive and multiplicative identities
+
+$0 = \sum_{n \geq 0} 0x^n \qquad 1 = 1 + \sum_{n \geq 1} 0 x^n$
+
+Other operations:
+
+Coefficient extraction:
+
+$\lbrack x^n \rbrack A(x) = a_n$
+
+Scalar multiplication:
+
+$cA(x) = \sum_{N \geq 0} (cA_n) x^n, c \in R$
+
+Formal derivative (satisfies usual derivative rules):
+
+$$\frac{d}{dx} A(x) = \sum_{n \geq 0} na_n x^{n-1} = \sum_{n \geq 0} (n + 1) a_{n+1} x^n$$
+
+Formal integral, satisfies usual anti derivative rules:
+
+$$ I_A A(x) = \sum_{n \geq 0} \frac{a_n}{n+1} x^{n+1} = \sum_{n \geq 1} \frac{a_{n-1}}{n} x^n$$
+
+Sometimes we can substitute. Two cases where $A(B(x))$ is allowed.
+
+1. If $A(x) = \sum_{m=0}^d a_n x^n$ is a polynomial of degree $d$, then we an define
+
+$$A(B(x)) = \sum_{n = 0}^d a_n B(x)^n$$
+
+...which makes sense because we only need to perform finitely many basic operations.
+
+2. If $\lbrack x^0 \rbrack B(x) = 0$, then define
+
+$$A(B(x)) = \sum_{n \geq 0} a_n B(x)^n$$
+
+Key point: IF we want to know $\lbrack x^m \rbrack A(B(x))$, then $B(x)^n$ won't contribute for $n > m$, so $\lbrack x^m \rbrack A(B(x)) = \lbrack x_m \rbrack \sum_{n=0}^m a_n B(x)^n$. Can pretend $A(x)$ is a polynomial.
+
+In all other cases $A(B(x))$ is not defined. Can't substitute numbers.
+
+**Theorem:** $A(X) \in R\lbrack \lbrack x \rbrack \rbrack$ has a multiplicative inverse iff $\lbrack x^0 \rbrack A(x) \neq 0$
+
+**Proof:** First suppose $\lbrack x^n \rbrack A(x) = 0$.  Then $\lbrack x^0 \rbrack A(x) B(x) = 0$ for any $B(x)$, so we can't have $A(x) B(x) = 1$.
+
+continue next class
