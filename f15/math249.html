@@ -141,7 +141,7 @@
 <p><span class="math display">\[(1+x)^n = (1+x) \sum_{j \geq 0} {a - 1 \choose j} x_j\]</span> <span class="math display">\[=\big\lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \big\rbrack + x \big\lbrack \sum_{j \geq 0} { a - 1 \choose j} x^j \big\rbrack\]</span></p>
 <p><span class="math display">\[= \big\lbrack \sum_{k \geq 0} {a-1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{j \geq 0} {a - 1 \choose j} x^{j+1}\big\rbrack\]</span></p>
 <p><span class="math display">\[ = \big\lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a-1 \choose k-1} x^k \big\rbrack\]</span></p>
-<p><span class="math display">\[= \big\lbrack 1+ \sum_{k \geq 1} {n - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a - 1 \choose k - 1} x^k \big\rbrack\]</span></p>
+<p><span class="math display">\[= \big\lbrack 1+ \sum_{k \geq 1} {a - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a - 1 \choose k - 1} x^k \big\rbrack\]</span></p>
 <p><span class="math display">\[= 1 + \sum_{ k \geq 1} \big\lbrack{a-1 \choose k} + {a - 1 \choose l - 1} \big\rbrack x^k\]</span></p>
 <p>Therefore <span class="math inline">\(\big\lbrack x^k \big\rbrack (1+x)^n = {n - 1 \choose k} + {n - 1 \choose k - 1}\)</span> for <span class="math inline">\(k \geq 1\)</span></p>
 <p>But we already saw that <span class="math inline">\(\big\lbrack x^k \big\rbrack = {n \choose k}\)</span>. Therefore <span class="math inline">\(n \choose k\)</span> = <span class="math inline">\({n-1 \choose k} + {n-1 \choose k-1}\)</span> for <span class="math inline">\(k \geq 1\)</span></p>
@@ -397,6 +397,46 @@ xC(x)^2 &amp;= x\left(\sum_{j \geq 0} c_j x^j\right)\left(\sum_{k \geq 0} c_k x^
 <p>In all other cases <span class="math inline">\(A(B(x))\)</span> is not defined. Can't substitute numbers.</p>
 <p><strong>Theorem:</strong> <span class="math inline">\(A(X) \in R\lbrack \lbrack x \rbrack \rbrack\)</span> has a multiplicative inverse iff <span class="math inline">\(\lbrack x^0 \rbrack A(x) \neq 0\)</span></p>
 <p><strong>Proof:</strong> First suppose <span class="math inline">\(\lbrack x^n \rbrack A(x) = 0\)</span>. Then <span class="math inline">\(\lbrack x^0 \rbrack A(x) B(x) = 0\)</span> for any <span class="math inline">\(B(x)\)</span>, so we can't have <span class="math inline">\(A(x) B(x) = 1\)</span>.</p>
-<p>continue next class</p>
+<p>Now suppose <span class="math inline">\(\lbrack x^0 \rbrack A(x) = a_0 \neq 0\)</span>. Let <span class="math inline">\(f(x) = a_0 - x\)</span>. This has a multiplicative inverse <span class="math inline">\(g(x) = \sum_{n \geq 0} a_0^{-n-1} x^n\)</span>, ie</p>
+<p><span class="math inline">\(f(x)g(x) = 1\)</span></p>
+<p>Let <span class="math inline">\(B(x) = a_n - A(x)\)</span>. Since <span class="math inline">\(\lbrack x^0 \rbrack B(x) = 0\)</span>, we can substitute <span class="math inline">\(B(x)\)</span> into the equation above to get</p>
+<p><span class="math display">\[f(B(x))g(B(x)) = 1\]</span></p>
+<p>But <span class="math inline">\(f(g(x)) = A(x)\)</span> so <span class="math inline">\(g(B(x)) = A(x)^{-1}\)</span></p>
+<h2 id="catalan-numbers-again">Catalan Numbers (again)</h2>
+<p>From Dyck paths, where does the equation <span class="math inline">\(xC(x)^2 - C(x) + 1 = 0\)</span>?</p>
+<p>Let <span class="math inline">\(S\)</span> be the set of all Dyck paths, with weight function <span class="math inline">\(w: S \rightarrow N\)</span>, <span class="math inline">\(w(\pi)\)</span> is the number of <span class="math inline">\(N\)</span> steps in <span class="math inline">\(\pi\)</span>. Then <span class="math inline">\(C(x) = \phi_S(x)\)</span></p>
+<p>The combinatorial decomposition argument shows that there is a bijection</p>
+<p><span class="math inline">\(S \times S \rightarrow S \setminus \{\varepsilon\} \qquad (\pi &#39;,\pi &#39;&#39;) \rightarrow N\pi &#39; E\pi &#39;&#39;\)</span>$</p>
+<p>where <span class="math inline">\(\varepsilon\)</span> denotes the trivial path of length <span class="math inline">\(0\)</span>.</p>
+<p>This suggests we should define a weight function <span class="math inline">\(W\)</span> on <span class="math inline">\(S \times S\)</span></p>
+<p><span class="math display">\[W(\pi&#39;,\pi&#39;&#39;) = w(N\pi &#39; E\pi &#39;&#39;)\]</span></p>
+<p>Then from the bijection, we have</p>
+<p><span class="math inline">\(\phi_{S \times S} (x) - \sum_{S \times S} x^{W(\pi &#39;,\pi &#39;&#39;)} = \sum_{\pi \in S \setminus \{\varepsilon\}} x^{w(\pi)} = C(x) - 1\)</span></p>
+<p>On the other hand, <span class="math inline">\(W(\pi &#39;, \pi &#39;&#39;)=w(\pi &#39;) + w(\pi &#39;&#39;) + 1\)</span>, so we can use the product lemma to obtain</p>
+<p><span class="math inline">\(\phi_{S \times S}(x) = x\phi_S(x)^2 = xC(x)^2\)</span></p>
+<p>Putting these together gives <span class="math inline">\(xC(x)^2 = C(x) - 1\)</span></p>
+<h3 id="steps-for-using-generating-functions">Steps for using Generating Functions</h3>
+<ul>
+<li>Introduce the objects you want to consider, and the weight function (its solution will solve the initial problem)</li>
+<li>Find bijection or decomposition of set</li>
+<li>Define weight functions on any new sets</li>
+<li>Check that the weight of a composite object should be the sum of its weights (to use the product lemma)</li>
+<li>Write corresponding generating function equations</li>
+<li>Solve (Algebra)</li>
+</ul>
+<h2 id="the-crazy-dice-problem">The crazy dice Problem</h2>
+<p>If you have an ordinary pair of 6 sided dice, the probabilities of rolling any given total can be determined by drawing a table.</p>
+<p><strong>Problem:</strong> Is it possible to replace the numbers on the dice with different positive integers, without affecting this probability table?</p>
+<p>Let <span class="math inline">\(S\)</span> be the set of sides of an ordinary 6 sided die. Define the weight of <span class="math inline">\(\pi \in S\)</span> be the number written on the side <span class="math inline">\(\pi\)</span>. Then</p>
+<p><span class="math inline">\(\phi_S(x) = x + x^2 + x^3 + x^4 + x^5 + x^6\)</span></p>
+<p>The set of possible ways to roll a pair of ordinary dice is <span class="math inline">\(S \times S\)</span>. Define the weight to be the total of the two numbers rolled. Then <span class="math inline">\(\phi_{S \times S}(x) = \phi_S(x)^2\)</span>. This generating fuction tells us how many ways here are to roll each total, and hence determines the probability table.</p>
+<p>Now suppose <span class="math inline">\(A,B\)</span> are the set of sides of two crazy dice, and the weight is the number written on the side. (eg 1,2,4,4,4,9) results in <span class="math inline">\(\phi_S(x) = x+x^2 + 3x^4 + x^9\)</span></p>
+<p>In this case, the generating function for rolling the pair is <span class="math inline">\(\phi_A(x) \phi_B(x)\)</span>, and this determines the probability table. Therefore, what we're trying to achieve is <span class="math inline">\(\phi_A(x) \phi_B(x) = \phi_S(x)^2\)</span></p>
+<p>Now factor <span class="math inline">\(\phi_S(x)^2\)</span> and redistribute the factors.</p>
+<p><span class="math inline">\(\phi_S(x) = x(x+1)(x^2 + x + 1)(x^2 - x + 1)\)</span></p>
+<p>Now since all our dice are 6 sided. <span class="math inline">\(\phi_A(1) = \phi_B(1) = 6\)</span>. This means that we need a factor of <span class="math inline">\((x+1)(x^2 + x + 1)\)</span> in both <span class="math inline">\(\phi_A(x)\)</span> and <span class="math inline">\(\phi_B(x)\)</span>. Since the numbers on each die must be positive integers, we need a factor of <span class="math inline">\(x\)</span> in both. Therefore the only possibility to try Inverse</p>
+<p><span class="math inline">\(\phi_A(x) = x(x+1)(x^2+x+1) = x + 2x^2 + 2x^3 + x^4\)</span></p>
+<p><span class="math inline">\(\phi_B(x) = x(x+1)(x^2+x+1)(x^2-x+1)^2 = x + x^3 + x^4 + x^5 + x^6 + x^8\)</span></p>
+<p>Crazy dice exists. The first die has sides <span class="math inline">\(1,2,2,3,3,4\)</span> and second die has sides <span class="math inline">\(1,3,4,5,6,8\)</span>.</p>
 </body>
 </html>

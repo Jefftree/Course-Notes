@@ -244,7 +244,7 @@ $$= \big\lbrack \sum_{k \geq 0} {a-1 \choose k} x^k \big\rbrack + \big\lbrack \s
 
 $$ = \big\lbrack \sum_{k \geq 0} {a - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a-1 \choose k-1} x^k \big\rbrack$$
 
-$$= \big\lbrack 1+ \sum_{k \geq 1} {n - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a - 1 \choose k - 1} x^k \big\rbrack$$
+$$= \big\lbrack 1+ \sum_{k \geq 1} {a - 1 \choose k} x^k \big\rbrack + \big\lbrack \sum_{k \geq 1} {a - 1 \choose k - 1} x^k \big\rbrack$$
 
 $$= 1 + \sum_{ k \geq 1} \big\lbrack{a-1 \choose k} + {a - 1 \choose l - 1} \big\rbrack x^k$$
 
@@ -692,4 +692,76 @@ In all other cases $A(B(x))$ is not defined. Can't substitute numbers.
 
 **Proof:** First suppose $\lbrack x^n \rbrack A(x) = 0$.  Then $\lbrack x^0 \rbrack A(x) B(x) = 0$ for any $B(x)$, so we can't have $A(x) B(x) = 1$.
 
-continue next class
+Now suppose $\lbrack x^0 \rbrack A(x) = a_0 \neq 0$. Let $f(x) = a_0 - x$. This has a multiplicative inverse $g(x) = \sum_{n \geq 0} a_0^{-n-1} x^n$, ie
+
+$f(x)g(x) = 1$
+
+Let $B(x) = a_n - A(x)$. Since $\lbrack x^0 \rbrack B(x) = 0$, we can substitute $B(x)$ into the equation above to get
+
+$$f(B(x))g(B(x)) = 1$$
+
+But $f(g(x)) = A(x)$ so $g(B(x)) = A(x)^{-1}$
+
+## Catalan Numbers (again)
+
+From Dyck paths, where does the equation $xC(x)^2 - C(x) + 1 = 0$?
+
+Let $S$ be the set of all Dyck paths, with weight function $w: S \rightarrow N$, $w(\pi)$ is the number of $N$ steps in $\pi$. Then $C(x) = \phi_S(x)$
+
+The combinatorial decomposition argument shows that there is a bijection
+
+$S \times S \rightarrow S \setminus \{\varepsilon\} \qquad (\pi ',\pi '') \rightarrow N\pi ' E\pi ''$$
+
+where $\varepsilon$ denotes the trivial path of length $0$.
+
+This suggests we should define a weight function $W$ on $S \times S$
+
+$$W(\pi',\pi'') = w(N\pi ' E\pi '')$$
+
+Then from the bijection, we have
+
+$\phi_{S \times S} (x) - \sum_{S \times S} x^{W(\pi ',\pi '')} = \sum_{\pi \in S \setminus \{\varepsilon\}} x^{w(\pi)} = C(x) - 1$
+
+On the other hand, $W(\pi ', \pi '')=w(\pi ') + w(\pi '') + 1$, so we can use the product lemma to obtain
+
+$\phi_{S \times S}(x) = x\phi_S(x)^2 = xC(x)^2$
+
+Putting these together gives $xC(x)^2 = C(x) - 1$
+
+### Steps for using Generating Functions
+
+- Introduce the objects you want to consider, and the weight function (its solution will solve the initial problem)
+- Find bijection or decomposition of set
+- Define weight functions on any new sets
+- Check that the weight of a composite object should be the sum of its weights (to use the product lemma)
+- Write corresponding generating function equations
+- Solve (Algebra)
+
+## The crazy dice Problem
+
+If you have an ordinary pair of 6 sided dice, the probabilities of rolling any given total can be determined by drawing a table.
+
+**Problem:** Is it possible to replace the numbers on the dice with different positive integers, without affecting this probability table?
+
+Let $S$ be the set of sides of an ordinary 6 sided die. Define the weight of $\pi \in S$ be the number written on the side $\pi$. Then
+
+$\phi_S(x) = x + x^2 + x^3 + x^4 + x^5 + x^6$
+
+
+The set of possible ways to roll a pair of ordinary dice is $S \times S$. Define the weight to be the total of the two numbers rolled. Then $\phi_{S \times S}(x) = \phi_S(x)^2$. This generating fuction tells us how many ways here are to roll each total, and hence determines the probability table.
+
+Now suppose $A,B$ are the set of sides of two crazy dice, and the weight is the number written on the side. (eg 1,2,4,4,4,9) results in $\phi_S(x) = x+x^2 + 3x^4 + x^9$
+
+In this case, the generating function for rolling the pair is $\phi_A(x) \phi_B(x)$, and this determines the probability table. Therefore, what we're trying to achieve is $\phi_A(x) \phi_B(x) = \phi_S(x)^2$
+
+Now factor $\phi_S(x)^2$ and redistribute the factors.
+
+$\phi_S(x) = x(x+1)(x^2 + x + 1)(x^2 - x + 1)$
+
+Now since all our dice are 6 sided. $\phi_A(1) = \phi_B(1) = 6$. This means that we need a factor of $(x+1)(x^2 + x + 1)$ in both $\phi_A(x)$ and $\phi_B(x)$. Since the numbers on each die must be positive integers, we need a factor of $x$ in both. Therefore the only possibility to try Inverse
+
+$\phi_A(x) = x(x+1)(x^2+x+1) = x + 2x^2 + 2x^3 + x^4$
+
+$\phi_B(x) = x(x+1)(x^2+x+1)(x^2-x+1)^2 = x + x^3 + x^4 + x^5 + x^6 + x^8$
+
+Crazy dice exists. The first die has sides $1,2,2,3,3,4$ and second die has sides $1,3,4,5,6,8$.
