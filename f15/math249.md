@@ -9,6 +9,10 @@ Combinatorics include enumeration and graph theory.
 
 The **cardinality** of a set $A$, denoted as $|A|$ is the number of elements it contains if it is finite, or something else if it's infinite.
 
+The **Cartesian power** $A^k$ is the set of all ordered $k$-tuples of elements from $A$.
+
+$$A^k:= \{a_1,a_2,\dots,a_k\}: a_1.a_2,\dots,a_k \in A \}$$
+
 $\lbrack n \rbrack$ is the set of all positive integers from $1$ to $n$, inclusive. This is represented as $\{1,...,n\},\,\forall n \geq 1$.
 
 A $k$-subset of $\lbrack n \rbrack$ is simply a subset of it that contains $k$ elements. For example, there are $6$ $2$-subsets of $\lbrack 4 \rbrack$, namely $\{1,2\},\{1,3\},\{1,4\},\{2,3\},\{2,4\},\{3,4\}$.
