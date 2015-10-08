@@ -15,6 +15,8 @@
 <p>Combinatorics include enumeration and graph theory.</p>
 <h2 id="enumeration">Enumeration</h2>
 <p>The <strong>cardinality</strong> of a set <span class="math inline">\(A\)</span>, denoted as <span class="math inline">\(|A|\)</span> is the number of elements it contains if it is finite, or something else if it's infinite.</p>
+<p>The <strong>Cartesian power</strong> <span class="math inline">\(A^k\)</span> is the set of all ordered <span class="math inline">\(k\)</span>-tuples of elements from <span class="math inline">\(A\)</span>.</p>
+<p><span class="math display">\[A^k:= \{a_1,a_2,\dots,a_k\}: a_1.a_2,\dots,a_k \in A \}\]</span></p>
 <p><span class="math inline">\(\lbrack n \rbrack\)</span> is the set of all positive integers from <span class="math inline">\(1\)</span> to <span class="math inline">\(n\)</span>, inclusive. This is represented as <span class="math inline">\(\{1,...,n\},\,\forall n \geq 1\)</span>.</p>
 <p>A <span class="math inline">\(k\)</span>-subset of <span class="math inline">\(\lbrack n \rbrack\)</span> is simply a subset of it that contains <span class="math inline">\(k\)</span> elements. For example, there are <span class="math inline">\(6\)</span> <span class="math inline">\(2\)</span>-subsets of <span class="math inline">\(\lbrack 4 \rbrack\)</span>, namely <span class="math inline">\(\{1,2\},\{1,3\},\{1,4\},\{2,3\},\{2,4\},\{3,4\}\)</span>.</p>
 <p><strong>Example</strong> The number of <span class="math inline">\(k\)</span>-subsets of <span class="math inline">\(\lbrack n \rbrack\)</span> is <span class="math inline">\(n \choose k\)</span> for <span class="math inline">\(n = 0,1,...,\)</span> and <span class="math inline">\(k=0,1,...,n\)</span></p>
@@ -352,10 +354,10 @@ xC(x)^2 &amp;= x\left(\sum_{j \geq 0} c_j x^j\right)\left(\sum_{k \geq 0} c_k x^
 <p>Let <span class="math inline">\(N_{\text{odd}}\)</span> represent the set of all odd numbers.</p>
 <p>Then <span class="math inline">\(S = (N_{\text{odd}})^0 \cup (N_{\text{odd}})^2 \cup (N_{\text{odd}})^4 \cup \dots\)</span></p>
 <p><span class="math inline">\(= \bigcup_{k=0}^n (N_{\text{odd}^{2k}})\)</span></p>
-<p><span class="math inline">\(\phi_S(x) = \sum_{k=0}^n \phi_{N_{\text{odd}^{2k}}(x)\)</span></p>
+<p><span class="math inline">\(\phi_S(x) = \sum_{k=0}^n \phi_{N_{\text{odd}}^{2k}}(x)\)</span></p>
 <p>$=<em>{N</em>{odd}}</p>
 <p>=$</p>
-<p><span class="math inline">\(= \lbrack x^n \rbrac \frac{1}{1-x^2(1-x^2)^{-2}}\)</span></p>
+<p><span class="math inline">\(= \lbrack x^n \rbrack \frac{1}{1-x^2(1-x^2)^{-2}}\)</span></p>
 <hr />
 <p>If <span class="math inline">\(S\)</span> is a finite set, <span class="math inline">\(\phi_S(x)\)</span> is a polynomial</p>
 <p>If <span class="math inline">\(S\)</span> is an infinite set, then <span class="math inline">\(\phi_S (x)\)</span> is a power series.</p>
@@ -438,5 +440,50 @@ xC(x)^2 &amp;= x\left(\sum_{j \geq 0} c_j x^j\right)\left(\sum_{k \geq 0} c_k x^
 <p><span class="math inline">\(\phi_A(x) = x(x+1)(x^2+x+1) = x + 2x^2 + 2x^3 + x^4\)</span></p>
 <p><span class="math inline">\(\phi_B(x) = x(x+1)(x^2+x+1)(x^2-x+1)^2 = x + x^3 + x^4 + x^5 + x^6 + x^8\)</span></p>
 <p>Crazy dice exists. The first die has sides <span class="math inline">\(1,2,2,3,3,4\)</span> and second die has sides <span class="math inline">\(1,3,4,5,6,8\)</span>.</p>
+<h2 id="cyclotomic-polynomials">Cyclotomic polynomials</h2>
+<p>How did I factor <span class="math inline">\(\phi_S(x)\)</span>? Using the finite geometric series formula, <span class="math inline">\(\phi_S(x) =x(x^6-1)/(x-1)\)</span>.</p>
+<p><strong>Theorem:</strong> There exists polynomials <span class="math inline">\(\phi_B(X) \in Z\lbrack x \rbrack, n \geq 1\)</span>, called the cyclotomic polynomials satisfying</p>
+<ul>
+<li><span class="math inline">\(x^n - 1 = \prod_{d/n} \phi_d(x)\)</span></li>
+<li><span class="math inline">\(\phi_B(x) = \prod_{d/n} (x^d - 1)^{\mu(n/d)}\)</span>, where <span class="math inline">\(\mu(.)\)</span> is the Mobius function</li>
+<li><span class="math inline">\(\phi_n(x) = \prod_{0 &lt; k &lt; n, gcd(k,n)=1} (x-e^{2\pi(k/n)})\)</span> in <span class="math inline">\(C\lbrack x \rbrack\)</span></li>
+</ul>
+<p><strong>Sketch of Proof:</strong> Use iii as definition. Check that i holds; by Mobius inversion, so does ii. iii shows that <span class="math inline">\(\phi_n(x) \in C\lbrack x \rbrack\)</span>, and ii shows that <span class="math inline">\(\phi_n(x)\)</span> is a ratio of moonic polynomials in <span class="math inline">\(Z\lbrack x \rbrack\)</span>. Together, these imply <span class="math inline">\(\phi_n(x) \in Z\lbrack x \rbrack\)</span></p>
+<h2 id="partitions-of-an-integer">Partitions of an Integer</h2>
+<p>A partition of <span class="math inline">\(n\)</span> with <span class="math inline">\(k\)</span> parts is a <span class="math inline">\(k\)</span>-tuple <span class="math inline">\(\lambda = (\lambda_1,\dots,\lambda_) \in (N_{\geq 1})^k\)</span>, of positive integers such that</p>
+<p><span class="math inline">\(\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_k\)</span></p>
+<p>and</p>
+<p><span class="math inline">\(\lambda_1 + \lambda_2 + \cdots + \lambda_k = n\)</span></p>
+<p>A partition is a composition in which the parts are in weakly decreasing order.</p>
+<p><span class="math inline">\(n\)</span> is called the size of <span class="math inline">\(\lambda\)</span>; we write <span class="math inline">\(\|\lambda| = n\)</span>, or <span class="math inline">\(\lambda \vdash n\)</span>. <span class="math inline">\(k\)</span> is called the length of <span class="math inline">\(\lambda\)</span>, we write <span class="math inline">\(l(\lambda)=k\)</span></p>
+<p><strong>Problem:</strong> For <span class="math inline">\(m,n\in N\)</span>, determine the number of partitions of <span class="math inline">\(n\)</span>, in which all parts are <span class="math inline">\(\leq m\)</span>.</p>
+<p><strong>Solution:</strong> Let <span class="math inline">\(P_m\)</span> denote the set of all partitions in which all parts are <span class="math inline">\(\geq m\)</span>. Define the weight of a partition to be its size:</p>
+<p><span class="math inline">\(w(\lambda) = \lambda_1 + \lambda_2 + \cdots + \lambda_k\)</span></p>
+<p>Let <span class="math inline">\(S_m = N \times 2N \times 3N \cdots \times mN\)</span>, with weight function</p>
+<p><span class="math inline">\(w:S_n \rightarrow N\)</span>, <span class="math inline">\(w(c_1,\dots,c_m) = c_1 + c_2 + \cdots + c_m\)</span></p>
+<p>We give a bijection <span class="math inline">\(\phi:P_{\lambda_i \leq m} \rightarrow S_m\)</span>. If <span class="math inline">\(\lambda = (\lambda_1,\dots,\lambda_k) \in P_m\)</span> define <span class="math inline">\(\phi(\lambda) = (c_1,\dots,c_m)\)</span> where</p>
+<p><span class="math inline">\(c_i = \sum_{j \in \lbrack k \rbrack, \lambda_j=i} \lambda_j\)</span></p>
+<p>Inverse map: <span class="math inline">\(c_i\)</span> is the number of parts equal to <span class="math inline">\(i\)</span> in <span class="math inline">\(\lambda\)</span>.</p>
+<p>Example <span class="math inline">\(m=7,\lambda=(6,6,6,3,2,2), \phi(\lambda) = 0,4,3,0,0,18,0)\)</span></p>
+<p>Note that <span class="math inline">\(w(\lambda) = w(\phi(\lambda))\)</span>. <span class="math inline">\(\phi\)</span> is a weight preserving bijection, therefore <span class="math inline">\(\phi_{P_m}(x) = \phi_{S_m} (x)\)</span></p>
+<p>To compare a <span class="math inline">\(\phi_{S_m} (x)\)</span>, define a weight function <span class="math inline">\(\alpha_i: iN \rightarrow N\)</span>, <span class="math inline">\(\alpha_i(c) = c\)</span>. Then</p>
+<p><span class="math inline">\(w(c_1,\dots,c_m) = \alpha_1(c_1) + \cdots + a_m (c_m)\)</span></p>
+<p>so we can use the product lemma.</p>
+<p><span class="math display">\[\phi_{S_m}(x) = \prod_{i=1}^m \phi_{iN}(x) = \prod_{i=1}^m (1-x^i)^{-1}\]</span></p>
+<p>Therefore the number of partitions of <span class="math inline">\(n\)</span> with all parts <span class="math inline">\(\leq m\)</span> is</p>
+<p><span class="math display">\[\lbrack x^n \rbrack \prod_{i=1}^m (1-x^i)^{-1}\]</span></p>
+<p>There is no sensible way to simplify this answer.</p>
+<p><strong>Problem 2:</strong> For <span class="math inline">\(m,n \in N\)</span>, determine the number of partitions of <span class="math inline">\(n\)</span>, with length <span class="math inline">\(\leq m\)</span>.</p>
+<p><strong>Solution:</strong> Let <span class="math inline">\(S_m &#39;\)</span> be the set of partitions with length <span class="math inline">\(\leq m\)</span>. The weight of a partition is its size.</p>
+<p>The ferrers diagram of <span class="math inline">\(\lambda\)</span> is a left justified array of boxes, with <span class="math inline">\(\lambda_j\)</span> boxes in row<span class="math inline">\(j,j \in \lbrack k \rbrack\)</span></p>
+<p>Eg: <span class="math inline">\(\lambda=6632\)</span></p>
+<pre><code>XXXXXX
+XXXXXX
+XXX
+XX</code></pre>
+<p>The size of <span class="math inline">\(\lambda\)</span> is the number of boxes. The length of <span class="math inline">\(\lambda\)</span> is the number of rows.</p>
+<p>In the previous problem, we defined a bijection between <span class="math inline">\(P_m\)</span> and <span class="math inline">\(S_m\)</span> in terms of the Ferrers diagram, <span class="math inline">\(c_i = i \cdot\)</span> #(rows of length <span class="math inline">\(i\)</span>). Works because diagram has at most <span class="math inline">\(m\)</span> columns.</p>
+<p>In this problem, we use columns of Ferrers diagram instead. Define a bijection between <span class="math inline">\(P_m&#39;\)</span> and <span class="math inline">\(S_m: c_i = i \cdot\)</span> #(columns of length <span class="math inline">\(i\)</span>). Works because diagram has at most <span class="math inline">\(m\)</span> rows.</p>
+<p>Conclusion: Problem 2 has the same answer as Problem 1.</p>
 </body>
 </html>

@@ -613,13 +613,13 @@ Then $S = (N_{\text{odd}})^0 \cup (N_{\text{odd}})^2 \cup (N_{\text{odd}})^4 \cu
 
 $= \bigcup_{k=0}^n (N_{\text{odd}^{2k}})$
 
-$\phi_S(x) = \sum_{k=0}^n \phi_{N_{\text{odd}^{2k}}(x)$
+$\phi_S(x) = \sum_{k=0}^n \phi_{N_{\text{odd}}^{2k}}(x)$
 
 $=\phi_{N_{odd}}
 
 =\frac{1}{1-x^2(1-x^2)^{-2}}$
 
-$= \lbrack x^n \rbrac \frac{1}{1-x^2(1-x^2)^{-2}}$
+$= \lbrack x^n \rbrack \frac{1}{1-x^2(1-x^2)^{-2}}$
 
 -------------------
 
@@ -769,3 +769,86 @@ $\phi_A(x) = x(x+1)(x^2+x+1) = x + 2x^2 + 2x^3 + x^4$
 $\phi_B(x) = x(x+1)(x^2+x+1)(x^2-x+1)^2 = x + x^3 + x^4 + x^5 + x^6 + x^8$
 
 Crazy dice exists. The first die has sides $1,2,2,3,3,4$ and second die has sides $1,3,4,5,6,8$.
+
+## Cyclotomic polynomials
+
+How did I factor $\phi_S(x)$? Using the finite geometric series formula, $\phi_S(x) =x(x^6-1)/(x-1)$.
+
+**Theorem:** There exists polynomials $\phi_B(X) \in Z\lbrack x \rbrack, n \geq 1$, called the cyclotomic polynomials satisfying
+
+- $x^n - 1 = \prod_{d/n} \phi_d(x)$
+- $\phi_B(x) = \prod_{d/n} (x^d - 1)^{\mu(n/d)}$, where $\mu(.)$ is the Mobius function
+- $\phi_n(x) = \prod_{0 < k < n, gcd(k,n)=1} (x-e^{2\pi(k/n)})$ in $C\lbrack x \rbrack$
+
+**Sketch of Proof:** Use iii as definition. Check that i holds; by Mobius inversion, so does ii. iii shows that $\phi_n(x) \in C\lbrack x \rbrack$, and ii shows that $\phi_n(x)$ is a ratio of moonic polynomials in $Z\lbrack x \rbrack$. Together, these imply $\phi_n(x) \in Z\lbrack x \rbrack$
+
+## Partitions of an Integer
+
+A partition of $n$ with $k$ parts is a $k$-tuple $\lambda = (\lambda_1,\dots,\lambda_) \in (N_{\geq 1})^k$, of positive integers such that
+
+$\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_k$
+
+and
+
+$\lambda_1 + \lambda_2 + \cdots + \lambda_k = n$
+
+A partition is a composition in which the parts are in weakly decreasing order.
+
+$n$ is called the size of $\lambda$; we write $\|\lambda| = n$, or $\lambda \vdash n$.
+$k$ is called the length of $\lambda$, we write $l(\lambda)=k$
+
+**Problem:** For $m,n\in N$, determine the number of partitions of $n$, in which all parts are $\leq m$.
+
+**Solution:** Let $P_m$ denote the set of all partitions in which all parts are $\geq m$. Define the weight of a partition to be its size:
+
+$w(\lambda) = \lambda_1 + \lambda_2 + \cdots + \lambda_k$
+
+Let $S_m = N \times 2N \times 3N \cdots \times mN$, with weight function
+
+$w:S_n \rightarrow N$, $w(c_1,\dots,c_m) = c_1 + c_2 + \cdots + c_m$
+
+We give a bijection $\phi:P_{\lambda_i \leq m} \rightarrow S_m$. If $\lambda = (\lambda_1,\dots,\lambda_k) \in P_m$ define $\phi(\lambda) = (c_1,\dots,c_m)$ where
+
+$c_i = \sum_{j \in \lbrack k \rbrack, \lambda_j=i} \lambda_j$
+
+Inverse map: $c_i$ is the number of parts equal to $i$ in $\lambda$.
+
+Example $m=7,\lambda=(6,6,6,3,2,2), \phi(\lambda) = 0,4,3,0,0,18,0)$
+
+Note that $w(\lambda) = w(\phi(\lambda))$. $\phi$ is a weight preserving bijection, therefore $\phi_{P_m}(x) = \phi_{S_m} (x)$
+
+To compare a $\phi_{S_m} (x)$, define a weight function $\alpha_i: iN \rightarrow N$, $\alpha_i(c) = c$. Then
+
+$w(c_1,\dots,c_m) = \alpha_1(c_1) + \cdots + a_m (c_m)$
+
+so we can use the product lemma.
+
+$$\phi_{S_m}(x) = \prod_{i=1}^m \phi_{iN}(x) = \prod_{i=1}^m (1-x^i)^{-1}$$
+
+Therefore the number of partitions of $n$ with all parts $\leq m$ is
+
+$$\lbrack x^n \rbrack \prod_{i=1}^m (1-x^i)^{-1}$$
+
+There is no sensible way to simplify this answer.
+
+**Problem 2:** For $m,n \in N$, determine the number of partitions of $n$, with length $\leq m$.
+
+**Solution:** Let $S_m '$ be the set of partitions with length $\leq m$. The weight of a partition is its size.
+
+The ferrers diagram of $\lambda$ is a left justified array of boxes, with $\lambda_j$ boxes in row$j,j \in \lbrack k \rbrack$
+
+Eg: $\lambda=6632$
+```
+XXXXXX
+XXXXXX
+XXX
+XX
+```
+
+The size of $\lambda$ is the number of boxes. The length of $\lambda$ is the number of rows.
+
+In the previous problem, we defined a bijection between $P_m$ and $S_m$ in terms of the Ferrers diagram, $c_i = i \cdot$ #(rows of length $i$). Works because diagram has at most $m$ columns.
+
+In this problem, we use columns of Ferrers diagram instead. Define a bijection between $P_m'$ and $S_m: c_i = i \cdot$ #(columns of length $i$). Works because diagram has at most $m$ rows.
+
+Conclusion: Problem 2 has the same answer as Problem 1.
