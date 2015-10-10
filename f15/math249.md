@@ -852,3 +852,94 @@ In the previous problem, we defined a bijection between $P_m$ and $S_m$ in terms
 In this problem, we use columns of Ferrers diagram instead. Define a bijection between $P_m'$ and $S_m: c_i = i \cdot$ #(columns of length $i$). Works because diagram has at most $m$ rows.
 
 Conclusion: Problem 2 has the same answer as Problem 1.
+
+Alternate argument: There is a weight preserving bijection between $P_m$ and $P_m '$ obtained by reflecting the Ferrers diagram on its diagonal. The partition obtained from $\lambda$ in this way is called the conjugate of $\lambda$, denoted $\bar{\lambda}$. Conjugation does not change the size of a partition.
+
+**Problem 3:** Determine the number of partitions of $n$
+
+**Solution:** Let $m \geq n$. Then every partition of $n$ has all parts $\leq m$ and length $\geq m$. So by Problem 1 or 2, the anwer is
+
+$$\lbrack x^n \rbrack \prod_{i=1}^m (1-x^i)^{-1}$$
+
+Since this is true for every $m \geq n$, we write the answer as
+
+$$\lbrack x^n \rbrack \prod_{i=1}^\infty (1-x^i)^{-1}$$
+
+Informally $\infty$ means any large enough number will give the right answer.
+
+## Infinite products of formal power series
+
+Let $A_1(x),A_2(x),\cdots \in R\lbrack \lbrack x \rbrack \rbrack$. We say that
+
+$$a_n = \lbrack x^n \rbrack \prod_{i=1}^\infty A_i(x)$$
+
+if there exists $n \in N$ such that for all $m \geq N$ we have
+
+$$a_n = \lbrack x^n \rbrack \prod_{i=1}^m A_i(x)$$
+
+If $a_n$ exists for all $n \in N$, we say that $\prod_{i=1}^\infty A_i(X) = \sum_{n \geq 0} a_n x^n$
+
+Example: Compute $\prod_{i=1}^\infty (1+x^{2^{i-1}})$
+
+$\prod_{i=1}^m (1+x^{2^{i-1}}) = 1 + x + x^2 + x^2 + \cdots + x^{2^m - 1}$, so for $m > \log_2(n)$
+
+$\lbrack x^n \rbrack \prod_{i=1}^m (1+x^{2^{i-1}})=1$
+
+Therefore $\prod_{i=1}^\infty (1+x^{2^{i-1}}) = \sum_{n \geq 1} 1x^n = (1-x)^{-1}$
+
+**Example:** Show that the number of partitions of $n$ with all parts odd is equal to the number of partitions of $n$ with all parts distinct.
+
+Let $\sigma$ be the set of partitions with odd parts. Let $D$ be the set of partitions with distinct parts. IN each case, define the weight of a partition to be its size. Using the previous technique:
+
+$\phi_\sigma(x) = \prod_{j=1}^\infty (1-x^{2j-1})^{-1} \qquad \phi_D(x) = \prod_{i=1}^\infty (1+x^i)$
+
+We want to show that $\lbrack x^n \rbrack \phi_\sigma (x) = \lbrack x^n \rbrack \phi_D(x)$. To see this, multiply by $A(x) = \prod_{i=1}^\infty (1-x^{2i})^{-1}$
+
+$$A(x) \phi_D(x) = \prod_{i=1}^\infty (1-x^{2i-1})^{-1} (1-x^{2i})^{-1} = \prod_{j=1}^\infty (1-x^i)^i$$
+
+$$A(x) \phi_D(x) = \prod_{i=1}^\infty \frac{1+x^i}{1-x^{2i}} = \prod_{i=1}^\infty (1-x^i)^{-1}$$
+
+Thus $A(x) \phi_D(x) = A(x) \phi_D(x)$, and hence $\phi_\sigma(x) = \phi_D(x)$
+
+## More than one weight function
+Let $S$ be a set of combinatorial objects, and suppose $w_1$ and $w_2$ are two weight functions on $S$. The multivariate generating function for $S$ with respect to $w_1$ and $w_2$ is
+
+$$\phi_S(x,y) = \sum_{\sigma \in S} x^{w_1(\sigma)} y^{w_2(\sigma)}$$
+
+Associated counting problem: For $m,n \in N$, how many objects in $\sigma \in S$ are there with $w_1(\sigma) = m$ and $w_2(\sigma) = n$
+
+There is same as one weight function
+
+- Answer to counting problem is $\lbrack x^m y^n \rbrack \phi_S(x,y)$
+- Sum lemma (basically same)
+- Product lemma (basically same)
+- Specializations (basically same)
+
+Consider $F(x,y) = 1 + 3x + 5xy^2 - yx^2 = 1 + (3 + 5y^2)x - yx^2$
+
+$\lbrack xy^2 \rbrack F(x,y) = 5$
+
+$\lbrack x \rbrack F(x,y) = 3$ or $3 + 5y^2$?
+
+It's legitimately ambiguous, but we define it to mean the latter. If $A(x,y)$ is a formal power series in two variables
+
+$$\lbrack x^n \rbrack A(x,y) = \sum_{m \geq 0} (\lbrack x^n y^m \rbrack A(x,y)) y^m$$
+
+which is a formal power series in one variable.
+
+Use the notation $\lbrack x^n y^0 \rbrack A(x,y)$ to mean the other one.
+
+Sum lemma: Let $S$ be a set with weight functions $w_1$ and $w_2$, and $A \cup B = S$, then
+
+$\phi_S(x,y) = \phi_A(x,y) + \phi_B(x,y) - \phi_{A \cap B} (x,y)$
+
+Product lemma: Suppose $A$ and $B$ are sets and
+
+- $\alpha_1$ and $\alpha_2$ are weight functions on $A$
+- $\beta_1$ and $\beta_2$ are weight functions on $B$
+- $w_1$ and $w_2$ are weight functions on $A \times B$
+- $\gamma_1, \gamma_2 \in Z$ are constants
+
+if $w_1(a,b) = \alpha_i(a) + \beta_i(b) + \gamma_i$ for all $\alpha \in A, \beta \in B, i = 1,2,$ then
+
+$\phi_{A \times B}(x,y) = x^{\gamma_1} y^{\gamma_2} \phi_A(x,y)\phi_B(x,y)$

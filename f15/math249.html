@@ -485,5 +485,58 @@ XX</code></pre>
 <p>In the previous problem, we defined a bijection between <span class="math inline">\(P_m\)</span> and <span class="math inline">\(S_m\)</span> in terms of the Ferrers diagram, <span class="math inline">\(c_i = i \cdot\)</span> #(rows of length <span class="math inline">\(i\)</span>). Works because diagram has at most <span class="math inline">\(m\)</span> columns.</p>
 <p>In this problem, we use columns of Ferrers diagram instead. Define a bijection between <span class="math inline">\(P_m&#39;\)</span> and <span class="math inline">\(S_m: c_i = i \cdot\)</span> #(columns of length <span class="math inline">\(i\)</span>). Works because diagram has at most <span class="math inline">\(m\)</span> rows.</p>
 <p>Conclusion: Problem 2 has the same answer as Problem 1.</p>
+<p>Alternate argument: There is a weight preserving bijection between <span class="math inline">\(P_m\)</span> and <span class="math inline">\(P_m &#39;\)</span> obtained by reflecting the Ferrers diagram on its diagonal. The partition obtained from <span class="math inline">\(\lambda\)</span> in this way is called the conjugate of <span class="math inline">\(\lambda\)</span>, denoted <span class="math inline">\(\bar{\lambda}\)</span>. Conjugation does not change the size of a partition.</p>
+<p><strong>Problem 3:</strong> Determine the number of partitions of <span class="math inline">\(n\)</span></p>
+<p><strong>Solution:</strong> Let <span class="math inline">\(m \geq n\)</span>. Then every partition of <span class="math inline">\(n\)</span> has all parts <span class="math inline">\(\leq m\)</span> and length <span class="math inline">\(\geq m\)</span>. So by Problem 1 or 2, the anwer is</p>
+<p><span class="math display">\[\lbrack x^n \rbrack \prod_{i=1}^m (1-x^i)^{-1}\]</span></p>
+<p>Since this is true for every <span class="math inline">\(m \geq n\)</span>, we write the answer as</p>
+<p><span class="math display">\[\lbrack x^n \rbrack \prod_{i=1}^\infty (1-x^i)^{-1}\]</span></p>
+<p>Informally <span class="math inline">\(\infty\)</span> means any large enough number will give the right answer.</p>
+<h2 id="infinite-products-of-formal-power-series">Infinite products of formal power series</h2>
+<p>Let <span class="math inline">\(A_1(x),A_2(x),\cdots \in R\lbrack \lbrack x \rbrack \rbrack\)</span>. We say that</p>
+<p><span class="math display">\[a_n = \lbrack x^n \rbrack \prod_{i=1}^\infty A_i(x)\]</span></p>
+<p>if there exists <span class="math inline">\(n \in N\)</span> such that for all <span class="math inline">\(m \geq N\)</span> we have</p>
+<p><span class="math display">\[a_n = \lbrack x^n \rbrack \prod_{i=1}^m A_i(x)\]</span></p>
+<p>If <span class="math inline">\(a_n\)</span> exists for all <span class="math inline">\(n \in N\)</span>, we say that <span class="math inline">\(\prod_{i=1}^\infty A_i(X) = \sum_{n \geq 0} a_n x^n\)</span></p>
+<p>Example: Compute <span class="math inline">\(\prod_{i=1}^\infty (1+x^{2^{i-1}})\)</span></p>
+<p><span class="math inline">\(\prod_{i=1}^m (1+x^{2^{i-1}}) = 1 + x + x^2 + x^2 + \cdots + x^{2^m - 1}\)</span>, so for <span class="math inline">\(m &gt; \log_2(n)\)</span></p>
+<p><span class="math inline">\(\lbrack x^n \rbrack \prod_{i=1}^m (1+x^{2^{i-1}})=1\)</span></p>
+<p>Therefore <span class="math inline">\(\prod_{i=1}^\infty (1+x^{2^{i-1}}) = \sum_{n \geq 1} 1x^n = (1-x)^{-1}\)</span></p>
+<p><strong>Example:</strong> Show that the number of partitions of <span class="math inline">\(n\)</span> with all parts odd is equal to the number of partitions of <span class="math inline">\(n\)</span> with all parts distinct.</p>
+<p>Let <span class="math inline">\(\sigma\)</span> be the set of partitions with odd parts. Let <span class="math inline">\(D\)</span> be the set of partitions with distinct parts. IN each case, define the weight of a partition to be its size. Using the previous technique:</p>
+<p><span class="math inline">\(\phi_\sigma(x) = \prod_{j=1}^\infty (1-x^{2j-1})^{-1} \qquad \phi_D(x) = \prod_{i=1}^\infty (1+x^i)\)</span></p>
+<p>We want to show that <span class="math inline">\(\lbrack x^n \rbrack \phi_\sigma (x) = \lbrack x^n \rbrack \phi_D(x)\)</span>. To see this, multiply by <span class="math inline">\(A(x) = \prod_{i=1}^\infty (1-x^{2i})^{-1}\)</span></p>
+<p><span class="math display">\[A(x) \phi_D(x) = \prod_{i=1}^\infty (1-x^{2i-1})^{-1} (1-x^{2i})^{-1} = \prod_{j=1}^\infty (1-x^i)^i\]</span></p>
+<p><span class="math display">\[A(x) \phi_D(x) = \prod_{i=1}^\infty \frac{1+x^i}{1-x^{2i}} = \prod_{i=1}^\infty (1-x^i)^{-1}\]</span></p>
+<p>Thus <span class="math inline">\(A(x) \phi_D(x) = A(x) \phi_D(x)\)</span>, and hence <span class="math inline">\(\phi_\sigma(x) = \phi_D(x)\)</span></p>
+<h2 id="more-than-one-weight-function">More than one weight function</h2>
+<p>Let <span class="math inline">\(S\)</span> be a set of combinatorial objects, and suppose <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> are two weight functions on <span class="math inline">\(S\)</span>. The multivariate generating function for <span class="math inline">\(S\)</span> with respect to <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> is</p>
+<p><span class="math display">\[\phi_S(x,y) = \sum_{\sigma \in S} x^{w_1(\sigma)} y^{w_2(\sigma)}\]</span></p>
+<p>Associated counting problem: For <span class="math inline">\(m,n \in N\)</span>, how many objects in <span class="math inline">\(\sigma \in S\)</span> are there with <span class="math inline">\(w_1(\sigma) = m\)</span> and <span class="math inline">\(w_2(\sigma) = n\)</span></p>
+<p>There is same as one weight function</p>
+<ul>
+<li>Answer to counting problem is <span class="math inline">\(\lbrack x^m y^n \rbrack \phi_S(x,y)\)</span></li>
+<li>Sum lemma (basically same)</li>
+<li>Product lemma (basically same)</li>
+<li>Specializations (basically same)</li>
+</ul>
+<p>Consider <span class="math inline">\(F(x,y) = 1 + 3x + 5xy^2 - yx^2 = 1 + (3 + 5y^2)x - yx^2\)</span></p>
+<p><span class="math inline">\(\lbrack xy^2 \rbrack F(x,y) = 5\)</span></p>
+<p><span class="math inline">\(\lbrack x \rbrack F(x,y) = 3\)</span> or <span class="math inline">\(3 + 5y^2\)</span>?</p>
+<p>It's legitimately ambiguous, but we define it to mean the latter. If <span class="math inline">\(A(x,y)\)</span> is a formal power series in two variables</p>
+<p><span class="math display">\[\lbrack x^n \rbrack A(x,y) = \sum_{m \geq 0} (\lbrack x^n y^m \rbrack A(x,y)) y^m\]</span></p>
+<p>which is a formal power series in one variable.</p>
+<p>Use the notation <span class="math inline">\(\lbrack x^n y^0 \rbrack A(x,y)\)</span> to mean the other one.</p>
+<p>Sum lemma: Let <span class="math inline">\(S\)</span> be a set with weight functions <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span>, and <span class="math inline">\(A \cup B = S\)</span>, then</p>
+<p><span class="math inline">\(\phi_S(x,y) = \phi_A(x,y) + \phi_B(x,y) - \phi_{A \cap B} (x,y)\)</span></p>
+<p>Product lemma: Suppose <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are sets and</p>
+<ul>
+<li><span class="math inline">\(\alpha_1\)</span> and <span class="math inline">\(\alpha_2\)</span> are weight functions on <span class="math inline">\(A\)</span></li>
+<li><span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are weight functions on <span class="math inline">\(B\)</span></li>
+<li><span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> are weight functions on <span class="math inline">\(A \times B\)</span></li>
+<li><span class="math inline">\(\gamma_1, \gamma_2 \in Z\)</span> are constants</li>
+</ul>
+<p>if <span class="math inline">\(w_1(a,b) = \alpha_i(a) + \beta_i(b) + \gamma_i\)</span> for all <span class="math inline">\(\alpha \in A, \beta \in B, i = 1,2,\)</span> then</p>
+<p><span class="math inline">\(\phi_{A \times B}(x,y) = x^{\gamma_1} y^{\gamma_2} \phi_A(x,y)\phi_B(x,y)\)</span></p>
 </body>
 </html>
