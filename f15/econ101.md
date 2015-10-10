@@ -14,7 +14,7 @@ Economics is the social science that studies the choices that individuals, busin
 
 **Microeconomics:** Study of choices that individuals and businesses make, how those choices interact in markets, and the influence of governments.
 
-**Macroeconomics:** Study of the overall performance of an economy (National and global).
+**Macroeconomics:** Study of the overall performance of an economy (National and global)
 
 **Goods and services** are the objects that people value and produce to satisfy human wants.
 
@@ -78,7 +78,7 @@ Government redistribution of income from the rich to the poor creates the **big 
 
 The rule of law that protects private property and facilitates voluntary exchange in markets.
 
-A **positive** can be tested against facts. A **normative** statement cannot be tested.
+A **positive** statement can be tested against facts. A **normative** statement cannot be tested.
 
 An **economic model** is a description of some aspect of the economic world that includes only those features that are needed for the purpose at hand. Simplified framework designed to illustrate complex processes.
 
@@ -217,7 +217,7 @@ A supply curve is also a **minimum-supply-price** curve. As quantity produced in
 
 When supply increases, supply curve shifts rightward, and when it decreases, shifts leftwards.
 
-### Six factors thatr change supply
+### Six factors that change supply
 
 - Prices of factors of production
 - Prices of related good produced
