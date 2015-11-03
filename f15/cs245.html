@@ -130,5 +130,167 @@
 <p>Contradiction: <span class="math inline">\(\frac{p\qquad \lnot p}{\text{Contradiction}}\)</span></p>
 <h2 id="resolution">Resolution</h2>
 <p>To prove <span class="math inline">\(\{p,q\}_{\text{res}} p \land q\)</span>, derive a contradiction from the assumptions <span class="math inline">\(\{p,q,\lnot(p\land q)\}\)</span></p>
+<p>Conjunctive normal form</p>
+<ul>
+<li>A <strong>literal</strong> is a (propositional) variable or the negation of a variable</li>
+<li>A <strong>clause</strong> is a disjunction of literals (cannot use and)</li>
+<li>A formula is in <strong>conjunctive normal form</strong> if it is a conjunction of clauses.</li>
+</ul>
+<p>A formula is in CNF if and only if</p>
+<ul>
+<li>its only connectives are <span class="math inline">\(\lnot, \lor, \land\)</span></li>
+<li><span class="math inline">\(\lnot\)</span> applies only to variables</li>
+<li><span class="math inline">\(\lor\)</span> applies only to subformulas with no occurrence of <span class="math inline">\(\land\)</span>.</li>
+</ul>
+<p>To prove <span class="math inline">\(\phi\)</span> from <span class="math inline">\(\sum\)</span> via resolution refutation</p>
+<ul>
+<li>Convert each formula in <span class="math inline">\(\sum\)</span> to CNF</li>
+<li>Convert <span class="math inline">\(\lnot \phi\)</span> to CNF</li>
+<li>Split the CNF formulas as the <span class="math inline">\(\land\)</span>s, yielding a set of clauses</li>
+<li>From the resulting set of clauses, keep applying the resolution inference rule until
+<ul>
+<li>The empty clause (contradiction) results (<span class="math inline">\(\phi\)</span> is a theorem)</li>
+<li>The rule cannot be applied to give a new formula (<span class="math inline">\(\phi\)</span> is not a theorem)</li>
+</ul></li>
+</ul>
+<hr />
+<p>TODO: Resolution (2 classes)</p>
+<h2 id="predicate-logic-first-order-logic">Predicate Logic | First Order Logic</h2>
+<p>Propositional logic dealt with logical forms of compound propositions that talked about all objects in a set. Predicate logic deals with <em>some</em> object, without enumerating all objects in a set.</p>
+<p>Example: Not all birds can fly</p>
+<p><span class="math display">\[\lnot (\forall x \cdot (B(x) \implies F(x)))\]</span></p>
+<h2 id="ingredients">Ingredients</h2>
+<p>First order logic is expressed with the following ingredients</p>
+<ul>
+<li>A non-empty domain of objects (individuals, sets)</li>
+<li>Names of individuals (also called constants)</li>
+<li>Variable denoting generic objects</li>
+<li>Relation (eg: equal, younger)</li>
+<li>Function (eg: +, mother of)</li>
+<li>Quantifiers</li>
+<li>Propositional connectives</li>
+</ul>
+<p>A <span class="math inline">\(k\)</span>-ary relation is a set of <span class="math inline">\(k\)</span>-tuples of domain elements.</p>
+<p>Example: Binary relation less-than, over a domain <span class="math inline">\(D\)</span>, is represented by the set</p>
+<p><span class="math display">\[\{(x,y)\in D^2\, | \, x &lt; y \}\]</span></p>
+<p><strong>Variables</strong> let us refer to an object without specifying which particular object it is.</p>
+<p>In first order logic, functions may be used as arguments to another function.</p>
+<p>Example: Every child is younger than its mother.</p>
+<p><span class="math display">\[ \forall x \cdot \forall y \cdot ((C(x) \land M(y,x)) \implies Y(x,y))\]</span></p>
+<p>But this allows <span class="math inline">\(x\)</span> to have several mothers as long as <span class="math inline">\(M(y,x)\)</span> is satisfied.</p>
+<p>The above example can be rewritten as</p>
+<p><span class="math display">\[\forall x \cdot (C(x) \implies Y(x,m(x)))\]</span></p>
+<h2 id="syntax-1">Syntax</h2>
+<p>Expressions that have a truth value are <strong>formulas</strong></p>
+<p>Expressions that refer to an object of the domain are called <strong>terms</strong>.</p>
+<p>An <strong>atomic formula</strong> is an expression in the form <span class="math inline">\(P(t_1,\dots,t_n)\)</span> such that <span class="math inline">\(P\)</span> is an <span class="math inline">\(n\)</span>-ary function and each <span class="math inline">\(t_i\)</span> is a term.</p>
+<p><span class="math inline">\(\forall x \cdot \alpha\)</span> is a formula if <span class="math inline">\(\alpha\)</span> is a formula, and the formula <span class="math inline">\(\alpha\)</span> is the scope of the quantifier.</p>
+<h2 id="interpretation">Interpretation</h2>
+<p>Fix a set <span class="math inline">\(C\)</span> of constant symbols, function symbols, and relation symbols.</p>
+<p>An interpretation <span class="math inline">\(M\)</span> for the set <span class="math inline">\(C\)</span> consists of</p>
+<ul>
+<li>A non empty set dom(<span class="math inline">\(M\)</span>), called the domain of <span class="math inline">\(M\)</span></li>
+<li>For each constant <span class="math inline">\(c\)</span>, a member <span class="math inline">\(c^M\)</span> of dom(<span class="math inline">\(M\)</span>)</li>
+<li>For each function symbol <span class="math inline">\(f^{(i)}\)</span>, an iary function <span class="math inline">\(f^M\)</span></li>
+<li>For each relation symbol <span class="math inline">\(R^{(i)}\)</span>, an iary function relation <span class="math inline">\(R^M\)</span></li>
+</ul>
+<p>An interpretation is also called a <strong>model</strong>.</p>
+<p>With an interpretation <span class="math inline">\(M\)</span>, for each term <span class="math inline">\(t\)</span> containing no variables, the value of <span class="math inline">\(t\)</span> under interpretation <span class="math inline">\(M\)</span>, denoted <span class="math inline">\(t^M\)</span> is</p>
+<ul>
+<li>If <span class="math inline">\(t\)</span> is a constant <span class="math inline">\(c\)</span>, <span class="math inline">\(t^M\)</span> is <span class="math inline">\(c^M\)</span></li>
+<li>If <span class="math inline">\(t\)</span> is a function, the value <span class="math inline">\(t^M\)</span> is <span class="math inline">\(f^M(t_1^M,\dots,t_n^M\)</span></li>
+</ul>
+<p>The value of a term must always be a member of domain <span class="math inline">\(M\)</span></p>
+<p>With an interpretation <span class="math inline">\(M\)</span>, for each formula <span class="math inline">\(\alpha\)</span> containing no variables, the value of <span class="math inline">\(\alpha\)</span> under interpretation <span class="math inline">\(M\)</span>, denoted <span class="math inline">\(\alpha^M\)</span> is</p>
+<ul>
+<li>If <span class="math inline">\(\alpha\)</span> is <span class="math inline">\(R(t_1,\dots,t_n)\)</span>, then <span class="math inline">\(a^M\)</span> is <span class="math inline">\(T\)</span> if <span class="math inline">\(t_1^M,\dots,t_n^M \in R^M\)</span>. Else it is <span class="math inline">\(F\)</span></li>
+<li>If <span class="math inline">\(\alpha\)</span> is <span class="math inline">\(\lnot \beta\)</span> or <span class="math inline">\(\beta \star \gamma\)</span>, then <span class="math inline">\(\alpha^M\)</span> is determined the same way as for propositional logic.</li>
+</ul>
+<p><strong>Example:</strong> Consider an interpretation <span class="math inline">\(M\)</span> with</p>
+<ul>
+<li>Domain: <span class="math inline">\(N\)</span>, the natural numbers</li>
+<li><span class="math inline">\(0^M\)</span>: zero</li>
+<li><span class="math inline">\(f^M\)</span>: successor</li>
+<li><span class="math inline">\(E^M\)</span>: is even</li>
+</ul>
+<p><span class="math inline">\(f(0)^M = 1\)</span>, <span class="math inline">\(E(f(0))^M = F\)</span>, <span class="math inline">\(E(f(f(0)))^M = T\)</span></p>
+<p><strong>NOTE:</strong> There is NO default meaning for relation, function, or constant symbols. Functions must be defined at every point in the domain.</p>
+<p>An occurrence of a variable in a formula is <strong>bound</strong> if it lies in the scope of some quantifier of the variable, otherwise it is <strong>free</strong>.</p>
+<p>Example: In the formula <span class="math inline">\(P(x) \land \forall x \cdot Q(x)\)</span>, first <span class="math inline">\(x\)</span> is free and last <span class="math inline">\(x\)</span> is bound.</p>
+<h2 id="substitution">Substitution</h2>
+<p>The notation <span class="math inline">\(\alpha \lbrack t/x \rbrack\)</span> for a variable <span class="math inline">\(x\)</span>, term <span class="math inline">\(t\)</span>, and formula <span class="math inline">\(\alpha\)</span> denotes the formula obtained from <span class="math inline">\(\alpha\)</span> by replacing each free occurrence of <span class="math inline">\(x\)</span> with <span class="math inline">\(t\)</span></p>
+<p><strong>NOTE:</strong> Substitution only affects free variables, not bound occurrences.</p>
+<h2 id="semantics-1">Semantics</h2>
+<p>In propositional logic, semantics was described in terms of valuations to propositional atoms. FOL includes more ingredients and the semantics must account for them too.</p>
+<p>An <strong>environment</strong> is a function that assigns a value in the domain to each variable.</p>
+<p><strong>Example:</strong> With domain <span class="math inline">\(N\)</span>, we might have environment <span class="math inline">\(\theta_1\)</span>, given by <span class="math inline">\(\theta_1(x) = 9\)</span> and <span class="math inline">\(\theta_1(y)=2\)</span>.</p>
+<h2 id="creating-a-formula">Creating a formula</h2>
+<p>To create a formula, we must specify the intepretation (includes domain, definition of symbols, and constants) and an environment that maps variables</p>
+<p><strong>Example:</strong> Let <span class="math inline">\(\text{dom}\{J\}\)</span> be the collection of all words over the alphabet <span class="math inline">\(\{a,b\}\)</span></p>
+<p><span class="math inline">\(0^J = a\)</span>, <span class="math inline">\(s^J\)</span> is appending <span class="math inline">\(a\)</span> to the end of the string, and <span class="math inline">\(+\)</span> is a concatenation.</p>
+<p><span class="math inline">\(\theta(x) = aba\)</span></p>
+<p>Evaluating <span class="math inline">\((s(s(0) + s(x)))^{(J,\theta)}\)</span> gives <span class="math inline">\(aaabaaa\)</span></p>
+<h2 id="quantified-formulas">Quantified Formulas</h2>
+<p>For any environment <span class="math inline">\(]theta\)</span> and domain element <span class="math inline">\(d\)</span>, the environment <span class="math inline">\(\theta\)</span> with <span class="math inline">\(x\)</span> reassigned to <span class="math inline">\(d\)</span> is denoted as <span class="math inline">\(\theta \lbrack x \rightarrow d \rbrack\)</span></p>
+<p>In this case, <span class="math inline">\(x\)</span> is substituted with <span class="math inline">\(d\)</span> for every quantified occurrence.</p>
+<p>Cannot directly say a statement is true for every <span class="math inline">\(x \in dom(M)\)</span>, must say <span class="math inline">\(\alpha^{(M,\lbrack x \rightarrow d \rbrack)}\)</span> for every <span class="math inline">\(d \in dom(M)\)</span></p>
+<p><strong>NOTE:</strong> The values of <span class="math inline">\((\forall x \cdot \alpha)^{(M,\theta)}\)</span> and <span class="math inline">\((\exists x \cdot \alpha)^{(M,\theta)}\)</span> do not depend on the value of <span class="math inline">\(\theta(x)\)</span> as it only matters for free occurrences.</p>
+<p>If <span class="math inline">\(M \vDash_\theta \alpha\)</span> for every <span class="math inline">\(\theta\)</span>, then <span class="math inline">\(M\)</span> <strong>satisfies</strong> <span class="math inline">\(\alpha\)</span>, denoted <span class="math inline">\(M \vDash \alpha\)</span></p>
+<h2 id="validity-and-satisfiability">Validity and Satisfiability</h2>
+<p>A first order formula can be either valid, satisfiable, and unsatisfiable. There are no tautologies in predicate logic.</p>
+<p>Suppose <span class="math inline">\(\sigma\)</span> is a set of formulas and <span class="math inline">\(\alpha\)</span> is a formula. <span class="math inline">\(\alpha\)</span> is the <strong>logical consequence</strong> of <span class="math inline">\(\sigma \vDash \alpha\)</span> iff for any interpretation <span class="math inline">\(M\)</span> and environment <span class="math inline">\(\theta\)</span>, we have <span class="math inline">\(M \vDash_\theta \sigma\)</span> implies <span class="math inline">\(M \vDash_\theta \alpha\)</span></p>
+<p><strong>Example</strong>: Show that <span class="math inline">\(\forall x \cdot \lnot \gamma \vDash \lnot \exists x \cdot \gamma\)</span></p>
+<p><span class="math inline">\(M \vDash_\theta \forall x \cdot \lnot \gamma\)</span>. This means for every <span class="math inline">\(a \in dom(M)\)</span>, <span class="math inline">\(M \vDash_{\theta \lbrack x \rightarrow a \rbrack} \lnot \gamma\)</span></p>
+<p>By definition, that means for <span class="math inline">\(a \in dom(M)\)</span>, <span class="math inline">\(M \not\vDash_{\theta \lbrack x \rightarrow a \rbrack} \gamma\)</span></p>
+<p>This means there is no <span class="math inline">\(a \in dom(M)\)</span> that satisfies <span class="math inline">\(M \vDash_{\theta \lbrack x \rightarrow a \rbrack} \gamma\)</span></p>
+<p>This is the RHS of the equation as required.</p>
+<h2 id="proofs-in-fol">Proofs in FOL</h2>
+<p><span class="math inline">\(\forall\)</span> elimination: <span class="math inline">\(\frac{\forall x \cdot \alpha}{\alpha \lbrack t / x \rbrack}\)</span></p>
+<p><span class="math inline">\(\exists\)</span> introduction: <span class="math inline">\(\frac{\alpha \lbrack t/x \rbrack}{\exists x \cdot \alpha}\)</span></p>
+<p>A variable is <strong>fresh</strong> in a subproof if it occurs nowhere outside the box of the subproof.</p>
+<p>If you start with <span class="math inline">\(y\)</span> fresh and can conclude <span class="math inline">\(\alpha \lbrack y / x \rbrack\)</span>, you can conclude <span class="math inline">\(\forall x \cdot \alpha\)</span></p>
+<p>If you start with <span class="math inline">\(\exists x \cdot a\)</span> and when you introduce <span class="math inline">\(u\)</span> fresh you can conclude <span class="math inline">\(\beta\)</span>, then you can actually conclude <span class="math inline">\(\beta\)</span></p>
+<hr />
+<h2 id="relations-on-lists">Relations on Lists</h2>
+<p>If <span class="math inline">\(x\)</span> is the empty list</p>
+<p><span class="math inline">\(\forall x \cdot \forall y \cdot (x = e) \implies \lnot \text{ First}(x,y)\)</span></p>
+<p><span class="math inline">\(\forall y \cdot \lnot \text { First}(x,y)\)</span></p>
+<p><span class="math inline">\(x\)</span> is not the empty list</p>
+<p><span class="math inline">\(\forall x \cdot \forall y \cdot x \neq e \implies x = cons(y,z)\)</span></p>
+<p><span class="math inline">\(\forall y \cdot \forall z \cdot \text {First}(cons(y,z),y)\)</span></p>
+<h2 id="append">Append</h2>
+<p><span class="math inline">\(\text{Append}(x,y,z)\)</span> represents appending <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span> and getting <span class="math inline">\(z\)</span></p>
+<p>How do we write this definition in logic?</p>
+<p>Case 1: <span class="math inline">\(x\)</span> is the empty list.</p>
+<p><span class="math inline">\(\forall x \cdot \forall y \cdot (x = e \implies \text{ Append}(x,y,y))\)</span></p>
+<p><span class="math inline">\(\forall y \cdot \text{ Append}(e,y,y)\)</span></p>
+<p>Case 2: <span class="math inline">\(x\)</span> is not the empty list</p>
+<p><span class="math inline">\(R_{first} (x,v_f) \implies\)</span></p>
+<p><span class="math inline">\(\qquad R_{rest}(x,v_r) \implies\)</span></p>
+<p><span class="math inline">\(\qquad\qquad \text{Append}(v_r,y,v_a) \implies\)</span></p>
+<p><span class="math inline">\(\qquad \qquad \qquad \text{Append}(x,y,cons(v_f,v_a))\)</span></p>
+<p>Using this simplification</p>
+<p><span class="math inline">\(a \implies b \implies c \implies d \equiv (a \land b \land c) \implies d\)</span></p>
+<p>The above statement may be simplified.</p>
+<p><span class="math inline">\(x \neq e \implies (R_{first} (x,v_f) \land R_{rest}(x,v_r) \land \text{Append}(v_r,y,v_a) \implies \text{Append}(x,y,cons(v_f,v_a))\)</span></p>
+<p><span class="math display">\[\forall x \cdot \forall v_f \cdot \forall v_r \cdot \forall y \cdot \forall v_a \cdot (x \neq e \implies (R_{first} (x,v_f) \land R_{rest}(x,v_r) \land \text{Append}(v_r,y,v_a) \implies \text{Append}(x,y,cons(v_f,v_a)))\]</span></p>
+<p>Simplified using BL1 and BL2</p>
+<p><span class="math inline">\(\forall v_r \cdot \forall y \cdot \forall v_a \cdot \forall v_f \cdot (\text{Append}(v_r,y,v_a) \implies \text{ Append}(cons(v_f,v_r),y,cons(v_f,v_a)))\)</span></p>
+<p><span class="math inline">\(\forall x \cdot \forall y \cdot \forall z \cdot \forall w \cdot (\text{Append}(x,y,z) \implies \text{ Append}(cons(w,x),y,cons(w,z)))\)</span></p>
+<p><strong>Example:</strong> <span class="math inline">\(\text{Append}(x,y)\)</span> is true iff <span class="math inline">\(x\)</span> is a member of <span class="math inline">\(y\)</span></p>
+<p>Case 1: Empty lists. <span class="math inline">\(\forall x \cdot \lnot \text{ Member}(x,e)\)</span></p>
+<p>Case 2: <span class="math inline">\(\forall x \cdot \forall z \cdot (\text{Member}(x,cons(x,z)))\)</span></p>
+<p><span class="math inline">\(\forall x \cdot \forall w \cdot \forall z \cdot (\text{Member}(x,z) \iff \text{Member}(x,cons(w,z)))\)</span></p>
+<p><strong>Example:</strong> Prove Member<span class="math inline">\((b, &lt;a,b,c&gt;)\)</span></p>
+<p>Member<span class="math inline">\((b,cons(a, cons(b, cons(c, e))))\)</span></p>
+<p>Member<span class="math inline">\((b, cons(b, cons(c, e)))\)</span></p>
+<p>True</p>
+<p><strong>Example:</strong> <span class="math inline">\(\lnot\)</span>Member<span class="math inline">\((b,&lt;a&gt;)\)</span></p>
+<p><strong>Idea:</strong> Start with assuming Member<span class="math inline">\((b,&lt;a&gt;)\)</span> and reach a contradiction. Therefore assumption is false and can conclude <span class="math inline">\(\lnot\)</span>Member<span class="math inline">\((b,&lt;a&gt;)\)</span></p>
+<p><strong>Example:</strong> Reverse<span class="math inline">\((x,y)\)</span> is true iff <span class="math inline">\(y\)</span> is the reverse of list <span class="math inline">\(x\)</span>.</p>
+<p>Case 1: Reverse<span class="math inline">\((e,e)\)</span> is true. <span class="math inline">\(\forall x \cdot (x \neq e \implies \lnot\)</span>Reverse<span class="math inline">\((x,e) \land \lnot\)</span>Reverse<span class="math inline">\((e,x))\)</span></p>
+<p>Case 2: Reverse of a list is the reverse of the rest of the list appended onto the first element.</p>
+<p><span class="math inline">\(\forall w \cdot \forall x \cdot \forall y \cdot \forall z \cdot (\)</span>Reverse<span class="math inline">\((x,y) \land\)</span> Append<span class="math inline">\((y,cons(w,e),z)) \implies\)</span> Reverse<span class="math inline">\((cons,w,x),z)))\)</span></p>
+<p>Reverse<span class="math inline">\((cons(b,e),cons(b,e))\)</span></p>
 </body>
 </html>
