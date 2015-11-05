@@ -252,3 +252,136 @@ Supply - --> equilibrium price rises and equilibrium quantity increases
 Decrease in demand and increase in supply lowers the equilibrium price.
 
 Decrease to supply and increase in demand increases the equilibrium price.
+
+## Elasticity
+
+The **price elasticity**  of demand is a units free measure of responsiveness of quantity demanded of a good to a change in its price.
+
+**Income elasticity** of demand measures how strong demanders respond to a change in income
+
+**Cross elasticity** of demand measures how strongly demanders respond to change in price of another good
+
+Elasticity is given by the slope of the derivative multiplied by the slope of two points.
+
+$$ \frac{\text{\% change in quantity demanded}}{\text{\% change in price}} $$
+
+Percent change is change in $X$ over average of $X$ between two points.
+
+**NOTE:** The demand elasticity formula yields a negative value because price and quantity move in the opposite directions. However, we are only interested in the magnitude of the price elasticity if demand to measure responsiveness.
+
+If the elasticity is 0, the good has **perfectly inelastic demand**
+
+If elasticity is infinity, the good has **perfectly elastic demand**
+
+If percentage change in the quantity demanded equals  the percentage change in price, the price elasticity of demand is $1$ and is **unit elastic**.
+
+If elasticity is less than $1$, it has inelastic demand. If elasticity is greater than $1$, it has elastic demand.
+
+**NOTE:** For demand to be elastic, changes in price should yield big changes in demand.
+
+Demand becomes less elastic as the price falls along a linear demand curve. When prices are above mid-point of the demand curve, demand is elastic. Otherwise it is inelastic.
+
+Total revenue is maximized at the unit elastic point. If demand is elastic, reduce price to increase revenue. If demand is inelastic, increase price to increase revenue.
+
+**Total revenue test** is a method of estimating the price elasticity of demand by observing the change in total revenue that results from a price change.
+
+# Elasticity and Total Revenue
+
+When the seller raises the price of a good, there are two effects
+
+- Price effect: Units sell at higher price, raising revenue
+- Quantity effect: Fewer units are sold, lowering revenue
+
+If elastic, (quantity effect stronger than price effect). If inelastic, price effect stronger than quantity effect.
+
+## Factors that effect elasticity
+
+- Closeness of substitutes
+    + Necessities generally have inelastic demand
+    + Luxuries generally have elastic demand
+- Proportion of income spent on the good
+    + Greater proportion of income spent = larger elasticity of demand
+- Time elapsed since a price change
+    + The more time consumers have to adjust to a price change, the more elastic is the demand for the good
+
+## Cross Elasticities of Demand
+
+Cross elasticity of demand measures responsiveness of demand for a good to a change in the price of a substitute or a complement.
+
+Formula is
+
+$$\frac{\text{\% change in quantity demanded}}{\text{\% change in price of substitute or complement}}$$
+
+Cross elasticity of demand for
+
+- A **substitute** is positive
+- A **complement** is negative
+
+## Income Elasticity of Demand
+
+The **income elasticity** measures how the quantity demanded of a good responds to change in income/
+
+Formula is
+
+$$\frac{\text{\% change in quantity demanded}}\text{\% change in income}}$$
+
+Income elastic, income inelastic has same criterias.
+
+Income elasticity of demand is less than zero (negative), then the good is an **inferior good**.
+
+## Elasticity of Supply
+
+The **elasticity of supply** measures the responsiveness of the quantity supplied to a change in the price of a good.
+
+Same formulas as demand
+
+Elasticity of supply: $\frac{\text{Percentage change in quantity supplied}}{\text{Percentage change in price}}$
+
+Perfectly inelastic, perfectly elastic (0 and infinite) and unit elastic (passes through origin)
+
+Factors that influence elasticity of supply:
+
+- Resource substitution possibilities (Easy to substitute, higher elasticity)
+- Time frame for supply decision (More time = higher elasticity) (Momentary, short run, long run)
+
+# Utility and Demand
+
+Choices are determined by consumption possibilities and preferences
+
+Benefit or satisfaction from consuming a good or service is **utility**
+
+**Cardinal utility**: Utility gained from good can be measured and magnitude of measurement is meaningful. (Measured in utils)
+
+Utilitarianism: Maximize happiness for greatest number of people
+
+**Marginal Utility**: Change in total utility that results from one unit increase in the quantity of the good consumed
+
+Diminishing marginal utility: Decreasing marginal utility
+
+Utility Curve and Marginal Utility Curve (Derivative relation)
+
+**Budget line** describes the limits to a household's consumption choices.
+
+Eg: $8x + 4y = 40$ (x represents movie, y represents pop, 40 represents income)
+
+An utility maximizing combination for spending is called **consumer equilibrium**
+
+**Marginal utility per dollar** is literally marginal utility per dollar. (per price of good)
+
+**Marginal Utility per dollar spend** is marginal utility from good by spending an additional dollar
+
+To maximize utility, (Marginal utility per dollar) MU/P for unit A must be same as MU/P for unit B.
+
+## Marginal Utility Theory
+
+1. Fall in price of a substitute of a good decreases the demand for the good
+2. Rise in income increases the demand for normal goods.
+
+
+## Predictions of Marginal Utility Theory
+
+When price of a good falls, quantity demanded increase, so MU/P if the good rises.
+
+A change in price of one good changes the demand for another good. (Maximum total utility)
+
+
