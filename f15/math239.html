@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<p><span class="math inline">\(\{b_n\}_{n \geq 0}\)</span> defined by <span class="math inline">\(b_n - 3b_{n+1} + 4b_{n-3} = 3 (2)^n\)</span></p>
+<p>Guess a relation? Try <span class="math inline">\(A\)</span>, <span class="math inline">\(Bn\)</span>, <span class="math inline">\(Cn^2\)</span></p>
+<p><span class="math inline">\(Cn^2\)</span> gives <span class="math inline">\(cn^2 2^n - 3C(n-1)^2 2^{n+1} + 4C(n-3)^3 2^{n-3} = 3C2^n\)</span></p>
+<p>Select <span class="math inline">\(C = 1\)</span>. QED</p>
+<p>Eg.</p>
+<p>Sequence <span class="math inline">\(\{a_n\}_{n \geq 0}\)</span> defined by <span class="math inline">\(a_n - 5a_{n-1} + 6a_{n-3} = 3^n\)</span></p>
+<p>Multiply by <span class="math inline">\(x^n\)</span> and sum over <span class="math inline">\(n \geq 2\)</span></p>
+<p><span class="math inline">\(\sum_{n \geq 2} (a_n - 5a_{n-1} + 6a_{n-3})x^n = \sum_{n \geq 2} 3^nx^n = 9x^2 \sum_{n \geq 0} 3^n x^n = \frac{9x^2}{1-3x}\)</span></p>
+<p><span class="math inline">\(\sum_{n \geq 2} a_n x^n - 5x \sum_{n \geq 2} a_{n-1}x^{n-1} + 6x^2 = \sum_{n \geq 2} a_{n-2} x^{n-2} = \frac{9x^2}{1-3x}\)</span></p>
+<p>Let <span class="math inline">\(g(x) = \sum_{n \geq 0} a_n x^n\)</span></p>
+<h2 id="graph-fun">Graph Fun</h2>
+<p>Graph consists of a finite set of vertices, and finite set of edges. Each edge is a subset of the vertex at <span class="math inline">\(V\)</span> of size 2.</p>
+<p>Multigraph incorporates multisets for edges.</p>
+<p>Edge incident to vertex means edge contains vertex.</p>
+<p>Degree of a vertex is the number of edges it includes.</p>
+<p>Vertex of degree 0 is an isolated vertex.</p>
+<p>An <strong>isomorphism</strong> from a graph <span class="math inline">\(G\)</span> to a graph <span class="math inline">\(H\)</span> is a bijection <span class="math inline">\(f:V(A) \rightarrow V(H)\)</span> with the additional property that <span class="math inline">\(VW\)</span> is an edge of <span class="math inline">\(G\)</span> iff <span class="math inline">\(f(V)f(W)\)</span> is an edge of <span class="math inline">\(H\)</span>. (Look the same except with different labels as vertices)</p>
+<p><span class="math inline">\(G\)</span> is isomorphic to <span class="math inline">\(H\)</span> iff there exists an isomorphism from <span class="math inline">\(G\)</span> to <span class="math inline">\(H\)</span>.</p>
+<p>To show isomorphism, define a bijection between two graphs, and redraw graph to look similar to show edges match.</p>
+<p>A <strong>r-regular graph</strong> is one where all vertices have degree <span class="math inline">\(r\)</span>.</p>
+<p>No <span class="math inline">\(3\)</span>-regular graph on <span class="math inline">\(5\)</span> vertices.</p>
+<p><strong>Theorem</strong></p>
+<p><span class="math display">\[\sum_{v \in V(G)} \text{deg}(G) = 2 | E(G) |\]</span></p>
+<p>Each edge contributes <span class="math inline">\(2\)</span> ti the sum of the degrees.</p>
+<p>Sum of degrees in any graph must be even.</p>
+<p><strong>Handshake Lemma</strong>: The number of vertices of odd degree in a graph is even.</p>
+<p>The degree sequence of a graph <span class="math inline">\(G\)</span> is a list of all <span class="math inline">\(|V(G)|\)</span> degrees of vertices in <span class="math inline">\(G\)</span> in increasing order.</p>
+<p>If graphs <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> have different degree sequences, then they are not isomorphic.</p>
+<p>Same degree sequence does not imply isomorphism.</p>
+<p>The <strong>complete</strong> graph <span class="math inline">\(K_p\)</span> is the graph with <span class="math inline">\(p\)</span> vertices and all possible edges. Every pair of vertices are connected by an edge.</p>
+<p><span class="math inline">\(|E(K_p)| = {p \choose 2}\)</span></p>
+<p>A graph <span class="math inline">\(G\)</span> is bipartite if <span class="math inline">\(V(G)\)</span> has a partition <span class="math inline">\(A \cap B\)</span> such that every edge has one vertex in <span class="math inline">\(A\)</span> and one vertex in <span class="math inline">\(B\)</span>.</p>
+<p>The complete bipartite graph <span class="math inline">\(K_{p,m}\)</span> is the bipartite graph with <span class="math inline">\(|A| = p\)</span>, <span class="math inline">\(|B| =m\)</span> and <span class="math inline">\(E(K_{p,m}) = \{ab: a \in A, b \in B\}\)</span></p>
+<p>The n-cube <span class="math inline">\(Q_n\)</span> has vertex set <span class="math inline">\(\{0,1\}^n\)</span>. The set of all binary strings of length <span class="math inline">\(n\)</span>. Two binary strings are joined by an edge of <span class="math inline">\(Q_n\)</span> if and only if they differ in exactly one position. (eg <span class="math inline">\((0,1),(1,1)\)</span>)</p>
+<p>The 3-cube <span class="math inline">\(Q_3\)</span> is bipartite because you can partition the vertices to <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> such that the definition follows.</p>
+<p><span class="math inline">\(Q_n\)</span> is bipartite with</p>
+<p><span class="math display">\[A = \{ \sigma \in \{0,1\}^n: \sigma \text{ has an even number of $1$s}\}\]</span></p>
+<p><span class="math display">\[B = \{ \sigma \in \{0,1\}^n: \sigma \text{ has an odd number of $1$s}\}\]</span></p>
+<h2 id="kneser-graph">Kneser graph</h2>
+<p>The Kneser graph with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span> has vertex set: The set of all <span class="math inline">\(k\)</span>-subsets of <span class="math inline">\(\lbrack n \rbrack\)</span></p>
+<p>Two subsets <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are adjacent if and only if <span class="math inline">\(U \cap V = \emptyset\)</span></p>
+<p>Number of vertices for this graph is <span class="math inline">\(n \choose k\)</span></p>
+<p>A Kneser graph is regular for every <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span> with degree <span class="math inline">\(n - k \choose k\)</span>.</p>
+<p>Number of edges is <span class="math inline">\(\frac{1}{2} {n \choose k} {n - k \choose k}\)</span></p>
+<p><strong>Example:</strong> Make a list of all bipartite graphs with <span class="math inline">\(4\)</span> vertices up to isomorphism.</p>
+<p>Start with <span class="math inline">\(4\)</span> vertices in <span class="math inline">\(A\)</span> and <span class="math inline">\(0\)</span> vertices in <span class="math inline">\(B\)</span>, and connect the dots. Decrease vertices in <span class="math inline">\(A\)</span> and add vertices to <span class="math inline">\(B\)</span>. Don't include any isomorphic graphs.</p>
+<p>Only need to go up to <span class="math inline">\(2\)</span> vertices in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> because <span class="math inline">\(1\)</span> in <span class="math inline">\(A\)</span> and <span class="math inline">\(3\)</span> in <span class="math inline">\(B\)</span> Will be isomorphic to <span class="math inline">\(3\)</span> in <span class="math inline">\(A\)</span> and <span class="math inline">\(1\)</span> in <span class="math inline">\(B\)</span>.</p>
+<p><strong>Definition:</strong> A <strong>walk</strong> in a graph <span class="math inline">\(H\)</span> is a sequence of vertices and edges. <span class="math inline">\(v_0 e_1 v_1 e_1 \cdots e_n v_n\)</span>. Usually just write list of vertices because edges are determined by them.</p>
+<p>The length of the walk is <span class="math inline">\(n\)</span>. (Starting vertex is not counted)</p>
+<p><strong>Definition:</strong> A <strong>path</strong> in <span class="math inline">\(G\)</span> is a walk in which all the vertices are distinct. Other properties same as walk.</p>
+<p><strong>Definition</strong>: A <strong>cycle</strong> in <span class="math inline">\(G\)</span> is a path that ends at the starting vertex.</p>
+<p>Cannot have cycle of length <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span></p>
+<h2 id="showing-graphs-are-not-isomorphic">Showing graphs are not isomorphic</h2>
+<ul>
+<li>Find a property of graphs that is independent of the vertex labelling on which the two graphs differ
+<ul>
+<li>Eg: # of vertices and edges</li>
+<li>Degree sequence</li>
+<li>Cycle length</li>
+<li>Subgraphs</li>
+</ul></li>
+</ul>
+<p>A subgraph <span class="math inline">\(H\)</span> of <span class="math inline">\(G\)</span> is called <strong>spanning</strong> if <span class="math inline">\(V(H) = V(G)\)</span></p>
+<p>A spanning cycle is called a Hamilton cycle.</p>
+<p>A graph <span class="math inline">\(G\)</span> is said to be <strong>connected</strong> if for all <span class="math inline">\(x,y \in V(G)\)</span> there is a path on <span class="math inline">\(G\)</span> from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>.</p>
+<p>If a graph is not connected, it is <strong>disconnected</strong>.</p>
+<p>A maximal connected subgraph of <span class="math inline">\(G\)</span> is called a <strong>component</strong>:</p>
+<ul>
+<li><span class="math inline">\(H\)</span> is connected</li>
+<li><span class="math inline">\(H\)</span> is a subgraph of <span class="math inline">\(G\)</span></li>
+<li><span class="math inline">\(H\)</span> is not contained in a larger connected subgraph of <span class="math inline">\(G\)</span></li>
+</ul>
+<p><strong>NOTE:</strong> If <span class="math inline">\(G\)</span> is connected, then its only component is itself.</p>
+<p><strong>Lemma:</strong> Suppose <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are vertices in graph <span class="math inline">\(G\)</span> and there exists a walk from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>. Then there exists a path from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>.</p>
+<p><strong>Proof:</strong> Induction. If <span class="math inline">\(W = v_0v_1\cdots v_n\)</span> is a walk from <span class="math inline">\(x = v_0\)</span> to <span class="math inline">\(y=v_n\)</span>, then there exists a path from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span></p>
+<p>BC: At <span class="math inline">\(x=0\)</span>, <span class="math inline">\(x=y\)</span> and there is a path of length <span class="math inline">\(0\)</span> from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>.</p>
+<p>IH: If there is a walk of length <span class="math inline">\(&lt;n\)</span> from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>, then there is a path from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span></p>
+<p>IC: Let <span class="math inline">\(w=v_0 v_1 \cdots v_n\)</span> be awalk from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>. If <span class="math inline">\(w\)</span> is a path, we're done. Otherwise there is a repeated vertex <span class="math inline">\(v_i = v_j\)</span> from <span class="math inline">\(i &lt; j\)</span>. Then <span class="math inline">\(w = v_1 v_i v_{j+1} \cdots v_n\)</span> is a walk of length <span class="math inline">\(&lt;n\)</span> from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>.</p>
+<p>By IH, there exists a path from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span></p>
+<p><strong>Corollary:</strong> If there is a path from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span> and a path from <span class="math inline">\(y\)</span> to <span class="math inline">\(z\)</span>, then there is a path from <span class="math inline">\(x\)</span> to <span class="math inline">\(z\)</span>.</p>
+</body>
+</html>
