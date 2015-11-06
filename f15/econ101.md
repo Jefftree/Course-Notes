@@ -384,4 +384,310 @@ When price of a good falls, quantity demanded increase, so MU/P if the good rise
 
 A change in price of one good changes the demand for another good. (Maximum total utility)
 
+Falls in the price of a good increases demand, movement along demand curve. Decrease in the demand is a shift in the demand curve
+
+**Consumer Surplus** is the difference between what consumers are willing to pay for a good or service relative to its market price
+
+**Producer Surplus** is the difference between what producers actually receive when selling a product and the amount they would be wiling to accept for a unit of the good
+
+## Paradox of Value
+
+Why is water more expensive than diamond?
+
+Water: Price low, total utility large. Marginal utility small
+
+Diamonds: Price high, total utility small. Marginal utility high
+
+Therefore marginal utility per dollar is same for both
+
+Supply of water perfectly elastic. Supply of diamond perfectly inelastic
+
+**Behavioural Economics** studies the ways in which limits on the human brain's ability to compute and implement rational decisions influence economic behaviour.
+
+**Bound rationality** is rationality that is bound by the computing power of the human brain. (When faced with uncertainty, consumers rely on others, gut instinct, etc)
+
+**Bounded Wilpower** is the less than perfect willpower that prevents us from making a decision that we know we'll later regret.
+
+**Bounded self-interest** is the limited self interest that sometimes results in suppressing our own interests to help others.
+
+**Endowment Effect** is the tendency to overvalue something because they own it.
+
+**Neuroeconomics** is the study of the activity of the human brain when a person makes an economic decision.
+
+**Easterlin paradox** Income and happiness are positively related but happiness increases but only at a decreasing rate.
+
+**Bandwagon effect**: Do something because others are doing it
+
+**Snob effect:** Do something because others aren't doing it
+
+**Veblen effect:** Purchase of expensive goods to illustrate that the owner has money and power
+
+# Possibilities, Preferences, and Choices
+
+- Budget line
+
+Budget equation states: Expediture = INcome
+
+**Real income** is income measured in terms of a good (eg: I make 2 iPhones a week)
+
+**Relative Price:** of product A in terms of B is Price of A over Price of B
+
+Real income is depicted on intercepts of budget line. Relative price is the magnitude of the slope of the budget line
+
+Rise in price of good in x axis decrease affordable quantity and increases (absolute) slope. (Sort of like a rotational about the y-intercept)
+
+Change in income is a shift in the budget line.
+
+A **preference map** shows how a person ranks various combinations of goods and services.
+
+Indifference curves are used to illustrate a person's preference map.
+
+It is modified from budget line because in theory, you wouldn't want to have 0 of a good and the maximum quantity for another good
+
+The slope at any point in the indifference curve is called the **marginal rate of substitution**. Rate at which the consumer is willing to trade one good for another
+
+Steep indifference curve -> High MRS
+
+Willing to give up a large quantity of y to get a bit more of x
+
+Relative flat curve -> Low MRS
+
+**Diminishing marginal rate of substitution**: General tendency for a person to be willing to give up less of good y to get one more unit of good x while remaining indifferent as the quantity of good x increases.
+
+Slope decreases as you move along the indifference curve
+
+## Perfect Substitutes
+
+Consumer willing to substitute one good for another at a constant rate. Straight line that slope downward
+
+$U(x,y) = ax + by$
+
+## Perfect Complements
+
+Goods consumed in fixed proportions
+
+$U(x,y) = min \{ax,by\}$
+
+## Predicting Consumer Choices
+
+The consumer's best affordable choice is
+
+- On the budget line
+- On the highest attainable indifference curve
+- Has marginal rate of substitution between the two goods equal to the relative price of the two goods
+
+**Substitution Effect and Income Effect:** For a normal good, a fall in the price always increases the quantity consumed.
+
+For inferior good, when income increases, the quantity bought decreases
+
+# Organizing Production
+
+A **firm** is an institution that hires factors of production and organizes them to produce and sell goods and services.
+
+R = P * Q
+
+P = R - E
+
+Ecnomic profit is total revenue minus total cost (opportunity cost of production)
+
+Opportunity cost of production is the value of the best alternative use of the resources that a firm uses in production
+
+Resources bought in the market is an opportunity cost of production
+
+When a firm uses its own equipment, it's equivalent to **implicitly** renting the capital from itself. The opportunity cost is the implicit rental rate of capital
+
+**Economic depreciation** is the change in the market value of capital over a given period
+
+The profit that an entrepreneur can expect to receive on average is called the **normal profit**
+
+## The firm
+
+To maximize profit, a firm must make five deciisons
+
+- What to produce (quantities)
+- How to produce
+- How to organize and compensate
+- How to market and price
+- What to produce itself, and what to buy from others
+
+### Constraints
+
+- Technology constraints
+- Information constraints
+- Market
+
+**Technology efficiency** occurs when a firm produces a given level of output by using the least amount of input.
+
+**Economic efficiency** occurs when a firm produces a given level of output at the least cost
+
+Economic efficient production process -> Technology efficient.
+
+NOTE: Previous example is not if and only if.
+
+## Information and Organization
+
+A firm organizes production by combining and coordinating productive resources using a mixture of two systems
+
+- Command systems
+- Incentive systems
+
+Most firms usually use a mix.
+
+**Principal agent problem:** Problem of devising compensation rules that induce an agent to act in the best interests of a principal
+
+Coping with Principal agent:
+
+- Ownership
+- Incentive pay
+- Long term contracts
+
+Three types of businesses: Sole proprietorship, partnership, corporation
+
+## Markets and the Competitive Market
+
+- Perfect competition (many firms/buyers/identical products) No regulations for new firms
+- Monopolistic Competition (many firms, product different (product differentiation)), no regulations for new firms
+- Oligopoly (small number of firms, either identical or differentiated products), barrier to entry
+- Monopoly (one firm solo, no close substitute), barrier to entry
+
+
+Economists use two measures of market concentration:
+
+- Four firm concentration ratio (Percentage of total industry sales accounted for b y  the four largest firms)
+- Herfindahl Hirschman Index (Square of percentage market share of each firm summed over largest 50 firms)
+
+HHI ranges from near 0 (competitive) to 10000 (monopoly)
+
+- Less than 1000: Highly competitive
+- 1000 - 1800: Moderately competitive
+- 1800+: Concentrated
+
+
+Limitations:
+
+- Geographical scope
+- Barriers to entry, firm turnover
+- Correspondence between market and industry
+
+## Market and Firms
+
+Firms coordinate production so they can do so more efficient than a market
+
+- Lower transactions costs
+- Economies of Scale (cheaper to produce more)
+- Economies of scope (specialized input (advantage))
+- Economies of team production (individuals specialize in mutually supporting tasks)
+
+## Sustainable Business
+
+Form of business that strives to meet the triple bottom line.
+
+- Incorporates principles of sustainability into each of its business decision
+- Supplied environmentally friendly products/services (replace demand for non green products)
+- Greener than traditional competition
+- Made enduring commitment to environmental principles in its business operations
+
+Triple Bottom Line: People planet and porfit
+
+## Output and Costs
+
+Goal: Profit Maximization
+
+Decision classifications: Short and long run
+
+Short run: Quantities of one or more resources used in production is fixed.
+
+Fixed factors: (management, tech, building, large equipment)
+
+Fixed factors are called the firm's plant
+
+Dynamic factors: Labour, raw materials, energy
+
+Long run: Everything vary
+
+Sunk cost: Cost incurred by the firm and cannot be changed
+
+Traditional economies: Sunk costs should not influence one's decisions
+
+Behavioural economics: Sunk costs greatly affect actor's decisions. Humans are inherently **loss aversive** and act irrationally when they waste money.
+
+Also known as throwing good money after bad
+
+## Short Run Technology Constraints
+
+To increase output in the short run: Increase labor employed
+
+- Total product (Total output)
+- Marginal product (Change in total output from one unit increase in labor employed)
+- Average product (Total product divided by quantity of labor employed)
+
+**Product Curves:** Graphs of three product concepts that show how total product, marginal product, and average product change as the quantity of labor employed changes.
+
+Total product curve: Similar to ppf but increasing slope. All points above curve unattainable, points below are inefficient.
+
+Marginal product curve measures change in the total product curve. Draw rectangles and stuff on product curve. Stack the rectangles together for marginal product curve. MArginal product curve passes through midpoint while rectanges were drawn on endpoints (Or just take derivative)
+
+Law of diminishing returns: As a firm uses more of a variable input with a given quantity of fixed input, marginal product of variable input eventually diminishes.
+
+Maximum average product: Intersection between average product and marginal product.
+
+## Short Run Costs
+
+- Total cost is cost of all resources
+- Total fixed cost is cost of the firm's fixed inputs. (Do not change with output)
+- Total variable cost: Cost of firms' variable inputs. Variable costs change with output
+
+Can draw TC, TFC, TVC curves
+
+At first, TC and TVC increase at decreasing rate, then they increase at increasing rates. (At first, division of labor, then running out of resources)
+
+Marginal cost: Increase in total cost that results from one unit increase in total product (Change in TC divided by Change in output (compared to the last point))
+
+Diminishing marginal return: Marginal cost rises as output increases
+
+Increasing marginal return: Marginal cost goes down as output increases (specialization)
+
+- U shaped
+
+- Average fixed cost: Total fixed cost per unit of output
+- Average variable cost: Total variable cost per unit of output
+
+Respective cost divided by quantity produced
+
+- AFC Curve falls as output increases.
+- AVC is U shaped, average variable cost falls to a minimum and then increases
+- ATC also U shaped
+- MC interesting: Output over AVC falling -> MC below AVC. Output over AVC rising -> MC above AVC. Lowest AVC point: Intersection between MC and AVC
+
+Relationship between MC and AVC also applies for ATC
+
+Shifts in Cost Curves:
+
+- Technology (MP up, MC down), (ATC higher at low lvls, lower at higher lvls), (Fixed increase, variable decrease)
+- Prices of factors of production. (Increase in costs?) (Fixed affects only ATC), (Variable affects ATC and MC)
+
+## Long Run Cost
+
+Production Function: Relationship between maximum output attainable and the quantities of both capital and labor.
+
+**Marginal Product of Capital:** Increase in output resulting from a one unit increase in the amount of capital employed
+
+Average cost of producing a given output varies and depends on the firm's plant
+
+Larger the plant, greater is the output at which ATC is at a minimum
+
+Long-run average cost curve: Lowest ATC for each output level. Take multiple ATC graphs, find lowest point, connect the dots
+
+Economies of scale: Firm's technology that lead to falling long-run average cost as output increases
+
+Diseconomies of scale: Firm's technology that lead to rising long-run average cost as output increases
+
+Constant returns to scale: Firm's technology that lead to constant long-run average cost as output increases.
+
+An ATC graph could have economies of scale for certain intervals and then diseconomies of scale for other intervals
+
+Minimum efficient scale: Smallest quantity of output at which the long-run average cost reaches its lowest level. Point in which economies of scale becomes diseconomies of scale
+
+
+
 
