@@ -1,4 +1,5 @@
-## ECON 101
+
+# Introduction to Microeconomics
 
 **Scarcity** is the inability to satisfy all wants. Must make **choices** based on **incentives**.
 
@@ -15,6 +16,11 @@ Economics is the social science that studies the choices that individuals, busin
 **Microeconomics:** Study of choices that individuals and businesses make, how those choices interact in markets, and the influence of governments.
 
 **Macroeconomics:** Study of the overall performance of an economy (National and global)
+
+#### Two Big Economic Questions:
+
+- How do choices end up determining what, how, and for whom goods and services get produced?
+- Self-interest promoting social interest
 
 **Goods and services** are the objects that people value and produce to satisfy human wants.
 
@@ -78,17 +84,19 @@ Government redistribution of income from the rich to the poor creates the **big 
 
 The rule of law that protects private property and facilitates voluntary exchange in markets.
 
-A **positive** statement can be tested against facts. A **normative** statement cannot be tested.
+A **positive** statement can be tested against facts (what is). A **normative** statement cannot be tested (what ought to be)
 
 An **economic model** is a description of some aspect of the economic world that includes only those features that are needed for the purpose at hand. Simplified framework designed to illustrate complex processes.
 
 Economists are bad at testing economic models with facts so they use natural experiments, statistical investigations, and economic experiments.
 
-# Lecture 2
+# The Economic Problem
 
 The **production possibilities frontier** is the boundary between those combinations of goods and services that can be produced and those that cannot.
 
-To show PPF, focus on two goods at a time and hold the quantities of all other goods and services constant.
+**Ceteris paribus**: All other variables remaining constant
+
+To show PPF, focus on two goods at a time and hold the quantities of all other goods and services constant (ceteris paribus)
 
 Example: Cola vs pizza production in a month. With cola on $y$ axis and pizza on x axis, it's a graph with a negative slope that has the bounds fixed between $x$ and $y$ intercepts. At $y=0$, colas would be at $15$ million cans and it'll gradually decrease as more pizzas are manufactured.
 
@@ -97,6 +105,8 @@ Any point along a PPF graph should be attainable (including the area under the c
 We achieve **production efficiency** if we can't produce more of one good without producing less of some other good (produced at the lowest cost)
 
 Since resources are not equally productive in all activities, the PPF is usually **concave**. As quantity produced increases, so does opportunity cost. This occurs because some resources are more suited for one job than another.
+
+**Marginal Cost:** Opportunity cost of producing one more unit of a good
 
 **Principle of decreasing marginal benefit:** General principle that the more we have of any good, the smaller its marginal benefit and the less we are willing to pay for additional unit of it.
 
@@ -130,7 +140,6 @@ Ecological economists: Created capital complement natural capital
 
 ## Gains from Trade
 
-
 **Neoclassical approach:** Trade allows people to specialize in the production of goods for which they have a comparative advantage and then trade for goods other people produce.
 
 Due to specialization, total output rises and can be shared <3
@@ -138,7 +147,6 @@ Due to specialization, total output rises and can be shared <3
 **Learn by doing** is when a person specializes by repeatedly producing a particular good or service and because more productive in it, lowering the opportunity cost.
 
 **Dynamic comparative advantage** is when a person gains a comparative advantage from learning by doing.
-
 
 Free trade is a system of trade policy that allows traders to trade across national boundaries without interference from the respective governments
 (Prices would then be a reflection of true supply and demand)
@@ -159,7 +167,7 @@ A **market** is any arrangement that enables buyers and sellers to get informati
 
 **Money** is any commodity or token that is generally acceptable as a means of payment.
 
-## Demand and Supply
+# Demand and Supply
 
 **Prices act as incentive.**
 
@@ -253,7 +261,7 @@ Decrease in demand and increase in supply lowers the equilibrium price.
 
 Decrease to supply and increase in demand increases the equilibrium price.
 
-## Elasticity
+# Elasticity
 
 The **price elasticity**  of demand is a units free measure of responsiveness of quantity demanded of a good to a change in its price.
 
@@ -263,7 +271,7 @@ The **price elasticity**  of demand is a units free measure of responsiveness of
 
 Elasticity is given by the slope of the derivative multiplied by the slope of two points.
 
-$$ \frac{\text{\% change in quantity demanded}}{\text{\% change in price}} $$
+$$\frac{\text{% change in quantity demanded}}{\text{% change in price}}$$
 
 Percent change is change in $X$ over average of $X$ between two points.
 
@@ -285,7 +293,7 @@ Total revenue is maximized at the unit elastic point. If demand is elastic, redu
 
 **Total revenue test** is a method of estimating the price elasticity of demand by observing the change in total revenue that results from a price change.
 
-# Elasticity and Total Revenue
+## Elasticity and Total Revenue
 
 When the seller raises the price of a good, there are two effects
 
@@ -310,7 +318,7 @@ Cross elasticity of demand measures responsiveness of demand for a good to a cha
 
 Formula is
 
-$$\frac{\text{\% change in quantity demanded}}{\text{\% change in price of substitute or complement}}$$
+$$\frac{\text{% change in quantity demanded}}{\text{% change in price of substitute or complement}}$$
 
 Cross elasticity of demand for
 
@@ -319,15 +327,15 @@ Cross elasticity of demand for
 
 ## Income Elasticity of Demand
 
-The **income elasticity** measures how the quantity demanded of a good responds to change in income/
+The **income elasticity** measures how the quantity demanded of a good responds to change in income.
 
 Formula is
 
-$$\frac{\text{\% change in quantity demanded}}\text{\% change in income}}$$
+$$\frac{\text{% change in quantity demanded}}{\text{% change in income}}$$
 
 Income elastic, income inelastic has same criterias.
 
-Income elasticity of demand is less than zero (negative), then the good is an **inferior good**.
+If income elasticity of demand is less than zero (negative), then the good is an **inferior good**.
 
 ## Elasticity of Supply
 
@@ -350,7 +358,7 @@ Choices are determined by consumption possibilities and preferences
 
 Benefit or satisfaction from consuming a good or service is **utility**
 
-**Cardinal utility**: Utility gained from good can be measured and magnitude of measurement is meaningful. (Measured in utils)
+**Cardinal Utility Theory**: Utility gained from good can be measured and magnitude of measurement is meaningful. (Measured in utils)
 
 Utilitarianism: Maximize happiness for greatest number of people
 
@@ -362,7 +370,7 @@ Utility Curve and Marginal Utility Curve (Derivative relation)
 
 **Budget line** describes the limits to a household's consumption choices.
 
-Eg: $8x + 4y = 40$ (x represents movie, y represents pop, 40 represents income)
+Example: $8x + 4y = 40$ (x represents movie, y represents pop, 40 represents income)
 
 An utility maximizing combination for spending is called **consumer equilibrium**
 
@@ -376,7 +384,6 @@ To maximize utility, (Marginal utility per dollar) MU/P for unit A must be same 
 
 1. Fall in price of a substitute of a good decreases the demand for the good
 2. Rise in income increases the demand for normal goods.
-
 
 ## Predictions of Marginal Utility Theory
 
@@ -406,7 +413,7 @@ Supply of water perfectly elastic. Supply of diamond perfectly inelastic
 
 **Bound rationality** is rationality that is bound by the computing power of the human brain. (When faced with uncertainty, consumers rely on others, gut instinct, etc)
 
-**Bounded Wilpower** is the less than perfect willpower that prevents us from making a decision that we know we'll later regret.
+**Bounded Willpower** is the less than perfect willpower that prevents us from making a decision that we know we'll later regret.
 
 **Bounded self-interest** is the limited self interest that sometimes results in suppressing our own interests to help others.
 
@@ -426,9 +433,9 @@ Supply of water perfectly elastic. Supply of diamond perfectly inelastic
 
 - Budget line
 
-Budget equation states: Expediture = INcome
+Budget equation states: Expenditure = Income
 
-**Real income** is income measured in terms of a good (eg: I make 2 iPhones a week)
+**Real income** is income measured in terms of a good (Example: I make 2 iPhones a week)
 
 **Relative Price:** of product A in terms of B is Price of A over Price of B
 
