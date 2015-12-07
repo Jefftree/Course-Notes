@@ -483,6 +483,10 @@ The consumer's best affordable choice is
 - On the highest attainable indifference curve
 - Has marginal rate of substitution between the two goods equal to the relative price of the two goods
 
+The **substitution effect** is the effect of a change in the price of the quantity bought when the consume remains on the same indifferent curve.
+
+**Income effect** jumps to a different indifference curve.
+
 **Substitution Effect and Income Effect:** For a normal good, a fall in the price always increases the quantity consumed.
 
 For inferior good, when income increases, the quantity bought decreases
@@ -491,11 +495,11 @@ For inferior good, when income increases, the quantity bought decreases
 
 A **firm** is an institution that hires factors of production and organizes them to produce and sell goods and services.
 
-R = P * Q
+Revenue = Price * Quantity
 
-P = R - E
+Profit = Revenue - Expenses
 
-Ecnomic profit is total revenue minus total cost (opportunity cost of production)
+Economic profit is total revenue minus total cost (opportunity cost of production)
 
 Opportunity cost of production is the value of the best alternative use of the resources that a firm uses in production
 
@@ -505,11 +509,11 @@ When a firm uses its own equipment, it's equivalent to **implicitly** renting th
 
 **Economic depreciation** is the change in the market value of capital over a given period
 
-The profit that an entrepreneur can expect to receive on average is called the **normal profit**
+The profit that an entrepreneur can expect to receive on average is called the **normal profit**. This is the cost of entrepreneurship and cost of production.
 
-## The firm
+## The Firm
 
-To maximize profit, a firm must make five deciisons
+To maximize profit, a firm must make five decisions
 
 - What to produce (quantities)
 - How to produce
@@ -557,11 +561,10 @@ Three types of businesses: Sole proprietorship, partnership, corporation
 - Oligopoly (small number of firms, either identical or differentiated products), barrier to entry
 - Monopoly (one firm solo, no close substitute), barrier to entry
 
-
 Economists use two measures of market concentration:
 
-- Four firm concentration ratio (Percentage of total industry sales accounted for b y  the four largest firms)
-- Herfindahl Hirschman Index (Square of percentage market share of each firm summed over largest 50 firms)
+- Four firm concentration ratio (Percentage of total industry sales accounted for by the four largest firms)
+- Herfindahl-Hirschman Index (Square of percentage market share of each firm summed over largest 50 firms)
 
 HHI ranges from near 0 (competitive) to 10000 (monopoly)
 
@@ -569,8 +572,7 @@ HHI ranges from near 0 (competitive) to 10000 (monopoly)
 - 1000 - 1800: Moderately competitive
 - 1800+: Concentrated
 
-
-Limitations:
+Limitations of Measurement:
 
 - Geographical scope
 - Barriers to entry, firm turnover
@@ -594,31 +596,31 @@ Form of business that strives to meet the triple bottom line.
 - Greener than traditional competition
 - Made enduring commitment to environmental principles in its business operations
 
-Triple Bottom Line: People planet and porfit
+Triple Bottom Line: People planet and profit
 
 ## Output and Costs
 
-Goal: Profit Maximization
+**Goal**: Profit Maximization
 
 Decision classifications: Short and long run
 
-Short run: Quantities of one or more resources used in production is fixed.
+**Short run**: Quantities of one or more resources used in production is fixed.
 
-Fixed factors: (management, tech, building, large equipment)
+**Fixed factors**: (management, tech, building, large equipment)
 
 Fixed factors are called the firm's plant
 
-Dynamic factors: Labour, raw materials, energy
+**Dynamic factors**: Labour, raw materials, energy
 
-Long run: Everything vary
+**Long run**: Everything vary
 
-Sunk cost: Cost incurred by the firm and cannot be changed
+**Sunk cost**: Cost incurred by the firm and cannot be changed
 
-Traditional economies: Sunk costs should not influence one's decisions
+**Traditional economies**: Sunk costs should not influence one's decisions
 
-Behavioural economics: Sunk costs greatly affect actor's decisions. Humans are inherently **loss aversive** and act irrationally when they waste money.
+**Behavioural economics**: Sunk costs greatly affect actor's decisions. Humans are inherently **loss aversive** and act irrationally when they waste money.
 
-Also known as throwing good money after bad
+**Loss aversion**: People have strong misgivings about wasted resources. Also known as **sunk cost fallacy** or throwing good money after bad.
 
 ## Short Run Technology Constraints
 
@@ -630,13 +632,13 @@ To increase output in the short run: Increase labor employed
 
 **Product Curves:** Graphs of three product concepts that show how total product, marginal product, and average product change as the quantity of labor employed changes.
 
-Total product curve: Similar to ppf but increasing slope. All points above curve unattainable, points below are inefficient.
+**Total Product Curve**: Similar to PPF but increasing slope. All points above curve unattainable, points below are inefficient.
 
-Marginal product curve measures change in the total product curve. Draw rectangles and stuff on product curve. Stack the rectangles together for marginal product curve. MArginal product curve passes through midpoint while rectanges were drawn on endpoints (Or just take derivative)
+Marginal product curve measures change in the total product curve. Draw rectangles and stuff on product curve. Stack the rectangles together for marginal product curve. Marginal product curve passes through midpoint while rectangles were drawn on endpoints (Or just take derivative)
 
-Law of diminishing returns: As a firm uses more of a variable input with a given quantity of fixed input, marginal product of variable input eventually diminishes.
+**Law of Diminishing Returns**: As a firm uses more of a variable input with a given quantity of fixed input, marginal product of variable input eventually diminishes.
 
-Maximum average product: Intersection between average product and marginal product.
+**Maximum average product**: Intersection between average product and marginal product.
 
 ## Short Run Costs
 
@@ -648,18 +650,19 @@ Can draw TC, TFC, TVC curves
 
 At first, TC and TVC increase at decreasing rate, then they increase at increasing rates. (At first, division of labor, then running out of resources)
 
-Marginal cost: Increase in total cost that results from one unit increase in total product (Change in TC divided by Change in output (compared to the last point))
-
-Diminishing marginal return: Marginal cost rises as output increases
-
-Increasing marginal return: Marginal cost goes down as output increases (specialization)
+**Marginal cost**: Increase in total cost that results from one unit increase in total product (Change in TC divided by Change in output (compared to the last point))
 
 - U shaped
 
-- Average fixed cost: Total fixed cost per unit of output
-- Average variable cost: Total variable cost per unit of output
+**Diminishing marginal return**: Marginal cost rises as output increases
 
-Respective cost divided by quantity produced
+**Increasing marginal return**: Marginal cost goes down as output increases (specialization)
+
+**Average fixed cost**: Total fixed cost per unit of output
+
+**Average variable cost**: Total variable cost per unit of output
+
+**Average total cost**: Respective cost divided by quantity produced
 
 - AFC Curve falls as output increases.
 - AVC is U shaped, average variable cost falls to a minimum and then increases
@@ -668,14 +671,16 @@ Respective cost divided by quantity produced
 
 Relationship between MC and AVC also applies for ATC
 
-Shifts in Cost Curves:
+**NOTE**: When marginal cost intersects with ATC or AVC, the respective cost reaches a minimum.
+
+#### Shifts in Cost Curves
 
 - Technology (MP up, MC down), (ATC higher at low lvls, lower at higher lvls), (Fixed increase, variable decrease)
 - Prices of factors of production. (Increase in costs?) (Fixed affects only ATC), (Variable affects ATC and MC)
 
 ## Long Run Cost
 
-Production Function: Relationship between maximum output attainable and the quantities of both capital and labor.
+**Production Function**: Relationship between maximum output attainable and the quantities of both capital and labor.
 
 **Marginal Product of Capital:** Increase in output resulting from a one unit increase in the amount of capital employed
 
@@ -683,18 +688,15 @@ Average cost of producing a given output varies and depends on the firm's plant
 
 Larger the plant, greater is the output at which ATC is at a minimum
 
-Long-run average cost curve: Lowest ATC for each output level. Take multiple ATC graphs, find lowest point, connect the dots
+**Long-run average cost curve**: Lowest ATC for each output level. Take multiple ATC graphs, find lowest point, connect the dots
 
-Economies of scale: Firm's technology that lead to falling long-run average cost as output increases
+**Economies of scale**: Firm's technology that lead to falling long-run average cost as output increases
 
-Diseconomies of scale: Firm's technology that lead to rising long-run average cost as output increases
+**Diseconomies of scale**: Firm's technology that lead to rising long-run average cost as output increases
 
-Constant returns to scale: Firm's technology that lead to constant long-run average cost as output increases.
+**Constant returns to scale**: Firm's technology that lead to constant long-run average cost as output increases.
 
 An ATC graph could have economies of scale for certain intervals and then diseconomies of scale for other intervals
 
-Minimum efficient scale: Smallest quantity of output at which the long-run average cost reaches its lowest level. Point in which economies of scale becomes diseconomies of scale
-
-
-
+**Minimum efficient scale**: Smallest quantity of output at which the long-run average cost reaches its lowest level. Point in which economies of scale becomes diseconomies of scale
 
