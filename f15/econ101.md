@@ -1,4 +1,3 @@
-
 # Introduction to Microeconomics
 
 **Scarcity** is the inability to satisfy all wants. Must make **choices** based on **incentives**.
@@ -699,4 +698,391 @@ Larger the plant, greater is the output at which ATC is at a minimum
 An ATC graph could have economies of scale for certain intervals and then diseconomies of scale for other intervals
 
 **Minimum efficient scale**: Smallest quantity of output at which the long-run average cost reaches its lowest level. Point in which economies of scale becomes diseconomies of scale
+
+# Perfect Competition
+
+Firms in perfect competition face the maximum amount of competition.
+
+### Conditions
+
+- Minimum efficient scale is small relative to the market demand so there is room for many firms in the industry.
+- Each firm is perceived to produce a good or service that has no unique characteristics (perfect substitute)
+
+**Price taker**: A firm that cannot influence the price of a good or service.
+
+**Marginal revenue**: Change in total revenue that results from a unit increase in quantity sold.
+
+### Firm decisions
+
+- How to produce at the minimum cost (minimize LRAC)
+- What quantity to produce
+- Whether to enter or exit a market
+
+Profit is maximized when marginal revenue equals marginal cost.
+
+If a firm makes economic loss, must decide whether to stay or leave the market
+
+If a firm is getting rekt and decides to stay, must decide between producing something or temporary shut down.
+
+A firm's **shutdown point** is the price and quantity at which it is indifferent between producing and shutting down. This is when MC crosses AVC (AVC is at its minimum). The firm incurs a loss equal to the TFC.
+
+A perfectly competitive firm's supply curve shows how the firm's profit maximizing output varies as the market price varies.
+
+The **short-run market supply curve** shows the quantity supplied by all firms in the market at each price when each firm's plant and the number of firms remain the same. Most optimal quantity supplied for each firm (maximize profit).
+
+**Short run equilibrium**: Short run market supply and market demand determine the market price and output.
+
+### Affects on the Short Run Market Supply Curve
+
+- Increase in demand shifts the market demand curve to the right. Price and quantity rise. Firms will enter the industry as other firms will be making economic profit.
+- Decrease in demand shifts the market demand curve to the left. Price and quantity fall. Firms start to exit as they'll start to make economic loss.
+
+**NOTE:** Maximum profit is not always a positive economic profit.
+
+When ATC is above marginal revenue, the firm is incurring a loss. When ATC = MR, the first is at a breakeven point.
+
+Logically, new firms enter an industry in which existing firms are making an economic profit. Firms exist an industry in which they incur economic loss.
+
+In the long run, industries would converge to zero economic profit because of the entrance and disappearance of new firms.
+
+**External economies**: Factors beyond the control of an individual firm that lower the firm's costs as the industry output increases.
+
+**External diseconomies:** Factors beyond the control of a firm that raises the firm's costs as industry output increases.
+
+The **long-run market supply curve** shows how the quantity supplied in a market varies as the market price varies after all possible adjustments have been made.
+
+With external economies and diseconomies, when demand rises, prices will increase and when demand falls, prices will decrease. Without external economies/diseconomies, prices would remain constant.
+
+The long-run market supply curve reflects that by having a positive slope with an increase in price and negative slope with a decrease. It connects the equilibrium at a particular price to another equilibrium after the price change has occurred and markets settled down.
+
+### Technological change
+
+Technological change leads to economic profit. Firms either adapt to the new technology or exit. New technology firms also enter the industry.
+
+As a result, supply increases and supply curve shifts rightward. Prices fall and quantity increases. Eventually a new long-run equilibrium emerges and each firm makes zero economic profit again.
+
+### Competition and Efficiency
+
+Resources are used efficiently when marginal social benefit equals marginal social cost.
+
+With no external benefits, the market demand curve is the marginal social benefit curve.
+
+With no external cost, the market supply curve is the marginal social cost curve.
+
+In **competitive equilibrium**, resources are used efficiently, quantity demanded = quantity supplied, and marginal social benefit = marginal social cost.
+
+Gains from trade (consumer surplus and producer surplus) would equal total surplus. IN long-run equilibrium, total surplus is maximized.
+
+# Government Actions in Markets
+
+Individual demand versus market demand will be different.
+
+Similarly, individual supply versus market supply will be different.
+
+Market supply and demand curve is the sum of all individual supply and demand curves.
+
+**Price ceiling**: Regulation that makes it illegal to charge a price higher than a specified level
+
+**Rent ceiling**: is a price ceiling applied to a housing market.
+
+By placing a ceiling below the equilibrium price, effectively causing a shortage as demand is greater than supply.
+
+People are willing to pay more, but it'll be illegal (black market).
+
+**Search activity**: Time spent looking for someone with whom to do business.
+
+**Black market**: Illegal market that operates alongside a legal market in which a price ceiling or other restriction has been imposed.
+
+### Ceilings Fair?
+
+According to **fair rules** view, a rent ceiling is unfair because it blocks voluntary exchange.
+
+According to **fair results** view, a rent ceiling is unfair because it does not generally benefit the poor.
+
+Decreases the quantity of the product available, and the product is allocated by
+
+- Lottery
+- First come, first serve
+- Discrimination
+
+### Argument in Favor or Rent Control
+
+- High transaction costs can be reduced with the introduction of rent ceilings.
+- Income tax benefits for landlords and tenants can be balanced
+- Reduce instability and associated external costs for tenants
+- Rent control may influence housing investment negatively or positively depending on how it affects the local economy
+- Most metropolitan areas grow faster than rural areas even though urban areas face more regulations including rent control
+
+
+**Price floor**: Regulation that makes it illegal to trade at a price lower than a specified level
+
+**Minimum wage:** Price floor in the labor market.
+
+If the minimum wage is set above the equilibrium wage rate, there is a surplus of labor and creates unemployment.
+
+**Argument**: Minimum wage laws increase the unemployment rate of low-skilled younger workers.
+
+**Counter Argument**: Higher wage increases employment by making workers more productive and less likely to quit. Higher wage also makes managers seek ways to increase labor productivity.
+
+## Taxes
+
+Income tax and social insurance taxes are deducted from pay.
+
+Provincial sales tax and GST are added to the price of things that are bought
+
+- Specific Tax: For every unit of quantity a consumer purchases, the government collects a certain amount
+- Ad Valorem Tax: For every dollar a consumer spends, the government keeps a fraction which is ad valorem tax rate.
+
+**Tax incidence**: Division of the burden of a tax between buyers and sellers.
+
+When an item is taxed, the price paid by buyers might rise by the full amount of the tax, by a lesser amount, or not at all.
+
+The division of tax between buyers and sellers depends on the elasticities of demand and supply.
+
+- Perfect inelastic demand: Buyer pays entire tax
+- Perfect elastic demand: Seller pay the entire tax
+
+When the curves get shifted after a tax is applied, there will be a new equilibrium price. The difference is the tax that the buyer pays.
+
+**The Benefits Principle**: Proposition that people should pay taxes equal to the benefits they receive from the services provided by the government.
+
+**The Ability-to-Pay Principle**: Proposition that people should pay taxes according to how easily they can bear the burden of tax.
+
+Interventions in markets for farm products take two main forms:
+
+- **Production quota**: Upper limit to the quantity of a good that may be produced during a specified period.
+- **Subsidy**: Payment made by the government to a producer
+
+# Monopoly
+
+With perfect competition, the market forces of demand and supply determine a good or service's price.
+
+In a monopoly, the demand curve for an individual firm is the market demand curve.
+
+**Monopoly**: Market that produces a good/service with no close substitutes and there is one supplier that is protected from competition by a barrier of entry.
+
+### Barriers to Entry
+
+- Natural (economies of scale)
+- Ownership (control of resources)
+- Legal
+
+**Natural monopoly**: Industry in which economies of scale enable one firm to supply entire market at lowest cost.
+
+**Legal monopoly**: Market in which competition and entry are restricted by the granting of a public franchise, government license, or patent.
+
+A monopoly sets its own price.
+
+**Single-price monopoly**: Firm th at must sell each unit of output for the same price for all customers
+
+**Prime discrimination**: Practice of selling different units of a good or service for different prices.
+
+To sell a larger output, a monopoly must set a lower price. When price is lowed, two opposing forces affect total revenue:
+
+- Lower price results in revenue loss
+- Increased quantity sold results in revenue gain
+
+If demand is elastic, fall in price brings increase to total revenue. Else it brings decrease.
+
+Total revenue is maximized when Marginal Revenue = 0. Critical point at first derivative = 0. (Not necessarily maximized profit)
+
+A single-price monopoly never produces an output at which demand is inelastic.
+
+Profit is maximized when MR = MC just like a competitive firm.
+
+**NOTE:** There is no supply curve for a monopoly because there is no single curve that provides information on both the quantity supplied and the price.
+
+**Economic rent**: Any surplus, consumer surplus, producer surplus, or economic profit
+
+**Rent seeking**: Pursuit of wealth by capturing economic rent
+
+Rent seekers pursue their goals in two ways:
+
+- Buy a monopoly
+- Create a monopoly
+
+
+### Price Discrimination
+
+A monopoly can discriminate
+
+- Among units of a good. Quantity discounts
+- Among groups of buyers: (Example: Pre-purchase)
+
+By price discriminating, a firm can increase its profit by converting consumer surplus into economic profit. This rotates the marginal revenue line and allows the firm to produce more (efficiency) as well.
+
+**Perfect price discrimination:** A firm is able to sell each unit of output for the highest price anyone is willing to pay. The demand curve becomes the marginal revenue curve.
+
+Deadweight loss is converted into economic profit.
+
+The outcome differs from outcome of perfect competition in two days:
+
+- Monopoly captures the entire consumer surplus
+- Increase in economic profit attracts even more rent seeking activity that leads to inefficiency
+
+**Regulation**: Rules administrated by a government agency to influence prices, quantities, entries, and other aspects of economic activity
+
+**Deregulation** :The process of removing regulations
+
+### Theories on Regulation
+
+**Social interest theory**: The political and regulatory process relentlessly seeks out inefficiency and regulates to eliminate deadweight loss
+
+**Capture theory**: Regulation serves the self-interest of the producer, who captures the regulator.
+
+When demand and cost conditions create natural monopoly, in order for the firm to maximize profit, quantity produced is less than the efficient quantity
+
+**Marginal cost pricing rule**: Regulation that sets the price equal to the monopoly's marginal cost. Thus the quantity demanded at a price equal to the marginal cost is the efficient quantity.
+
+However, this usually incurs an economic loss on the firm. To cover the costs, a regulated natural monopoly might be permitted to price discriminate to cover the loss from marginal cost pricing. OR the natural monopoly might charge a one-time fee to cover its fixed costs and then charge the marginal cost.
+
+**Average cost pricing rule**: Price at average cost. Usually a bit higher than pricing at marginal cost.
+
+It may be hard for regulator to be sure what the firm's costs are. Therefore they use one of two practical rules:
+
+- Rate of return regulation: Justify price by showing return on capital doesn't exceed a rate. (may violate principal agent problem, inflate expenses)
+- Price cap regulation (Price ceiling)
+
+# Monopolistic Competition
+
+**Monopolistic Competition**: Similar to perfect competition, but with product differentiation.
+
+### Implications
+
+- Each firm only has a small market share, and limited market power to influence price of its product
+- Each firm is sensitive to **average market price**, but not firm pays attention to the actions of others. No firm's actions directly affect the actions of others.
+- Collusion/price fixing is impossible
+
+**Product differentiation**: Close substitute, but not perfect substitute
+
+This enables firms to compete in three areas:
+
+- Quality: Design, reliability, service
+- Price
+- Marketing: Advertising and packaging
+
+In the long run, economic profit induces entry, and price will eventually equal ATC and zero economic profit will be reached
+
+A firm has **excessive capacity** if it produces less than the quantity at which ATC is a minimum.
+
+A firm's **markup** is the amount by which its price exceeds its marginal cost.
+
+The **efficient scale** is the quantity at which ATC is at a minimum.
+
+Firms in perfect competition have no excessive capacity and no markup. The perfect elastic demand curve for perfect competition demand curve drives the result.
+
+### Efficiency of Monopolistic Competition
+
+- Prices equal marginal social benefit
+- Marginal cost equals marginal social cost
+- Price exceeds marginal cost, so marginal social benefit exceeds marginal social cost
+
+In the long run, monopolistic competition produces less than the efficient quantity. However, monopolistic competition offers **product diversity**.
+
+Loss from quantity produced being less than the efficient quantity is offset by the gain that arises from having a greater degree of product variety
+
+### Innovation and Product Development
+
+To keep making economic profit, a firm in monopolistic competition must be in a state of continuous product development. Provides competitive edge (even if temporary).
+
+**NOTE:** Innovation is costly, but increases total revenue.
+
+Amount of product development is efficient if marginal social benefit is greater than marginal social cost for the innovation.
+
+A large proportion of the price in a product pays for the cost of selling it (packaging and advertising).
+
+Selling efforts are successful in they increase the demand for the firm's product.
+
+A **signal** is an action taken by an informed person/firm to send a message to uninformed people.
+
+Advertising and establishing brand names are efficient (theoretically)
+
+# Oligopoly
+
+In an oligopolistic market, a firm sets price or output based partly on strategic considerations regarding the behavior of its competitors.
+
+**Oligopoly**: Market structure with small number of firms and natural/legal barriers to prevent entry of new firms
+
+**Duopoly** is a market with two firms
+
+With a small number of firms, each firm's profit depends on every firm's actions.
+
+**Cartel**: An illegal group of firms acting together to limit output, raise prices, and increase profit
+
+**NOTE**: Cartels are illegal and often break down
+
+### Kinked Demand Curve Model
+
+Each firm believes that if it raises its price, competitors will not follow. However if it raises its price, all of its competitors will follow
+
+There would be a discontinuity in the MR curve
+
+### Dominant Firm Oligopoly
+
+There is one large firm that has a significant cost advantage over many other, smaller competing firms. Large firm acts as monopoly, pricing to maximize profit. Small firms act as perfect competitors, taking given market price set by the dominant firm
+
+**Game theory**: A tool for studying strategic behaviour, behaviour taken into account the expected behaviour of others and the mutual recognition of interdependence
+
+### Prisoner's Dilemma
+
+#### Rules
+
+- My boys Art and Bob locked in a separate cell
+- One confess: 1 year + other guy 10 years
+- Both confess: 3 year + other guy 3 years
+- Neither confess: 2 year + other guy 2 year
+
+#### Strategies
+
+- 4 possible outcomes. Each player has two actions
+
+#### Payoffs
+
+- **Payoff Matrix**: Table that shows payoffs for every possible action by each player for every possible action by the other player
+
+#### Outcome
+
+- **Nash equilibrium**: Both players choose the action that is most beneficial to themselves, for each possibility for the other person's choice
+- Equilibrium is to both confess. Also called dominant strategy equilibrium
+
+**NOTE:** A game similar to prisoners' dilemma is played in duopoly.
+
+Firms could collude, and either choose to honor it, or cheat on it. This leads to four possible outcomes.
+
+**Collusive agreement**:  Agreement between two or more firms to restrict output, raise the price, and increase profits.
+
+Advertising and R&D games are also prisoners' dilemmas
+
+Punishment strategies can support a **cooperative equilibrium**.
+
+**Tit for tat strategy**: One player cooperates this period if the other player cooperated in the previous period, but cheats in the current period of the other player cheated in the previous period
+
+**Trigger strategy**: Cooperate if other player cooperates, else play Nash equilibrium strategy forever.
+
+**Contestable market**: A market which firms can enter and leave so easily that firms in the market face competition from potential entrants
+
+**Limit pricing**: Set the price at the highest level that is consistent with keeping the potential entrant out.
+
+Canada has Anti-Combine Law: The Competition Act that prevents firms from seizing complete control of an industry/engage in practice of anticompetitive
+
+### Criminal Practices
+
+- Conspiracy to fix prices
+- Bid rigging
+- False advertising
+
+### Non-criminal Practices
+
+- Mergers
+- Abuse of dominant position
+- Exclusive dealing
+
+### Major Anti-Combine Cases
+
+- NutraSweet tried to gain a monopoly in aspartame by licensing the use of its "Swirl" only on products for which it had exclusive deal
+- Bell tried to tie sale of advertising space in Yellow Pages to the sale of advertising services from one of its subsidiaries
+- Merger between CIBC and TD, Royal Bank and BMO were blocked
+- Gasoline price-fixing cartel in Quebec fined for 2 million
+
+The intent of anti-combine law is to protect social interest and restrict profit-seeking anti-competitive practices by producers
 
