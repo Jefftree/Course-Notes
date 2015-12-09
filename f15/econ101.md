@@ -23,9 +23,9 @@ Economics is the social science that studies the choices that individuals, busin
 
 **Goods and services** are the objects that people value and produce to satisfy human wants.
 
-In China, agriculture accounts for 11%, manufactured goods 49%, and services 40%
+In China, agriculture accounts for 11\%, manufactured goods 49\%, and services 40\%
 
-In Canada, agriculture accounts for 2% of total production, manufactured goods 20%, and services 78%.
+In Canada, agriculture accounts for 2\% of total production, manufactured goods 20\%, and services 78\%.
 
 
 Goods and services are produced by using productive resources called **factors of production**. They are grouped into four categories
@@ -270,11 +270,11 @@ The **price elasticity**  of demand is a units free measure of responsiveness of
 
 Elasticity is given by the slope of the derivative multiplied by the slope of two points.
 
-$$\frac{\text{% change in quantity demanded}}{\text{% change in price}}$$
+$$\frac{\text{\% change in quantity demanded}}{\text{\% change in price}}$$
 
 Percent change is change in $X$ over average of $X$ between two points.
 
-**NOTE:** The demand elasticity formula yields a negative value because price and quantity move in the opposite directions. However, we are only interested in the magnitude of the price elasticity if demand to measure responsiveness.
+**Note:** The demand elasticity formula yields a negative value because price and quantity move in the opposite directions. However, we are only interested in the magnitude of the price elasticity if demand to measure responsiveness.
 
 If the elasticity is 0, the good has **perfectly inelastic demand**
 
@@ -284,7 +284,7 @@ If percentage change in the quantity demanded equals  the percentage change in p
 
 If elasticity is less than $1$, it has inelastic demand. If elasticity is greater than $1$, it has elastic demand.
 
-**NOTE:** For demand to be elastic, changes in price should yield big changes in demand.
+**Note:** For demand to be elastic, changes in price should yield big changes in demand.
 
 Demand becomes less elastic as the price falls along a linear demand curve. When prices are above mid-point of the demand curve, demand is elastic. Otherwise it is inelastic.
 
@@ -317,7 +317,7 @@ Cross elasticity of demand measures responsiveness of demand for a good to a cha
 
 Formula is
 
-$$\frac{\text{% change in quantity demanded}}{\text{% change in price of substitute or complement}}$$
+$$\frac{\text{\% change in quantity demanded}}{\text{\% change in price of substitute or complement}}$$
 
 Cross elasticity of demand for
 
@@ -330,7 +330,7 @@ The **income elasticity** measures how the quantity demanded of a good responds 
 
 Formula is
 
-$$\frac{\text{% change in quantity demanded}}{\text{% change in income}}$$
+$$\frac{\text{\% change in quantity demanded}}{\text{\% change in income}}$$
 
 Income elastic, income inelastic has same criterias.
 
@@ -532,7 +532,7 @@ To maximize profit, a firm must make five decisions
 
 Economic efficient production process -> Technology efficient.
 
-NOTE: Previous example is not if and only if.
+Note: Previous example is not if and only if.
 
 ## Information and Organization
 
@@ -670,7 +670,7 @@ At first, TC and TVC increase at decreasing rate, then they increase at increasi
 
 Relationship between MC and AVC also applies for ATC
 
-**NOTE**: When marginal cost intersects with ATC or AVC, the respective cost reaches a minimum.
+**Note**: When marginal cost intersects with ATC or AVC, the respective cost reaches a minimum.
 
 #### Shifts in Cost Curves
 
@@ -737,7 +737,7 @@ The **short-run market supply curve** shows the quantity supplied by all firms i
 - Increase in demand shifts the market demand curve to the right. Price and quantity rise. Firms will enter the industry as other firms will be making economic profit.
 - Decrease in demand shifts the market demand curve to the left. Price and quantity fall. Firms start to exit as they'll start to make economic loss.
 
-**NOTE:** Maximum profit is not always a positive economic profit.
+**Note:** Maximum profit is not always a positive economic profit.
 
 When ATC is above marginal revenue, the firm is incurring a loss. When ATC = MR, the first is at a breakeven point.
 
@@ -890,7 +890,7 @@ A single-price monopoly never produces an output at which demand is inelastic.
 
 Profit is maximized when MR = MC just like a competitive firm.
 
-**NOTE:** There is no supply curve for a monopoly because there is no single curve that provides information on both the quantity supplied and the price.
+**Note:** There is no supply curve for a monopoly because there is no single curve that provides information on both the quantity supplied and the price.
 
 **Economic rent**: Any surplus, consumer surplus, producer surplus, or economic profit
 
@@ -985,7 +985,7 @@ Loss from quantity produced being less than the efficient quantity is offset by 
 
 To keep making economic profit, a firm in monopolistic competition must be in a state of continuous product development. Provides competitive edge (even if temporary).
 
-**NOTE:** Innovation is costly, but increases total revenue.
+**Note:** Innovation is costly, but increases total revenue.
 
 Amount of product development is efficient if marginal social benefit is greater than marginal social cost for the innovation.
 
@@ -1009,7 +1009,7 @@ With a small number of firms, each firm's profit depends on every firm's actions
 
 **Cartel**: An illegal group of firms acting together to limit output, raise prices, and increase profit
 
-**NOTE**: Cartels are illegal and often break down
+**Note**: Cartels are illegal and often break down
 
 ### Kinked Demand Curve Model
 
@@ -1045,7 +1045,7 @@ There is one large firm that has a significant cost advantage over many other, s
 - **Nash equilibrium**: Both players choose the action that is most beneficial to themselves, for each possibility for the other person's choice
 - Equilibrium is to both confess. Also called dominant strategy equilibrium
 
-**NOTE:** A game similar to prisoners' dilemma is played in duopoly.
+**Note:** A game similar to prisoners' dilemma is played in duopoly.
 
 Firms could collude, and either choose to honor it, or cheat on it. This leads to four possible outcomes.
 
