@@ -1013,7 +1013,7 @@ With a small number of firms, each firm's profit depends on every firm's actions
 
 ### Kinked Demand Curve Model
 
-Each firm believes that if it raises its price, competitors will not follow. However if it raises its price, all of its competitors will follow
+Each firm believes that if it raises its price, competitors will not follow. However if it lowers its price, all of its competitors will follow
 
 There would be a discontinuity in the MR curve
 
