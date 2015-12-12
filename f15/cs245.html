@@ -250,6 +250,16 @@
 <p>A variable is <strong>fresh</strong> in a subproof if it occurs nowhere outside the box of the subproof.</p>
 <p>If you start with <span class="math inline">\(y\)</span> fresh and can conclude <span class="math inline">\(\alpha \lbrack y / x \rbrack\)</span>, you can conclude <span class="math inline">\(\forall x \cdot \alpha\)</span></p>
 <p>If you start with <span class="math inline">\(\exists x \cdot a\)</span> and when you introduce <span class="math inline">\(u\)</span> fresh you can conclude <span class="math inline">\(\beta\)</span>, then you can actually conclude <span class="math inline">\(\beta\)</span></p>
+<p><strong>Definition:</strong> First Order Logic with Equality is First-Order Logic with the restriction that the symbol <code>=</code> must be interpreted as equality on the domain</p>
+<p><span class="math display">\[(=)^L = \{(d,d) | d \in dom(L)\}\]</span></p>
+<p>If <span class="math inline">\(t = t\)</span>, you can do an equals introduction</p>
+<p>If <span class="math inline">\(t_1 = t_2\)</span> and <span class="math inline">\(\alpha \lbrack t_1 / x \rbrack\)</span> then you can conclude <span class="math inline">\(\alpha \lbrack t_2 /x \rbrack\)</span></p>
+<p>An <strong>axiom</strong> is a premise that is always taken, it need not be listed explicitly.</p>
+<p>EQ1: <span class="math inline">\(\forall x \cdot x = x\)</span> is n axiom.</p>
+<p>EQ2: For each formula <span class="math inline">\(\alpha\)</span> and variable <span class="math inline">\(z\)</span></p>
+<p><span class="math inline">\(\forall x \cdot \forall y \cdot (x = y \implies (\alpha \lbrack x / z \rbrack \implies \alpha \lbrack y / z \rbrack))\)</span></p>
+<p>These axioms then imply symmetry and transitivity.</p>
+<h2 id="arithmetic-data-structures-and-programs">Arithmetic, Data Structures, and Programs</h2>
 <hr />
 <h2 id="relations-on-lists">Relations on Lists</h2>
 <p>If <span class="math inline">\(x\)</span> is the empty list</p>
@@ -292,5 +302,7 @@
 <p>Case 2: Reverse of a list is the reverse of the rest of the list appended onto the first element.</p>
 <p><span class="math inline">\(\forall w \cdot \forall x \cdot \forall y \cdot \forall z \cdot (\)</span>Reverse<span class="math inline">\((x,y) \land\)</span> Append<span class="math inline">\((y,cons(w,e),z)) \implies\)</span> Reverse<span class="math inline">\((cons,w,x),z)))\)</span></p>
 <p>Reverse<span class="math inline">\((cons(b,e),cons(b,e))\)</span></p>
+<hr />
+<p>Given terms <span class="math inline">\(t_1, t_2\)</span>, determine whether there are substitutions for the variables that make the terms the same. Finding such substitution is called <strong>unification</strong> of the terms.</p>
 </body>
 </html>
